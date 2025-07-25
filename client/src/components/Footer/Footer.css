@@ -9,35 +9,39 @@
 }
 
 .footer__items__container {
-    height: 100%;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
+    padding: 2rem 0;
+    gap: 2rem;
 }
 
 .footer__help__container {
     width: 300px;
-    height: 180px;
+    min-height: 200px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .footer__help__header {
-    height: 40%;
-    width: 70%;
-    margin: auto;
+    width: 100%;
+    margin: 0 auto 1rem;
     display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
-.footer__help__header h1{
+.footer__help__header h1 {
     font-size: 1.3rem;
     font-weight: 600;
-    align-self: center;
+    margin: 0;
+    text-align: center;
+    width: 100%;
 }
 
 .fotter__help__links {
@@ -52,35 +56,39 @@
 
 .footer__contact__container {
     width: 300px;
-    height: 180px;
+    min-height: 200px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .footer__contact__header {
-    height: 40%;
-    width: 70%;
+    width: 100%;
+    margin: 0 auto 1rem;
     display: flex;
-    justify-self: center;
-    align-self: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.footer__contact__header h1{
+.footer__contact__header h1 {
     font-size: 1.3rem;
     font-weight: 600;
-    align-self: center;
+    margin: 0;
+    text-align: center;
+    width: 100%;
 }
 
 .footer__contacts {
-    margin: 0%;
-    padding: 0%;
-    height: 100%;
-    width: 70%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
 }
 
 .footer__contact {
@@ -90,48 +98,101 @@
 
 .footer__social__link__container {
     width: 300px;
-    height: 180px;
+    min-height: 200px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
-    align-items: center
+    align-items: center;
+    text-align: center;
 }
 
 .footer__social__link__header {
-    height: 40%;
     width: 100%;
+    margin: 0 auto 1rem;
     display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .footer__social__link__header h1 {
     font-size: 1.3rem;
     font-weight: 600;
-    align-self: center;
+    margin: 0;
+    text-align: center;
+    width: 100%;
 }
 
 .footer__social__links {
-    margin: 0%;
-    padding: 0%;
-    height: 70%;
+    margin: 0;
+    padding: 0;
     width: 100%;
     list-style-type: none;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
 }
 
 .social__link {
-    width: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.social__link:hover {
+    transform: translateY(-2px);
 }
 
 .fotter__copyright__container {
-    height: auto;
     width: 100%;
     background-color: black;
-    display: flex;
     color: #FFE26E;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
+    padding: 1rem 0;
+    overflow: hidden;
+}
+
+.fotter__copyright__container .nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    list-style: none;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.fotter__copyright__container .nav li {
+    padding: 0 0.5rem;
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.fotter__copyright__container .nav::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.fotter__copyright__container .nav {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+@media (max-width: 768px) {
+    .fotter__copyright__container .nav {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 0 1rem;
+    }
+    
+    .fotter__copyright__container .nav li {
+        padding: 0.25rem 0;
+    }
 }
