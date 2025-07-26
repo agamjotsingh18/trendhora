@@ -15,6 +15,7 @@ const Navtop = () => {
                     <div className="control__bar">
                         <Control />
                     </div>
+                    
                     <div className="drawer">
                         <DrawerNav />
                     </div>
