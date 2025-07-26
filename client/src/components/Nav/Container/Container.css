@@ -1,8 +1,7 @@
 .nav__top__container {
-    height: 70px;
+      height: 100px;
     width: 100%;
-    display: flex;
-    
+    display: flex;    
 }
 
 .top__container {
