@@ -1,0 +1,57 @@
+.toaster {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: white;
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e5e7eb;
+    z-index: 9999;
+    min-width: 320px;
+    max-width: 400px;
+    transform: translateX(400px);
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.toaster-show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Fill bar overlay */
+.toaster::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #22c55e;
+    z-index: 0;
+    animation: fillToWhite 3s forwards ease-out;
+}
+
+/* Text and icon stay above the fill */
+.toaster-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    padding: 16px 20px;
+    gap: 12px;
+}
+
+/* Animation: green fades to white */
+@keyframes fillToWhite {
+    0% {
+        width: 0%;
+        background-color: #22c55e;
+    }
+    100% {
+        width: 100%;
+        background-color: white;
+    }
+}

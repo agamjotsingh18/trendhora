@@ -20,10 +20,12 @@ import WishItemsProvider from '../Context/WishItemsProvider';
 import DrawerNav from '../components/Nav/DrawerNav/DrawerNav';
 import Checkout from '../components/Checkout/Checkout';
 import SearchProvider from '../Context/SearchProvider';
+import Toaster from '../components/Toaster/toaster';
 
 function App() {
 
   return (
+    <>
    <CartItemsProvider>
       <WishItemsProvider>
         <SearchProvider>
@@ -67,6 +69,11 @@ function App() {
         </SearchProvider>
       </WishItemsProvider>
    </CartItemsProvider>
+
+   <Toaster />
+
+   </>
+   
   );
 }
 
