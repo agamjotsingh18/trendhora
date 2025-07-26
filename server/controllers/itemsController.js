@@ -54,9 +54,34 @@ const deleteItem = (req, res) => {
     res.json({message: "delete Item"})
 }
 
+const searchItems = async (req, res) => {
+    try {
+        const { q } = req.query;
+        if (!q) {
+            return res.status(400).json({ message: 'Missing search query' });
+        }
+        // Case-insensitive search in name, category, or type
+        const items = await Item.find({
+            $or: [
+                { name: { $regex: q, $options: 'i' } },
+                { category: { $regex: q, $options: 'i' } },
+                { type: { $regex: q, $options: 'i' } }
+            ]
+        });
+        if (items.length > 0) {
+            res.status(200).json(items);
+        } else {
+            res.status(404).json({ message: 'No items found' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
 module.exports = {
     getItem,
     addItem,
     updateItem,
-    deleteItem
+    deleteItem,
+    searchItems
 }

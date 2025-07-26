@@ -1,15 +1,99 @@
 
 .search__container {
     width: 100%;
-    height: 70vh;
+    min-height: 70vh;
+    padding: 20px;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+}
+
+.search__container__content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.search__container__header {
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.search__loading,
+.search__error,
+.search__no-results,
+.search__empty {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.search__loading h2,
+.search__error h2,
+.search__no-results h2,
+.search__empty h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.search__error p,
+.search__no-results p,
+.search__empty p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
+}
+
+.search__results {
+    width: 100%;
+}
+
+.search__results__header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+.search__results__header h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.search__results__header p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
+}
+
+.search__results__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .search__container {
+        padding: 15px;
+    }
+    
+    .search__results__grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+    
+    .search__results__header h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .search__results__grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .search__results__header h2 {
+        font-size: 1.4rem;
+    }
 }

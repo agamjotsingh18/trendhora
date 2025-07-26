@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const cors = require("cors")
 const uploadPhoto = require("../middlewares/upload")
-const { getItem, addItem, updateItem, deleteItem } = require("../controllers/itemsController")
+const { getItem, addItem, updateItem, deleteItem, searchItems } = require("../controllers/itemsController")
 const Item = require("../models/Item"); 
 
 router.get('/', cors(), async (req, res) => {
@@ -24,5 +24,7 @@ router.post('/', uploadPhoto.array('images'), addItem)
 router.put('/:id', updateItem)
 
 router.delete('/:id', deleteItem)
+
+router.get('/search', cors(), searchItems)
 
 module.exports = router
