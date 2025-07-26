@@ -52,7 +52,8 @@ const itemsCollection = [
         ],
         "createdAt": "2022-08-28T21:41:09.891Z",
         "updatedAt": "2022-08-28T21:41:09.891Z",
-        "__v": 0
+        "__v": 0,
+        "detail": "Product details not specified."
     },
     {
         "_id": "630be1b70dd6605053c3f088",
@@ -97,7 +98,8 @@ const itemsCollection = [
         ],
         "createdAt": "2022-08-28T21:44:23.361Z",
         "updatedAt": "2022-08-28T21:44:23.361Z",
-        "__v": 0
+        "__v": 0,
+        "detail": "Product details not specified."
     },
     {
         "_id": "630be4fb0dd6605053c3f095",
@@ -142,7 +144,8 @@ const itemsCollection = [
         ],
         "createdAt": "2022-08-28T21:58:19.498Z",
         "updatedAt": "2022-08-28T21:58:19.498Z",
-        "__v": 0
+        "__v": 0,
+        "detail": "Product details not specified."
     },
     {
         "_id": "630c0ba6cacae4f0ab3bd5b0",
@@ -981,3 +984,5 @@ const itemsCollection = [
         "__v": 0
     }
 ]
+
+module.exports = itemsCollection;
