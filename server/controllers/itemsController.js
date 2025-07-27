@@ -60,12 +60,16 @@ const searchItems = async (req, res) => {
         if (!q) {
             return res.status(400).json({ message: 'Missing search query' });
         }
-        // Case-insensitive search in name, category, or type
+        // Enhanced case-insensitive search in multiple fields
         const items = await Item.find({
             $or: [
                 { name: { $regex: q, $options: 'i' } },
                 { category: { $regex: q, $options: 'i' } },
-                { type: { $regex: q, $options: 'i' } }
+                { type: { $regex: q, $options: 'i' } },
+                { description: { $regex: q, $options: 'i' } },
+                { color: { $regex: q, $options: 'i' } },
+                { highlights: { $regex: q, $options: 'i' } },
+                { detail: { $regex: q, $options: 'i' } }
             ]
         });
         if (items.length > 0) {
