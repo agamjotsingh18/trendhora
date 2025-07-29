@@ -1,0 +1,43 @@
+.container{
+    margin:4rem auto;
+}
+.heading{
+    padding: 1rem;
+    text-align: center;
+    font-family: "Playfair Display";
+}
+
+.faq-container{
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid gray;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow:0px 0px 1rem rgb(183, 181, 181);
+    width: 70%;
+}
+.question{
+    display: flex;
+    justify-content: space-between;   
+}
+.faq-toggle-button{
+    font-size: 20px;
+    margin-left: 2rem;
+}
+
+.answer{
+    background-color: rgb(239, 246, 247);
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    text-align: center;
+    padding: 1.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    box-shadow:0px 0px 1.5rem rgb(183, 181, 181);
+    width: 70%;
+}

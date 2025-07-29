@@ -23,6 +23,8 @@ const ProductCarousel = (props) => {
             </Carousel.Item> */}
           </Carousel>
         </div>
+
+        
       </div>
      );
 }

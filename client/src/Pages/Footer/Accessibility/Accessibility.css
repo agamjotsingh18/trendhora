@@ -1,0 +1,43 @@
+.accessibility-container {
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #333;
+}
+
+.list{
+    list-style-type: disc;
+    padding-left: 2rem;
+    margin-top: 1rem;
+    line-height: 1.6;
+    color: #464545;
+}
+
+.list-item{
+    margin-bottom: 0.5rem;
+}
+
+.heading{
+    margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #252525;
+}
+
+p {
+  font-size: 1rem;
+  color: #464545;
+  text-align: justify;
+}
