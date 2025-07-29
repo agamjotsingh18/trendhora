@@ -1,39 +1,52 @@
-
+/* Control.css */
 
 .control__bar__container {
     height: auto;
-    width: 200px;
-    margin: auto;
+    width: auto; /* Allow width to be determined by content or parent */
+    margin: auto; /* This centers the container if its parent allows */
     display: flex;
-    justify-content: center;
+    justify-content: flex-end; /* Align the controls to the right of the header */
     align-items: center;
     position: relative;
     z-index: 1000;
+    padding-right: 15px; /* Adds space from the right edge of the viewport/parent */
 }
 
 .controls__container {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end; /* Align items to the right within this inner container */
     align-items: center;
     flex-direction: row;
-    width: 80%;
-    height: 50px;
+    width: auto; /* Allow width to be determined by content */
+    height: 50px; /* Keep consistent height for the bar containing controls */
+    gap: 10px; /* This adds 10px spacing BETWEEN the LOGIN, Heart, and Cart buttons */
+    /* Adjust this 'gap' value as needed to get your desired separation */
 }
 
+/* The .control class is now effectively redundant for styling the buttons themselves.
+   You can remove it entirely or keep it only if it serves some other non-visual purpose
+   (e.g., a common selector for JavaScript events not tied to the Button component).
+   For visual styling, stick to Mui Button's sx prop. */
+
+/* If you delete the .control class from your JSX, you can remove this CSS block */
+/*
 .control {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-style: solid;
-    border-color: #FFE26E;
-    border-radius: 10px;
-    cursor: pointer;
-    margin: 5px;
+    // These styles are now handled by the Mui Button's sx prop
+    // width: 45px;
+    // height: 45px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // border-style: solid;
+    // border-color: #FFE26E;
+    // border-radius: 10px;
+    // cursor: pointer;
+    // margin: 5px; // Replaced by 'gap' on controls__container
 }
 
 .control:hover {
-    background-color: #FFE26E;
-    color: black;
+    // Handled by Mui Button's sx prop hover state
+    // background-color: #FFE26E;
+    // color: black;
 }
+*/
