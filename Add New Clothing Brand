@@ -1,0 +1,83 @@
+### ✨ Add: Luxury Fashion Brand Section
+This PR introduces a new section to the platform featuring top-tier fashion labels:
+**Brands Included:**
+- Balmain
+- Brunello Cucinelli (Men & Women)
+- Valentino
+- Loro Piana (Kids)
+- Celine
+- Zegna
+- Thom Browne
+
+<div class="max-w-6xl mx-auto px-4 py-10">
+  <h2 class="text-3xl font-bold mb-6 text-gray-800">💎 Explore Luxury Fashion Brands</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    
+    <!-- Balmain -->
+    <div class="bg-white p-6 shadow-lg rounded-2xl">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Balmain</h3>
+      <p class="text-gray-600 mb-4">Official Balmain India site — discover elegant Parisian fashion.</p>
+      <a href="https://in.balmain.com/en" target="_blank"
+         class="bg-black text-white px-4 py-2 rounded hover:bg-gray-900 transition">Shop Balmain</a>
+    </div>
+
+    <!-- Brunello Cucinelli Men -->
+    <div class="bg-white p-6 shadow-lg rounded-2xl">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Brunello Cucinelli – Men</h3>
+      <p class="text-gray-600 mb-4">Italian craftsmanship in menswear – New arrivals from Brunello Cucinelli.</p>
+      <a href="https://shop.brunellocucinelli.com/en-in/new-arrivals/men/" target="_blank"
+         class="bg-stone-800 text-white px-4 py-2 rounded hover:bg-stone-900 transition">Explore Men</a>
+    </div>
+
+    <!-- Brunello Cucinelli Women -->
+    <div class="bg-white p-6 shadow-lg rounded-2xl">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Brunello Cucinelli – Women</h3>
+      <p class="text-gray-600 mb-4">Refined styles for women in the latest collection.</p>
+      <a href="https://shop.brunellocucinelli.com/en-in/new-arrivals/women/" target="_blank"
+         class="bg-stone-800 text-white px-4 py-2 rounded hover:bg-stone-900 transition">Explore Women</a>
+    </div>
+
+    <!-- Valentino -->
+    <div class="bg-white p-6 shadow-lg rounded-2xl">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Valentino</h3>
+      <p class="text-gray-600 mb-4">Luxury fashion from the House of Valentino – timeless elegance.</p>
+      <a href="https://www.valentino.com/en-in/" target="_blank"
+         class="bg-rose-700 text-white px-4 py-2 rounded hover:bg-rose-800 transition">Visit Site</a>
+    </div>
+
+    <!-- Loro Piana -->
+    <div class="bg-white p-6 shadow-lg rounded-2xl">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Loro Piana – Kids</h3>
+      <p class="text-gray-600 mb-4">Soft, premium fabrics for newborns and children from Loro Piana.</p>
+      <a href="https://ii.loropiana.com/en/kids/newborn" target="_blank"
+         class="bg-teal-700 text-white px-4 py-2 rounded hover:bg-teal-800 transition">View Collection</a>
+    </div>
+
+    <!-- Celine -->
+    <div class="bg-white p-6 shadow-lg rounded-2xl">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Celine</h3>
+      <p class="text-gray-600 mb-4">Explore CELINE collections for men and women — minimal luxury by Hedi Slimane.</p>
+      <a href="https://www.celine.com/en-in/home" target="_blank"
+         class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900 transition">Discover Now</a>
+    </div>
+
+    <!-- Zegna -->
+    <div class="bg-white p-6 shadow-lg rounded-2xl">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Zegna – Versatile Leisurewear</h3>
+      <p class="text-gray-600 mb-4">Premium leisurewear and casual luxury from Zegna.</p>
+      <a href="https://www.zegna.com/ww-en/versatile-leisurewear/" target="_blank"
+         class="bg-amber-700 text-white px-4 py-2 rounded hover:bg-amber-800 transition">Explore Zegna</a>
+    </div>
+
+    <!-- Thom Browne -->
+    <div class="bg-white p-6 shadow-lg rounded-2xl">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Thom Browne</h3>
+      <p class="text-gray-600 mb-4">Iconic structured tailoring and contemporary fashion on Lyst.</p>
+      <a href="https://www.lyst.com/designer/thom-browne/" target="_blank"
+         class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition">Browse Styles</a>
+    </div>
+
+  </div>
+</div>
+
