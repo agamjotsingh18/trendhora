@@ -5,9 +5,13 @@ import { Button } from '@mui/material';
 const CategoryCard = (props) => { 
     return ( 
         <div className="category__card__card">
+                
+                <Link to={props.data.url}>
                 <div className="category__image"> 
                    <img src= {props.data.image} alt="" className="product__img"/> 
                 </div>
+                </Link>
+                
                 <div className="category__card__detail">
                     <div className="category__name">
                         {/* <span>{props.data.name}</span> */}
