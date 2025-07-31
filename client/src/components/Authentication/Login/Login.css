@@ -5,9 +5,14 @@
     display: flex; /* Flexbox layout for centering */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    background-color: #f0f0f0; /* Light gray background */
+    background-color: var(--bg-primary); /* Light gray background */
     overflow: hidden;    
     margin-top: 10rem;
+}
+
+/* Dark mode: black background for login container */
+.dark-mode .login__auth__container {
+    background-color: #000000;
 }
 
 /* Container for the login card */
@@ -15,9 +20,14 @@
     width: 100%; /* Full width */
     max-width: 400px; /* Max width for larger screens */
     padding: 2rem; /* Padding around the card */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: var(--shadow); /* Subtle shadow */
     border-radius: 8px; /* Rounded corners */
-    background-color: #fff; /* White background */
+    background-color: var(--bg-secondary); /* White background */
+}
+
+/* Dark mode: soft white shadow for login card */
+.dark-mode .login__auth {
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 
 /* Header for the login card */
@@ -25,6 +35,7 @@
     font-size: 2rem; /* Larger font size */
     font-weight: bold; /* Bold text */
     margin-bottom: 1.5rem; /* Space below the header */
+    color: var(--text-primary);
 }
 
 /* General styles for input containers */
@@ -37,15 +48,22 @@
     font-size: 1rem; /* Standard font size */
     font-weight: 500; /* Medium weight */
     margin-bottom: 0.5rem; /* Space below the label */
+    color: var(--text-primary);
 }
 
 /* Input fields */
 .login__input {
     width: 100%; /* Full width */
     padding: 0.75rem; /* Padding inside the input */
-    border: 1px solid #ccc; /* Light gray border */
+    border: 1px solid var(--border-color); /* Light gray border */
     border-radius: 4px; /* Slightly rounded corners */
     font-size: 1rem; /* Standard font size */
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.login__input::placeholder {
+    color: var(--text-muted);
 }
 
 /* Container for the login button */
@@ -61,16 +79,17 @@
     padding: 0.75rem; /* Padding inside the button */
     font-size: 1rem; /* Standard font size */
     font-weight: bold; /* Bold text */
-    background-color: #ffe26e; /* Custom yellow background */
-    border: 1px dashed #ffe26e; /* Dashed border matching background */
+    background-color: var(--accent-color); /* Custom yellow background */
+    border: 1px dashed var(--accent-color); /* Dashed border matching background */
     border-radius: 4px; /* Slightly rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s ease; /* Smooth background transition */
+    color: var(--bg-primary);
 }
 
 /* Hover effect for the login button */
 .login__button:hover {
-    background-color: #ffd700; /* Darker yellow on hover */
+    background-color: var(--accent-hover); /* Darker yellow on hover */
 }
 
 /* Additional actions (forgot password and create account links) */
@@ -83,7 +102,7 @@
 .login__forgot__password,
 .login__new__account {
     font-size: 0.9rem; /* Slightly smaller font size */
-    color: #007bff; /* Custom blue color */
+    color: var(--accent-color); /* Custom blue color */
     text-decoration: none; /* No underline */
     cursor: pointer; /* Pointer cursor on hover */
 }

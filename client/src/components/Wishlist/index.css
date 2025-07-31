@@ -7,12 +7,24 @@
     justify-content: center;
     align-items: center;
     margin-top: 5rem;
+    background-color: var(--bg-primary);
+}
+
+/* Dark mode: black background for wishlist */
+.dark-mode .wishlist {
+    background-color: #000000;
 }
 
 .wishlist__container {
     height: auto;
     width: 70%;
-    background-color: rgb(243, 243, 243);
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow);
+}
+
+/* Dark mode: soft white shadow for wishlist container */
+.dark-mode .wishlist__container {
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 
 .wishlist__header{
@@ -25,6 +37,7 @@
 
 .wishlist__header>h2  {
     width: auto;
+    color: var(--text-primary);
 }
 
 .wishlist__items__container {
@@ -57,4 +70,14 @@
 
 
 .wishlist__item__label> div {
+}
+
+/* Dark mode: white color for no items text */
+.dark-mode .wishlist__items .wishlist__item__label {
+    color: var(--text-primary);
+}
+
+/* Dark mode: white color for "No items" text */
+.dark-mode .wishlist__items {
+    color: var(--text-primary);
 }

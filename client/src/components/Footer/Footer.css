@@ -2,11 +2,12 @@
     padding: 1.5rem;
     height: auto;
     width: 100%;
-    background-color: #FFE26E;
+    background-color: var(--bg-secondary);
     display: flex;
     flex-direction: column;
     position: relative;
     bottom: 0;
+    border-top: 1px solid var(--border-color);
 }
 
 .footer__items__container {
@@ -29,6 +30,7 @@
 
 #navBrand{
     margin-left: 2rem;
+    color: var(--text-primary);
 }
 
 /* Help box styling */
@@ -50,6 +52,7 @@
     font-weight: 600;
     margin: 0;
     text-align: left;
+    color: var(--text-primary);
 }
 
 .fotter__help__links {
@@ -57,24 +60,24 @@
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    color: #000 !important;
+    color: var(--text-primary) !important;
 }
 
 .footer__help__container a ,
 .footer__contact__container a{
-    color: #000 !important;
+    color: var(--text-primary) !important;
     text-decoration: none;
     text-align: left;
     gap: 0.5rem;
 }
 
 .help__link a{
-    color: rgb(58, 57, 57);
+    color: var(--text-secondary);
 }
 
 .help__link a:hover{
     /* transform: translateX(3px); */
-    color: black;
+    color: var(--accent-color);
 }
 
 
@@ -95,6 +98,7 @@
     font-weight: 600;
     text-align: left;
     width: 100%;
+    color: var(--text-primary);
 }
 
 .footer__contacts {
@@ -115,12 +119,12 @@
 }
 
 .footer__contact a{
-    color: rgb(58, 57, 57);
+    color: var(--text-secondary);
 }
 
 .footer__contact a:hover{
     /* transform: translateX(3px); */
-    color: black;
+    color: var(--accent-color);
 }
 
 /* Social link styling */
@@ -148,6 +152,7 @@
     margin: 0;
     text-align: left;
     width: 100%;
+    color: var(--text-primary);
 }
 
 .footer__social__links {
@@ -169,12 +174,12 @@
     transition: transform 0.2s;
 }
 .social__link a{
-    color: rgb(58, 57, 57);
+    color: var(--text-secondary);
     transition: color 0.2s;
 }
 
 .social__link a:hover{
-    color: black;
+    color: var(--accent-color);
 }
 
 .social__link:hover {
@@ -183,10 +188,11 @@
 
 .fotter__copyright__container {
     width: 100%;
-    background-color: black;
-    color: #FFE26E;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
     padding: 1rem 0;
     overflow: hidden;
+    border-top: 1px solid var(--border-color);
 }
 
 .fotter__copyright__container .nav {

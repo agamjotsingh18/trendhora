@@ -27,11 +27,11 @@ const DrawerNav = () => {
   const linkButtonStyle = {
     transition: '0.3s ease',
     textDecoration: 'none',
-    color: '#333',
+    color: 'var(--text-primary)',
     '&:hover': {
-      backgroundColor: '#fff8e1',
+      backgroundColor: 'var(--bg-secondary)',
       paddingLeft: '20px',
-      color: '#333',
+      color: 'var(--accent-color)',
     },
   };
 
@@ -42,8 +42,16 @@ const DrawerNav = () => {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#ffffff',
-        boxShadow: '2px 0 8px rgba(0,0,0,0.1)',
+        backgroundColor: 'var(--bg-primary)',
+        boxShadow: 'var(--shadow)',
+        borderRight: '1px solid var(--border-color)',
+        '& .cart__items__container': {
+          backgroundColor: 'var(--bg-secondary)',
+        },
+        '& .dark-mode .cart__items__container': {
+          backgroundColor: 'var(--bg-tertiary)',
+          boxShadow: '0 2px 8px rgba(255, 255, 255, 0.1)',
+        },
       }}
       role="presentation"
     >
@@ -76,7 +84,7 @@ const DrawerNav = () => {
         ))}
 
         {/* Divider */}
-        <Box sx={{ my: 1, borderTop: '1px solid #e0e0e0' }} />
+        <Box sx={{ my: 1, borderTop: '1px solid var(--border-color)' }} />
 
         {/* Account */}
         <ListItem disablePadding>
@@ -102,14 +110,14 @@ const DrawerNav = () => {
               badgeContent={wishItems.items.length}
               sx={{
                 '& .MuiBadge-badge': {
-                  backgroundColor: '#e53935',
+                  backgroundColor: 'var(--danger-color)',
                   color: '#fff',
                   fontWeight: 600,
                   fontSize: '0.7rem',
                   minWidth: 20,
                   height: 20,
                   borderRadius: '50%',
-                  boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
+                  boxShadow: 'var(--shadow)',
                   marginRight: '1rem'
                 },
               }}
@@ -123,20 +131,27 @@ const DrawerNav = () => {
           </ListItemButton>
         </ListItem>
 
-        {/* Cart */}
-        <ListItem disablePadding>
-          <ListItemButton sx={{ ...linkButtonStyle, display: 'flex', alignItems: 'center',marginLeft:"-4px"}}>
-            <Cart />
-            <ListItemText
-              primary="Cart"
-              primaryTypographyProps={{
-                fontWeight: 600,
-                marginLeft:'10px',
-                color: 'inherit',
-              }}
-            />
-          </ListItemButton>
-        </ListItem>
+                 {/* Cart */}
+         <ListItem disablePadding>
+           <ListItemButton sx={{ ...linkButtonStyle, display: 'flex', alignItems: 'center',marginLeft:"-4px"}}>
+             <Box sx={{ 
+               '& svg': { 
+                 color: 'var(--text-primary)',
+                 fontSize: '1.8rem'
+               } 
+             }}>
+               <Cart />
+             </Box>
+             <ListItemText
+               primary="Cart"
+               primaryTypographyProps={{
+                 fontWeight: 600,
+                 marginLeft:'10px',
+                 color: 'inherit',
+               }}
+             />
+           </ListItemButton>
+         </ListItem>
       </List>
     </Box>
   );
@@ -150,10 +165,10 @@ const DrawerNav = () => {
             onClick={toggleDrawer('left', false)}
             sx={{
               cursor: 'pointer',
-              backgroundColor: '#FFD600',
+              backgroundColor: 'var(--accent-color)',
               borderRadius: '50%',
               padding: '4px',
-              color: '#333',
+              color: 'var(--bg-primary)',
             }}
           />
         ) : (
@@ -162,10 +177,10 @@ const DrawerNav = () => {
             onClick={toggleDrawer('left', true)}
             sx={{
               cursor: 'pointer',
-              backgroundColor: '#FFD600',
+              backgroundColor: 'var(--accent-color)',
               borderRadius: '50%',
               padding: '4px',
-              color: '#333',
+              color: 'var(--bg-primary)',
             }}
           />
         )}
