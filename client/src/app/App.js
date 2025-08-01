@@ -1,6 +1,10 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 
+
+
+
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from '../routes/Home';
@@ -28,6 +32,10 @@ import FaqList from '../Pages/Footer/Faq/FaqList.js';
 import AccessiblityPage from '../Pages/Footer/Accessibility/Accessibility.js';
 import RefundPage from '../Pages/Footer/Refund/Refund.js';
 import ShippingPage from '../Pages/Footer/Shipping/Shipping.js';
+// import ResetPassword from '../components/Account/ResetPassword';
+import ResetPassword from '../components/Authentication/ResetPassword/ResetPassword';
+
+
 
 function App() {
 
@@ -47,6 +55,8 @@ function App() {
                 <Route path="register" element={<Register />} />
                 <Route path="*" element={<Login />} />
               </Route>
+              <Route path="/ResetPassword" element={<ResetPassword />} />
+
               <Route path="/shop" element={<Shop />} />
               <Route path="/category">
                 <Route path=":id" element={<CategoryView />} />

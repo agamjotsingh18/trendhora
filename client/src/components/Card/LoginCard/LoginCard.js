@@ -55,7 +55,7 @@ const LoginCard = ({ email, password, setEmail, setPassword }) => {
                     </div>
                 </form>
                 <div className="login__other__actions">
-                    <div className="login__forgot__password">Forgot password?</div>
+                    {/* <div className="login__forgot__password">Forgot password?</div> */}
                     <div className="login__new__account">Don't have account? <Link to="/account/register">Create account</Link> </div>
                 </div>
             </div>
