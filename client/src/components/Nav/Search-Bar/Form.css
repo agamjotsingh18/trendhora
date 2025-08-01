@@ -1,6 +1,6 @@
 
 .search__form {
-    width: 100%;
+    width: 80%;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -45,9 +45,18 @@
     width: auto;
 }
 
+input[type="text"]:placeholder-shown{
+    text-align: center;
+    padding: 15px;
+}
+
 @media screen and (max-width: 600px) {
+    input[type="text"]:placeholder-shown{
+    text-align: start;
+    padding: 15px;
+}
     .search__form {
-        width: 200px;
+        width: 300px;
     }
 }
 

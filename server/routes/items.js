@@ -18,13 +18,21 @@ router.get('/', cors(), async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 });
+
+/* The get request to get single item by ID*/ 
+router.get('/:id',getItemById);
+
+
+
+
 /* The post request must have a body elemnt with name images */
-router.post('/', uploadPhoto.array('images'), addItem)
+router.post('/', uploadPhoto.array('images'), addItem);
 
-router.put('/:id', updateItem)
 
-router.delete('/:id', deleteItem)
+router.put('/:id', updateItem);
+
+router.delete('/:id', deleteItem);
 
 router.get('/search', cors(), searchItems)
 
-module.exports = router
+module.exports = router;

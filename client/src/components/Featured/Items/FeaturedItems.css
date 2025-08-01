@@ -30,6 +30,12 @@
 
 .featured__header__small {
     margin: auto 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+.featured__header__small:hover{
+    color: #333;
 }
 
 .featured__products__header__line {

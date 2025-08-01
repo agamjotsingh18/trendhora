@@ -11,46 +11,49 @@ import axios from 'axios';
 
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  minWidth: '350px',
-  width: '45%',
-  height: '400px',
-  bgcolor: 'background.paper',
-  border: '5px solid #FFE26E',
-  borderRadius: '15px',
-  boxShadow: 24,
-  p: 4,
+    position: 'absolute',
+    top: '60%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    minWidth: '350px',
+    width: '90%', // mobile ke liye responsive
+    maxWidth: '500px',
+    height: '400px',
+    bgcolor: 'background.paper',
+    border: '5px solid #FFE26E',
+    borderRadius: '15px',
+    boxShadow: 24,
+    p: 4,
+    zIndex: 1500, // Drawer ke upar
 };
+
 
 const Cart = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [ openCheckoutModal, setOpenCheckoutModal] = useState(false);
+    const [openCheckoutModal, setOpenCheckoutModal] = useState(false);
     const handleCheckoutOpen = () => setOpenCheckoutModal(true);
     const handleCheckoutClose = () => setOpenCheckoutModal(false);
 
     const cartItems = useContext(CartItemsContext);
 
     const handleCheckout = async () => {
-        if(cartItems.totalAmount > 0){
+        if (cartItems.totalAmount > 0) {
             const config = {
                 reason: 'checkout',
                 amount: cartItems.totalAmount
             }
 
-        await axios.post("http://localhost:5000/api/payment", config)
-            .then((res) => {
+            await axios.post("http://localhost:5000/api/payment", config)
+                .then((res) => {
                     console.log(res.data)
                     window.location.replace(res.data)
                     handleCheckoutOpen()
                 }
-            )
-            .catch((err) => console.log(err))
+                )
+                .catch((err) => console.log(err))
         }
         else {
             return
@@ -59,23 +62,43 @@ const Cart = () => {
 
     return (
         <Fragment>
-                <Badge badgeContent={cartItems.items.length} color="error">
-                    <ShoppingCartIcon color="black" onClick={handleOpen} sx={{ width: '35px'}}/>
-                </Badge>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                >
-                    <Box sx={style}>
+            <Badge
+                badgeContent={cartItems.items.length}
+                 sx={{
+                '& .MuiBadge-badge': {
+                  backgroundColor: '#e53935',
+                  color: '#fff',
+                  fontWeight: 600,
+                  fontSize: '0.7rem',
+                  minWidth: 20,
+                  height: 20,
+                  borderRadius: '50%',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
+                  marginRight: '8px'
+                },
+                }}
+            >
+                <ShoppingCartIcon
+                    color="black"
+                    onClick={handleOpen}
+                    sx={{ width: '35px' }}
+                />
+            </Badge>
+
+            <Modal
+                open={open}
+                onClose={handleClose}
+            >
+                <Box sx={style}>
                     <div className="cart__header">
                         <h2>Your Cart</h2>
                     </div>
                     <div className="cart__items__container">
                         <div className="cartItems">
-                            {cartItems.items.length===0? 
-                                <div className="cart__empty"> Empty cart!</div> : 
+                            {cartItems.items.length === 0 ?
+                                <div className="cart__empty"> Empty cart!</div> :
                                 <div className="shop__cart__items">
-                                    {cartItems.items.map((item) => <CartCard key={item._id} item={item}/>)}
+                                    {cartItems.items.map((item) => <CartCard key={item._id} item={item} />)}
                                 </div>
                             }
                             {cartItems.items.length > 0 &&
@@ -89,22 +112,22 @@ const Cart = () => {
                                     </div>
                                 </div>
                             }
-                            </div>
                         </div>
-                    </Box>
-                </Modal>
-                <Modal
+                    </div>
+                </Box>
+            </Modal>
+            <Modal
                 open={openCheckoutModal}
                 onClose={handleCheckoutClose}
             >
-                    <Box sx={style}>
+                <Box sx={style}>
                     <div className="d-flex w-100 h-100 justify-content-center align-items-center">
                         <h2>Your checkout was successful</h2>
                     </div>
-                    </Box>
-                </Modal>
+                </Box>
+            </Modal>
         </Fragment>
-     );
+    );
 }
- 
+
 export default Cart;
