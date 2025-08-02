@@ -11,7 +11,7 @@ const ProductView = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        axios.get("https://trendhora-api.onrender.com/api/items")
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/items`)
             .then(res => {
                 setItem(res.data.filter((item) => item._id === param.id))
                 setLoading(false)

@@ -46,8 +46,8 @@ const Cart = () => {
                 amount: cartItems.totalAmount
             }
 
-            await axios.post("http://localhost:5000/api/payment", config)
-                .then((res) => {
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/payment`, config)
+            .then((res) => {
                     console.log(res.data)
                     window.location.replace(res.data)
                     handleCheckoutOpen()
