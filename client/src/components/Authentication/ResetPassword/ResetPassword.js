@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import './ResetPassword.css'; // ✅ Correct import for the CSS
 
 const ResetPassword = () => {
+  const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -24,6 +24,13 @@ const ResetPassword = () => {
       <div className="reset-password-box">
         <h2>Create New Password</h2>
         <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
           <input
             type="password"
             placeholder="New Password"
