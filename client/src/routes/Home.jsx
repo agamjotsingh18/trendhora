@@ -8,7 +8,7 @@ import { TabTitle } from "../utils/General";
 
 const Home = () => {
     const [ featuredItems, setFeaturedItems ] = useState()
-    TabTitle("Home - Shema");
+    TabTitle("Trendhora");
 
     useEffect(() => {
         axios.get("https://trendhora-api.onrender.com/api/items")

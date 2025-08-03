@@ -29,16 +29,18 @@ const DrawerNav = () => {
         <Box
         sx={{ width: 250 }}
           role="presentation"
-          onClick={toggleDrawer(anchor, false)}
-          onKeyDown={toggleDrawer(anchor, false)}
         >
         <List>
-            {['Home', 'Shop', 'Men', 'Women', 'Kids'].map((text) => (
+            {[
+              { text: 'Home', to: '/' },
+              { text: 'Shop', to: '/shop' },
+              { text: 'Men', to: '/category/men' },
+              { text: 'Women', to: '/category/women' },
+              { text: 'Kids', to: '/category/kids' }
+            ].map(({ text, to }) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemText>
-                    <Link to="/category/men">{text}</Link>
-                  </ListItemText>
+                <ListItemButton component={Link} to={to} onClick={toggleDrawer(anchor, false)}>
+                  <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
             ))}
@@ -59,22 +61,28 @@ const DrawerNav = () => {
         </Box>
       );
 
-    return ( 
-        <Fragment>
-            {['left'].map((anchor) => (
-                <Fragment >
-                {state.left? <MenuOpenIcon fontSize='large' /> : <MenuIcon fontSize='large' onClick={toggleDrawer(anchor, true)} />}
-                <Drawer
-                    anchor={anchor}
-                    open={state[anchor]}
-                    onClose={toggleDrawer(anchor, false)}
-                >
-                    {list(anchor)}
-                </Drawer>
-                </Fragment>
-            ))}
-        </Fragment>
-     );
+    return (
+  <Fragment>
+    {['left'].map((anchor) => (
+      <Fragment key={anchor}>
+        <Box sx={{ p: 1 }}>
+          {state[anchor] ? (
+            <MenuOpenIcon fontSize="large" onClick={toggleDrawer(anchor, false)} />
+          ) : (
+            <MenuIcon fontSize="large" onClick={toggleDrawer(anchor, true)} />
+          )}
+        </Box>
+        <Drawer
+          anchor={anchor}
+          open={state[anchor]}
+          onClose={toggleDrawer(anchor, false)}
+        >
+          {list(anchor)}
+        </Drawer>
+      </Fragment>
+    ))}
+  </Fragment>
+);
 }
  
 export default DrawerNav;
