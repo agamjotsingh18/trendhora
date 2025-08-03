@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const cors = require("cors")
 const uploadPhoto = require("../middlewares/upload")
-const { getItem, addItem, updateItem, deleteItem } = require("../controllers/itemsController")
+const { getItem, addItem, updateItem, deleteItem, getItemById } = require("../controllers/itemsController")
 const Item = require("../models/Item"); 
 
 router.get('/', cors(), async (req, res) => {
@@ -18,11 +18,19 @@ router.get('/', cors(), async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 });
+
+/* The get request to get single item by ID*/ 
+router.get('/:id',getItemById);
+
+
+
+
 /* The post request must have a body elemnt with name images */
-router.post('/', uploadPhoto.array('images'), addItem)
+router.post('/', uploadPhoto.array('images'), addItem);
 
-router.put('/:id', updateItem)
 
-router.delete('/:id', deleteItem)
+router.put('/:id', updateItem);
 
-module.exports = router
+router.delete('/:id', deleteItem);
+
+module.exports = router;

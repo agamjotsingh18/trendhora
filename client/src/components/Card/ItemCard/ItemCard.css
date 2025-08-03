@@ -54,6 +54,11 @@
     font-weight: bold;
 }
 
+.product__name a{
+    color: black !important;
+    text-decoration: none;
+}
+
 .product__description {
     height: 20%;
     width: 100%;

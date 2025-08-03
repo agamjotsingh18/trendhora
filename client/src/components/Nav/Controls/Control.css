@@ -1,25 +1,18 @@
-
-
+/* Control container */
 .control__bar__container {
-    height: auto;
-    width: 200px;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Icons flex container */
 .controls__container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    width: 80%;
-    height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
+/* Button-like control wrapper */
 .control {
     width: 35px;
     height: 35px;

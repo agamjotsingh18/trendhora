@@ -9,6 +9,7 @@
     flex-wrap: wrap-reverse;
     background-color: #fffffe;
     position: relative;
+    margin-top: 9rem;
 }
 
 
@@ -42,13 +43,15 @@
 
 
 .landing__header__main {
-    font-size: 4.0rem;
+    font-size: 2.8rem;
     font-weight: 800;
+    color: #2e2c2c;
 }
 
 
 .landing__header__discount {
     font-size: 1.2rem;
+    margin-left: 0.3rem;
 }
 
 
@@ -87,9 +90,10 @@
 
 
 
-@media screen and (max-width: 850px) {
-    .landing__image__container{
-       display: none;
+@media screen and (max-width: 768px) {
+
+    .landing__header__container {
+        text-align: center;
     }
     
 }

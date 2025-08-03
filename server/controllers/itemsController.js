@@ -1,4 +1,4 @@
-const Item = require("../models/Item")
+const Item = require("../models/Item");
 
 /* GET request handler */
 const getItem = async (req, res) => {
@@ -13,6 +13,23 @@ const getItem = async (req, res) => {
       } catch (err) {
         res.status(500).json({ message: 'Server error' });
       }
+    };
+
+    /* GET request handler to get single item by ID */
+    const getItemById = async (req, res) => {
+    
+      try {
+          const id=req.params.id;
+          const item = await Item.findById(id);
+          console.log('Query:', item);
+          if (item) {
+            res.status(200).json(item); 
+          } else {
+            res.status(404).json({ message: 'No item found' });
+          }
+        } catch (err) {
+          res.status(500).json({ message: 'Server error' });
+        }
     };
 
 /* POST Request handler */
@@ -58,5 +75,6 @@ module.exports = {
     getItem,
     addItem,
     updateItem,
-    deleteItem
+    deleteItem,
+    getItemById
 }

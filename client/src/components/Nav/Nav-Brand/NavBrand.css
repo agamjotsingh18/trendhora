@@ -1,12 +1,9 @@
-
-
 .navbrand__container {
-    height: 100%;
-    width: 20%;
-    min-width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  margin-bottom: 2rem;
 }
 
 .navbrand {

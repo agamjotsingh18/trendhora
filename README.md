@@ -80,6 +80,8 @@ npm run dev
 * Mongoose: ODM for MongoDB to simplify database operations.
 * Material UI: Library for designing responsive and attractive user interfaces.
 
+## Leave a Star 🌟 as well if you wanna support our project
+
 ## 🤝 Contributing
 
 We welcome contributions to improve Trendhora. If you'd like to contribute, please fork the repository, make your changes, and submit a pull request. For more details on contributing, please refer to our [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -87,3 +89,18 @@ We welcome contributions to improve Trendhora. If you'd like to contribute, plea
 ## 📄 License
 
 This project is licensed under the MIT License – see the [LICENSE.md](LICENSE) file for details.
+
+## Project Admin Details
+  
+<a href="https://www.linkedin.com/in/agamjot-singh/" target="_blank">
+  <img src=https://img.shields.io/badge/linkedin-0077b5.svg?&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
+</a>
+
+<a href="https://x.com/_agamjotsingh" target="_blank">
+  <img src=https://img.shields.io/badge/twitter-1DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white alt=twitter style="margin-bottom: 5px;" />
+</a>
+
+  
+<a href="https://github.com/agamjotsingh18" target="_blank">
+  <img src=https://img.shields.io/badge/github-000000.svg?&style=for-the-badge&logo=github&logoColor=white alt=github style="margin-bottom: 5px;" />
+</a>

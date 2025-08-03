@@ -1,5 +1,6 @@
-import './NavBrand.css'
+import './NavBrand.css';
 import { Link } from 'react-router-dom';
+import logo from '../../../asset/brand/logo.png';
 
 
 const NavBrand = () => {

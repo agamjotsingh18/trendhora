@@ -6,7 +6,8 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     background-color: #f0f0f0; /* Light gray background */
-    overflow: hidden;
+    overflow: hidden;    
+    margin-top: 10rem;
 }
 
 /* Container for the login card */

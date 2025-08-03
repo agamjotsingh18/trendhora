@@ -1,6 +1,7 @@
 .register__auth__container {
     height: auto;
     width: 100%;
+    margin-top: 10rem;
 }
 
 .register__auth {
@@ -10,4 +11,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5rem;
 }
