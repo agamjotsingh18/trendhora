@@ -15,13 +15,13 @@ const Control = () => {
             <div className="controls__container">
                 <div className="control">
                     <Link to="/account/login">
-                        <PersonOutlineIcon color="black" size="large" sx={{ width: '35px'}}/>
+                        <PersonOutlineIcon color="black" size="large" sx={{ width: '30px'}}/>
                     </Link>
                 </div>
                 <div className="control">
                     <Link to="/wishlist">
                         <Badge badgeContent={wishItems.items.length} color="error">
-                            <FavoriteBorderIcon color="black" sx={{ width: '35px'}}/>
+                            <FavoriteBorderIcon color="black" sx={{ width: '30px'}}/>
                         </Badge>
                     </Link>
                 </div>

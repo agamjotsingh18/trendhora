@@ -6,6 +6,7 @@
     min-height: 25rem;
     margin-top: 40px;
     flex-wrap: wrap;
+    background-color: #FFE26E;
 }
 
 .featured__categories{
@@ -38,7 +39,7 @@
 .featured__categories__header__line {
     width: 200px;
     height: 6px;
-    background-color: #FFE26E;
+    background-color: #000000;
     align-self: center;
     border-radius: 25px;
 }

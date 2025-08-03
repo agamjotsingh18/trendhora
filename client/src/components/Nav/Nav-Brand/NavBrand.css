@@ -10,21 +10,28 @@
 }
 
 .navbrand {
-    /* font-size: 2.5rem;
-    font-weight: bolder; */
+     font-size: 30px;
+    font-weight: bolder; 
     height: auto;
     width: 50%;
-    min-width: 200px;
-    margin: auto 5px;
+    min-width: 100px;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bolder;
+    padding-right: 35%  ;
+    font-family: 'Cinzel', serif;
 }
 
 
 @media screen and (max-width: 600px) {
     .navbrand__container  {
         align-self: center;
+    }
+    .navbrand {
+        font-size: 20px;
+        width: 100%;
+        padding-right: 0;
     }
 }

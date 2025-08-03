@@ -21,19 +21,19 @@
 }
 
 .control {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-style: solid;
-    border-color: #FFE26E;
+    border-color: #ffe26e;
     border-radius: 10px;
     cursor: pointer;
-    margin: 5px;
+    margin: 3px;
 }
 
 .control:hover {
-    background-color: #FFE26E;
+    background-color: #ffe26e;
     color: black;
 }

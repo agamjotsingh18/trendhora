@@ -95,12 +95,14 @@
     justify-content: center;
     flex-direction: column;
     align-items: center
+
 }
 
 .footer__social__link__header {
     height: 40%;
     width: 100%;
     display: flex;
+    padding-left: 30px;
 }
 
 .footer__social__link__header h1 {
@@ -111,7 +113,7 @@
 
 .footer__social__links {
     margin: 0%;
-    padding: 0%;
+    padding-right: 5%;
     height: 70%;
     width: 100%;
     list-style-type: none;
@@ -126,9 +128,9 @@
 .fotter__copyright__container {
     height: auto;
     width: 100%;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     display: flex;
-    color: #FFE26E;
+    color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;

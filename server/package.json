@@ -5,9 +5,10 @@
   "proxy": "http://localhost:5000",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server"
-  },
+  "dev": "nodemon server.js",
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
+ 
   "author": "Agamjot Singh",
   "license": "ISC",
   "dependencies": {
