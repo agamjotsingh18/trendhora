@@ -168,9 +168,10 @@ const ItemCard = (props) => {
     };
 
     return (
-        <>
-            <div className="product__card__card">
-                <div className="product__card">
+        <div className="product__card__card">
+            <div className="product__card">
+
+                    <Link to={`/item/${props.item.category}/${props.item._id}`}>
                     <div
                         className="product__image"
                         onMouseEnter={() => setIsHovered(true)}
@@ -182,6 +183,8 @@ const ItemCard = (props) => {
                             <img src={getImageUrl(props.item.image[0])} alt="item" className="product__img" />
                         )}
                     </div>
+                    </Link>
+
                     <div className="product__card__detail">
                         <div className="product__name">
                             <Link to={`/item/${props.item.category}/${props.item._id}`}>
