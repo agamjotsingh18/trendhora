@@ -22,7 +22,6 @@ app.use('/api/payment', require("./routes/payment"));
 
 app.use('/api/auth', require('./routes/auth'));
 
-// Add this line after other routes
 
 // Root route
 app.get('/', (req, res) => {

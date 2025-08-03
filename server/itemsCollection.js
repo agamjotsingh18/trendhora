@@ -52,7 +52,96 @@ const itemsCollection = [
         ],
         "createdAt": "2022-08-28T21:41:09.891Z",
         "updatedAt": "2022-08-28T21:41:09.891Z",
-        "__v": 0
+        "__v": 0,
+        "detail": "Product details not specified."
+    },
+    {
+        "_id": "630be0f50dd6605053c3f085",
+        "name": "Ermenegildo Zegna",
+        "category": "men",
+        "color": "navy",
+        "type": "blazer",
+        "description": "Classic Navy Blazer",
+        "price": 1200,
+        "size": ["S", " M", " L", " XL"],
+        "highlights": ["100% wool", " Classic fit", " Single breasted", " Two-button closure", " Flap pockets"],
+        "image": [{
+                "fieldname": "images",
+                "originalname": "zegna-blazer-1.jpg",
+                "encoding": "7bit",
+                "mimetype": "image/jpeg",
+                "destination": "./public/men",
+                "filename": "images-1661722869734.jpg",
+                "path": "public/men/images-1661722869734.jpg",
+                "size": 54700
+            },
+            {
+                "fieldname": "images",
+                "originalname": "zegna-blazer-2.jpg",
+                "encoding": "7bit",
+                "mimetype": "image/jpeg",
+                "destination": "./public/men",
+                "filename": "images-1661722869796.jpg",
+                "path": "public/men/images-1661722869796.jpg",
+                "size": 57072
+            }
+        ],
+        "createdAt": "2022-08-28T21:41:09.891Z",
+        "updatedAt": "2022-08-28T21:41:09.891Z",
+        "__v": 0,
+        "detail": "Premium Ermenegildo Zegna navy blazer crafted from the finest Italian wool. Perfect for business and formal occasions."
+    },
+    {
+        "_id": "630be0f50dd6605053c3f086",
+        "name": "Zegna Sport",
+        "category": "men",
+        "color": "grey",
+        "type": "blazer",
+        "description": "Casual Grey Blazer",
+        "price": 850,
+        "size": ["S", " M", " L"],
+        "highlights": ["Lightweight wool", " Unstructured fit", " Patch pockets", " Single button", " Casual style"],
+        "image": [{
+                "fieldname": "images",
+                "originalname": "zegna-sport-1.jpg",
+                "encoding": "7bit",
+                "mimetype": "image/jpeg",
+                "destination": "./public/men",
+                "filename": "images-1661722869735.jpg",
+                "path": "public/men/images-1661722869735.jpg",
+                "size": 54700
+            }
+        ],
+        "createdAt": "2022-08-28T21:41:09.891Z",
+        "updatedAt": "2022-08-28T21:41:09.891Z",
+        "__v": 0,
+        "detail": "Contemporary grey blazer from Zegna Sport collection, perfect for smart casual occasions."
+    },
+    {
+        "_id": "630be0f50dd6605053c3f087",
+        "name": "Balenciaga",
+        "category": "women",
+        "color": "black",
+        "type": "blazer",
+        "description": "Oversized Blazer",
+        "price": 2100,
+        "size": ["S", " M", " L"],
+        "highlights": ["Oversized fit", " Structured shoulders", " Single button", " Flap pockets", " Modern design"],
+        "image": [{
+                "fieldname": "images",
+                "originalname": "balenciaga-blazer-1.jpg",
+                "encoding": "7bit",
+                "mimetype": "image/jpeg",
+                "destination": "./public/women",
+                "filename": "images-1661722869736.jpg",
+                "path": "public/women/images-1661722869736.jpg",
+                "size": 54700
+            }
+        ],
+        "createdAt": "2022-08-28T21:41:09.891Z",
+        "updatedAt": "2022-08-28T21:41:09.891Z",
+        "__v": 0,
+        "detail": "Statement oversized blazer from Balenciaga with bold shoulders and contemporary styling."
     },
     {
         "_id": "630be1b70dd6605053c3f088",
@@ -97,7 +186,8 @@ const itemsCollection = [
         ],
         "createdAt": "2022-08-28T21:44:23.361Z",
         "updatedAt": "2022-08-28T21:44:23.361Z",
-        "__v": 0
+        "__v": 0,
+        "detail": "Product details not specified."
     },
     {
         "_id": "630be4fb0dd6605053c3f095",
@@ -142,7 +232,8 @@ const itemsCollection = [
         ],
         "createdAt": "2022-08-28T21:58:19.498Z",
         "updatedAt": "2022-08-28T21:58:19.498Z",
-        "__v": 0
+        "__v": 0,
+        "detail": "Product details not specified."
     },
     {
         "_id": "630c0ba6cacae4f0ab3bd5b0",
@@ -981,3 +1072,5 @@ const itemsCollection = [
         "__v": 0
     }
 ]
+
+module.exports = itemsCollection;
