@@ -1,12 +1,17 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useState, useEffect } from "react";
 
 
 
 
+
+
+
+import Loader from "../components/Loader/loader.js";
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Home from '../routes/Home';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
@@ -38,9 +43,36 @@ import ResetPassword from '../components/Authentication/ResetPassword/ResetPassw
 
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (loading) {
+    return (
+      <CartItemsProvider>
+        <WishItemsProvider>
+          <SearchProvider>
+            <Router>
+                  <div className="loader-wrapper">
+                    <div className="wrapper">
+                      <Loader />
+                    </div>
+                  </div>
+            </Router>
+          </SearchProvider>
+        </WishItemsProvider>
+      </CartItemsProvider>
+    );
+  }
 
   return (
     <>
+
    <CartItemsProvider>
       <WishItemsProvider>
         <SearchProvider>
@@ -93,6 +125,9 @@ function App() {
    <Toaster />
 
    </>
+
+   
+
   );
 }
 

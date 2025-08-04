@@ -12,7 +12,7 @@ const RegisterCard = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/auth/register', { username, email, password });
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/register`, { username, email, password });
             alert('Registration successful!');
             navigate('/account/login');
         } catch (error) {
