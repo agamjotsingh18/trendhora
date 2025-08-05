@@ -4,8 +4,9 @@
   "description": "TrendHora MERN Stack Ecommerce application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "dev": "nodemon server.js",
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/agamjotsingh18/trendhora-api.git"
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/agamjotsingh18/trendhora-api/issues"
   },
-  "homepage": "https://github.com/agamjotsingh18/trendhora-api#readme"
+  "homepage": "https://github.com/agamjotsingh18/trendhora-api#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }

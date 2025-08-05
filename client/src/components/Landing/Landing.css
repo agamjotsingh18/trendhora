@@ -1,13 +1,13 @@
 .landing__container {
     width: 100%;
-    min-height: 420px;
+    min-height: 400px;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap-reverse;
-    background-color: #ffe26e;
+    background-color: #fffffe;
     position: relative;
     margin-top: 9rem;
 }
@@ -17,6 +17,8 @@
     text-decoration: none;
     color: #000;
 }
+
+
 
 .landing__header__container {
     width: 40%;
@@ -29,6 +31,7 @@
     flex-direction: column;
 }
 
+
 .landing__header {
     height: 100%;
     width: 90%;
@@ -38,16 +41,19 @@
     flex-direction: column;
 }
 
+
 .landing__header__main {
     font-size: 2.8rem;
     font-weight: 800;
     color: #2e2c2c;
 }
 
+
 .landing__header__discount {
     font-size: 1.2rem;
     margin-left: 0.3rem;
 }
+
 
 .landing__button {
     width: 60%;
@@ -55,19 +61,33 @@
     transition: .3s;
 }
 
+
 .landing__image__container {
-    /* width: 50%; */
+    width: 50%;
+    height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
+
 .landing__image {
-    height: auto;
-    width: auto;
+    height: 800px;
+    width: 2000px;
     top: 0%;
+    padding-left: 50px;
     z-index: 10;
+    border-radius: 9000px;
 }
+.landing__header__sub {
+    font-size: 25px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 10px;
+    font-family: 'roboto', sans-serif;
+}
+
 
 
 @media screen and (max-width: 768px) {
@@ -75,23 +95,5 @@
     .landing__header__container {
         text-align: center;
     }
-
-    .landing__header__discount {
-        text-align: center;
-        margin-left: 2.3rem;
-    }
-
-    .landing__image__container {
-        display: none;
-    }
-
-    .landing__header a button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 2rem;
-        margin-left: 2.3rem;
-    }
-
     
 }

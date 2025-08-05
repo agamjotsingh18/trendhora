@@ -1,3 +1,25 @@
+a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+a:hover {
+    color: black;
+}
+
+.nav__bottom__container a {
+    text-decoration: none;
+    color: rgb(3, 3, 3);
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav__bottom__container a:hover {
+    color:#FFE26E;
+}
+
 .nav__bottom__container {
   height: 55px;
   background-color: #1a1a1a;

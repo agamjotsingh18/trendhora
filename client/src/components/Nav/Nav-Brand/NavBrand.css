@@ -6,29 +6,29 @@
   margin-bottom: 2rem;
 }
 
-.navbrand img {
-  height: 200px;
-  width: auto;
-  object-fit: contain;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  margin-top: 2rem;
-}
-
-/* Hover effect */
-.navbrand img:hover {
-  transform: scale(1.05);
-}
-
-/* Dark mode compatibility (optional) */
-body.dark-theme .navbrand img {
-  filter: brightness(1.2);
+.navbrand {
+     font-size: 30px;
+    font-weight: bolder; 
+    height: auto;
+    width: 50%;
+    min-width: 100px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    padding-right: 35%  ;
+    font-family: 'Cinzel', serif;
 }
 
 
-
-@media (max-width:768px){
-    .navbrand__container{
-        height: 44px;
+@media screen and (max-width: 600px) {
+    .navbrand__container  {
+        align-self: center;
+    }
+    .navbrand {
+        font-size: 20px;
+        width: 100%;
+        padding-right: 0;
     }
 }
