@@ -1,58 +1,90 @@
+.search__form__container {
+  position: relative;
+  width: 80%;
+  margin: auto;
+}
 
 .search__form {
-    width: 80%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin: auto;
-    align-self: center;
-   
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .search__form__input {
-    width: 100%;
-    height: 45px;
-    /* border-radius: 30px; */
-    outline: none;
-    font-size: .9rem;
-    border-color: #FFE26E;
-    border-style: solid;
-    border-radius: 10px;
-    border-top-right-radius:0;
-    border-bottom-right-radius: 0;
+  width: 100%;
+  height: 45px;
+  outline: none;
+  padding-left: 25px;
+  font-size: 0.9rem;
+  border-color: #FFE26E;
+  border-style: solid;
+  border-radius: 10px;
 }
+
 .search__form__button {
-    height: 45px;
-    width: 50px;
-    background-color: #FFE26E;;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    border-color: #FFE26E;
-    border-style: solid;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  position: absolute;
+  height: 45px;
+  width: 50px;
+  background-color: #FFE26E;
+  color: rgb(0, 0, 0);
+  right: 0px;
+  font-weight: bold;
+  border-color: #FFE26E;
+  border-style: solid;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
-.search__icon {
-    height: 50%;
-    width: auto;
-}
-
-input[type="text"]:placeholder-shown{
-    text-align: center;
-    text-overflow: ellipsis !important;
+input[type="text"]:placeholder-shown {
+  text-align: center;
+  padding: 15px;
 }
 
 @media screen and (max-width: 600px) {
-    input[type="text"]:placeholder-shown{
+  .search__form {
+    width: 300px;
+  }
+
+  input[type="text"]:placeholder-shown {
     text-align: start;
     padding: 15px;
+  }
 }
+
+
+.search__tags__box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #FFE26E;
+  border-radius: 10px;
+  margin-top: 5px;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 15px;
+}
+
+.search__tag {
+  padding: 6px 12px;
+  background-color: #FFE26E;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search__tag:hover {
+  background-color: #ffd93a;
 }
 
 
