@@ -1,4 +1,4 @@
-
+/* 
 .order__history__container {
     height: 200px;
     width: 70%;
@@ -59,4 +59,144 @@
 .logout__action {
     width: 20%;
     height: auto;
+} */
+ 
+/* --- Container Cards --- */
+.order__history__container,
+.account__details__container {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.order__history__container:hover,
+.account__details__container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Section Titles --- */
+.order__history__header,
+.details__header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #111827;
+}
+
+/* --- Order History Detail --- */
+.order__history__detail {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+/* --- Account Details Header (with Logout Button) --- */
+.account__details__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* --- Logout Button --- */
+.logout__action {
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.logout__action:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.logout__action:active {
+  transform: scale(0.97);
+}
+
+/* --- Account Details Body --- */
+.account__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.account__holder__name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.account__holder__email {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* --- Manage Account Button --- */
+.manage__account__action a {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #6366f1;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.6rem 1.3rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.manage__account__action a:hover {
+  background: #4f46e5;
+  transform: translateY(-2px);
+}
+
+.manage__account__action a:active {
+  transform: scale(0.97);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .order__history__container,
+  .account__details__container {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .order__history__header,
+  .details__header {
+    font-size: 1.25rem;
+  }
+
+  .logout__action,
+  .manage__account__action a {
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .order__history__header,
+  .details__header {
+    font-size: 1.15rem;
+  }
+
+  .account__holder__name {
+    font-size: 0.95rem;
+  }
+
+  .account__holder__email {
+    font-size: 0.85rem;
+  }
 }

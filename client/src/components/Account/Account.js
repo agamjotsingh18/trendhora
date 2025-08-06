@@ -1,6 +1,6 @@
 import './Account.css';
 
-const Account = (props) => {
+const Account = ({ children }) => {
     return ( 
         <div className="user__account__container">
             <div className="account__container">
@@ -8,11 +8,11 @@ const Account = (props) => {
                     <h1>My account</h1>
                 </div>
                 <div className="account__page__detail">
-                    {props.children}
+                    {children}
                 </div>
             </div>
         </div>
      );
 }
- 
+
 export default Account;

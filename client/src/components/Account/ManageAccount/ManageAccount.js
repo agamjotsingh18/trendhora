@@ -1,5 +1,5 @@
 import Account from '../Account';
-import './ManageAccount.css'
+import './ManageAccount.css';
 
 const ManageAccount = () => {
     return ( 
