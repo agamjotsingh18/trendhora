@@ -1,31 +1,61 @@
-import Account from '../Account';
-import './MyAccount.css';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './MyAccount.css';
 
 const MyAccount = () => {
-    return ( 
-        <Account>
-            <div className="order__history__container">
-                <div className="order__history">
-                    <div className="order__history__header">Order History</div>
-                    <div className="order__history__detail">You have not placed any orders yet</div>
-                </div>
-            </div>
-            <div className="account__details__container">
-                <div className="account__details__header">
-                    <div className="details__header">Account Details</div>
-                    <div className="logout__action">Logout</div>
-                </div>
-                <div className="account__details">
-                    <div className="account__holder__name">Account holder name</div>
-                    <div className="account__holder__email">Account holder email</div>
-                    <div className="manage__account__action">
-                        <Link to="/account/manage">Manage account</Link>   
-                    </div>
-                </div>
-            </div>
-        </Account>
-     );
-}
- 
+  const [profileImage, setProfileImage] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfileImage(file);
+      setPreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleImageUpload = () => {
+    alert('Profile image uploaded!');
+  };
+
+  return (
+    <div className="account-container">
+      <div className="profile-card">
+        <div className="profile-left">
+          <img
+            src={preview || '/default-profile.png'}
+            alt="Profile"
+            className="profile-image"
+          />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="file-input"
+          />
+          {preview && (
+            <button onClick={handleImageUpload} className="upload-btn">
+              Upload Image
+            </button>
+          )}
+        </div>
+
+        <div className="profile-right">
+          <h2>Diksha Singh</h2>
+          <p>diksha@example.com</p>
+          <div className="profile-buttons">
+            <Link to="/account/manage" className="btn edit-btn">Manage Account</Link>
+            <Link to="/logout" className="btn logout-btn">Logout</Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="orders-card">
+        <h3>Order History</h3>
+        <div className="no-orders">You have not placed any orders yet.</div>
+      </div>
+    </div>
+  );
+};
+
 export default MyAccount;

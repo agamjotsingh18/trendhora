@@ -1,268 +1,126 @@
-/* 
-.manage__account__container {
-    height: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-top: 20px;
-}
-
-
-.edit__account__container {
-    width: 100%;
-    height: 300px;
-}
-
-.edit__account {
-    width: 250px;
-    height: 100%;
-}
-
-.edit__account__header {
-    width:100%;
-    height: 20%;
-    font-size: 1.7rem;
-    font-weight: bolder;
-}
-
-.edit__account__form__container {
-    width:100%;
-    height: 80%;
-}
-
-.edit__account__form {
-    width:100%;
-    height: 100%;
-}
-
-.edit__input__container {
-    height:35%;
-    width: 100%;
-}
-
-.edit__account__input {
-    height: 50%;
-    width: 100%;
-}
-
-.save__changes__button__container {
-    height: 30%;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.save__changes__button {
-    height: 60%;
-    width: 50%;
-    font-size: 1rem;
-    background-color: #FFE26E;
-    border-color: #FFE26E;
-    border-style: dashed;
-    font-weight:bold;
-}
-
-.separator__line {
-    margin-top: 20px;
-    height: 5px;
-    width: 50%;
-    background-color: #FFE26E;
-}
-
-Delete account form
-
-.delete_account__container {
-    width: 250px;
-    height: 200px;
-    display: flex;
-
-    
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.delete__account {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-self: flex-start;
-    flex-direction: column;
-}
-
-.delete__account__header {
-    width: 100%;
-    height: 30%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 1.7rem;
-    font-weight: bolder;
-}
-
-.delete__account__prompt {
-    height: 35%;
-    width: 100%;
-}
-
-.delete__account__button__container {
-    height: 35%;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.delete__account__button {
-    height: 45px;
-    width: 160px;
-    font-size: 1rem;
-    background-color: #ff6e6e;
-    border-color: #ff6e6e;
-    border-style: dashed;
-    font-weight:bold;
-} */
-/* --- Container --- */
-.manage__account__container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 2rem;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+.manage-account-container {
   max-width: 800px;
   margin: 2rem auto;
-  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 200px;
 }
 
-/* --- Section Titles --- */
-.edit__account__header,
-.delete__account__header {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+.manage-account-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
-.edit__account__header {
-  color: #1f2937;
+.profile-photo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
-.delete__account__header {
-  color: #dc2626;
+.profile-photo-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
 }
 
-/* --- Form Card --- */
-.edit__account__form__container {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  padding: 1.5rem;
+.custom-upload-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
 }
 
-.edit__account__form {
+.custom-upload-button:hover {
+  background-color: #0056b3;
+}
+
+.account-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
 }
 
-/* Input Label */
-.input__label {
-  font-size: 0.9rem;
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  margin-bottom: 0.4rem;
   font-weight: 500;
-  color: #374151;
-  margin-bottom: 0.3rem;
 }
 
-/* Input Field */
-.edit__account__input {
-  width: 100%;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  background: #ffffff;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+.form-input {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-align: center;
 }
 
-.edit__account__input:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-  outline: none;
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-/* Save Changes Button */
-.save__changes__button {
-  background: #6366f1;
-  color: #fff;
-  padding: 0.65rem 1.5rem;
+.save-btn,
+.delete-btn {
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 6px;
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  width: fit-content;
+  transition: background-color 0.3s ease;
 }
 
-.save__changes__button:hover {
-  background: #4f46e5;
-  transform: translateY(-1px);
+.save-btn {
+  background-color: #28a745;
+  color: white;
 }
 
-/* --- Separator Line --- */
-.separator__line {
-  height: 1px;
-  background: #e5e7eb;
-  margin: 1rem 0;
+.save-btn:hover {
+  background-color: #218838;
 }
 
-/* --- Delete Account Section --- */
-.delete__account__prompt {
-  font-size: 0.95rem;
-  color: #6b7280;
-  margin-bottom: 1rem;
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
 }
 
-.delete__account__button {
-  background: #ef4444;
-  color: #fff;
-  padding: 0.65rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  width: fit-content;
+.delete-btn:hover {
+  background-color: #c82333;
 }
 
-.delete__account__button:hover {
-  background: #dc2626;
-  transform: translateY(-1px);
-}
-
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .manage__account__container {
-    padding: 1.5rem;
-    margin: 1rem;
+@media (max-width: 600px) {
+  .profile-photo-section {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .save__changes__button,
-  .delete__account__button {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .save-btn,
+  .delete-btn {
     width: 100%;
-    text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .edit__account__header,
-  .delete__account__header {
-    font-size: 1.3rem;
-  }
-
-  .edit__account__input {
-    font-size: 0.9rem;
   }
 }
