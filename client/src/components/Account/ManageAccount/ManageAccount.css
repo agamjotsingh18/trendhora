@@ -1,58 +1,59 @@
 .manage-account-container {
-  max-width: 800px;
+  max-width: 600px;
   margin: 2rem auto;
-  padding: 1rem;
+  padding: 2rem;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
   margin-top: 200px;
 }
 
 .manage-account-header {
   text-align: center;
-  margin-bottom: 2rem;
   font-size: 1.8rem;
-  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #222;
 }
 
+/* Profile Photo Section */
 .profile-photo-section {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
-  flex-wrap: wrap;
 }
 
 .profile-photo-preview {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
-  border: 2px solid #ccc;
+  border-radius: 50%;
+  border: 2px solid #ddd;
 }
 
 .custom-upload-button {
-  background-color: #007bff;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  font-size: 0.95rem;
-  transition: background-color 0.3s ease;
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .custom-upload-button:hover {
   background-color: #0056b3;
 }
 
+/* Form Section */
 .account-form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  margin-bottom: 2rem;
 }
 
 .form-group {
@@ -61,38 +62,53 @@
 }
 
 .form-label {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
   font-weight: 500;
+  color: #333;
 }
 
 .form-input {
-  padding: 0.7rem;
+  padding: 0.7rem 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
-  text-align: center;
+  transition: border-color 0.2s ease;
 }
 
+.form-input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Buttons */
 .actions {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 2rem;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  gap: 1rem;
 }
 
 .save-btn,
 .delete-btn {
-  padding: 0.7rem 1.4rem;
+  flex: 1;
+  min-width: 140px;
+  padding: 0.7rem 1rem;
   font-size: 1rem;
   border-radius: 6px;
-  border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: none;
+  transition: background-color 0.2s ease;
 }
 
 .save-btn {
   background-color: #28a745;
-  color: white;
+  color: #fff;
 }
 
 .save-btn:hover {
@@ -101,22 +117,21 @@
 
 .delete-btn {
   background-color: #dc3545;
-  color: white;
+  color: #fff;
 }
 
 .delete-btn:hover {
   background-color: #c82333;
 }
 
-@media (max-width: 600px) {
-  .profile-photo-section {
-    flex-direction: column;
-    align-items: flex-start;
+/* Responsive */
+@media (max-width: 500px) {
+  .manage-account-container {
+    padding: 1.5rem 1rem;
   }
 
   .actions {
     flex-direction: column;
-    align-items: stretch;
   }
 
   .save-btn,

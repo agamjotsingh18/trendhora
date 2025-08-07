@@ -29,6 +29,7 @@
   align-items: center;
   gap: 1rem;
   flex: 1;
+  margin-top: 1rem;
 }
 
 .profile-image {
@@ -43,7 +44,7 @@
   padding: 0.5rem;
 }
 
-.upload-btn {
+.custom-upload-button {
   padding: 0.5rem 1rem;
   background-color: #007bff;
   color: white;
@@ -52,6 +53,7 @@
   cursor: pointer;
   font-weight: 500;
   transition: 0.3s ease;
+  margin-top: 1rem;
 }
 
 .upload-btn:hover {

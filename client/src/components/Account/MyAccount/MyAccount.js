@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './MyAccount.css';
+import { Upload } from 'lucide-react';
 
 const MyAccount = () => {
   const [profileImage, setProfileImage] = useState(null);
@@ -22,22 +23,25 @@ const MyAccount = () => {
     <div className="account-container">
       <div className="profile-card">
         <div className="profile-left">
+          <div className="profile-photo-section">
           <img
             src={preview || '/default-profile.png'}
             alt="Profile"
-            className="profile-image"
+            className="profile-photo-preview"
           />
+
+          <label htmlFor="profileUpload" className="custom-upload-button">
+            <Upload size={18} style={{ marginRight: '6px' }} />
+            Upload Photo
+          </label>
           <input
             type="file"
+            id="profileUpload"
             accept="image/*"
             onChange={handleImageChange}
-            className="file-input"
+            style={{ display: 'none' }}
           />
-          {preview && (
-            <button onClick={handleImageUpload} className="upload-btn">
-              Upload Image
-            </button>
-          )}
+        </div>
         </div>
 
         <div className="profile-right">
