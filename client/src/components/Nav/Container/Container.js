@@ -3,7 +3,6 @@ import DrawerNav from '../DrawerNav/DrawerNav';
 import NavBrand from '../Nav-Brand/Navbrand';
 import Form from '../Search-Bar/Form';
 import './Container.css';
-import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Navtop = () => {
@@ -29,7 +28,8 @@ const Navtop = () => {
           </div>
         )}
 
-         {isSmallScreen && (
+        {/* Mobile Search */}
+        {isSmallScreen && (
           <div className="form__container">
             <Form />
           </div>
@@ -42,7 +42,6 @@ const Navtop = () => {
           </div>
         )}
       </div>
-     
     </div>
   );
 };
