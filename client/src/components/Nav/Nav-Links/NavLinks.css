@@ -10,7 +10,8 @@
   top: 0;
   width: 100%;
   z-index: 90;
-  margin-top: 102px;
+  position: relative;
+  top: auto;
 }
 
 

@@ -2,8 +2,8 @@
 
 .category__container {
     height: auto;
-    width: 100%;    
-    margin-top: 10rem;
+    width: 100%;  
+    margin-top:10rem;
 }
 
 .category {
@@ -15,30 +15,32 @@
 }
 
 .category__header__container {
-    height: 200px;
+    height: max-content;
     width: 90%;
-    margin: auto;
+    margin:1rem auto;
     display: flex;
-    justify-content: center;
-    align-items:center;
-    flex-direction: column;
+    align-items:baseline;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .category__header__big {
     height: 40%;
-    width: 100%;
+    width: max-content;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
+    margin-right: 15px;
 }
 
-.category__header {
+.category__header h2{
     align-self: flex-start;
+    font-size:2rem;
+    font-weight: bolder;
 }
 
 .category__header__line {
-    width: 120px;
+    width: 100%;
     height: 6px;
     background-color: #FFE26E;
     align-self: flex-start;
@@ -47,22 +49,21 @@
 
 .category__sort {
     height: auto;
-    width: 30%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-self: flex-end;
+    margin-top: 2rem;
 }
-
-
+  .show__filter,.filter__by{
+    margin: 4px;
+}
 .category__card__container {
     height: auto;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 2rem;
 }
 
 .category__product__card {
@@ -91,4 +92,45 @@
     border-color: #FFE26E;
     border-style: dashed;
     font-weight:bold;
+}
+
+/* Dark mode: black background for category container */
+.dark-mode .category__container {
+    background-color: #000000;
+}
+
+/* Dark mode: white text for category headers */
+.dark-mode .category__header h2 {
+    color: #ffffff;
+}
+
+/* Dark mode: white text for show and filter elements */
+.dark-mode .show__filter,
+.dark-mode .filter__by {
+    color: #ffffff !important;
+}
+
+/* Dark mode: white text for any text elements in category sort */
+.dark-mode .category__sort {
+    color: #ffffff;
+}
+
+/* Dark mode: white text for any labels or text in filter area */
+.dark-mode .category__sort label,
+.dark-mode .category__sort span,
+.dark-mode .category__sort div {
+    color: #ffffff !important;
+}
+
+/* Dark mode: white text for any select or option elements */
+.dark-mode .category__sort select,
+.dark-mode .category__sort option {
+    color: #ffffff !important;
+    background-color: #2d2d2d !important;
+}
+
+@media(max-width:768px){
+    .category__container{
+        margin-top: 6rem;
+    }
 }

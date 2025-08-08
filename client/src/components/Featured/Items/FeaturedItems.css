@@ -4,6 +4,7 @@
     height: auto;
     min-height: 25rem;
     margin-top: 30px;
+    background-color: var(--bg-primary);
 }
 
 .featured__products{
@@ -26,22 +27,23 @@
 .featured__items__header__big {
     font-size: 2rem;
     font-weight: 600;
+    color: #000000;
 }
 
 .featured__header__small {
     margin: auto 20px;
     text-decoration: none;
-    color: #333;
+    color: var(--text-secondary);
 }
 
 .featured__header__small:hover{
-    color: #333;
+    color: var(--accent-color);
 }
 
 .featured__products__header__line {
     width: 150px;
     height: 6px;
-    background-color: #FFE26E;
+    background-color: var(--accent-color);
     align-self: flex-start;
     margin-left: 50px;
     border-radius: 25px;
@@ -56,4 +58,20 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+
+/* Dark mode: black background for featured items container */
+.dark-mode .featured__products__container {
+    background-color: #000000;
+}
+
+/* Dark mode: white text for featured items header */
+.dark-mode .featured__items__header__big {
+    color: #ffffff;
+}
+
+/* Add soft white shadow to item cards in dark mode */
+.dark-mode .featured__products__card__container .card {
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    background-color: #ffffff;
 }

@@ -54,9 +54,9 @@
     font-weight: bold;
 }
 
-.product__name a{
+.product__card__card a{
     color: black !important;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .product__description {
@@ -71,12 +71,13 @@
 
 .product__price {
     height: 50%;
-    width: 100%;
+    width: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.1rem;
     font-weight: bold;
+    z-index: 600;
 }
 
 .product__card__action {
@@ -88,4 +89,5 @@
     justify-content: space-between;
     flex-direction: row;
     padding: 0px 5px;
+    background-color:#ffe26e;
 }

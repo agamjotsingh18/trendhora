@@ -171,6 +171,7 @@ const ItemCard = (props) => {
         <>
             <div className="product__card__card">
                 <div className="product__card">
+                    <Link to={`/item/${props.item.category}/${props.item._id}`}>
                     <div
                         className="product__image"
                         onMouseEnter={() => setIsHovered(true)}
@@ -182,6 +183,7 @@ const ItemCard = (props) => {
                             <img src={getImageUrl(props.item.image[0])} alt="item" className="product__img" />
                         )}
                     </div>
+                    </Link>
                     <div className="product__card__detail">
                         <div className="product__name">
                             <Link to={`/item/${props.item.category}/${props.item._id}`}>
@@ -189,10 +191,14 @@ const ItemCard = (props) => {
                             </Link>
                         </div>
                         <div className="product__description">
-                            <span>{props.item.description}</span>
+                            <Link to={`/item/${props.item.category}/${props.item._id}`}>
+                                <span>{props.item.description}</span>
+                            </Link>
                         </div>
                         <div className="product__price">
+                            <Link to={`/item/${props.item.category}/${props.item._id}`}>
                             <span>${props.item.price}</span>
+                            </Link>
                         </div>
                         <div className="product__card__action">
                             <IconButton onClick={handleAddToWishList} sx={{ borderRadius: '20px', width: '40px', height: '40px' }}>
@@ -205,7 +211,6 @@ const ItemCard = (props) => {
                     </div>
                 </div>
             </div>
-
             <Toaster
                 title={toasterTitle}
                 message={toasterMessage}

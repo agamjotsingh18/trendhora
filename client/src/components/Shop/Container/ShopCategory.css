@@ -48,3 +48,33 @@
     height: auto;
     width: 100%;
 }
+
+/* Dark mode: black background for shop category container */
+.dark-mode .shop__category__container {
+    background-color: #000000;
+}
+
+/* Dark mode: white text for shop category headers */
+.dark-mode .shop__category__head h2 {
+    color: #ffffff;
+}
+
+/* Dark mode: white text for any filter or sort elements in shop */
+.dark-mode .shop__category__container .show__filter,
+.dark-mode .shop__category__container .filter__by {
+    color: #ffffff !important;
+}
+
+/* Dark mode: white text for any text elements in shop category */
+.dark-mode .shop__category__container label,
+.dark-mode .shop__category__container span,
+.dark-mode .shop__category__container div {
+    color: #ffffff !important;
+}
+
+/* Dark mode: white text for any select or option elements in shop */
+.dark-mode .shop__category__container select,
+.dark-mode .shop__category__container option {
+    color: #ffffff !important;
+    background-color: #2d2d2d !important;
+}

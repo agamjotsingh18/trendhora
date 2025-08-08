@@ -5,20 +5,29 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background-color: #f9f9f9;
+  background-color: var(--bg-primary);
   box-sizing: border-box;
 }
 
+/* Dark mode: black background for login container */
+.dark-mode .login__auth__container {
+  background-color: #000000;
+}
 
 /* ==== Card-like box for login form ==== */
 .login__auth {
   width: 100%;
   max-width: 400px;
   padding: 2.5rem;
-  background-color: #ffffff;
+  background-color: var(--bg-secondary);
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   transition: transform 0.3s ease;
+}
+
+/* Dark mode: soft white shadow for login card */
+.dark-mode .login__auth {
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 
 /* ==== Login Header ==== */
@@ -27,7 +36,7 @@
   font-weight: 700;
   margin-bottom: 1.5rem;
   text-align: center;
-  color: #333;
+  color: var(--text-primary);
 }
 
 /* ==== Input Container ==== */
@@ -40,7 +49,7 @@
   display: block;
   font-size: 0.95rem;
   font-weight: 500;
-  color: #444;
+  color: var(--text-primary);
   margin-bottom: 0.4rem;
 }
 
@@ -48,15 +57,21 @@
 .login__input {
   width: 100%;
   padding: 0.7rem 0.9rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   font-size: 0.95rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   transition: border-color 0.2s ease;
+}
+
+.login__input::placeholder {
+  color: var(--text-muted);
 }
 
 .login__input:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--accent-color);
 }
 
 /* ==== Login Button Container ==== */
@@ -68,18 +83,18 @@
 .login__button {
   width: 100%;
   padding: 0.75rem;
-  background-color: #ffe26e;
-  border: 1px solid #fcd34d;
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
   border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
-  color: #333;
+  color: var(--bg-primary);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .login__button:hover {
-  background-color: #ffd700;
+  background-color: var(--accent-hover);
 }
 
 /* ==== OAuth Icons Row ==== */
@@ -121,7 +136,7 @@
 .login__forgot__password,
 .login__new__account {
   font-size: 0.9rem;
-  color: #007bff;
+  color: var(--accent-color);
   text-decoration: none;
   cursor: pointer;
 }

@@ -34,32 +34,53 @@ const getItem = async (req, res) => {
 
 /* POST Request handler */
 const addItem = async (req, res) => {
-    const highlights = req.body.highlights.split(",")
-    const size = req.body.size.split(",")
+  try {
+    const highlights = req.body.highlights?.split(",").map(h => h.trim()).filter(Boolean) || [];
+    const size = req.body.size?.split(",").map(s => s.trim()).filter(Boolean) || [];
 
-    /* The request.body must have all these values */
+    const {
+      name,
+      category,
+      type,
+      color,
+      description,
+      price,
+      detail
+    } = req.body;
+
+    const requiredFields = [name, category, type, color, description, price, detail];
+    const isMissingField = requiredFields.some(field => !field);
+    const hasImages = req.files && req.files.length > 0;
+
+    if (isMissingField || !highlights.length || !size.length || !hasImages) {
+      return res.status(400).json({ message: "Unable to add item. All fields are required." });
+    }
+
+    const imagePaths = req.files.map(file => file.path);
+
     const item = {
-        name: req.body.name,
-        category: req.body.category,
-        type: req.body.type,
-        color: req.body.color,
-        description: req.body.description,
-        price: req.body.price,
-        image: req.files,
-        size: size,
-        highlights: highlights,
-        detail: req.body.detail
-    }
+      name,
+      category,
+      type,
+      color,
+      description,
+      price,
+      image: imagePaths,
+      size,
+      highlights,
+      detail
+    };
 
-    if(item){
-        await Item.create(item)
-        res.status(201).json({message: "Items Add Success"})
-        res.redirect("/shop")
-    } 
-    else {
-        res.status(400).json({message: "Unable to add item"})
-    }
-}
+    await Item.create(item);
+
+    
+    return res.status(201).json({ message: "Items Add Success" });
+
+  } catch (error) {
+    console.error("Error adding item:", error);
+    return res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
 
 /* PUT Request handler */
 const updateItem = (req, res) => {
@@ -67,9 +88,24 @@ const updateItem = (req, res) => {
 }
 
 /* DELETE Request handler */
-const deleteItem = (req, res) => {
-    res.json({message: "delete Item"})
-}
+const deleteItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({ message: "Item ID is required" });
+    }
+    const deletedItem = await Item.findByIdAndDelete(id);
+     if (!deletedItem) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+    return res.status(200).json({ message: "Item deleted successfully" });
+
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    return res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 
 module.exports = {
     getItem,

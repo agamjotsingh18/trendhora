@@ -11,6 +11,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Badge from '@mui/material/Badge';
 import { Link, useLocation } from 'react-router-dom';
 import Cart from '../../Card/Cart/Cart';
+import ThemeToggle from '../../ThemeToggle/ThemeToggle';
 import { WishItemsContext } from '../../../Context/WishItemsContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import NavBrand from '../Nav-Brand/Navbrand';
@@ -195,6 +196,24 @@ const DrawerNav = () => {
                   </motion.div>
                 ))}
                 <Box />
+                
+                {/* Theme Toggle */}
+                <motion.div variants={itemVariants}>
+                  <ListItem disablePadding>
+                    <ListItemButton sx={{ ...linkButtonStyle, display: 'flex', alignItems: 'center' }}>
+                      <ListItemIcon sx={{ minWidth: 36, color: '#333' }}>
+                        <ThemeToggle />
+                      </ListItemIcon>
+                      <ListItemText 
+                        primary="Toggle Theme" 
+                        primaryTypographyProps={{ 
+                          color: 'inherit' 
+                        }} 
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                </motion.div>
+
                 <motion.div variants={itemVariants}>
                   <ListItem disablePadding>
                     <ListItemButton

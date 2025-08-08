@@ -44,13 +44,13 @@ const Detail = (props) => {
 
   return (
     <div className="product__detail__container">
-      <div className="product__detail">
-        <div className="product__main__detail">
-          <div className="product__name__main">{props.item.name}</div>
-          <div className="product__detail__description">
+      <div className="product__detail card text-center">
+        {/* <div className="product__main__detail"> */}
+          <div className="product__name__main card-header">{props.item.name}</div>
+          <div className="product__detail__description card-body card-title">
             {props.item.description}
           </div>
-          <div className="product__color">
+          <div className="product__color card-text">
             <div className="product-color-label">COLOR</div>
             <div className="product-color-options">
               {[
@@ -70,8 +70,8 @@ const Detail = (props) => {
               ))}
             </div>
           </div>
-          <div className="product__price__detail">${props.item.price}</div>
-        </div>
+          <div className="product__price__detail alert alert-warning"><p>${props.item.price}</p></div>
+        {/* </div> */}
         <form onSubmit={handelAddToCart} className="product__form">
           <div className="product__quantity__and__size">
             <div className="product__quantity">
@@ -100,7 +100,7 @@ const Detail = (props) => {
             </div>
           </div>
           <div className="collect__item__actions">
-            <div className="add__cart__add__wish">
+            <div className="add__cart__add__wish card-footer">
               <div className="add__cart">
                 <Button
                   variant="outlined"
@@ -114,9 +114,9 @@ const Detail = (props) => {
                         color: "black",
                       },
                       minWidth: 200,
-                      borderColor: "black",
-                      backgroundColor: "black",
-                      color: "#FFE26E",
+                      borderColor: "#ff385c",
+                      backgroundColor: "#ff385c",
+                      color: "white",
                       borderWidth: "3px",
                     },
                   ]}
@@ -138,9 +138,8 @@ const Detail = (props) => {
                         color: "black",
                       },
                       borderColor: "black",
-                      backgroundColor: "black",
-                      color: "#FFE26E",
-                      borderWidth: "3px",
+                      backgroundColor:"#ff385c",
+                      color: "white",
                     },
                   ]}
                   onClick={handelAddToWish}

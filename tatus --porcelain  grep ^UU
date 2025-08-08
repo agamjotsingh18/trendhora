@@ -1,0 +1,8 @@
+client/src/app/App.js
+client/src/components/Authentication/Login/Login.css
+client/src/components/Card/Cart/Cart.css
+client/src/components/Category/Category.css
+client/src/components/Featured/Categories/FeaturedCategories.css
+client/src/components/Nav/Controls/Control.js
+client/src/components/Nav/DrawerNav/DrawerNav.js
+client/src/components/Nav/Search-Bar/Form.css

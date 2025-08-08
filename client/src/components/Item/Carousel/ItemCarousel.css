@@ -1,11 +1,12 @@
 .product__carousel__container {
-    height: auto;
-    width: 50%;
-    min-width: 400px;
+    height:20%;
+    width: 45%;
+    min-width: 300px;
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1rem;
 }
 
 .product__carousel {
@@ -32,20 +33,12 @@
     max-width: 65%;
     height: auto;
     margin: 0;
+    border-radius: 1rem;
 }
 
 @media screen and (max-width: 600px) {
-    .carousel__image {
-        max-width: 100%;
-        height: auto;
-        margin: 0;
-    }
-    .product__carousel__container {
-        height: 650px;
-        width: 85%;
-    }
+
     .carousel__image__container{
-        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;

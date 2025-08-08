@@ -29,6 +29,12 @@ const Navtop = () => {
           </div>
         )}
 
+         {isSmallScreen && (
+          <div className="form__container">
+            <Form />
+          </div>
+        )}
+        
         {/* Mobile Hamburger */}
         {isSmallScreen && (
           <div className="drawer">
@@ -36,11 +42,6 @@ const Navtop = () => {
           </div>
         )}
       </div>
-         {isSmallScreen && (
-          <div className="form__container">
-            <Form />
-          </div>
-        )}
      
     </div>
   );

@@ -34,11 +34,12 @@
 }
 
 .related__header__line {
-    width: 180px;
+    width: 50%;
     height: 6px;
     background-color: #FFE26E;
     align-self: center;
     border-radius: 25px;
+    margin-top: 4px;
 }
 
 .related__card__container {
@@ -55,4 +56,9 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+@media(max-width:450px){
+.related__header__line{
+    display: none;
+}
 }
