@@ -78,6 +78,7 @@
 .form-input::placeholder {
   color: #aaa;
   font-style: italic;
+  text-align: start;
 }
 
 .form-input:focus {
