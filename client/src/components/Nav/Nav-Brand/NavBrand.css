@@ -1,39 +1,29 @@
 .navbrand__container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height:6rem;
-}
-.navbrand{
-  height: 8rem;
-}
-.navbrand img {
-  height: 8rem;
-
+  justify-content: flex-start; /* left align */
   cursor: pointer;
-  transition: transform 0.3s ease;
-
+  height: auto !important; /* override parent restrictions */
 }
 
-/* Hover effect */
-.navbrand img:hover {
+.navbrand__logo {
+  height: 120px !important; /* force bigger size */
+  width: auto !important;
+  max-height: none !important;
+  transition: transform 0.3s ease;
+}
+
+.navbrand__logo:hover {
   transform: scale(1.05);
 }
 
-/* Dark mode compatibility - Make logo white and visible */
-.dark-mode .navbrand img {
+/* Dark mode support */
+.dark-mode .navbrand__logo {
   filter: brightness(0) invert(1) contrast(1.5) saturate(1.1);
 }
 
-/* Alternative method if the above doesn't work well */
-/* .dark-mode .navbrand img {
-  filter: brightness(2) contrast(2) saturate(1.5);
-} */
-
-
-
-@media (max-width:768px){
-    .navbrand__container{
-        height: 44px;
-    }
+@media (max-width: 768px) {
+  .navbrand__logo {
+    height: 80px !important; /* mobile size */
+  }
 }

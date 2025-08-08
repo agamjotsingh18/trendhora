@@ -14,7 +14,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  height: max-content;
+  height: auto !important; /* allow logo to grow */
+}
+.nav__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .form__container {
@@ -31,7 +37,7 @@
   display: flex;
 }
 
-/* Mobile hide search + control from top container */
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .form__container {
     padding: 10px 0;
@@ -39,9 +45,7 @@
   .drawer {
     margin-left: auto;  
   }
-
-  .top__container{
+  .top__container {
     padding: 8px;
   }
-
 }
