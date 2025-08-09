@@ -7,15 +7,16 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap-reverse;
-    background-color: #ffe26e;
+    background-color: var(--bg-secondary);
     position: relative;
     margin-top: 9rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 
 .landing__header a {
     text-decoration: none;
-    color: #000;
+    color: var(--text-primary);
 }
 
 .landing__header__container {
@@ -41,12 +42,13 @@
 .landing__header__main {
     font-size: 2.8rem;
     font-weight: 800;
-    color: #2e2c2c;
+    color: var(--text-primary);
 }
 
 .landing__header__discount {
     font-size: 1.2rem;
     margin-left: 0.3rem;
+    color: var(--text-primary);
 }
 
 .landing__button {
@@ -62,11 +64,34 @@
     align-items: center;
 }
 
+/* Remove outline from all images in landing */
+.landing__image__container img {
+    outline: none !important;
+    border: none !important;
+}
+
+/* Add black drop-shadow to hide dotted outlines around hero image */
+.landing__image {
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.8));
+}
+
+/* Dark mode: white drop-shadow for hero image */
+.dark-mode .landing__image {
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+}
+
 .landing__image {
     height: auto;
     width: auto;
     top: 0%;
     z-index: 10;
+    outline: none;
+    border: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 

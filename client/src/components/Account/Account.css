@@ -6,6 +6,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--bg-primary);
+}
+
+/* Dark mode: black background for account */
+.dark-mode .user__account__container {
+    background-color: #000000;
 }
 
 .account__container {
@@ -26,6 +32,7 @@
     height: auto;
     font-size: 2.5rem;
     font-weight: bolder;
+    color: var(--text-primary);
 }
 
 .account__page__detail {
