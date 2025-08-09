@@ -1,45 +1,79 @@
+import { useState } from 'react';
 import Account from '../Account';
-import './ManageAccount.css'
+import './ManageAccount.css';
+import { Upload } from 'lucide-react';
 
 const ManageAccount = () => {
-    return ( 
-        <Account> 
-            <div className="manage__account__container">
-                <div className="edit__account__container">
-                    <div className="edit__account">
-                        <div className="edit__account__header">Edit account</div>
-                        <div className="edit__account__form__container">
-                            <div className="edit__account__form">
-                                <div className="fname__input__container edit__input__container">
-                                    <label className="fname__label input__label">First name</label>
-                                    <input type="text" className="fname__input edit__account__input" />
-                                </div>
-                                <div className="lname__input__container edit__input__container">
-                                    <label className="lname__label input__label">Last name</label>
-                                    <input type="text" className="lname__input edit__account__input"/>
-                                </div>
-                                <div className="save__changes__button__container">
-                                    <button className="save__changes__button" >Save Changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="separator__line"></div>
-                <div className="delete_account__container">
-                    <div className="delete__account">
-                        <div className="delete__account__header">
-                            Delete account
-                        </div>
-                        <div className="delete__account__prompt">Do you want to cancel subscription?</div>
-                        <div className="delete__account__button__container">
-                            <button className="delete__account__button" >Delete Account</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </Account>
-     );
-}
- 
+  const [profilePic, setProfilePic] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setProfilePic(file);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  return (
+    
+      <div className="manage-account-container">
+        <h2 className="manage-account-header">Manage Your Account</h2>
+
+        <div className="profile-photo-section">
+          <img
+            src={preview || '/default-profile.png'}
+            alt="Profile"
+            className="profile-photo-preview"
+          />
+
+          <label htmlFor="profileUpload" className="custom-upload-button">
+            <Upload size={18} style={{ marginRight: '6px' }} />
+            Upload Photo
+          </label>
+          <input
+            type="file"
+            id="profileUpload"
+            accept="image/*"
+            onChange={handleImageChange}
+            style={{ display: 'none' }}
+          />
+        </div>
+
+        <form className="account-form">
+          <div className="form-group">
+            <label className="form-label">Full Name</label>
+            <input type="text" className="form-input" placeholder="Enter your name" />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Email</label>
+            <input type="email" className="form-input" placeholder="Enter your email" />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Phone</label>
+            <input type="text" className="form-input" placeholder="Enter your phone" />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Address</label>
+            <input type="text" className="form-input" placeholder="Enter your address" />
+          </div>
+        </form>
+
+        <div className="actions">
+          <button className="save-btn">Save Changes</button>
+          <button className="delete-btn">Delete Account</button>
+        </div>
+      </div>
+    
+  );
+};
+
 export default ManageAccount;
