@@ -2,7 +2,7 @@ import "./Refund.css"
 
 const RefundPage = () => {
     return (
-        <div className="refund-container">
+        <div className="refund-container" style={{ paddingTop: '160px' }}>
             <h1>Check Refund Status</h1>
             <p>Enter your Order ID to check the status of your refund.</p>
             <form className="refund-form">

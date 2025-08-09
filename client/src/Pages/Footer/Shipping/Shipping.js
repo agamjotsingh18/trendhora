@@ -2,7 +2,7 @@ import "./Shipping.css"
 
 const ShippingPage = () => {
     return (
-        <div className="container">
+        <div className="container" style={{ paddingTop: '160px' }}>
             <div className="heading">
                 <h1>Shipping Information</h1>
             </div>
