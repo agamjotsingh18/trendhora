@@ -34,6 +34,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
+/* Base link styles */
 a {
     text-decoration: none;
     color: var(--text-primary);
@@ -59,6 +60,7 @@ html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
+  cursor: none; /* Hide native cursor for custom SnakeCursor */
 }
 
 .app__container {
@@ -69,4 +71,193 @@ html, body, #root {
 
 .app__content {
   flex: 1;
+}
+
+/* ===================
+   Global Hover Effects
+   =================== */
+/* Smooth transitions on common interactive elements */
+a, .btn, button, .card, .nav-link, .list-group-item, .form-control, img, .dropdown-item {
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease,
+              box-shadow .25s ease, transform .25s cubic-bezier(.2,.7,.2,1),
+              filter .25s ease, text-decoration-color .2s ease, opacity .2s ease;
+}
+
+/* Links (override earlier hover to add nice effects) */
+a {
+  text-decoration-color: rgba(0,0,0,0.25);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  filter: brightness(1.06);
+}
+
+/* Buttons */
+.btn, button {
+  will-change: transform, box-shadow;
+}
+
+.btn:hover, button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12), 0 6px 12px rgba(0,0,0,.08);
+}
+
+.btn:active, button:active {
+  transform: translateY(-1px) scale(.985);
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+}
+
+/* Cards */
+.card {
+  transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, border-color .3s ease;
+  will-change: transform, box-shadow;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 48px rgba(0,0,0,.16), 0 8px 18px rgba(0,0,0,.12);
+}
+
+.card img {
+  transition: transform .5s cubic-bezier(.2,.7,.2,1);
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+/* Nav links underline grow */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  opacity: .85;
+  transition: width .25s ease, opacity .25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  opacity: 1;
+}
+
+/* Dropdown items */
+.dropdown-item:hover {
+  background-color: rgba(0,0,0,0.035);
+}
+
+/* List group hover */
+.list-group-item:hover {
+  background-color: rgba(0,0,0,0.03);
+}
+
+/* Inputs focus improvement */
+.form-control:focus {
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .15);
+  border-color: rgba(0, 123, 255, .4);
+}
+
+/* Image subtle hover */
+img:hover {
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* Utility classes for opt-in stronger effects */
+.hover-glow:hover {
+  box-shadow: 0 0 0 2px rgba(255,255,255,.35) inset, 0 12px 28px rgba(0,0,0,.18);
+  transform: translateY(-3px);
+}
+
+.hover-raise:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,.18);
+}
+
+.hover-scale-sm:hover {
+  transform: scale(1.03);
+}
+
+/* Better keyboard focus visibility */
+:focus-visible {
+  outline: 2px solid rgba(0, 123, 255, .6);
+  outline-offset: 2px;
+}
+
+/* ==============================
+   Specific Card Hover Enhancements
+   ============================== */
+/* Item product cards */
+.product__card__card {
+  transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, border-color .3s ease;
+  will-change: transform, box-shadow;
+  background-color: #fff;
+}
+.product__card__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 48px rgba(0,0,0,.16), 0 8px 18px rgba(0,0,0,.12);
+}
+.product__card__card .product__image > img {
+  transition: transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.product__card__card:hover .product__image > img {
+  transform: none;
+}
+.product__card__card:hover .product__card__action {
+  background-color: #ffea8a; /* lighten of #ffe26e */
+}
+
+/* Featured/Category cards */
+.category__card__card {
+  transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease;
+  will-change: transform, box-shadow;
+}
+.category__card__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 48px rgba(0,0,0,.16), 0 8px 18px rgba(0,0,0,.12);
+}
+.category__card__card .category__image img,
+.category__card__card .category__image > img {
+  transition: transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.category__card__card:hover .category__image img,
+.category__card__card:hover .category__image > img {
+  transform: none;
+}
+/* Lift the action button slightly if present */
+.category__card__card:hover .MuiButton-root,
+.category__card__card:hover .category__card__action__button {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12), 0 6px 12px rgba(0,0,0,.08);
+}
+
+/* Related product cards */
+.related__product__card__container {
+  transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease;
+  will-change: transform, box-shadow;
+  background-color: #fff;
+}
+.related__product__card__container:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.15), 0 8px 18px rgba(0,0,0,.1);
+}
+.related__product__card__container .related__product__image > img {
+  transition: transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.related__product__card__container:hover .related__product__image > img {
+  transform: none;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
 }
