@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import SnakeCursor from "../components/Cursor/SnakeCursor";
 
 import Loader from "../components/Loader/loader.js";
 import './App.css';
@@ -66,6 +67,7 @@ function App() {
           <SearchProvider>
             <Router>
               <div className="app__container">
+                <SnakeCursor />
                 <Header />
                 <main className="app__content">
                   <Routes>
