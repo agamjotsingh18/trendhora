@@ -23,6 +23,30 @@ const Category = (props) => {
         setFilter(event.target.value);
     };
 
+    // Dark mode styles for Material-UI components
+    const darkModeStyles = {
+        '& .MuiInputLabel-root': {
+            color: 'var(--text-primary)',
+        },
+        '& .MuiSelect-select': {
+            color: 'var(--text-primary)',
+        },
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+                borderColor: 'var(--border-color)',
+            },
+            '&:hover fieldset': {
+                borderColor: 'var(--accent-color)',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: 'var(--accent-color)',
+            },
+        },
+        '& .MuiSvgIcon-root': {
+            color: 'var(--text-primary)',
+        },
+    };
+
     return ( 
         <div className="category__container">
             <div className="category">
@@ -36,12 +60,25 @@ const Category = (props) => {
                     <div className="category__sort">
                         <div className="show__filter">
                             <Box sx={{ minWidth: 100} }>
-                                <FormControl fullWidth size="small">
+                                <FormControl fullWidth size="small" sx={darkModeStyles}>
                                     <InputLabel>Show</InputLabel>
                                     <Select
                                     value={show}
                                     label="Show"
                                     onChange={handleShowChange}
+                                    MenuProps={{
+                                        PaperProps: {
+                                            sx: {
+                                                backgroundColor: 'var(--bg-secondary)',
+                                                '& .MuiMenuItem-root': {
+                                                    color: 'var(--text-primary)',
+                                                    '&:hover': {
+                                                        backgroundColor: 'var(--bg-tertiary)',
+                                                    },
+                                                },
+                                            },
+                                        },
+                                    }}
                                     >
                                         <MenuItem value={'All'}>All</MenuItem>
                                     </Select>
@@ -51,12 +88,25 @@ const Category = (props) => {
                        <div className="filter__by">
                        <div className="show__filter">
                             <Box sx={{ width: 120} }>
-                                <FormControl fullWidth size="small">
+                                <FormControl fullWidth size="small" sx={darkModeStyles}>
                                     <InputLabel>Filter by</InputLabel>
                                     <Select
                                     value={filter}
                                     label="Filter"
                                     onChange={handleFilterChange}
+                                    MenuProps={{
+                                        PaperProps: {
+                                            sx: {
+                                                backgroundColor: 'var(--bg-secondary)',
+                                                '& .MuiMenuItem-root': {
+                                                    color: 'var(--text-primary)',
+                                                    '&:hover': {
+                                                        backgroundColor: 'var(--bg-tertiary)',
+                                                    },
+                                                },
+                                            },
+                                        },
+                                    }}
                                     >
                                         <MenuItem value={'Latest'}>Latest</MenuItem>
                                     </Select>

@@ -1,21 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Ope=Roboto:wght@500&family=Ubuntu:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@500&family=Ubuntu:wght@500&display=swap');
 
-.outfit{
-  font-family: "Outfit", sans-serif;
-  font-optical-sizing: auto;
-  font-weight:500;
-  font-style: normal;
+:root {
+  /* Light theme colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-muted: #adb5bd;
+  --accent-color: #FFE26E;
+  --accent-hover: #FFD700;
+  --border-color: #dee2e6;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --danger-color: #dc3545;
+}
+
+/* Dark theme colors */
+.dark-mode {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-muted: #808080;
+  --accent-color: #FFE26E;
+  --accent-hover: #FFD700;
+  --border-color: #404040;
+  --shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  --danger-color: #ff6b6b;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
     text-decoration: none;
-    color: #000;
+    color: var(--text-primary);
 }
-
 
 a:hover {
     text-decoration: none;
-    color: #000;
+    color: var(--accent-color);
+}
+
+/* Remove outline from all images */
+img {
+    outline: none;
+    border: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 html, body, #root {

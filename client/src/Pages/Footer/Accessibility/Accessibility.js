@@ -4,7 +4,7 @@ import EmailIcon from '@mui/icons-material/Email';
 
 const AccessiblityPage = () => {
     return (
-        <div className="accessibility-container">
+        <div className="accessibility-container" style={{ paddingTop: '160px' }}>
             <h1>Accessibility Statement</h1>
                 <p>
                     At TrendHora, we are committed to ensuring that our website is accessible to all users, regardless of ability.

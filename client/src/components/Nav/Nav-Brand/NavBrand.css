@@ -20,10 +20,15 @@
   transform: scale(1.05);
 }
 
-/* Dark mode compatibility (optional) */
-body.dark-theme .navbrand img {
-  filter: brightness(1.2);
+/* Dark mode compatibility - Make logo white and visible */
+.dark-mode .navbrand img {
+  filter: brightness(0) invert(1) contrast(1.5) saturate(1.1);
 }
+
+/* Alternative method if the above doesn't work well */
+/* .dark-mode .navbrand img {
+  filter: brightness(2) contrast(2) saturate(1.5);
+} */
 
 
 

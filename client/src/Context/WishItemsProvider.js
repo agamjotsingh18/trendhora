@@ -7,6 +7,8 @@ const WishItemsProvider = (props) => {
 
     const cartItems = useContext(CartItemsContext)
 
+    console.log("cart items:", cartItems.items)
+
     const addToCartHandler = (item) => {
         cartItems.addItem(item, 1)
     }
