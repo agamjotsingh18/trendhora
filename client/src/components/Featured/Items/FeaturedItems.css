@@ -21,6 +21,8 @@
     align-items: flex-start;
     flex-direction: row;
     text-align: center;
+    justify-content: space-between;
+    padding-right: 100px;
 }
 
 .featured__items__header__big {
@@ -29,13 +31,17 @@
 }
 
 .featured__header__small {
-    margin: auto 20px;
     text-decoration: none;
     color: #333;
+    width: max-content;
+    height: max-content;
+    padding: 16px;
+    border-radius: 24px;
+    background-color: #FFE26E;
 }
 
 .featured__header__small:hover{
-    color: #333;
+    background-color: #caddfcff;
 }
 
 .featured__products__header__line {
@@ -57,3 +63,88 @@
     align-items: center;
     flex-wrap: wrap;
 }
+.translate-slider {overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  position: relative;
+  height: 80vh;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  left: 0;
+  top: 0;
+}
+
+.translate-slider li {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  max-width: 25%;
+  box-sizing: border-box;
+  margin: 0;
+  transition: opacity 2s ease-out;
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+}
+
+#slider-left,
+#slider-right {
+    background-color: #f7e9afff;
+    padding: 20px;
+    scale: 0.8;
+}
+
+#slider-left:hover {
+    background-color: #ffe26e;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#slider-right:hover {
+    background-color: #ffe26e;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+   
+#slider-left{
+    margin-left: 50px;
+  }
+#slider-right{
+    margin-right: 50px;
+  }
+@media (max-width: 768px) {
+    .translate-slider{
+        height: 480px;
+        width: 100%;
+        scale: 0.8;
+    }
+  .translate-slider li {
+    flex: 0 0 50%;
+    max-width: 90%;
+    margin: auto;
+  }
+  #slider-left{
+    margin-left: -5px;
+    scale: 0.5;
+  }
+  #slider-right{
+    margin-right: -5px;
+    scale: 0.5;
+  }
+    .featured__products__card__container {
+        display: block;
+    }
+   .featured__products__header{
+    margin-right: -5px;
+    padding-right: 0px ;
+   }
+   .featured__header__small{
+    padding: 8px;
+    scale: 0.95;
+    width: 170px;
+    height: 44px;
+   }
+}
+
