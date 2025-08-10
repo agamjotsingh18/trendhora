@@ -1,0 +1,29 @@
+.checkout__container {
+    height: auto;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-primary);
+}
+
+/* Dark mode: black background for checkout */
+.dark-mode .checkout__container {
+    background-color: #000000;
+}
+
+.checkout__content {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+/* Dark mode: soft white shadow for checkout content */
+.dark-mode .checkout__content {
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}

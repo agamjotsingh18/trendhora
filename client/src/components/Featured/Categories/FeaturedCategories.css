@@ -6,6 +6,7 @@
     min-height: 25rem;
     margin-top: 40px;
     flex-wrap: wrap;
+    background-color: var(--bg-primary);
 }
 
 .featured__categories{
@@ -29,16 +30,18 @@
 .featured__header__big {
     font-size: 2.3rem;
     font-weight: 600;
+    color: var(--text-primary);
 }
 
 .featured__header__small {
     margin: auto 20px;
+    color: var(--text-secondary);
 }
 
 .featured__categories__header__line {
     width: 200px;
     height: 6px;
-    background-color: #FFE26E;
+    background-color: var(--accent-color);
     align-self: center;
     border-radius: 25px;
 }
@@ -52,5 +55,14 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 20px 0;
-    
+}
+
+/* Dark mode: black background for featured categories */
+.dark-mode .featured__categories__container {
+    background-color: #000000;
+}
+
+/* Add soft white shadow to category cards in dark mode */
+.dark-mode .featured__categories__card__container .card {
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
