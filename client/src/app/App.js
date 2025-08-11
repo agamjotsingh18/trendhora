@@ -19,7 +19,7 @@ import Login from '../components/Authentication/Login/Login';
 import Register from '../components/Authentication/Register/Register';
 import Wishlist from '../components/Wishlist';
 import WishItemsProvider from '../Context/WishItemsProvider';
-import Checkout from '../components/Checkout/Checkout';
+// import Checkout from '../components/Checkout/Checkout';
 import SearchProvider from '../Context/SearchProvider';
 import Toaster from '../components/Toaster/toaster';
 import { ThemeProvider } from '../Context/ThemeContext';
