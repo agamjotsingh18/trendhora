@@ -1,19 +1,10 @@
-.nav__top__container {
-  width: 100%;
-  background-color: var(--bg-primary);
-  box-shadow: var(--shadow);
-  font-family: 'Roboto', sans-serif;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid var(--border-color);
-}
-
+/* Ensure the top container wraps content properly on small screens */
 .top__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+
   height: auto !important; /* allow logo to grow */
 }
 .nav__container {
@@ -21,31 +12,42 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  flex-wrap: wrap; /* allow wrapping instead of pushing off-screen */
+
 }
 
+/* Search form container adjustments */
 .form__container {
   flex: 1;
-  margin: 0 20px;
+  min-width: 150px; /* prevent search bar from shrinking too far */
+  margin: 0 15px;
 }
 
-.control__bar {
-  display: flex;
-  gap: 15px;
-}
-
+/* Drawer (hamburger) stays visible on right side */
 .drawer {
   display: flex;
+  flex-shrink: 0; /* prevent it from being squeezed out */
 }
 
+
 /* Mobile adjustments */
+
+/* Mobile-specific tweaks */
+
 @media (max-width: 768px) {
-  .form__container {
-    padding: 10px 0;
+  .top__container {
+    padding: 6px;
+    flex-wrap: nowrap; /* keep them in one line */
   }
-  .drawer {
-    margin-left: auto;  
-  }
+
   .top__container {
     padding: 8px;
+
+  .form__container {
+    flex: 1;
+    padding: 2px;
+    margin: 0 10px;
+
   }
 }

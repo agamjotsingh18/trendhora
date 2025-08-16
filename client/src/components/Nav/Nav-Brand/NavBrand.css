@@ -1,3 +1,4 @@
+
 .navbrand__container {
   display: flex;
   align-items: center;
@@ -10,12 +11,22 @@
   height: 120px !important; /* force bigger size */
   width: auto !important;
   max-height: none !important;
+
+.navbrand {
+  height: 8rem; /* default desktop size */
+}
+
+.navbrand img {
+  height: 8rem;
+  cursor: pointer;
+
   transition: transform 0.3s ease;
 }
 
 .navbrand__logo:hover {
   transform: scale(1.05);
 }
+
 
 /* Dark mode support */
 .dark-mode .navbrand__logo {
@@ -25,5 +36,28 @@
 @media (max-width: 768px) {
   .navbrand__logo {
     height: 80px !important; /* mobile size */
+
+/* Dark mode compatibility */
+.dark-mode .navbrand img {
+  filter: brightness(0) invert(1) contrast(1.5) saturate(1.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .navbrand__container {
+    height: 60px;
+    display: flex;
+    align-items: flex-start; /* push logo toward top */
+    padding-bottom: 8px; /* small upward nudge */
+    margin-top: -23px; /* slight upward shift */
+  }
+
+  .navbrand {
+    height: 5.5rem;
+  }
+
+  .navbrand img {
+    height: 5.5rem;
+
   }
 }
