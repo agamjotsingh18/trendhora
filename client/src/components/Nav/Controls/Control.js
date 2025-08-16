@@ -15,6 +15,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { WishItemsContext } from '../../../Context/WishItemsContext';
 import { supabase } from '../../../lib/supabase';
+import axios from 'axios';
 
 const Control = () => {
   const wishItems = useContext(WishItemsContext);
@@ -26,19 +27,46 @@ const Control = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
+      // Check Supabase first
+      const { data: { user: supaUser } } = await supabase.auth.getUser();
+      if (supaUser) {
+        setUser(supaUser);
+        return;
+      }
+
+      // Then check JWT token
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/me`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          setUser(res.data); // backend should return user info
+        } catch (err) {
+          console.error(err);
+          localStorage.removeItem('token');
+        }
+      }
     };
 
     fetchUser();
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null);
-    });
-
-    return () => {
-      listener?.subscription.unsubscribe();
+    //  Listen for login/logout changes in localStorage
+    const handleStorageChange = () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        // Simple placeholder if no backend fetch
+        setUser(prev => prev || { username: 'ProfileUser' });
+      } else {
+        setUser(null);
+      }
     };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('authChange', handleStorageChange);
+
+    return () =>{ window.removeEventListener('storage', handleStorageChange);
+                  window.removeEventListener('authChange', handleStorageChange);}
   }, []);
 
   const handleLogin = () => {
@@ -47,6 +75,7 @@ const Control = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    localStorage.removeItem('token');
     setUser(null);
     handleClose();
     navigate('/');
@@ -130,12 +159,15 @@ const Control = () => {
             <IconButton onClick={handleClick} sx={{ p: 0 }}>
               <Avatar
                 alt="Profile"
-                src={user?.user_metadata?.avatar_url || '/default-avatar.png'}
+                src={user?.user_metadata?.avatar_url || ''}
                 sx={{
                   width: 36,
                   height: 36,
+                  bgcolor: 'primary.main'
                 }}
-              />
+              >
+                {!user?.user_metadata?.avatar_url && 'P'}
+              </Avatar>
             </IconButton>
           </Tooltip>
 
@@ -194,5 +226,6 @@ const Control = () => {
 };
 
 export default Control;
+
 
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+//import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './LoginCard.css';
@@ -10,9 +10,12 @@ const LoginCard = ({ email, password, setEmail, setPassword }) => {
         e.preventDefault();
         try {
             const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, { email, password });
-            localStorage.setItem('token', response.data.token); // Store JWT token
+            localStorage.setItem('token', response.data.token);
+            window.dispatchEvent(new Event('authChange')); //  Trigger navbar change
             alert('Login successful!');
-            navigate('/account/me'); // Navigate to account page after login
+            setTimeout(() => {
+                navigate('/');
+            }, 100); // Navigate to account page after login
         } catch (error) {
             const errorMessage = error.response ? error.response.data.message : error.message;
             alert(`Login failed: ${errorMessage}`);

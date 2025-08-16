@@ -62,14 +62,14 @@ const Login = () => {
         </div>
 
         {/* Email/password form */}
-        <form onSubmit={handleLogin}>
+        {/*<form onSubmit={handleLogin}>*/}
           <LoginCard
             email={email}
             password={password}
             setEmail={setEmail}
             setPassword={setPassword}
           />
-        </form>
+        {/*</form>*/}
       </div>
     </div>
   );
