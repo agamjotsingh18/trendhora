@@ -6,7 +6,12 @@
   padding: 0 20px;
   flex-wrap: wrap; /* allow wrapping instead of pushing off-screen */
 }
-
+.mbox{
+  display: flex;
+  margin-right: 0.8rem;
+  padding-top: 6px;
+  padding-bottom: 8px;
+}
 /* Search form container adjustments */
 .form__container {
   flex: 1;

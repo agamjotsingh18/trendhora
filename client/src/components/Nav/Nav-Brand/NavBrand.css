@@ -25,7 +25,7 @@
     display: flex;
     align-items: flex-start; /* push logo toward top */
     padding-bottom: 8px; /* small upward nudge */
-    margin-top: -23px; /* slight upward shift */
+    margin-top: -44px; /* slight upward shift */
   }
 
   .navbrand {
@@ -33,6 +33,6 @@
   }
 
   .navbrand img {
-    height: 5.5rem;
+    height: 7rem;
   }
 }

@@ -201,7 +201,7 @@ const DrawerNav = () => {
                 <motion.div variants={itemVariants}>
                   <ListItem disablePadding>
                     <ListItemButton sx={{ ...linkButtonStyle, display: 'flex', alignItems: 'center' }}>
-                      <ListItemIcon sx={{ minWidth: 36, color: '#333' }}>
+                      <ListItemIcon sx={{ minWidth: 24, color: '#333' }}>
                         <ThemeToggle />
                       </ListItemIcon>
                       <ListItemText 
