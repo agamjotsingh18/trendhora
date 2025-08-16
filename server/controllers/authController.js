@@ -39,3 +39,13 @@ exports.loginUser = asyncHandler(async (req, res) => {
     }
 });
 
+exports.deleteUser = async (req, res) => {
+    try {
+        await req.user.deleteOne();
+        res.json({ message: 'Account deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
