@@ -1,7 +1,8 @@
-
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const {asyncHandler }= require('../utility/asyncHandler');
+
 
 exports.registerUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -26,6 +27,7 @@ exports.registerUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
+
     try {
         const user = await User.findOne({ email });
         if (!user) {
@@ -46,7 +48,6 @@ exports.loginUser = async (req, res) => {
         // remove password before sending user object
         const userData = user.toObject();
         delete userData.password;
-
         res.json({
             token,
             user: userData
@@ -77,3 +78,4 @@ exports.getMe = async (req, res) => {
     res.status(401).json({ message: 'Invalid token' });
   }
 };
+
