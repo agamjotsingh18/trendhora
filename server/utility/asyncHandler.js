@@ -5,4 +5,4 @@ const asyncHandler=(requestHandler)=>{
     }
 }
 
-export default asyncHandler;
+module.exports={asyncHandler}
