@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './NavLinks.css';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const NavLinks = () => {
-  const path=useLocation().pathname;
+  const path = useLocation().pathname;
   const isSmallScreen = useMediaQuery('(max-width:768px)');
 
+  // Conditions for hiding
   if (isSmallScreen) return null;
-  if(path.includes("/item")) return null;
-  
+  if (path.includes("/item")) return null;
+  if (path.startsWith("/account/login") || path.startsWith("/account/register")) return null;
+
   return (
     <nav className="nav__bottom__container">
       <div className="bottom__container">

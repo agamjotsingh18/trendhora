@@ -1,11 +1,11 @@
 /* ==== Container for the entire login page ==== */
 .login__auth__container {
-  min-height: calc(120vh - 20px); /* subtract header height */
+  min-height: calc(100vh - 80px); /* Subtract header height */
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; /* Vertically center */
   padding: 2rem;
-  background-color: var(--bg-primary);
+background: url('c:\Users\nandh\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\TempState\95D40515D78B92D75F485224D51A7EA6\WhatsApp Image 2025-08-08 at 14.02.31_1a0af9da.jpg') no-repeat center center/cover;   
   box-sizing: border-box;
 }
 
@@ -19,9 +19,11 @@
   width: 100%;
   max-width: 400px;
   padding: 2.5rem;
-  background-color: var(--bg-secondary);
+  background: rgba(255, 255, 255, 0.15); /* Transparent background */
+  backdrop-filter: blur(10px); /* Glass effect */
   border-radius: 10px;
   box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: transform 0.3s ease;
 }
 
@@ -72,6 +74,23 @@
 .login__input:focus {
   outline: none;
   border-color: var(--accent-color);
+}
+
+/* ==== Password field with eye icon ==== */
+.password__container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 35px;
+  right: 12px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.toggle-password:hover {
+  color: var(--accent-color);
 }
 
 /* ==== Login Button Container ==== */
@@ -151,4 +170,3 @@
   color: inherit;
   text-decoration: none;
 }
-
