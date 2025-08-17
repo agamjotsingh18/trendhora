@@ -1,38 +1,29 @@
-.navbrand {
-  height: 8rem; /* default desktop size */
+.navbrand__container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* left align */
+  cursor: pointer;
+  height: auto !important; /* override parent restrictions */
 }
 
-.navbrand img {
-  height: 8rem;
-  cursor: pointer;
+.navbrand__logo {
+  height: 120px !important; /* force bigger size */
+  width: auto !important;
+  max-height: none !important;
   transition: transform 0.3s ease;
 }
 
-/* Hover effect */
-.navbrand img:hover {
+.navbrand__logo:hover {
   transform: scale(1.05);
 }
 
-/* Dark mode compatibility */
-.dark-mode .navbrand img {
+/* Dark mode support */
+.dark-mode .navbrand__logo {
   filter: brightness(0) invert(1) contrast(1.5) saturate(1.1);
 }
 
-/* Mobile adjustments */
 @media (max-width: 768px) {
-  .navbrand__container {
-    height: 60px;
-    display: flex;
-    align-items: flex-start; /* push logo toward top */
-    padding-bottom: 8px; /* small upward nudge */
-    margin-top: -44px; /* slight upward shift */
-  }
-
-  .navbrand {
-    height: 5.5rem;
-  }
-
-  .navbrand img {
-    height: 7rem;
+  .navbrand__logo {
+    height: 80px !important; /* mobile size */
   }
 }

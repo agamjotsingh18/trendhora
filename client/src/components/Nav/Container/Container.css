@@ -4,15 +4,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  flex-wrap: wrap; /* allow wrapping instead of pushing off-screen */
+  height: auto !important; /* allow logo to grow */
 }
-.mbox{
+.nav__container {
   display: flex;
-  margin-right: 0.8rem;
-  padding-top: 6px;
-  padding-bottom: 8px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
-/* Search form container adjustments */
+
 .form__container {
   flex: 1;
   min-width: 150px; /* prevent search bar from shrinking too far */
@@ -25,15 +25,19 @@
   flex-shrink: 0; /* prevent it from being squeezed out */
 }
 
-/* Mobile-specific tweaks */
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .top__container {
     padding: 6px;
     flex-wrap: nowrap; /* keep them in one line */
   }
   .form__container {
-    flex: 1;
-    padding: 2px;
-    margin: 0 10px;
+    padding: 10px 0;
+  }
+  .drawer {
+    margin-left: auto;  
+  }
+  .top__container {
+    padding: 8px;
   }
 }
