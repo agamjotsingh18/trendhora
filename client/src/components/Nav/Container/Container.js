@@ -27,6 +27,7 @@ const Navtop = () => {
             <Control />
           </div>
         )}
+<<<<<<< HEAD
 
         {/* Mobile Search */}
         {isSmallScreen && (
@@ -34,6 +35,8 @@ const Navtop = () => {
             <Form />
           </div>
         )}
+=======
+>>>>>>> upstream/main
         
         {/* Mobile Hamburger */}
         {isSmallScreen && (
@@ -42,6 +45,21 @@ const Navtop = () => {
           </div>
         )}
       </div>
+<<<<<<< HEAD
+=======
+      {isSmallScreen && (
+        <div className='mbox'>
+          <div className="form__container">
+            <Form />
+          </div>
+          <div className="control__bar">
+            <Control />
+          </div>
+          </div>
+        )}
+        
+     
+>>>>>>> upstream/main
     </div>
   );
 };

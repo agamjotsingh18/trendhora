@@ -35,9 +35,10 @@ const ThemeToggle = () => {
       <IconButton
         onClick={toggleTheme}
         sx={{
-          width: 44,
-          height: 44,
+          width: { xs: 24, md: 40 },
+          height: { xs: 24, md: 40 },
           display: 'flex',
+          marginRight: { xs: 1, md: 0 },
           alignItems: 'center',
           justifyContent: 'center',
           borderRadius: '50%',
@@ -56,7 +57,7 @@ const ThemeToggle = () => {
         {isDarkMode ? (
           <LightModeIcon 
             sx={{ 
-              fontSize: '1.8rem', 
+              fontSize: { xs: 16, md: 28 }, 
               color: 'var(--text-primary)',
               transition: 'color 0.3s ease'
             }} 
@@ -64,7 +65,7 @@ const ThemeToggle = () => {
         ) : (
           <DarkModeIcon 
             sx={{ 
-              fontSize: '1.8rem', 
+              fontSize: { xs: 16, md: 28 },
               color: 'var(--text-primary)',
               transition: 'color 0.3s ease'
             }} 

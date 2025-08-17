@@ -42,7 +42,7 @@ const FaqList = () => {
     ]
 
     return (
-        <div className="container">
+        <div className="container" style={{ paddingTop: '160px' }}>
             <div className="heading">
                 <h1>Frequently asked Questions</h1>
             </div>

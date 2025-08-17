@@ -1,14 +1,4 @@
-.nav__top__container {
-  width: 100%;
-  background-color: var(--bg-primary);
-  box-shadow: var(--shadow);
-  font-family: 'Roboto', sans-serif;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid var(--border-color);
-}
-
+/* Ensure the top container wraps content properly on small screens */
 .top__container {
   display: flex;
   align-items: center;
@@ -25,20 +15,22 @@
 
 .form__container {
   flex: 1;
-  margin: 0 20px;
+  min-width: 150px; /* prevent search bar from shrinking too far */
+  margin: 0 15px;
 }
 
-.control__bar {
-  display: flex;
-  gap: 15px;
-}
-
+/* Drawer (hamburger) stays visible on right side */
 .drawer {
   display: flex;
+  flex-shrink: 0; /* prevent it from being squeezed out */
 }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
+  .top__container {
+    padding: 6px;
+    flex-wrap: nowrap; /* keep them in one line */
+  }
   .form__container {
     padding: 10px 0;
   }
