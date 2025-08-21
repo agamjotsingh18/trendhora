@@ -35,6 +35,8 @@ import PrivacyPolicy from '../components/Legal/PrivacyPolicy/PrivacyPolicy';
 // ✅ Import RecentlyViewedSection
 import RecentlyViewedSection from '../components/RecentlyViewedSection';
 
+import NotFound from '../components/NotFound.js';
+
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -101,6 +103,7 @@ function App() {
                 <Route path="/shipping" element={<ShippingPage />} />
                 <Route path="/refund" element={<RefundPage />} />
                 <Route path="/admin" element={<Wishlist />} />
+                 <Route path="*" element={<NotFound />} />
               </Routes>
 
               {/* ✅ Render RecentlyViewedSection only once here */}
