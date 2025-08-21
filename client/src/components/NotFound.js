@@ -20,7 +20,7 @@ export default function NotFound() {
         px: 3,
         position: "relative",
         overflow: "hidden",
-        pt: { xs: "120px", md: "150px" }, 
+        pt: { xs: "120px", md: "250px" }, 
       }}
     >
       {/* Floating 404 */}
