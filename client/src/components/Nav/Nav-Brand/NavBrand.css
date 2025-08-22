@@ -1,38 +1,69 @@
+.navbrand__container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 .navbrand {
-  height: 8rem; /* default desktop size */
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbrand img {
-  height: 8rem;
+  height: 5.8rem;
+  width: auto;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
 }
 
 /* Hover effect */
-.navbrand img:hover {
-  transform: scale(1.05);
+.navbrand:hover {
+  transform: scale(1.02);
+}
+
+.navbrand:hover img {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+/* Active state */
+.navbrand:active {
+  transform: scale(0.98);
 }
 
 /* Dark mode compatibility */
 .dark-mode .navbrand img {
-  filter: brightness(0) invert(1) contrast(1.5) saturate(1.1);
+  filter: brightness(0) invert(1) contrast(1.5) saturate(1.1) drop-shadow(0 2px 4px rgba(255, 255, 255, 0.1));
+}
+
+.dark-mode .navbrand:hover img {
+  filter: brightness(0) invert(1) contrast(1.5) saturate(1.1) drop-shadow(0 4px 8px rgba(255, 255, 255, 0.15));
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .navbrand img {
+    height: 5.2rem;
+  }
 }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .navbrand__container {
-    height: 60px;
-    display: flex;
-    align-items: flex-start; /* push logo toward top */
-    padding-bottom: 8px; /* small upward nudge */
-    margin-top: -44px; /* slight upward shift */
-  }
-
-  .navbrand {
-    height: 5.5rem;
+    height: auto;
+    flex-shrink: 0;
   }
 
   .navbrand img {
-    height: 7rem;
+    height: 4.5rem;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .navbrand img {
+    height: 3rem;
   }
 }

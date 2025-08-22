@@ -1,12 +1,126 @@
-
 .header__container {
     height: auto;
     width: 100%;
     background-color: var(--bg-primary);
     font-family: 'Roboto', sans-serif;
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     position: fixed;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Subtle glassmorphism effect for light feel */
+.header__container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Main header layout - single row design */
+.header__main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 95px;
+    gap: 24px;
+}
+
+/* Left section - Logo */
+.header__left {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Center section - Navigation and Search */
+.header__center {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+    gap: 32px;
+    max-width: 800px;
+}
+
+/* Right section - Controls */
+.header__right {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Navigation wrapper */
+.header__nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Search wrapper */
+.header__search {
+    flex: 1;
+    max-width: 400px;
+    min-width: 250px;
+}
+
+/* Mobile responsive design */
+@media (max-width: 1024px) {
+    .header__main {
+        padding: 10px 16px;
+        gap: 16px;
+    }
+
+    .header__center {
+        gap: 24px;
+    }
+
+    .header__search {
+        max-width: 300px;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header__main {
+        flex-direction: column;
+        padding: 10px 16px;
+        gap: 10px;
+        min-height: auto;
+    }
+
+    .header__center {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .header__nav {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .header__search {
+        order: 1;
+        width: 100%;
+        max-width: none;
+        min-width: auto;
+    }
+
+    .header__right {
+        width: 100%;
+        justify-content: center;
+    }
 }
