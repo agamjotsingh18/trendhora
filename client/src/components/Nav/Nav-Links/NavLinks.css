@@ -9,7 +9,7 @@
 .nav__list {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -20,20 +20,20 @@
   margin: 0;
 }
 
-/* Refined nav link styling */
+/* Balanced nav link styling */
 .nav__link {
   display: inline-block;
-  padding: 6px 14px;
-  font-size: 0.9rem;
-  font-weight: 450;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--text-primary);
   text-decoration: none;
   text-transform: capitalize;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 6px;
-  margin: 0 1px;
+  border-radius: 8px;
+  margin: 0 3px;
 }
 
 /* Hover effects */
