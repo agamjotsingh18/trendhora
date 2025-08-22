@@ -1,39 +1,30 @@
-/* Ensure the top container wraps content properly on small screens */
+/* Legacy container styles - kept for backward compatibility */
+.nav__top__container {
+  /* This container is no longer used in the new header design */
+  display: none;
+}
+
 .top__container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  flex-wrap: wrap; /* allow wrapping instead of pushing off-screen */
+  /* Legacy styles - hidden */
+  display: none;
 }
-.mbox{
-  display: flex;
-  margin-right: 0.8rem;
-  padding-top: 6px;
-  padding-bottom: 8px;
+
+.mbox {
+  /* Legacy mobile box - hidden */
+  display: none;
 }
-/* Search form container adjustments */
+
 .form__container {
-  flex: 1;
-  min-width: 150px; /* prevent search bar from shrinking too far */
-  margin: 0 15px;
+  /* Legacy form container - hidden */
+  display: none;
 }
 
-/* Drawer (hamburger) stays visible on right side */
 .drawer {
-  display: flex;
-  flex-shrink: 0; /* prevent it from being squeezed out */
+  /* Legacy drawer - hidden */
+  display: none;
 }
 
-/* Mobile-specific tweaks */
-@media (max-width: 768px) {
-  .top__container {
-    padding: 6px;
-    flex-wrap: nowrap; /* keep them in one line */
-  }
-  .form__container {
-    flex: 1;
-    padding: 2px;
-    margin: 0 10px;
-  }
+.control__bar {
+  /* Legacy control bar - hidden */
+  display: none;
 }
