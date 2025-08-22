@@ -9,7 +9,7 @@ const ThemeToggle = () => {
 
   const tooltipProps = {
     arrow: true,
-    slotProps: {
+    componentsProps: {
       popper: {
         sx: {
           '& .MuiTooltip-tooltip': {
@@ -76,4 +76,4 @@ const ThemeToggle = () => {
   );
 };
 
-export default ThemeToggle; 
+export default ThemeToggle;
