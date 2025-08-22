@@ -9,7 +9,7 @@
     flex-wrap: wrap-reverse;
     background-color: var(--bg-secondary);
     position: relative;
-    margin-top: 120px;
+    margin-top: 90px;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -122,6 +122,6 @@
 }
 @media (max-width: 780px){
     .landing__container{
-        margin-top: 160px;
+        margin-top: 120px;
     }
 }
