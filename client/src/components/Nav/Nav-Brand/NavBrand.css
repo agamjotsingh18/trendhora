@@ -12,11 +12,11 @@
 }
 
 .navbrand img {
-  height: 8rem;
+  height: 4.5rem;
   width: auto;
   cursor: pointer;
   transition: all 0.3s ease;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
 }
 
 /* Hover effect */
@@ -45,7 +45,7 @@
 /* Tablet adjustments */
 @media (max-width: 1024px) {
   .navbrand img {
-    height: 7rem;
+    height: 4rem;
   }
 }
 
@@ -54,18 +54,16 @@
   .navbrand__container {
     height: auto;
     flex-shrink: 0;
-    padding-bottom: 8px;
-    margin-top: -44px;
   }
 
   .navbrand img {
-    height: 7rem;
+    height: 3.5rem;
   }
 }
 
 /* Small mobile screens */
 @media (max-width: 480px) {
   .navbrand img {
-    height: 5.5rem;
+    height: 3rem;
   }
 }
