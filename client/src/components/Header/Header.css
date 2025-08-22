@@ -3,16 +3,16 @@
     width: 100%;
     background-color: var(--bg-primary);
     font-family: 'Roboto', sans-serif;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     position: fixed;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
-/* Modern glassmorphism effect for premium look */
+/* Subtle glassmorphism effect for light feel */
 .header__container::before {
     content: '';
     position: absolute;
@@ -20,7 +20,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
     pointer-events: none;
     z-index: -1;
 }
@@ -30,11 +30,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 24px;
+    padding: 12px 24px;
     max-width: 1400px;
     margin: 0 auto;
-    min-height: 110px;
-    gap: 24px;
+    min-height: 80px;
+    gap: 20px;
 }
 
 /* Left section - Logo */
