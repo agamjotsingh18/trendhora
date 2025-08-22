@@ -20,20 +20,20 @@
   margin: 0;
 }
 
-/* Modern nav link styling */
+/* Refined nav link styling */
 .nav__link {
   display: inline-block;
-  padding: 8px 16px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 450;
   color: var(--text-primary);
   text-decoration: none;
   text-transform: capitalize;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 8px;
-  margin: 0 2px;
+  border-radius: 6px;
+  margin: 0 1px;
 }
 
 /* Hover effects */
