@@ -188,7 +188,7 @@ const handleDeleteAccount = async () => {
 
   const tooltipProps = {
     arrow: true,
-    slotProps: {
+    componentsProps: {
       popper: {
         sx: {
           '& .MuiTooltip-tooltip': {
