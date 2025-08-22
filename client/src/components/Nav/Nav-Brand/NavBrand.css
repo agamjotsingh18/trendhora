@@ -12,7 +12,7 @@
 }
 
 .navbrand img {
-  height: 5.2rem;
+  height: 6.5rem;
   width: auto;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -45,7 +45,7 @@
 /* Tablet adjustments */
 @media (max-width: 1024px) {
   .navbrand img {
-    height: 4.5rem;
+    height: 5.5rem;
   }
 }
 
@@ -57,7 +57,7 @@
   }
 
   .navbrand img {
-    height: 4rem;
+    height: 5rem;
   }
 }
 
