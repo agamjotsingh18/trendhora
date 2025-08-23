@@ -84,6 +84,9 @@ onMouseLeave={e => {
                             <li className="help__link">
                                 <a href="/accessibility"><AccessibilityNewIcon /> Accessiblity</a>
                             </li>
+                            <li className="help__link">
+                                <a href="/contact"><EmailIcon /> Contact Us</a>
+                            </li>
                         </ul>
                     </div>
                     <div className="footer__contact__container">

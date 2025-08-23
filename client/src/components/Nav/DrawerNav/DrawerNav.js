@@ -29,6 +29,7 @@ const navLinks = [
   { text: 'Men', to: '/category/men', icon: manWear},
   { text: 'Women', to: '/category/women', icon: womanWear },
   { text: 'Kids', to: '/category/kids', icon: kidsWear },
+  { text: 'Contact Us', to: '/contact', icon: shop },
 ];
 
 const listVariants = {
