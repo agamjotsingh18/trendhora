@@ -6,6 +6,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from '../routes/Home';
+import About from '../routes/About';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import ManageAccount from '../components/Account/ManageAccount/ManageAccount';
@@ -74,6 +75,7 @@ function App() {
               <Header />
               <Routes>
                 <Route index element={<Home />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/account">
                   <Route path="me" element={<MyAccount />} />
                   <Route path="manage" element={<ManageAccount />} />

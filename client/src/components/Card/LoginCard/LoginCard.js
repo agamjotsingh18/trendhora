@@ -9,18 +9,21 @@ const LoginCard = ({ email, password, setEmail, setPassword }) => {
 const navigate = useNavigate();
 const [showPassword, setShowPassword] = useState(false);
 
-const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-        const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, { email, password });
-        localStorage.setItem('token', response.data.token); // Store JWT token
-        alert('Login successful!');
-        navigate('/account/me'); // Navigate to account page after login
-    } catch (error) {
-        const errorMessage = error.response ? error.response.data.message : error.message;
-        alert(`Login failed: ${errorMessage}`);
-    }
-};
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, { email, password });
+            localStorage.setItem('token', response.data.token);
+            window.dispatchEvent(new Event('authChange')); //  Trigger navbar change
+            alert('Login successful!');
+            setTimeout(() => {
+                navigate('/');
+            }, 100); // Navigate to account page after login
+        } catch (error) {
+            const errorMessage = error.response ? error.response.data.message : error.message;
+            alert(`Login failed: ${errorMessage}`);
+        }
+    };
 
 const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

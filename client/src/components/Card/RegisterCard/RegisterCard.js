@@ -16,14 +16,23 @@ const RegisterCard = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/auth/register', { username, email, password });
-      alert('Registration successful!');
-      navigate('/account/login');
+      const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/register`,
+        { username, email, password }
+      );
+      
+      // Store JWT token
+      localStorage.setItem('token', res.data.token);
+      window.dispatchEvent(new Event('storage'));
+
+      alert('Registration successful! Logged in.');
+      navigate('/');
     } catch (error) {
       const errorMessage = error.response?.data.message || error.message;
       alert(`Registration failed: ${errorMessage}`);
     }
   };
+
 
 
   const handleOAuthRegister = async (provider) => {

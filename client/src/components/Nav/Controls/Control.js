@@ -6,17 +6,30 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Tooltip
+  Tooltip,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Typography,
+  CircularProgress,
+  Divider,
+  ListItemIcon
 } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
 import Cart from '../../Card/Cart/Cart';
 import ThemeToggle from '../../ThemeToggle/ThemeToggle';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { WishItemsContext } from '../../../Context/WishItemsContext';
 import { supabase } from '../../../lib/supabase';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import axios from 'axios';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Control = () => {
   const isSmallScreen = useMediaQuery('(max-width:768px)');
@@ -24,25 +37,56 @@ const Control = () => {
   const wishItems = useContext(WishItemsContext);
   const [user, setUser] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [confirmText, setConfirmText] = useState('');
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
   const navigate = useNavigate();
 
   const open = Boolean(anchorEl);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
+      // Check Supabase first
+      const { data: { user: supaUser } } = await supabase.auth.getUser();
+      if (supaUser) {
+        setUser(supaUser);
+        return;
+      }
+
+      // Then check JWT token
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/me`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          setUser(res.data); // backend should return user info
+        } catch (err) {
+          console.error(err);
+          localStorage.removeItem('token');
+        }
+      }
     };
 
     fetchUser();
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null);
-    });
-
-    return () => {
-      listener?.subscription.unsubscribe();
+    //  Listen for login/logout changes in localStorage
+    const handleStorageChange = () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        // Simple placeholder if no backend fetch
+        setUser(prev => prev || { username: 'ProfileUser' });
+      } else {
+        setUser(null);
+      }
     };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('authChange', handleStorageChange);
+
+    return () =>{ window.removeEventListener('storage', handleStorageChange);
+                  window.removeEventListener('authChange', handleStorageChange);}
   }, []);
 
   const handleLogin = () => {
@@ -51,6 +95,7 @@ const Control = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    localStorage.removeItem('token');
     setUser(null);
     handleClose();
     navigate('/');
@@ -63,6 +108,65 @@ const Control = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleOpenDeleteDialog = () => {
+    setDeleteError('');
+    setConfirmText('');
+    setDeleteOpen(true);
+  };
+
+  const handleCloseDeleteDialog = () => {
+    if (!deleting) setDeleteOpen(false);
+  };
+
+const handleDeleteAccount = async () => {
+  setDeleteError('');
+  setDeleting(true);
+
+  try {
+    // Get current Supabase session for access token
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.access_token) {
+      throw new Error('Not authenticated. Please log in again.');
+    }
+
+    // Step 1: Call your backend to delete MongoDB account
+    const resp = await fetch('http://localhost:5000/api/auth/delete', {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${session.access_token}`, // send token
+      },
+    });
+
+    if (!resp.ok) {
+      let msg = 'Failed to delete account.';
+      try {
+        const j = await resp.json();
+        if (j?.message) msg = j.message;
+      } catch (_) {}
+      throw new Error(msg);
+    }
+
+    // Step 2: Delete from Supabase (sign out after deletion)
+    await supabase.auth.signOut();
+
+    // Step 3: Clear local storage & frontend state
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    setDeleteOpen(false);
+    handleClose?.(); // close dropdown if open
+
+    // Redirect to home or login page
+    navigate('/');
+  } catch (err) {
+    setDeleteError(err.message || 'Something went wrong.');
+  } finally {
+    setDeleting(false);
+    setConfirmText('');
+  }
+};
+
 
   const controlButton = {
     width: 44,
@@ -102,6 +206,8 @@ const Control = () => {
     },
   };
 
+  const canDelete = confirmText.trim().toUpperCase() === 'DELETE';
+
   return (
     <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
       {/* Theme Toggle */}
@@ -135,10 +241,7 @@ const Control = () => {
               <Avatar
                 alt="Profile"
                 src={user?.user_metadata?.avatar_url || '/default-avatar.png'}
-                sx={{
-                  width: 36,
-                  height: 36,
-                }}
+                sx={{ width: 36, height: 36 }}
               />
             </IconButton>
           </Tooltip>
@@ -150,8 +253,27 @@ const Control = () => {
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           >
-            <MenuItem onClick={() => navigate('/account/me')}>My Profile</MenuItem>
-            <MenuItem onClick={handleLogout}>Sign Out</MenuItem>
+            <MenuItem onClick={() => navigate('/account/me')}>
+              <ListItemIcon><PersonIcon fontSize="small" /></ListItemIcon>
+              My Profile
+            </MenuItem>
+
+            <MenuItem onClick={handleLogout}>
+              <ListItemIcon><LogoutIcon fontSize="small" /></ListItemIcon>
+              Sign Out
+            </MenuItem>
+
+            <Divider />
+
+            <MenuItem
+              onClick={() => { handleClose(); handleOpenDeleteDialog(); }}
+              sx={{ color: 'error.main', fontWeight: 600 }}
+            >
+              <ListItemIcon>
+                <DeleteOutlineIcon sx={{ color: 'error.main' }} fontSize="small" />
+              </ListItemIcon>
+              Delete Account
+            </MenuItem>
           </Menu>
         </>
       )}
@@ -183,20 +305,54 @@ const Control = () => {
       {/* Cart */}
       {!isSmallScreen && (<Tooltip title="Cart" {...tooltipProps}>
         <Box sx={controlButton}>
-          <Box sx={{ 
-            '& svg': { 
-              color: 'var(--text-primary)',
-              fontSize: '1.8rem'
-            } 
-          }}>
+          <Box sx={{ '& svg': { color: 'var(--text-primary)', fontSize: '1.8rem' } }}>
             <Cart />
           </Box>
         </Box>
       </Tooltip>)}
+
+
+      {/* Delete Account Dialog */}
+      <Dialog open={deleteOpen} onClose={handleCloseDeleteDialog} maxWidth="xs" fullWidth>
+        <DialogTitle>Delete your account?</DialogTitle>
+        <DialogContent>
+          <Typography variant="body2" sx={{ mb: 2 }}>
+            This will permanently delete your account and associated data. This action cannot be undone.
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 1 }}>
+            To confirm, type <b>DELETE</b> below:
+          </Typography>
+          <TextField
+            autoFocus
+            fullWidth
+            size="small"
+            placeholder="DELETE"
+            value={confirmText}
+            onChange={(e) => setConfirmText(e.target.value)}
+          />
+          {deleteError && (
+            <Typography variant="caption" color="error" sx={{ mt: 1, display: 'block' }}>
+              {deleteError}
+            </Typography>
+          )}
+        </DialogContent>
+        <DialogActions sx={{ p: 2 }}>
+          <Button onClick={handleCloseDeleteDialog} disabled={deleting}>
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={handleDeleteAccount}
+            disabled={!canDelete || deleting}
+            startIcon={!deleting ? <DeleteOutlineIcon /> : null}
+          >
+            {deleting ? <CircularProgress size={18} /> : 'Delete Account'}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };
 
 export default Control;
-
-
