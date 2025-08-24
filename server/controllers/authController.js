@@ -1,8 +1,12 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+<<<<<<< HEAD
 const {asyncHandler }= require('../utility/asyncHandler');
 const { sendWelcomeEmail } = require('../utility/mailer'); 
+=======
+const { asyncHandler } = require('../utility/asyncHandler');
+>>>>>>> 202109b (Backend changes for forgot password)
 
 exports.registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
@@ -62,5 +66,20 @@ exports.deleteUser = async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error' });
+    }
+};
+
+
+exports.getMe = async (req, res, next) => {
+    try {
+        // Get user from database using id from req.user (set by auth middleware)
+        const user = await User.findById(req.user.id);
+
+        res.status(200).json({
+            success: true,
+            data: user
+        });
+    } catch (err) {
+        next(err);
     }
 };
