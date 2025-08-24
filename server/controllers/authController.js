@@ -2,6 +2,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const {asyncHandler }= require('../utility/asyncHandler');
+const { sendWelcomeEmail } = require('../utility/mailer'); 
 
 exports.registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
@@ -13,6 +14,13 @@ exports.registerUser = asyncHandler(async (req, res) => {
 
     const user = new User({ username, email, password });
     await user.save();
+
+    try {
+        await sendWelcomeEmail(email,username);
+    } catch (err) {
+        console.error("Error sending welcome email:", err.message);
+        // Do not block registration if email fails
+    }
 
     // Generate token right after registration
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });

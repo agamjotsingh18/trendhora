@@ -120,7 +120,3 @@ const RegisterCard = () => {
 };
 
 export default RegisterCard;
-
-
-
-
