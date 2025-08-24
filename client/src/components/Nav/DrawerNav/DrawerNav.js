@@ -21,7 +21,6 @@ import womanWear from '../../../asset/icons/womanWear.png'
 import kidsWear from '../../../asset/icons/kidsWear.png'
 import home from '../../../asset/icons/home.png'
 import shop from '../../../asset/icons/shop.png'
-import userIcon from '../../../asset/icons/user.png'
 
 
 const navLinks = [
@@ -30,7 +29,7 @@ const navLinks = [
   { text: 'Men', to: '/category/men', icon: manWear},
   { text: 'Women', to: '/category/women', icon: womanWear },
   { text: 'Kids', to: '/category/kids', icon: kidsWear },
-  { text: 'About', to: '/about', icon: userIcon },
+  { text: 'Contact Us', to: '/contact', icon: shop },
 ];
 
 const listVariants = {
