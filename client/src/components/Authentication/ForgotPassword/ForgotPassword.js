@@ -29,7 +29,7 @@ const ForgotPassword = ({ onClose }) => {
         <div className="forgot-overlay" onClick={onClose}>
             <div className="forgot-card" onClick={(e) => e.stopPropagation()}>
                 <button className="close-btn" onClick={onClose}>×</button>
-                <h2>Forgot Password</h2>
+                <h2 style={{ color: "#FFE26E" }}>Forgot Password</h2>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="email"
