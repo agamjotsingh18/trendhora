@@ -4,7 +4,8 @@
 <div align="center">
 
 <!-- Alternative if you want to control size -->
-<img src="https://raw.githubusercontent.com/Adez017/trendhora/main/readme_cover.png" alt="Trendhora Logo" width="800" height="190">
+<img src="https://raw.githubusercontent.com/Adez017/trendhora/main/client/src/asset/brand/logo.png" alt="Trendhora Logo" width="500" height="200">
+
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/agamjotsingh18/trendhora?style=for-the-badge)](https://github.com/agamjotsingh18/trendhora/graphs/contributors)
@@ -159,23 +160,15 @@ npm test           # Run tests
 
 <div align="center">
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/38cb13eb-50eb-4b1e-b358-e86f801c2e9d" />
+<img src="https://raw.githubusercontent.com/Adez017/trendhora/main/client/src/asset/img/Screenshot%20(45).png" alt="Screenshot 45" width="1920" height="1080" />
+<img src="https://raw.githubusercontent.com/Adez017/trendhora/main/client/src/asset/img/dark_mode.png" alt="Dark Mode" width="1920" height="1080" />
+<img src="https://raw.githubusercontent.com/Adez017/trendhora/main/client/src/asset/img/shop_section.png" alt="Shop Section" width="1920" height="1080" />
 
 
 </div>
 
 ---
 
-## 🗺️ Roadmap
-
-- [x] Core e-commerce functionality
-- [x] User authentication & authorization  
-- [x] Admin dashboard
-- [ ] Enhanced user interface
-- [ ] Advanced product management
-- [ ] Performance optimizations
-
----
 
 ## 🤝 Contributing
 
