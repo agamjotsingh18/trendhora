@@ -13,12 +13,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ReplayIcon from '@mui/icons-material/Replay';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
-import NavBrand from '../Nav/Nav-Brand/Navbrand';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
-
-const handlePhoneClick = () => {
-    window.location.href = 'tel:+919319042075';
-};
 
 const Footer = () => {
     const [isVisible, setIsVisible] = React.useState(false);
