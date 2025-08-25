@@ -4,7 +4,7 @@
 <div align="center">
 
 <!-- Alternative if you want to control size -->
-<img src="https://raw.githubusercontent.com/Adez017/trendhora/main/client/src/asset/brand/logo.png" alt="Trendhora Logo" width="500" height="200">
+<img src="https://raw.githubusercontent.com/agamjotsingh18/trendhora/main/client/src/asset/brand/logo.png" alt="Trendhora Logo" width="500" height="200">
 
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
@@ -160,9 +160,9 @@ npm test           # Run tests
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Adez017/trendhora/main/client/src/asset/img/Screenshot%20(45).png" alt="Screenshot 45" width="1920" height="1080" />
-<img src="https://raw.githubusercontent.com/Adez017/trendhora/main/client/src/asset/img/dark_mode.png" alt="Dark Mode" width="1920" height="1080" />
-<img src="https://raw.githubusercontent.com/Adez017/trendhora/main/client/src/asset/img/shop_section.png" alt="Shop Section" width="1920" height="1080" />
+<img src="https://raw.githubusercontent.com/agamjotsingh18/trendhora/main/client/src/asset/img/Screenshot%20(45).png" alt="Screenshot 45" width="1920" height="1080" />
+<img src="https://raw.githubusercontent.com/agamjotsingh18/trendhora/main/client/src/asset/img/dark_mode.png" alt="Dark Mode" width="1920" height="1080" />
+<img src="https://raw.githubusercontent.com/agamjotsingh18/trendhora/main/client/src/asset/img/shop_section.png" alt="Shop Section" width="1920" height="1080" />
 
 
 </div>
