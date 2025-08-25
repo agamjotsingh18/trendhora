@@ -39,28 +39,34 @@ return (
     { isVisible && <button 
 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
 style={{
-    background:'#FCF8D6',
-    width:'40px',
-    height:'40px',
+    background: 'linear-gradient(135deg, var(--accent-color) 0%, #FFD700 100%)',
+    width:'45px',
+    height:'45px',
     position: 'fixed',
     zIndex: '1000',
     bottom: '30px',
     right: '40px',
-    borderRadius: '90%',
-    transition: 'background 0.2s',
+    borderRadius: '50%',
+    border: 'none',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     cursor: 'pointer',
-    scale: '1',
+    boxShadow: '0 4px 15px rgba(255, 226, 110, 0.4)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
 }}
 onMouseEnter={e => {
-    e.currentTarget.style.backgroundColor = '#e3b17cff';
-    e.currentTarget.style.scale = '1.10';
+    e.currentTarget.style.background = 'linear-gradient(135deg, #FFD700 0%, var(--accent-color) 100%)';
+    e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
+    e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 226, 110, 0.6)';
 }}
 onMouseLeave={e => {
-    e.currentTarget.style.backgroundColor = '#FCF8D6';
-    e.currentTarget.style.scale = '1';
+    e.currentTarget.style.background = 'linear-gradient(135deg, var(--accent-color) 0%, #FFD700 100%)';
+    e.currentTarget.style.transform = 'scale(1) translateY(0px)';
+    e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 226, 110, 0.4)';
 }}
 >
-  <KeyboardDoubleArrowUpIcon />
+  <KeyboardDoubleArrowUpIcon style={{ color: 'white', fontSize: '24px' }} />
 </button>}
 
         <div className="footer__container">
@@ -104,7 +110,23 @@ onMouseLeave={e => {
                                 <a href="mailto:agamjotsingh1801@gmail.com"><EmailIcon /> shop@trendhora.com</a>
                             </li>
                             <li className="footer__contact">
-                                <a href='#' ><LocationOnIcon />  Delhi, India</a>
+                                <button 
+                                    onClick={() => {}} 
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--text-primary)',
+                                        cursor: 'default',
+                                        padding: 0,
+                                        font: 'inherit',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem'
+                                    }}
+                                    aria-label="Location information"
+                                >
+                                    <LocationOnIcon /> Delhi, India
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -114,19 +136,19 @@ onMouseLeave={e => {
                         </div>
                         <ul className="footer__social__links">
                             <li className="social__link">
-                                <a href='#'> <TwitterIcon /> </ a>
+                                <a href='https://twitter.com/trendhora' target="_blank" rel="noopener noreferrer" aria-label="Follow us on Twitter"> <TwitterIcon /> </ a>
                             </li>
                             <li className="social__link">
-                                <a href='#'> <InstagramIcon /> </a>
+                                <a href='https://instagram.com/trendhora' target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"> <InstagramIcon /> </a>
                             </li>
                             <li className="social__link">
-                                <a href='#'> <YouTubeIcon /> </a>
+                                <a href='https://youtube.com/trendhora' target="_blank" rel="noopener noreferrer" aria-label="Subscribe to our YouTube channel"> <YouTubeIcon /> </a>
                             </li>
                             <li className="social__link">
-                                <a href='#'> <TelegramIcon /> </a>
+                                <a href='https://t.me/trendhora' target="_blank" rel="noopener noreferrer" aria-label="Join us on Telegram"> <TelegramIcon /> </a>
                             </li>
                             <li className="social__link">
-                                <a href='#'> <PinterestIcon /> </a>
+                                <a href='https://pinterest.com/trendhora' target="_blank" rel="noopener noreferrer" aria-label="Follow us on Pinterest"> <PinterestIcon /> </a>
                             </li>
                         </ul>
                     </div>

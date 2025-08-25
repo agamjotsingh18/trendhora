@@ -2,11 +2,23 @@
     padding: 1.5rem;
     height: auto;
     width: 100%;
-    background-color: var(--bg-secondary);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
     display: flex;
     flex-direction: column;
     bottom: 0;
     border-top: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer__container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color) 0%, transparent 50%, var(--accent-color) 100%);
 }
 
 .footer__items__container {
@@ -75,8 +87,16 @@
 }
 
 .help__link a:hover{
-    /* transform: translateX(3px); */
     color: var(--accent-color);
+    transform: translateX(5px);
+    transition: all 0.3s ease;
+}
+
+.footer__contact a:hover,
+.social__link a:hover {
+    color: var(--accent-color);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
 }
 
 

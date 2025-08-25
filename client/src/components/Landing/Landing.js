@@ -17,17 +17,26 @@ const Landing = () => {
                                 {
                                     width: '190px', 
                                     height: '50px', 
-                                    borderRadius: '20px', 
+                                    borderRadius: '25px', 
                                     fontWeight: '700', 
                                     backgroundColor: 'var(--bg-primary)', 
-                                    borderColor: 'var(--text-primary)', 
-                                    color: 'var(--text-primary)'
+                                    borderColor: 'var(--accent-color)', 
+                                    color: 'var(--text-primary)',
+                                    boxShadow: '0 4px 15px rgba(255, 226, 110, 0.3)',
+                                    transition: 'all 0.3s ease',
+                                    position: 'relative',
+                                    overflow: 'hidden'
                                 }, 
                                 {
                                     '&:hover': {  
                                         backgroundColor: "var(--accent-color)", 
                                         color: "var(--bg-primary)", 
-                                        borderColor: 'var(--accent-color)'
+                                        borderColor: 'var(--accent-color)',
+                                        transform: 'translateY(-2px)',
+                                        boxShadow: '0 8px 25px rgba(255, 226, 110, 0.4)'
+                                    },
+                                    '&:active': {
+                                        transform: 'translateY(0px)'
                                     }
                                 }
                             ]}

@@ -2,11 +2,17 @@
 .header__container {
     height: auto;
     width: 100%;
-    background-color: var(--bg-primary);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     font-family: 'Roboto', sans-serif;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.header__container:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
 }
