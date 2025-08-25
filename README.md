@@ -3,7 +3,8 @@
 
 <div align="center">
 
-![TrendHora](cover-image.png)
+<!-- Alternative if you want to control size -->
+<img src="https://raw.githubusercontent.com/Adez017/trendhora/main/readme_cover.png" alt="Trendhora Logo" width="800" height="190">
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/agamjotsingh18/trendhora?style=for-the-badge)](https://github.com/agamjotsingh18/trendhora/graphs/contributors)
@@ -158,7 +159,8 @@ npm test           # Run tests
 
 <div align="center">
 
-*Screenshots coming soon...*
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/38cb13eb-50eb-4b1e-b358-e86f801c2e9d" />
+
 
 </div>
 
