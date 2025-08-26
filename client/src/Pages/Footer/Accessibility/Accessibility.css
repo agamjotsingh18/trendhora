@@ -41,3 +41,31 @@ p {
   color: #464545;
   text-align: justify;
 }
+
+.accessibility-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 200px 1rem 2rem; 
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+}
+
+
+.accessibility-container h1 {
+  position: relative;
+  margin-bottom: 30px;   
+  padding-bottom: 12px;
+  font-size: 2rem;
+  color: #222;
+}
+
+.accessibility-container h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80px;              
+  height: 3px;
+  background-color: #FFD633; 
+}
