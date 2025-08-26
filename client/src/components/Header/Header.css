@@ -1,12 +1,250 @@
+/* ================= HEADER ================= */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 14px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 249, 235, 0.85);   /* ✅ Creamy background */
+  backdrop-filter: blur(12px);             /* ✅ Glassmorphism */
+  transition: 0.4s ease;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
 
-.header__container {
-    height: auto;
-    width: 100%;
-    background-color: var(--bg-primary);
-    font-family: 'Roboto', sans-serif;
-    box-shadow: var(--shadow);
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
+.header.scrolled {
+  background: rgba(255, 249, 235, 0.95);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 10px 5%;
+}
+
+/* ================= LOGO ================= */
+.logo a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #222;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.logo-img {
+  height: 36px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+}
+
+/* ================= NAVIGATION ================= */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  font-weight: 500;
+}
+
+.nav-item a,
+.nav-item span {
+  position: relative;
+  text-decoration: none;
+  color: #333;
+  padding: 6px 6px;
+  transition: color 0.3s, transform 0.2s;
+  font-size: 1rem;
+}
+
+.nav-item a::after,
+.nav-item span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff9800, #ff5722);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-item a:hover,
+.nav-item span:hover {
+  color: #000;
+  transform: translateY(-1px);
+}
+
+.nav-item a:hover::after,
+.nav-item span:hover::after {
+  width: 100%;
+}
+
+/* ================= MEGA MENU ================= */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  min-width: 640px;
+
+  display: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.nav-item.mega:hover .mega-menu,
+.mega-menu:hover {
+  display: grid;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mega-menu h4 {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.mega-menu a {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.mega-menu a:hover {
+  color: #000;
+  font-weight: 500;
+}
+
+/* ================= SEARCH ================= */
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  padding: 9px 16px;
+  border-radius: 24px;
+  border: 1px solid #ddd;
+  outline: none;
+  width: 250px;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 8px rgba(255,152,0,0.3);
+}
+
+.mic {
+  position: absolute;
+  right: 14px;
+  top: 11px;
+  cursor: pointer;
+  color: #666;
+  transition: 0.3s;
+}
+
+.mic:hover {
+  color: #ff9800;
+}
+
+/* Autocomplete suggestions */
+.suggestions {
+  position: absolute;
+  top: 110%;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.suggestion-item img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.suggestion-item:hover {
+  background: #fafafa;
+}
+
+/* ================= ICONS ================= */
+.nav-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.icon-btn {
+  position: relative;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #444;
+  transition: 0.3s;
+}
+
+.icon-btn:hover {
+  color: #ff9800;
+  transform: scale(1.1);
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ff5722;
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: 600;
+}
+
+/* ================= LOGIN BUTTON ================= */
+.login-btn a {
+  background: #111;                     /* ✅ Elegant black */
+  color: #fff;
+  padding: 8px 22px;
+  border-radius: 24px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;        /* clean outline */
+}
+
+.login-btn a:hover {
+  background: transparent;              /* ✅ subtle hover */
+  color: #111;
+  border: 1px solid #111;               /* outline style */
+  transform: translateY(-1px);
 }
