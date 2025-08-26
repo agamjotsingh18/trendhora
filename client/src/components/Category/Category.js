@@ -181,7 +181,34 @@ const Category = (props) => {
                     <div className="category__product__card">
                         {filteredAndSortedItems.map((data, index) => <ItemCard key={data._id || index} item={data} category={props.category}/>)}
                         <div className="show__more__action">
-                            <Button variant='outlined' sx={[ {width: '200px', height: '50px', borderRadius: '20px' , fontWeight: '700', backgroundColor: '#FFE26E', borderColor: '#FFE26E', color: 'black' }, {'&:hover': { borderColor: '#FFE26E', backgroundColor: "none" }}]}>Show more</Button>
+                            {/* <Button variant='outlined' sx={[ {width: '200px', height: '50px', borderRadius: '20px' , fontWeight: '700', backgroundColor: '#FFE26E', borderColor: '#FFE26E', color: 'black' }, {'&:hover': { borderColor: '#FFE26E', backgroundColor: "none" }}]}>Show more</Button> */}
+                            <Button
+                                variant="outlined"
+                                sx={{
+                                width: '200px',
+                                height: '50px',
+                                borderRadius: '20px',
+                                fontWeight: '700',
+                                backgroundColor: '#FFE26E',
+                                borderColor: '#FFE26E',
+                                color: 'black',
+                                '&:hover': {
+                                    backgroundColor: '#FFD633',
+                                    borderColor: '#FFD633',
+                                    },
+                                '&:active': {
+                                    backgroundColor: '#FFCC00',
+                                    borderColor: '#FFCC00',
+                                },
+                                '&:focus': {
+                                    backgroundColor: '#FFE26E',
+                                    borderColor: '#FFE26E',
+                                    outline: 'none',
+                                },
+                            }}
+                    >Show more
+                </Button>
+
                         </div>
                     </div>
                 </div>
