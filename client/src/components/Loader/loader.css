@@ -22,8 +22,8 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 226, 110, 0.05) 0%, transparent 70%);
-  animation: rotate 8s linear infinite;
+  background: radial-gradient(circle, rgba(255, 226, 110, 0.1) 0%, transparent 70%);
+  animation: rotate 4s linear infinite;
   pointer-events: none;
 }
 
@@ -48,52 +48,52 @@ body {
   background: linear-gradient(135deg, var(--accent-color) 0%, #FFD700 100%);
   border-radius: 50%;
   margin: 0 3px;
-  animation: modernLoading 2.2s cubic-bezier(0.4, 0.0, 0.6, 1) infinite;
+  animation: modernLoading 1.5s cubic-bezier(0.8, 0.5, 0.2, 1.4) infinite;
   transform-origin: bottom center;
   position: relative;
-  box-shadow: 0 2px 6px rgba(255, 226, 110, 0.25);
+  box-shadow: 0 4px 8px rgba(255, 226, 110, 0.3);
 }
 
 @keyframes modernLoading {
   0% {
     transform: translateY(0px) scale(1);
     background: linear-gradient(135deg, var(--accent-color) 0%, #FFD700 100%);
-    box-shadow: 0 2px 6px rgba(255, 226, 110, 0.25);
+    box-shadow: 0 4px 8px rgba(255, 226, 110, 0.3);
   }
   50% {
-    transform: translateY(-18px) scale(1.05);
+    transform: translateY(-30px) scale(1.2);
     background: linear-gradient(135deg, #FFD700 0%, var(--accent-color) 100%);
-    box-shadow: 0 4px 10px rgba(255, 226, 110, 0.35);
+    box-shadow: 0 8px 16px rgba(255, 226, 110, 0.5);
   }
   100% {
     transform: translateY(0px) scale(1);
     background: linear-gradient(135deg, var(--accent-color) 0%, #FFD700 100%);
-    box-shadow: 0 2px 6px rgba(255, 226, 110, 0.25);
+    box-shadow: 0 4px 8px rgba(255, 226, 110, 0.3);
   }
 }
 
 .circle-1 {
-  animation-delay: 0s;
+  animation-delay: 0.1s;
 }
 .circle-2 {
-  animation-delay: 0.15s;
+  animation-delay: 0.2s;
 }
 .circle-3 {
   animation-delay: 0.3s;
 }
 .circle-4 {
-  animation-delay: 0.45s;
+  animation-delay: 0.4s;
 }
 .circle-5 {
-  animation-delay: 0.6s;
+  animation-delay: 0.5s;
 }
 .circle-6 {
-  animation-delay: 0.75s;
+  animation-delay: 0.6s;
 }
 .circle-7 {
-  animation-delay: 0.9s;
+  animation-delay: 0.7s;
 }
 .circle-8 {
-  animation-delay: 1.05s;
+  animation-delay: 0.8s;
 }
 
