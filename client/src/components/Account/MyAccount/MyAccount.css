@@ -8,6 +8,19 @@
   --border-color: #e6c200;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-yellow: #FFD700;
+    --secondary-yellow: #1a1a1a;
+    --text-dark: #e0e6ed;
+    --text-muted: #b8c5d1;
+    --link-color: #66ccff;
+    --border-color: rgba(102, 204, 255, 0.3);
+    --card-bg: #2d3748;
+    --body-bg: #121212;
+    --hover-bg: #e6c200;
+  }
+}
 /* Full page background */
 body {
   background: var(--secondary-yellow);
