@@ -83,3 +83,49 @@ exports.getMe = async (req, res, next) => {
         next(err);
     }
 };
+exports.forgotPassword = async (req, res) => {
+    const { email } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        // Generate reset token
+        const resetToken = crypto.randomBytes(20).toString("hex");
+        user.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+        user.resetPasswordExpires = Date.now() + 10 * 60 * 1000; // 10 min
+        await user.save();
+
+        const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+        const message = `You requested a password reset. Please go to: ${resetUrl}`;
+
+        await sendEmail({ email: user.email, subject: "Password Reset", message });
+
+        res.json({ message: "Reset link sent to email" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+// Reset Password Controller
+exports.resetPassword = async (req, res) => {
+    try {
+        const resetPasswordToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
+        const user = await User.findOne({
+            resetPasswordToken,
+            resetPasswordExpires: { $gt: Date.now() },
+        });
+
+        if (!user) return res.status(400).json({ message: "Invalid or expired token" });
+
+        user.password = req.body.password; // hash in pre-save middleware
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
+        await user.save();
+
+        res.json({ message: "Password reset successful" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server error" });
+    }
+};

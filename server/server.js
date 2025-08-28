@@ -4,7 +4,7 @@ const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
 const connectDB = require("./config/db");
-const forgetPasswordRoutes = require("./routes/forgotPassword")
+
 const PORT = process.env.PORT || 3000;
 
 // Connect to database
@@ -23,8 +23,6 @@ app.use("/api/payment", require("./routes/payment"));
 
 app.use("/api/auth", require("./routes/auth"));
 
-// Add this line after other routes
-app.use("/api/auth", forgetPasswordRoutes);
 
 // Root route
 app.get("/", (req, res) => {
