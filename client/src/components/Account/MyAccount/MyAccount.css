@@ -1,4 +1,3 @@
-
 :root {
   --primary-yellow: #FFD700;  /* lemon yellow */
   --secondary-yellow: #FFF8DC;
@@ -8,43 +7,44 @@
   --border-color: #e6c200;
 }
 
-/* Full page background */
+/* Full page background - now uses theme variables */
 body {
-  background: var(--secondary-yellow);
+  background: var(--bg-primary, var(--secondary-yellow));
   margin: 0;
   font-family: Arial, sans-serif;
 }
 
 .myaccount__container {
-  max-width: 1200px;          /* expand container */
+  max-width: 1200px;
   margin: 40px auto;
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-  gap: 25px;                  /* spacing between cards */
+  gap: 25px;
 }
 
 .account__section {
-  background: #fff;
-  border: 1px solid var(--border-color);
+  background: var(--bg-secondary, #fff);
+  border: 1px solid var(--border-color, #e6c200);
   border-radius: 12px;
   padding: 25px;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: var(--shadow, 0px 2px 8px rgba(0, 0, 0, 0.1));
 }
 
 .account__section:hover {
   transform: translateY(-4px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-hover, 0px 8px 20px rgba(0, 0, 0, 0.15));
 }
 
 .section__header {
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 12px;
-  color: var(--text-dark);
+  color: var(--text-primary, var(--text-dark));
 }
 
 .section__body {
@@ -53,18 +53,18 @@ body {
 
 .section__body p {
   margin: 0 0 10px;
-  color: var(--text-muted);
+  color: var(--text-secondary, var(--text-muted));
   font-size: 0.95rem;
 }
 
 .detail__item {
   margin: 6px 0;
   font-size: 1rem;
-  color: var(--text-dark);
+  color: var(--text-primary, var(--text-dark));
 }
 
 .detail__item strong {
-  color: var(--link-color);
+  color: var(--accent-color, var(--link-color));
 }
 
 .manage__link a,
@@ -73,19 +73,55 @@ body {
   display: inline-block;
   margin-top: 12px;
   padding: 10px 16px;
-  background: var(--primary-yellow);
+  background: var(--accent-color, var(--primary-yellow));
   border: none;
   border-radius: 8px;
   font-weight: bold;
-  color: var(--text-dark);
+  color: var(--text-primary, var(--text-dark));
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
   text-align: center;
 }
 
 .manage__link a:hover,
 .primary__link:hover,
 .logout__btn:hover {
-  background: #ffea70;
+  background: var(--accent-color-hover, #ffea70);
+  transform: translateY(-1px);
+}
+
+/* Dark mode specific overrides */
+[data-theme="dark"] .account__section {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .section__header {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .section__body p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .detail__item {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .detail__item strong {
+  color: var(--accent-color);
+}
+
+[data-theme="dark"] .manage__link a,
+[data-theme="dark"] .primary__link,
+[data-theme="dark"] .logout__btn {
+  background: var(--accent-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .manage__link a:hover,
+[data-theme="dark"] .primary__link:hover,
+[data-theme="dark"] .logout__btn:hover {
+  background: var(--accent-color-hover);
 }
