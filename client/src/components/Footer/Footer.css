@@ -73,6 +73,10 @@
     flex-direction: column;
     color: var(--text-primary) !important;
 }
+.fotter__help__links li:hover{
+    transform: scale(1.05);
+    transition: all 0.5s ease;
+}
 
 .footer__help__container a ,
 .footer__contact__container a{
@@ -92,8 +96,13 @@
     transition: all 0.3s ease;
 }
 
-.footer__contact a:hover,
 .social__link a:hover {
+    color: var(--accent-color);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.footer__contact:hover{
     color: var(--accent-color);
     transform: scale(1.05);
     transition: all 0.3s ease;

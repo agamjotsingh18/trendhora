@@ -5,7 +5,7 @@
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     font-family: 'Roboto', sans-serif;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    position: sticky;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
