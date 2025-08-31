@@ -9,7 +9,7 @@
     flex-wrap: wrap-reverse;
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
     position: relative;
-    margin-top: 9rem;
+    margin-top: 0;
     border-bottom: 1px solid var(--border-color);
     overflow: hidden;
 }
