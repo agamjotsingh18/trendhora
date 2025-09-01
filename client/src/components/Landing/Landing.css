@@ -118,6 +118,9 @@
     justify-content: center;
     align-items: center;
     animation: slideInRight 1s ease-out;
+    width: 45%; 
+    min-width: 300px;
+    padding: 20px;
 }
 
 @keyframes slideInRight {
@@ -148,9 +151,12 @@
 }
 
 .landing__image {
+    width: 100%;           /* Makes image fill the slide's width */
     height: auto;
-    width: auto;
-    top: 0%;
+    object-fit: contain;   /* Prevents image from being stretched */
+    max-height: 450px;     /* Sets a maximum height */
+    margin: auto;          /* Centers the image in the slide */
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.8)); 
     z-index: 10;
     outline: none;
     border: none;
@@ -166,6 +172,33 @@
     transform: scale(1.05);
 }
 
+.landing__slider {
+    width: 100%;
+}
+
+/* Removes the default blue outline when a slide is clicked */
+.landing__slider .slick-slide div {
+    outline: none;
+}
+
+/* Positions the navigation dots below the image */
+.landing__slider .slick-dots {
+    bottom: -15px; 
+}
+
+/* Styles the inactive navigation dots */
+.landing__slider .slick-dots li button:before {
+    font-size: 12px;
+    color: var(--accent-color);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+/* Styles the single active navigation dot */
+.landing__slider .slick-dots li.slick-active button:before {
+    opacity: 1;
+    color: var(--accent-color);
+}
 
 @media screen and (max-width: 768px) {
 
