@@ -1,13 +1,10 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-<<<<<<< HEAD
-const {asyncHandler }= require('../utility/asyncHandler');
-const { sendWelcomeEmail } = require('../utility/mailer'); 
-=======
 const { asyncHandler } = require('../utility/asyncHandler');
->>>>>>> 202109b (Backend changes for forgot password)
-
+const { sendWelcomeEmail } = require('../utility/mailer');
+const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 exports.registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -20,7 +17,7 @@ exports.registerUser = asyncHandler(async (req, res) => {
     await user.save();
 
     try {
-        await sendWelcomeEmail(email,username);
+        await sendWelcomeEmail(email, username);
     } catch (err) {
         console.error("Error sending welcome email:", err.message);
         // Do not block registration if email fails
@@ -103,7 +100,7 @@ exports.forgotPassword = async (req, res) => {
         res.json({ message: "Reset link sent to email" });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json({ message: "Server error", error: err.message });
     }
 };
 
@@ -129,3 +126,25 @@ exports.resetPassword = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
+
+
+const sendEmail = async ({ email, subject, message }) => {
+    const transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+        },
+        tls: {
+            rejectUnauthorized: false,
+        },
+    });
+
+    await transporter.sendMail({
+        from: `"Your App Name" <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject,
+        text: message,
+    });
+};
+

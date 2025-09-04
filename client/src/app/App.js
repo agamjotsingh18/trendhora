@@ -31,7 +31,6 @@ import RefundPage from '../Pages/Footer/Refund/Refund.js';
 import ShippingPage from '../Pages/Footer/Shipping/Shipping.js';
 import TermsConditions from '../components/Legal/TermsConditions/TermsConditions';
 import PrivacyPolicy from '../components/Legal/PrivacyPolicy/PrivacyPolicy';
-import ContactUs from '../routes/ContactUs';
 
 // ✅ Import RecentlyViewedSection
 import RecentlyViewedSection from '../components/RecentlyViewedSection';
@@ -101,7 +100,6 @@ function App() {
                 <Route path="/accessibility" element={<AccessiblityPage />} />
                 <Route path="/shipping" element={<ShippingPage />} />
                 <Route path="/refund" element={<RefundPage />} />
-                <Route path="/contact" element={<ContactUs />} />
                 <Route path="/admin" element={<Wishlist />} />
               </Routes>
 
