@@ -5,8 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
   padding: 2rem;
+  
   box-sizing: border-box;
 }
 
@@ -15,10 +15,10 @@
   height: 500px; /* consistent with login card layout */
   width: 90%;
   max-width: 400px;
-  background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   padding: 40px;
+  background-color: var(--bg-secondary);
   margin: auto;
   overflow: hidden;
 }
@@ -133,7 +133,7 @@
 
 .register__login__account {
   font-size: 0.9rem;
-  color: #007bff;
+  color: #ffe26e;
   text-decoration: none;
   cursor: pointer;
 }
