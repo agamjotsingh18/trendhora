@@ -7,13 +7,14 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { TabTitle } from '../../utils/General';
-import { Button } from '@mui/material';
-
+import { Button, TextField } from '@mui/material'; // Add TextField here
 const Category = (props) => {
     TabTitle(props.name)
 
     const [show, setShow] = useState('All');
     const [filter, setFilter] = useState('Latest');
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
 
     const handleShowChange = (event) => {
         setShow(event.target.value);
@@ -21,6 +22,13 @@ const Category = (props) => {
 
     const handleFilterChange = (event) => {
         setFilter(event.target.value);
+    };
+    const handleMinPriceChange = (event) => {
+    setMinPrice(event.target.value);
+    };
+
+    const handleMaxPriceChange = (event) => {
+        setMaxPrice(event.target.value);
     };
 
     // Filter and sort items based on selected options
@@ -46,6 +54,15 @@ const Category = (props) => {
                         return true;
                 }
             });
+        }
+        const min = parseFloat(minPrice);
+        const max = parseFloat(maxPrice);
+
+        if (!isNaN(min)) {
+            items = items.filter(item => item.price >= min);
+        }
+        if (!isNaN(max)) {
+            items = items.filter(item => item.price <= max);
         }
         
         // Apply sorting based on 'filter' dropdown
@@ -73,7 +90,7 @@ const Category = (props) => {
         }
         
         return items;
-    }, [props.items, show, filter]);
+    }, [props.items, show, filter,minPrice, maxPrice]);
 
     // Dark mode styles for Material-UI components
     const darkModeStyles = {
@@ -141,6 +158,28 @@ const Category = (props) => {
                                 </FormControl>
                             </Box>
                        </div>
+                        <div className="price__filter">
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <TextField
+                                    label="Min Price"
+                                    variant="outlined"
+                                    size="small"
+                                    type="number"
+                                    value={minPrice}
+                                    onChange={handleMinPriceChange}
+                                    sx={{ ...darkModeStyles, width: '100px' }}
+                                />
+                                <TextField
+                                    label="Max Price"
+                                    variant="outlined"
+                                    size="small"
+                                    type="number"
+                                    value={maxPrice}
+                                    onChange={handleMaxPriceChange}
+                                    sx={{ ...darkModeStyles, width: '100px' }}
+                                />
+                            </Box>
+                        </div>
                        <div className="filter__by">
                        <div className="show__filter">
                             <Box sx={{ width: 120} }>

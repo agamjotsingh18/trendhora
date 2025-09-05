@@ -12,7 +12,7 @@ router.post('/login', loginUser);
 
 router.delete('/delete', authMiddleware, deleteUser);
 
-router.get('/me', getMe);
+// router.get('/me', getMe);
 
 
 module.exports = router;
