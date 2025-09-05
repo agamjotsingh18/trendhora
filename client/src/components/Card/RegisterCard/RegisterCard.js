@@ -10,11 +10,19 @@ const RegisterCard = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState(''); // 1. Added new state
   const navigate = useNavigate();
 
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    // 3. Added validation check
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return; // Stop submission if passwords don't match
+    }
+
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/api/auth/register`,
@@ -96,6 +104,19 @@ const RegisterCard = () => {
                 className="register__input"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="**********"
+                required
+              />
+            </div>
+            
+            {/* 2. Added Confirm Password Field */}
+            <div className="reg__input__container">
+              <label className="input__label">Confirm Password</label>
+              <input
+                type="password"
+                className="register__input"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="**********"
                 required
               />
