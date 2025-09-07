@@ -141,7 +141,7 @@ const sendEmail = async ({ email, subject, message }) => {
     });
 
     await transporter.sendMail({
-        from: `"Your App Name" <${process.env.EMAIL_USER}>`,
+        from: `"Trendhora" <${process.env.EMAIL_USER}>`,
         to: email,
         subject,
         text: message,

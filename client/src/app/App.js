@@ -101,6 +101,8 @@ function App() {
                 <Route path="/shipping" element={<ShippingPage />} />
                 <Route path="/refund" element={<RefundPage />} />
                 <Route path="/admin" element={<Wishlist />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password/:token" element={<ResetPassword />} />
               </Routes>
 
               {/* ✅ Render RecentlyViewedSection only once here */}
