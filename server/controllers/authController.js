@@ -115,7 +115,7 @@ exports.resetPassword = async (req, res) => {
 
         if (!user) return res.status(400).json({ message: "Invalid or expired token" });
 
-        user.password = req.body.password; // hash in pre-save middleware
+        user.password = req.body.password;
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
         await user.save();
