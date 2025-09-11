@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './RegisterCard.css';
@@ -12,6 +12,26 @@ const RegisterCard = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState(''); // 1. Added new state
   const navigate = useNavigate();
+  const [passwordChecks, setPasswordChecks] = useState({
+  length: false,
+  uppercase: false,
+  number: false,
+  special: false,
+});
+
+const validatePassword = (password) => {
+  return {
+    length: password.length >= 8,
+    uppercase: /[A-Z]/.test(password),
+    number: /\d/.test(password),
+    special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+    lowercase: /[a-z]/.test(password),
+  };
+};
+
+useEffect(() => {
+  setPasswordChecks(validatePassword(password));
+}, [password]);
 
 
   const handleRegister = async (e) => {
@@ -108,7 +128,24 @@ const RegisterCard = () => {
                 required
               />
             </div>
-            
+            <div className="password-checklist">
+  <p className={passwordChecks.length ? "valid" : "invalid"}>
+    {passwordChecks.length ? "✔" : "✘"} At least 8 characters
+  </p>
+  <p className={passwordChecks.uppercase ? "valid" : "invalid"}>
+    {passwordChecks.uppercase ? "✔" : "✘"} At least one uppercase letter
+  </p>
+  <p className={passwordChecks.number ? "valid" : "invalid"}>
+    {passwordChecks.number ? "✔" : "✘"} At least one number
+  </p>
+  <p className={passwordChecks.special ? "valid" : "invalid"}>
+    {passwordChecks.special ? "✔" : "✘"} At least one special character
+  </p>
+  <p className={passwordChecks.lowercase ? "valid" : "invalid"}>
+    {passwordChecks.lowercase ? "✔" : "✘"} At least one lowercase letter
+  </p>
+</div>
+
             {/* 2. Added Confirm Password Field */}
             <div className="reg__input__container">
               <label className="input__label">Confirm Password</label>

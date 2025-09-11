@@ -20,9 +20,12 @@
   padding: 40px;
   background-color: var(--bg-secondary);
   margin: auto;
-  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 /* ==== Header ==== */
 .register__header {
   height: 19%;
@@ -145,4 +148,17 @@
 
 .register__login__account a:hover {
   text-decoration: underline;
+}
+.password-checklist {
+  margin-top: 8px;
+  font-size: 6px;
+  line-height: 0.4;
+}
+
+.valid {
+  color: green;
+}
+
+.invalid {
+  color: red;
 }
