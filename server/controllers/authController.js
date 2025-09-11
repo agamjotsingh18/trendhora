@@ -1,10 +1,14 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+
 const { asyncHandler } = require('../utility/asyncHandler');
-const { sendWelcomeEmail } = require('../utility/mailer');
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+
+const { sendWelcomeEmail } = require('../utility/mailer');
+
+
 exports.registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
 
