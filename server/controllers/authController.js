@@ -6,8 +6,6 @@ const { asyncHandler } = require('../utility/asyncHandler');
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 
-const { sendWelcomeEmail } = require('../utility/mailer');
-
 
 exports.registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
