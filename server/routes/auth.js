@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS // Use app password for Gmail
+        pass: process.env.EMAIL_PASS
     },
     tls: {
         rejectUnauthorized: false
@@ -27,13 +27,7 @@ const transporter = nodemailer.createTransport({
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.delete('/delete', authMiddleware, deleteUser);
-<<<<<<< HEAD
-
-// router.get('/me', getMe);
-=======
 router.get('/me', getMe);
->>>>>>> 202109b (Backend changes for forgot password)
-
 // Forgot password - send reset link
 router.post("/forgot-password", forgotPassword);
 

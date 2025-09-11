@@ -31,6 +31,8 @@ import RefundPage from '../Pages/Footer/Refund/Refund.js';
 import ShippingPage from '../Pages/Footer/Shipping/Shipping.js';
 import TermsConditions from '../components/Legal/TermsConditions/TermsConditions';
 import PrivacyPolicy from '../components/Legal/PrivacyPolicy/PrivacyPolicy';
+import ForgotPassword from '../components/Authentication/ForgotPassword/ForgotPassword';
+import ResetPassword from '../components/Authentication/ResetPassword/ResetPassword';
 
 // ✅ Import RecentlyViewedSection
 import RecentlyViewedSection from '../components/RecentlyViewedSection';
