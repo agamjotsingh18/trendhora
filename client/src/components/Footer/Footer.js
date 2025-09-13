@@ -14,20 +14,35 @@ import ReplayIcon from '@mui/icons-material/Replay';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import SendIcon from '@mui/icons-material/Send';
 
 const Footer = () => {
     const [isVisible, setIsVisible] = React.useState(false);
-  React.useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+    const [email, setEmail] = React.useState('');
+    const [isSubscribed, setIsSubscribed] = React.useState(false);
+
+    React.useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 300) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const handleNewsletterSubmit = (e) => {
+        e.preventDefault();
+        if (email) {
+            // Here you would typically send the email to your backend
+            console.log('Newsletter signup:', email);
+            setIsSubscribed(true);
+            setEmail('');
+            setTimeout(() => setIsSubscribed(false), 3000);
+        }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
 return (
     <footer>
@@ -67,6 +82,35 @@ onMouseLeave={e => {
         <div className="footer__container">
             <div className="content">
                 <h1 id="navBrand" >TrendHora</h1>
+                
+                {/* Newsletter Section */}
+                <div className="footer__newsletter__container">
+                    <div className="footer__newsletter__content">
+                        <h2>Stay in the Loop!</h2>
+                        <p>Get the latest trends, exclusive offers, and fashion updates delivered straight to your inbox.</p>
+                        <form className="newsletter__form" onSubmit={handleNewsletterSubmit}>
+                            <div className="newsletter__input__container">
+                                <input
+                                    type="email"
+                                    placeholder="Enter your email address"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="newsletter__input"
+                                    required
+                                />
+                                <button type="submit" className="newsletter__button">
+                                    <SendIcon />
+                                </button>
+                            </div>
+                            {isSubscribed && (
+                                <div className="newsletter__success">
+                                    ✨ Thank you for subscribing! Check your inbox for exclusive offers.
+                                </div>
+                            )}
+                        </form>
+                    </div>
+                </div>
+
                 <div className="footer__items__container">
                     <div className="footer__help__container">
                         <div className="footer__help__header">
@@ -83,7 +127,7 @@ onMouseLeave={e => {
                                 <a href="/faq"> <HelpCenterIcon /> FAQ</a>
                             </li>
                             <li className="help__link">
-                                <a href="/accessibility"><AccessibilityNewIcon /> Accessiblity</a>
+                                <a href="/accessibility"><AccessibilityNewIcon /> Accessibility</a>
                             </li>
                             <li className="help__link">
                                 <a href="/contact"><EmailIcon /> Contact Us</a>
@@ -102,7 +146,7 @@ onMouseLeave={e => {
                             </li>
 
                             <li className="footer__contact">
-                                <a href="mailto:agamjotsingh1801@gmail.com"><EmailIcon /> shop@trendhora.com</a>
+                                <a href="mailto:shop@trendhora.com"><EmailIcon /> shop@trendhora.com</a>
                             </li>
                             <li className="footer__contact">
                                 <button 
@@ -110,13 +154,15 @@ onMouseLeave={e => {
                                     style={{
                                         background: 'none',
                                         border: 'none',
-                                        color: 'var(--text-primary)',
+                                        color: 'var(--text-secondary)',
                                         cursor: 'default',
                                         padding: 0,
                                         font: 'inherit',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '0.5rem'
+                                        gap: '0.75rem',
+                                        fontWeight: '500',
+                                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
                                     }}
                                     aria-label="Location information"
                                 >
