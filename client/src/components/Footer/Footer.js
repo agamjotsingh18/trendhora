@@ -18,6 +18,7 @@ import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SendIcon from "@mui/icons-material/Send";
+import { SiX } from "react-icons/si";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -314,7 +315,7 @@ const Footer = () => {
                       rel="noopener noreferrer"
                       aria-label="Follow us on Twitter"
                     >
-                      <TwitterIcon />
+                      <SiX />
                     </a>
                   </li>
                   <li className="social__link">
