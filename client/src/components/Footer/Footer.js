@@ -166,7 +166,7 @@ const Footer = () => {
                 <Link to="/" className="footer-logo-link">
                   <img src={logo} alt="TrendHora" className="footer-logo" />
                 </Link>
-                <p className="footer-tagline">Welcome to Trendhora – your gateway to a seamless online shopping experience built with the MERN stack.</p>
+                <p className="footer-tagline">Welcome to Trendhora – your gateway to a seamless online shopping experience.</p>
                 <div className="footer__newsletter__container">
                   <div className="footer__newsletter__header">
                     <h1>SUBSCRIBE TO OUR NEWSLETTER</h1>
@@ -231,7 +231,7 @@ const Footer = () => {
                 
                 <div className="footer__help__container">
                   <div className="footer__help__header">
-                    <h1>COMMUNITY</h1>
+                    <h1>Help</h1>
                   </div>
                   <ul className="fotter__help__links">
                     <li className="help__link">
@@ -367,7 +367,7 @@ const Footer = () => {
       <div className="footer__bottom__container">
         <div className="footer__bottom__content">
           <div className="footer__copyright__section">
-            <p className="footer__copyright">© 2025 TrendHora. All rights reserved.</p>
+            <p className="footer__copyright">©2025 TrendHora. All rights reserved.</p>
           </div>
         </div>
       </div>
