@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
+import logo from "../../asset/brand/logo_footer.png";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -17,8 +18,7 @@ import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SendIcon from "@mui/icons-material/Send";
-import DiscountIcon from "@mui/icons-material/Discount";
-import CelebrationIcon from "@mui/icons-material/Celebration";
+import { SiX } from "react-icons/si";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -153,216 +153,223 @@ const Footer = () => {
           aria-label="Scroll to top"
         >
           <KeyboardDoubleArrowUpIcon
-            style={{ color: "white", fontSize: "24px" }}
+            style={{ color: "#FFD700", fontSize: "24px" }}
           />
         </button>
       )}
 
       <div className="footer__container">
         <div className="content">
-          <h1 id="navBrand">TrendHora</h1>
-          <div className="footer__items__container">
-            <div className="footer__help__container">
-              <div className="footer__help__header">
-                <h1>Help</h1>
-              </div>
-              <ul className="fotter__help__links">
-                <li className="help__link">
-                  <a href="/shipping">
-                    <LocalShippingIcon fontSize="small" /> Shipping
-                  </a>
-                </li>
-                <li className="help__link">
-                  <a href="/refund">
-                    <ReplayIcon /> Refund
-                  </a>
-                </li>
-                <li className="help__link">
-                  <a href="/faq">
-                    {" "}
-                    <HelpCenterIcon /> FAQ
-                  </a>
-                </li>
-                <li className="help__link">
-                  <a href="/accessibility">
-                    <AccessibilityNewIcon /> Accessiblity
-                  </a>
-                </li>
-                <li className="help__link">
-                  <a href="/contact">
-                    <EmailIcon /> Contact Us
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="footer__contact__container">
-              <div className="footer__contact__header">
-                <h1>Contact Us</h1>
-              </div>
-              <ul className="footer__contacts">
-                <li className="footer__contact">
-                  <a href="tel:+919319042075" className="footer__contact-link">
-                    <LocalPhoneIcon /> +91 93190-42075
-                  </a>
-                </li>
-
-                <li className="footer__contact">
-                  <a href="mailto:agamjotsingh1801@gmail.com">
-                    <EmailIcon /> shop@trendhora.com
-                  </a>
-                </li>
-                <li className="footer__contact">
-                  <button
-                    onClick={() => {}}
-                    style={{
-                      background: "none",
-                      border: "none",
-                      color: "var(--text-primary)",
-                      cursor: "default",
-                      padding: 0,
-                      font: "inherit",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
+          <div className="footer__main__container">
+            <div className="footer__left__section">
+              <div className="footer__brand__container">
+                <Link to="/" className="footer-logo-link">
+                  <img src={logo} alt="TrendHora" className="footer-logo" />
+                </Link>
+                <p className="footer-tagline">Welcome to Trendhora – your gateway to a seamless online shopping experience.</p>
+                <div className="footer__newsletter__container">
+                  <div className="footer__newsletter__header">
+                    <h1>SUBSCRIBE TO OUR NEWSLETTER</h1>
+                    <p>Get the latest updates, shopping tips, and exclusive offers.</p>
+                  </div>
+                  <form
+                    className="footer__newsletter__form"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const email = e.target.email.value;
+                      if (email) {
+                        toast.success("Thank you for subscribing to our newsletter!");
+                        e.target.reset();
+                      } else {
+                        toast.error("Please enter a valid email address");
+                      }
                     }}
-                    aria-label="Location information"
                   >
-                    <LocationOnIcon /> Delhi, India
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <div className="footer__social__link__container">
-              <div className="footer__social__link__header">
-                <h1>Stay Connected</h1>
+                    <div className="newsletter__input__container">
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        className="newsletter__input"
+                        required
+                      />
+                      <button type="submit" className="newsletter__button">
+                        Subscribe
+                      </button>
+                    </div>
+                    <p className="newsletter__disclaimer">We respect your privacy. Unsubscribe at any time.</p>
+                  </form>
+                </div>
+                
               </div>
-              <ul className="footer__social__links">
-                <li className="social__link">
-                  <a
-                    href="https://twitter.com/trendhora"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Follow us on Twitter"
-                  >
-                    {" "}
-                    <TwitterIcon />{" "}
-                  </a>
-                </li>
-                <li className="social__link">
-                  <a
-                    href="https://instagram.com/trendhora"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Follow us on Instagram"
-                  >
-                    {" "}
-                    <InstagramIcon />{" "}
-                  </a>
-                </li>
-                <li className="social__link">
-                  <a
-                    href="https://youtube.com/trendhora"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Subscribe to our YouTube channel"
-                  >
-                    {" "}
-                    <YouTubeIcon />{" "}
-                  </a>
-                </li>
-                <li className="social__link">
-                  <a
-                    href="https://t.me/trendhora"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Join us on Telegram"
-                  >
-                    {" "}
-                    <TelegramIcon />{" "}
-                  </a>
-                </li>
-                <li className="social__link">
-                  <a
-                    href="https://pinterest.com/trendhora"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Follow us on Pinterest"
-                  >
-                    {" "}
-                    <PinterestIcon />{" "}
-                  </a>
-                </li>
-              </ul>
             </div>
-            <div className="footer__newsletter__container">
-              <div className="footer__newsletter__header">
-                <h1>Join Our Newsletter</h1>
-                <div className="newsletter__benefits">
-                  <span>
-                    <DiscountIcon fontSize="small" /> Exclusive discounts
-                  </span>
-                  <span>
-                    <CelebrationIcon fontSize="small" /> New product alerts
-                  </span>
-                  <span>
-                    <CelebrationIcon fontSize="small" /> Fashion tips
-                  </span>
+            
+            <div className="footer__right__section">
+              <div className="footer__links__container">
+                <div className="footer__quick__links__container">
+                  <div className="footer__quick__links__header">
+                    <h1>QUICK LINKS</h1>
+                  </div>
+                  <ul className="footer__quick__links">
+                    <li className="quick__link">
+                      <Link to="/">Home</Link>
+                    </li>
+                    <li className="quick__link">
+                      <Link to="/shop">Shop</Link>
+                    </li>
+                    <li className="quick__link">
+                      <Link to="/about">About Us</Link>
+                    </li>
+                    <li className="quick__link">
+                      <Link to="/wishlist">Wishlist</Link>
+                    </li>
+                    <li className="quick__link">
+                      <Link to="/cart">Cart</Link>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div className="footer__help__container">
+                  <div className="footer__help__header">
+                    <h1>Help</h1>
+                  </div>
+                  <ul className="fotter__help__links">
+                    <li className="help__link">
+                      <a href="/shipping">
+                        <LocalShippingIcon fontSize="small" /> Shipping
+                      </a>
+                    </li>
+                    <li className="help__link">
+                      <a href="/refund">
+                        <ReplayIcon /> Refund
+                      </a>
+                    </li>
+                    <li className="help__link">
+                      <a href="/faq">
+                        <HelpCenterIcon /> FAQ
+                      </a>
+                    </li>
+                    <li className="help__link">
+                      <a href="/accessibility">
+                        <AccessibilityNewIcon /> Accessibility
+                      </a>
+                    </li>
+                    <li className="help__link">
+                      <a href="/contact">
+                        <EmailIcon /> Contact Us
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div className="footer__contact__container">
+                  <div className="footer__contact__header">
+                    <h1>SUPPORT</h1>
+                  </div>
+                  <ul className="footer__contacts">
+                    <li className="footer__contact">
+                      <a href="tel:+919319042075" className="footer__contact-link">
+                        <LocalPhoneIcon /> +91 93190-42075
+                      </a>
+                    </li>
+                    <li className="footer__contact">
+                      <a href="mailto:agamjotsingh1801@gmail.com">
+                        <EmailIcon /> shop@trendhora.com
+                      </a>
+                    </li>
+                    <li className="footer__contact">
+                      <button
+                        onClick={() => {}}
+                        style={{
+                          background: "none",
+                          border: "none",
+                          color: "var(--text-primary)",
+                          cursor: "default",
+                          padding: 0,
+                          font: "inherit",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                        }}
+                        aria-label="Location information"
+                      >
+                        <LocationOnIcon /> Delhi, India
+                      </button>
+                    </li>
+                    <li className="footer__contact">
+                      <Link to="/terms">Terms & Conditions</Link>
+                    </li>
+                    <li className="footer__contact">
+                      <Link to="/privacy">Privacy Policy</Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
-              <form
-                className="footer__newsletter__form"
-                onSubmit={handleSubmit}
-              >
-                <div className="newsletter__input__container">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    disabled={isSubmitting}
-                    aria-label="Email for newsletter subscription"
-                  />
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    aria-label="Subscribe to newsletter"
-                  >
-                    {isSubmitting ? (
-                      <div className="newsletter__spinner"></div>
-                    ) : (
-                      <SendIcon />
-                    )}
-                  </button>
-                </div>
-                <p className="newsletter__disclaimer">
-                  By subscribing, you agree to receive marketing emails from
-                  TrendHora
-                </p>
-              </form>
+              
+              <div className="footer__social__container">
+                <ul className="footer__social__links">
+                  <li className="social__link">
+                    <a
+                      href="https://twitter.com/trendhora"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Follow us on Twitter"
+                    >
+                      <SiX />
+                    </a>
+                  </li>
+                  <li className="social__link">
+                    <a
+                      href="https://instagram.com/trendhora"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Follow us on Instagram"
+                    >
+                      <InstagramIcon />
+                    </a>
+                  </li>
+                  <li className="social__link">
+                    <a
+                      href="https://youtube.com/trendhora"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Subscribe to our YouTube channel"
+                    >
+                      <YouTubeIcon />
+                    </a>
+                  </li>
+                  <li className="social__link">
+                    <a
+                      href="https://t.me/trendhora"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Join our Telegram channel"
+                    >
+                      <TelegramIcon />
+                    </a>
+                  </li>
+                  <li className="social__link">
+                    <a
+                      href="https://pinterest.com/trendhora"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Follow us on Pinterest"
+                    >
+                      <PinterestIcon />
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="fotter__copyright__container">
-        <ul className="nav">
-          <li className="footer__copyright">©2025 TrendHora</li>
-          <li className="footer__terms__condition">
-            <Link
-              to="/terms"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              Terms & Condition
-            </Link>
-          </li>
-          <li className="footer__privacy__policy">
-            <Link
-              to="/privacy"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              Privacy Policy
-            </Link>
-          </li>
-        </ul>
+      <div className="footer__bottom__container">
+        <div className="footer__bottom__content">
+          <div className="footer__copyright__section">
+            <p className="footer__copyright">©2025 TrendHora. All rights reserved.</p>
+          </div>
+        </div>
       </div>
 
       <ToastContainer
