@@ -37,6 +37,7 @@ const Cart = () => {
   const handleCheckoutClose = () => setOpenCheckoutModal(false);
 
   const cartItems = useContext(CartItemsContext);
+  const totalBill = cartItems.items.reduce((sum,item)=>sum+item.price,0);
 
   const handleCheckout = async () => {
     if (cartItems.totalAmount > 0) {
@@ -110,7 +111,7 @@ const Cart = () => {
                   <div className="total__amount">
                     <div className="total__amount__label">Total Amount:</div>
                     <div className="total__amount__value">
-                      ${cartItems.totalAmount}.00
+                      ${totalBill}
                     </div>
                   </div>
                   <div className="checkout">
