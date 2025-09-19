@@ -39,6 +39,7 @@ const Cart = () => {
   const cartItems = useContext(CartItemsContext);
   const totalBill = cartItems.items.reduce((sum,item)=>sum+item.price,0);
 
+
   const handleCheckout = async () => {
     if (cartItems.totalAmount > 0) {
       const config = {
