@@ -367,7 +367,7 @@ const Footer = () => {
       <div className="footer__bottom__container">
         <div className="footer__bottom__content">
           <div className="footer__copyright__section">
-            <p className="footer__copyright">©2025 TrendHora. All rights reserved.</p>
+            <p className="footer__copyright">©{new Date().getFullYear()} TrendHora. All rights reserved.</p>
           </div>
         </div>
       </div>
