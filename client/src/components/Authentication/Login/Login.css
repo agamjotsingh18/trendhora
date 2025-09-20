@@ -1,10 +1,11 @@
 /* ==== Container for the entire login page ==== */
 .login__auth__container {
-  min-height: calc(120vh - 20px); /* subtract header height */
+   min-height: 100vh; 
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding-top: 1.3rem;
+  padding-bottom: 3rem;
   background-color: var(--bg-primary);
   box-sizing: border-box;
 }
