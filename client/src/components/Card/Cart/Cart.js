@@ -112,7 +112,7 @@ const Cart = () => {
                   <div className="total__amount">
                     <div className="total__amount__label">Total Amount:</div>
                     <div className="total__amount__value">
-                      ${totalBill}
+                      ${totalBill.toFixed(2)}
                     </div>
                   </div>
                   <div className="checkout">
