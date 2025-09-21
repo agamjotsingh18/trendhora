@@ -36,6 +36,7 @@ import ResetPassword from '../components/Authentication/ResetPassword/ResetPassw
 
 // ✅ Import RecentlyViewedSection
 import RecentlyViewedSection from '../components/RecentlyViewedSection';
+import PageNotFound from '../components/PageNotFound/PageNotFound';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -105,6 +106,9 @@ function App() {
                 <Route path="/admin" element={<Wishlist />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+                {/* Render PageNotFound here */}
+                <Route path="*" element={<PageNotFound />} />
               </Routes>
 
               {/* ✅ Render RecentlyViewedSection only once here */}
