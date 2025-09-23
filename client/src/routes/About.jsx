@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import MissionSection from '../components/About/MissionSection';
 import VisionSection from '../components/About/VisionSection';
@@ -8,6 +8,11 @@ import ContactInfoSection from '../components/About/ContactInfoSection';
 import './About.css';
 
 const About = () => {
+  // Scroll to top when component mounts (same as Home page)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
