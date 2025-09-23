@@ -31,7 +31,8 @@ import RefundPage from '../Pages/Footer/Refund/Refund.js';
 import ShippingPage from '../Pages/Footer/Shipping/Shipping.js';
 import TermsConditions from '../components/Legal/TermsConditions/TermsConditions';
 import PrivacyPolicy from '../components/Legal/PrivacyPolicy/PrivacyPolicy';
-import ContactUs from '../routes/ContactUs';
+import ForgotPassword from '../components/Authentication/ForgotPassword/ForgotPassword';
+import ResetPassword from '../components/Authentication/ResetPassword/ResetPassword';
 
 // ✅ Import RecentlyViewedSection
 import RecentlyViewedSection from '../components/RecentlyViewedSection';
@@ -101,8 +102,9 @@ function App() {
                 <Route path="/accessibility" element={<AccessiblityPage />} />
                 <Route path="/shipping" element={<ShippingPage />} />
                 <Route path="/refund" element={<RefundPage />} />
-                <Route path="/contact" element={<ContactUs />} />
                 <Route path="/admin" element={<Wishlist />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password/:token" element={<ResetPassword />} />
               </Routes>
 
               {/* ✅ Render RecentlyViewedSection only once here */}

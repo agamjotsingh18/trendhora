@@ -70,7 +70,12 @@
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
     justify-content: center;
+
     padding: 1rem 0;
+=======
+    flex-wrap: wrap;
+    gap: 50px;
+
 }
 
 /* Ensure consistent card sizing */

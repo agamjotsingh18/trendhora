@@ -1,18 +1,37 @@
-
 const express = require('express');
 const router = express.Router();
+const nodemailer = require('nodemailer');
+const crypto = require("crypto");
+const User = require('../models/User'); // adjust path if needed
+const authMiddleware = require('../middlewares/authMiddleware');
+const { registerUser, loginUser, deleteUser, getMe } = require('../controllers/authController');
+const { forgotPassword, resetPassword } = require("../controllers/authController");
 
-const authMiddleware=require('../middlewares/authMiddleware');
-const { registerUser, loginUser,deleteUser } = require('../controllers/authController');
+// ======================
+// Email transporter
+// ======================
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+});
 
+// ======================
+// Auth Routes
+// ======================
 router.post('/register', registerUser);
-
-
 router.post('/login', loginUser);
-
 router.delete('/delete', authMiddleware, deleteUser);
+router.get('/me', getMe);
+// Forgot password - send reset link
+router.post("/forgot-password", forgotPassword);
 
-// router.get('/me', getMe);
-
+// Reset password - verify token and update password
+router.post("/reset-password/:token", resetPassword);
 
 module.exports = router;

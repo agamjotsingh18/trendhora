@@ -1,8 +1,11 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const {asyncHandler }= require('../utility/asyncHandler');
-const { sendWelcomeEmail } = require('../utility/mailer'); 
+
+const { asyncHandler } = require('../utility/asyncHandler');
+const nodemailer = require("nodemailer");
+const crypto = require("crypto");
+
 
 exports.registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
@@ -16,7 +19,7 @@ exports.registerUser = asyncHandler(async (req, res) => {
     await user.save();
 
     try {
-        await sendWelcomeEmail(email,username);
+        await sendWelcomeEmail(email, username);
     } catch (err) {
         console.error("Error sending welcome email:", err.message);
         // Do not block registration if email fails
@@ -64,3 +67,86 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+
+exports.getMe = async (req, res, next) => {
+    try {
+        // Get user from database using id from req.user (set by auth middleware)
+        const user = await User.findById(req.user.id);
+
+        res.status(200).json({
+            success: true,
+            data: user
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+exports.forgotPassword = async (req, res) => {
+    const { email } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        // Generate reset token
+        const resetToken = crypto.randomBytes(20).toString("hex");
+        user.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+        user.resetPasswordExpires = Date.now() + 10 * 60 * 1000; // 10 min
+        await user.save();
+
+        const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+        const message = `You requested a password reset. Please go to: ${resetUrl}`;
+
+        await sendEmail({ email: user.email, subject: "Password Reset", message });
+
+        res.json({ message: "Reset link sent to email" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server error", error: err.message });
+    }
+};
+
+// Reset Password Controller
+exports.resetPassword = async (req, res) => {
+    try {
+        const resetPasswordToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
+        const user = await User.findOne({
+            resetPasswordToken,
+            resetPasswordExpires: { $gt: Date.now() },
+        });
+
+        if (!user) return res.status(400).json({ message: "Invalid or expired token" });
+
+        user.password = req.body.password;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
+        await user.save();
+
+        res.json({ message: "Password reset successful" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+
+const sendEmail = async ({ email, subject, message }) => {
+    const transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+        },
+        tls: {
+            rejectUnauthorized: false,
+        },
+    });
+
+    await transporter.sendMail({
+        from: `"Trendhora" <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject,
+        text: message,
+    });
+};
+

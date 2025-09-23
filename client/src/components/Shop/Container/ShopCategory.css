@@ -405,12 +405,21 @@
 }
 
 .shop__category__product__card {
+
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
   width: 100%;
   margin: 0;
   padding: 1rem 0;
+
+    height: auto;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap : 50px;
+
 }
 
 /* Card Styling
