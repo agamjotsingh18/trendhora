@@ -240,3 +240,11 @@
         border-width: 0.5px;
     }
 }
+
+/* Fix toast text being overridden by category styles */
+.dark-mode body .toaster span,
+.dark-mode body .toaster div,
+.dark-mode body .toaster-title,
+.dark-mode body .toaster-subtitle {
+  color: #000 !important;
+}

@@ -105,6 +105,22 @@ const deleteItem = asyncHandler(async (req, res) => {
   }
   return res.status(200).json({ message: "Item deleted successfully" });
 });
+// search functionality!!!!!!!!!!
+const searchItems = asyncHandler(async (req, res) => {
+  const { q } = req.query;
+  if (!q) {
+    return res.status(400).json({ message: "No search query provided." });
+  }
+  const regex = new RegExp(q, "i");
+  const items = await Item.find({
+    $or: [
+      { name: regex },
+      { type: regex },
+      { category: regex }
+    ]
+  });
+  res.status(200).json(items);
+});
 
 module.exports = {
   getItem,
@@ -112,4 +128,5 @@ module.exports = {
   updateItem,
   deleteItem,
   getItemById,
+  searchItems,
 };
