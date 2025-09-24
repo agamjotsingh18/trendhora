@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { WishItemsContext } from '../../Context/WishItemsContext';
 import WishCard from '../Card/Wishlist/WishCard';
 import './index.css';
@@ -7,6 +7,15 @@ import { useNavigate } from 'react-router-dom';
 const Wishlist = () => {
     const wishItems = useContext(WishItemsContext);
     const navigate = useNavigate();
+
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }, []);
 
     console.log("wish items: ", wishItems);
 
