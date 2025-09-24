@@ -1,6 +1,16 @@
+import { useEffect } from "react";
 import "./Shipping.css"
 
 const ShippingPage = () => {
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }, []);
+
     return (
         <div className="container" style={{ paddingTop: '160px' }}>
             <div className="heading">

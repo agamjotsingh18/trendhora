@@ -33,9 +33,11 @@ import TermsConditions from '../components/Legal/TermsConditions/TermsConditions
 import PrivacyPolicy from '../components/Legal/PrivacyPolicy/PrivacyPolicy';
 import ForgotPassword from '../components/Authentication/ForgotPassword/ForgotPassword';
 import ResetPassword from '../components/Authentication/ResetPassword/ResetPassword';
+import ContactUs from '../routes/ContactUs';
 
 // ✅ Import RecentlyViewedSection
 import RecentlyViewedSection from '../components/RecentlyViewedSection';
+import PageNotFound from '../components/PageNotFound/PageNotFound';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -103,8 +105,12 @@ function App() {
                 <Route path="/shipping" element={<ShippingPage />} />
                 <Route path="/refund" element={<RefundPage />} />
                 <Route path="/admin" element={<Wishlist />} />
+                <Route path="/contact" element={<ContactUs />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+                {/* Render PageNotFound here */}
+                <Route path="*" element={<PageNotFound />} />
               </Routes>
 
               {/* ✅ Render RecentlyViewedSection only once here */}
