@@ -41,3 +41,29 @@
     box-shadow:0px 0px 1.5rem rgb(183, 181, 181);
     width: 70%;
 }
+@media (prefers-color-scheme: dark) {
+    .heading {
+        color: #e0e0e0;
+    }
+    
+    .faq-container {
+        background-color: #2a2a2a;
+        color: #e0e0e0;
+        border-color: #555;
+        box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.5);
+    }
+    
+    .question {
+        color: #e0e0e0;
+    }
+    
+    .faq-toggle-button {
+        color: #e0e0e0;
+    }
+    
+    .answer {
+        background-color: #3a3a3a;
+        color: #e0e0e0;
+        box-shadow: 0px 0px 1.5rem rgba(0, 0, 0, 0.5);
+    }
+}
