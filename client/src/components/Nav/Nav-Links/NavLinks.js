@@ -19,7 +19,8 @@ const NavLinks = () => {
           <li className='nav-link'><Link to="/category/men">Men</Link></li> 
           <li className='nav-link'><Link to="/category/women">Women</Link></li> 
           <li className='nav-link'><Link to="/category/kids">Kids</Link></li>
-          <li className='nav-link'><Link to="/contact">Contact Us</Link></li>
+          <li className='nav-link'><Link to="/about">About</Link></li>
+          <li className='nav-link'><Link to="/contact">Contact</Link></li>
         </ul>
       </div>
     </nav>
