@@ -22,9 +22,7 @@ const ContactInfoSection = () => {
       title: "Our Location",
       details: (
         <>
-          123 Fashion Avenue<br />
-          New York, NY 10001<br />
-          United States
+          Delhi, India<br />
         </>
       )
     },
@@ -33,8 +31,7 @@ const ContactInfoSection = () => {
       title: "Phone",
       details: (
         <>
-          <a href="tel:+1-555-TRENDHORA">+1 (555) TRENDHORA</a><br />
-          <a href="tel:+1-555-876-6348">+1 (555) 876-6348</a>
+          <a href="tel:+919319042075">+91 (931) 904-2075</a><br />
         </>
       )
     },
@@ -55,7 +52,6 @@ const ContactInfoSection = () => {
         <>
           Monday - Friday: 9AM - 8PM EST<br />
           Saturday: 10AM - 6PM EST<br />
-          Sunday: 12PM - 5PM EST
         </>
       )
     }
