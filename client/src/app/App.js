@@ -24,6 +24,8 @@ import WishItemsProvider from '../Context/WishItemsProvider';
 import SearchProvider from '../Context/SearchProvider';
 import Toaster from '../components/Toaster/toaster';
 import { ThemeProvider } from '../Context/ThemeContext';
+import ChatbotProvider from '../Context/ChatbotProvider';
+import Chatbot from '../components/Chatbot';
 
 import FaqList from '../Pages/Footer/Faq/FaqList.js';
 import AccessiblityPage from '../Pages/Footer/Accessibility/Accessibility.js';
@@ -55,13 +57,15 @@ function App() {
         <CartItemsProvider>
           <WishItemsProvider>
             <SearchProvider>
-              <Router>
-                <div className="loader-wrapper">
-                  <div className="wrapper">
-                    <Loader />
+              <ChatbotProvider>
+                <Router>
+                  <div className="loader-wrapper">
+                    <div className="wrapper">
+                      <Loader />
+                    </div>
                   </div>
-                </div>
-              </Router>
+                </Router>
+              </ChatbotProvider>
             </SearchProvider>
           </WishItemsProvider>
         </CartItemsProvider>
@@ -74,50 +78,55 @@ function App() {
       <CartItemsProvider>
         <WishItemsProvider>
           <SearchProvider>
-            <Router>
-              <Header />
-              <Routes>
-                <Route index element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/account">
-                  <Route path="me" element={<MyAccount />} />
-                  <Route path="manage" element={<ManageAccount />} />
-                  <Route path="login" element={<Login />} />
-                  <Route path="register" element={<Register />} />
-                  <Route path="*" element={<Login />} />
-                </Route>
-                <Route path="/shop" element={<Shop />} />
-                <Route path="/category">
-                  <Route path=":id" element={<CategoryView />} />
-                </Route>
-                <Route path="/item">
-                  <Route path="men/:id" element={<ItemView />} />
-                  <Route path="women/:id" element={<ItemView />} />
-                  <Route path="kids/:id" element={<ItemView />} />
-                  <Route path="featured/:id" element={<ItemView />} />
-                </Route>
-                <Route path="/wishlist" element={<Wishlist />} />
-                <Route path="/search/*" element={<SearchView />} />
-                <Route path="/terms" element={<TermsConditions />} />
-                <Route path="/privacy" element={<PrivacyPolicy />} />
-                <Route path="/faq" element={<FaqList />} />
-                <Route path="/accessibility" element={<AccessiblityPage />} />
-                <Route path="/shipping" element={<ShippingPage />} />
-                <Route path="/refund" element={<RefundPage />} />
-                <Route path="/admin" element={<Wishlist />} />
-                <Route path="/contact" element={<ContactUs />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
-                <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <ChatbotProvider>
+              <Router>
+                <Header />
+                <Routes>
+                  <Route index element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/account">
+                    <Route path="me" element={<MyAccount />} />
+                    <Route path="manage" element={<ManageAccount />} />
+                    <Route path="login" element={<Login />} />
+                    <Route path="register" element={<Register />} />
+                    <Route path="*" element={<Login />} />
+                  </Route>
+                  <Route path="/shop" element={<Shop />} />
+                  <Route path="/category">
+                    <Route path=":id" element={<CategoryView />} />
+                  </Route>
+                  <Route path="/item">
+                    <Route path="men/:id" element={<ItemView />} />
+                    <Route path="women/:id" element={<ItemView />} />
+                    <Route path="kids/:id" element={<ItemView />} />
+                    <Route path="featured/:id" element={<ItemView />} />
+                  </Route>
+                  <Route path="/wishlist" element={<Wishlist />} />
+                  <Route path="/search/*" element={<SearchView />} />
+                  <Route path="/terms" element={<TermsConditions />} />
+                  <Route path="/privacy" element={<PrivacyPolicy />} />
+                  <Route path="/faq" element={<FaqList />} />
+                  <Route path="/accessibility" element={<AccessiblityPage />} />
+                  <Route path="/shipping" element={<ShippingPage />} />
+                  <Route path="/refund" element={<RefundPage />} />
+                  <Route path="/admin" element={<Wishlist />} />
+                  <Route path="/contact" element={<ContactUs />} />
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route path="/reset-password/:token" element={<ResetPassword />} />
 
-                {/* Render PageNotFound here */}
-                <Route path="*" element={<PageNotFound />} />
-              </Routes>
+                  {/* Render PageNotFound here */}
+                  <Route path="*" element={<PageNotFound />} />
+                </Routes>
 
-              {/* ✅ Render RecentlyViewedSection only once here */}
-              <RecentlyViewedSection />
+                {/* ✅ Render RecentlyViewedSection only once here */}
+                <RecentlyViewedSection />
 
-              <Footer />
-            </Router>
+                {/* ✅ Render Chatbot globally */}
+                <Chatbot />
+
+                <Footer />
+              </Router>
+            </ChatbotProvider>
           </SearchProvider>
         </WishItemsProvider>
       </CartItemsProvider>
