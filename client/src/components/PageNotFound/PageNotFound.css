@@ -1,0 +1,73 @@
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.not-found-container h1 {
+    font-size: 3em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.not-found-container p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.not-found-container .home-button {
+    background-color: #2ecc71;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.not-found-container .home-button:hover {
+    background-color: #27ae60;
+}
+
+@media (max-width: 768px) {
+    .not-found-container {
+        padding: 15px;
+    }
+
+    .not-found-container h1 {
+        font-size: 2em;
+        margin-bottom: 15px;
+    }
+
+    .not-found-container p {
+        font-size: 1em;
+        margin-bottom: 25px;
+    }
+
+    .not-found-container .home-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .not-found-container h1 {
+        font-size: 1.8em;
+    }
+
+    .not-found-container p {
+        font-size: 0.9em;
+    }
+
+    .not-found-container .home-button {
+        padding: 8px 18px;
+        font-size: 0.9em;
+    }
+}

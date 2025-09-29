@@ -1,105 +1,270 @@
-/* Terms & Conditions Page Styles */
+/* Enhanced design system with better spacing, typography, and visual hierarchy */
+:root {
+  --trendhora-dark: #1a1a1a;
+  --trendhora-yellow: #ffd700;
+  --trendhora-white: #ffffff;
+  --trendhora-gray: #cccccc;
+  --trendhora-text: #ffffff;
+  --trendhora-card-bg: #2a2a2a;
+}
+
+.terms-page-wrapper {
+  background-color: var(--trendhora-dark);
+  min-height: 100vh;
+  padding: 60px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Ensuring all text in wrapper is white */
+  color: #ffffff;
+}
 
 .terms-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.back-button-container {
+  margin-bottom: 50px;
 }
 
 .back-button {
-    background: none;
-    border: none;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: #333;
-    font-size: 16px;
-    margin-bottom: 20px;
-    transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Making back button visible by default with yellow background */
+  background: var(--trendhora-yellow);
+  border: 2px solid var(--trendhora-yellow);
+  color: var(--trendhora-dark);
+  padding: 14px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
 .back-button:hover {
-    color: #1976d2;
+  /* Inverting colors on hover */
+  background-color: transparent;
+  color: var(--trendhora-yellow);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
 }
 
-.terms-paper {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.back-icon {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Enhanced header card with better visual impact */
+.terms-header-card {
+  background: linear-gradient(135deg, var(--trendhora-card-bg) 0%, var(--trendhora-dark) 100%);
+  border: 2px solid var(--trendhora-yellow);
+  border-radius: 16px;
+  padding: 50px 40px;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .terms-title {
-    color: #1976d2;
-    font-weight: 600;
-    margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .terms-date {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 20px;
+  color: var(--trendhora-yellow);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Improved card layout with better spacing and visual hierarchy */
+.terms-content {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.terms-card {
+  background: linear-gradient(135deg, var(--trendhora-card-bg) 0%, var(--trendhora-dark) 100%);
+  border: 2px solid var(--trendhora-yellow);
+  border-radius: 16px;
+  padding: 35px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.terms-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.15);
+  border-color: var(--trendhora-yellow);
 }
 
 .section-title {
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 15px;
-    margin-top: 30px;
+  color: var(--trendhora-yellow);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  /* Removing the shorter line by removing border-bottom */
+  padding-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Adding only the bigger line as an ::after pseudo-element */
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--trendhora-yellow);
+  border-radius: 2px;
 }
 
 .section-content {
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
+  color: #ffffff !important;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 
+/* Enhanced list styling with better visual indicators */
 .terms-list {
-    padding-left: 20px;
-    margin-bottom: 20px;
+  margin: 25px 0;
+  padding-left: 30px;
 }
 
 .terms-list li {
-    margin-bottom: 8px;
-    color: #555;
+  color: #ffffff !important;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 10px;
+}
+
+.terms-list li::marker {
+  color: var(--trendhora-yellow);
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* Enhanced contact card with better visual appeal */
+.contact-card {
+  background: linear-gradient(135deg, var(--trendhora-card-bg) 0%, var(--trendhora-dark) 100%);
+  border: 2px solid var(--trendhora-yellow);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .contact-info {
-    text-align: center;
-    color: #666;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
+  color: #ffffff !important;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 0;
+  font-weight: 400;
 }
 
-/* Responsive Design */
+.contact-link {
+  color: var(--trendhora-yellow);
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.contact-link:hover {
+  background-color: var(--trendhora-yellow);
+  color: var(--trendhora-dark);
+  border-color: var(--trendhora-yellow);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Adding universal text color override to ensure all text is white */
+.terms-page-wrapper * {
+  color: #ffffff;
+}
+
+.terms-page-wrapper .section-title,
+.terms-page-wrapper .terms-date,
+.terms-page-wrapper .contact-link {
+  color: var(--trendhora-yellow) !important;
+}
+
+/* Improved responsive design with better mobile experience */
 @media (max-width: 768px) {
-    .terms-container {
-        padding: 10px;
-    }
-    
-    .terms-paper {
-        padding: 20px;
-    }
-    
-    .terms-title {
-        font-size: 24px;
-    }
-    
-    .section-title {
-        font-size: 18px;
-    }
+  .terms-page-wrapper {
+    padding: 40px 20px;
+  }
+
+  .terms-container {
+    max-width: 100%;
+  }
+
+  .terms-header-card {
+    padding: 40px 30px;
+  }
+
+  .terms-card,
+  .contact-card {
+    padding: 30px 25px;
+  }
+
+  .terms-title {
+    font-size: 2.4rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .back-button {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 480px) {
-    .terms-paper {
-        padding: 15px;
-    }
-    
-    .terms-title {
-        font-size: 20px;
-    }
-    
-    .section-title {
-        font-size: 16px;
-    }
-} 
+  .terms-page-wrapper {
+    padding: 30px 15px;
+  }
+
+  .terms-header-card {
+    padding: 35px 25px;
+  }
+
+  .terms-card,
+  .contact-card {
+    padding: 25px 20px;
+  }
+
+  .terms-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .section-content {
+    font-size: 1rem;
+  }
+
+  .contact-info {
+    font-size: 1.1rem;
+  }
+}

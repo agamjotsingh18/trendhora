@@ -1,21 +1,164 @@
+/* ==== Container for the entire register page ==== */
 .register__auth__container {
-    height: auto;
-    width: 100%;
-    margin-top: 10rem;
-    background-color: var(--bg-primary);
+  min-height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-color: var(--bg-primary);
+  box-sizing: border-box;
 }
 
 /* Dark mode: black background for register container */
 .dark-mode .register__auth__container {
-    background-color: #000000;
+  background-color: #000000;
 }
 
+/* ==== Center wrapper for the card ==== */
 .register__auth {
-    height: 100%;
-    width: 100%;
-    padding: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5rem;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==== Card ==== */
+.register__card {
+  width: 100%;
+  max-width: 420px; /* same width as login */
+  margin: auto;
+  padding: 2.5rem;
+  border-radius: 10px;
+  background-color: var(--bg-secondary);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ==== OAuth Buttons ==== */
+.oauth__icon__row {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.oauth-icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.oauth-icon-btn:hover {
+  background-color: #efefef;
+}
+
+.oauth__divider {
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+/* ==== Inputs ==== */
+.register__inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.reg__input__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.input__label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.register__input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register__input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.12);
+}
+
+/* ==== Password checklist ==== */
+.password-checklist {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.valid { color: green; }
+.invalid { color: red; }
+
+/* ==== Button ==== */
+.register__button__container {
+  margin-top: 0.6rem;
+  width: 100%;
+}
+
+.register__button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  background-color: #FFE26E;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.register__button:hover {
+  background-color: #ffd84f;
+  transform: translateY(-1px);
+}
+
+.register__button:active {
+  transform: translateY(0);
+}
+
+/* ==== Footer Links ==== */
+.register__other__actions {
+  margin-top: 0.8rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.register__login__account {
+  margin-top: 0.4rem;
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.register__login__account a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.register__login__account a:hover {
+  text-decoration: underline;
 }
