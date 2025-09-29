@@ -196,9 +196,13 @@ Found a bug or have a feature request? Please check our [Issues](https://github.
 
 ---
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.  
+You are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the project.  
+
+For full details, see the [LICENSE](LICENSE) file.
+
 
 ---
 
