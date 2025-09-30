@@ -16,40 +16,10 @@ const TeamSection = () => {
 
   const teamMembers = [
     {
-      name: "Sarah Chen",
+      name: "Agamjot Singh",
       role: "CEO & Co-Founder",
-      bio: "Former fashion buyer with 10+ years at top retailers. Sarah's vision drives Trendhora's mission to democratize fashion.",
-      avatar: "SC"
-    },
-    {
-      name: "Marcus Rodriguez",
-      role: "CTO & Co-Founder",
-      bio: "Tech innovator with expertise in AI and e-commerce. Marcus leads our technical strategy and product development.",
-      avatar: "MR"
-    },
-    {
-      name: "Aisha Patel",
-      role: "Head of Sustainability",
-      bio: "Environmental advocate ensuring our fashion choices are ethical and sustainable. Aisha leads our green initiatives.",
-      avatar: "AP"
-    },
-    {
-      name: "James Thompson",
-      role: "Creative Director",
-      bio: "Award-winning designer and stylist who curates our collections and creates compelling visual experiences.",
-      avatar: "JT"
-    },
-    {
-      name: "Elena Kowalski",
-      role: "Head of Customer Experience",
-      bio: "Customer service expert focused on creating delightful shopping experiences and building lasting relationships.",
-      avatar: "EK"
-    },
-    {
-      name: "David Kim",
-      role: "Head of Operations",
-      bio: "Supply chain wizard ensuring fast, reliable delivery and seamless operations across all markets.",
-      avatar: "DK"
+      bio: "Visionary leader with a passion for fashion and technology. Agamjot drives our mission to revolutionize online shopping.",
+      avatar: "AS"
     }
   ];
 
