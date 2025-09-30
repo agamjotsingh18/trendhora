@@ -1,101 +1,467 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Lato", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Main loader wrapper */
 .loader-wrapper {
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-  text-align: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #1a1a1a 50%, #0f0f0f 100%);
+  position: relative;
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
   overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.loader-wrapper::before {
-  content: '';
+/* Subtle background animation */
+.bg-animation {
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 226, 110, 0.1) 0%, transparent 70%);
-  animation: rotate 4s linear infinite;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
   pointer-events: none;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.wrapper {
-  position: relative;
-  transform: none;
-  
-}
-
-.circle {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  background: linear-gradient(135deg, var(--accent-color) 0%, #FFD700 100%);
+.floating-orb {
+  position: absolute;
   border-radius: 50%;
-  margin: 0 3px;
-  animation: modernLoading 1.5s cubic-bezier(0.8, 0.5, 0.2, 1.4) infinite;
-  transform-origin: bottom center;
+  opacity: 0.15;
+  animation: floatOrb 8s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+.orb-1 {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.3), rgba(255, 152, 0, 0.2));
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(245, 124, 0, 0.15));
+  bottom: 20%;
+  right: 15%;
+  animation-delay: 2.5s;
+}
+
+.orb-3 {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.25), rgba(255, 179, 0, 0.18));
+  top: 60%;
+  left: 70%;
+  animation-delay: 5s;
+}
+
+/* Modern loader container */
+.modern-loader {
   position: relative;
-  box-shadow: 0 4px 8px rgba(255, 226, 110, 0.3);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes modernLoading {
-  0% {
-    transform: translateY(0px) scale(1);
-    background: linear-gradient(135deg, var(--accent-color) 0%, #FFD700 100%);
-    box-shadow: 0 4px 8px rgba(255, 226, 110, 0.3);
-  }
-  50% {
-    transform: translateY(-30px) scale(1.2);
-    background: linear-gradient(135deg, #FFD700 0%, var(--accent-color) 100%);
-    box-shadow: 0 8px 16px rgba(255, 226, 110, 0.5);
-  }
-  100% {
-    transform: translateY(0px) scale(1);
-    background: linear-gradient(135deg, var(--accent-color) 0%, #FFD700 100%);
-    box-shadow: 0 4px 8px rgba(255, 226, 110, 0.3);
-  }
+/* Progress circles */
+.progress-circle {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.circle-1 {
-  animation-delay: 0.1s;
+/* Brand icon styling */
+.favicon-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  animation: faviconSpin 3s ease-in-out infinite;
+  filter: drop-shadow(0 2px 8px rgba(255, 193, 7, 0.4));
 }
-.circle-2 {
-  animation-delay: 0.2s;
+
+.outer-circle {
+  animation: rotateOuter 4s linear infinite, circleScale 6s ease-in-out infinite;
 }
-.circle-3 {
-  animation-delay: 0.3s;
+
+.middle-circle {
+  animation: rotateMiddle 3s linear infinite reverse, circlePulse 4s ease-in-out infinite;
 }
-.circle-4 {
-  animation-delay: 0.4s;
+
+.progress-ring svg {
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.4));
 }
-.circle-5 {
+
+/* Progress bar animations */
+.progress-bar {
+  stroke-dasharray: 534; /* 2 * π * 85 */
+  stroke-dashoffset: 534;
+  animation: progressFill 2s ease-in-out infinite;
+}
+
+.middle-circle .progress-bar {
+  stroke-dasharray: 377; /* 2 * π * 60 */
+  stroke-dashoffset: 377;
+  animation: progressFillMiddle 2.5s ease-in-out infinite;
   animation-delay: 0.5s;
 }
-.circle-6 {
-  animation-delay: 0.6s;
+
+/* Brand circle */
+.brand-circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 45, 45, 0.9) 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 15;
 }
-.circle-7 {
-  animation-delay: 0.7s;
+
+/* Brand content */
+.brand-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
-.circle-8 {
-  animation-delay: 0.8s;
+
+.brand-icon {
+  margin-bottom: 4px;
+}
+
+.brand-letter {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: brandPulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(255, 193, 7, 0.3));
+}
+
+.brand-name {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.letter {
+  display: inline-block;
+  color: #cbd5e1;
+  animation: letterWave 2s ease-in-out infinite;
+}
+
+.letter.highlight {
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.letter:nth-child(1) { animation-delay: 0s; }
+.letter:nth-child(2) { animation-delay: 0.1s; }
+.letter:nth-child(3) { animation-delay: 0.2s; }
+.letter:nth-child(4) { animation-delay: 0.3s; }
+.letter:nth-child(5) { animation-delay: 0.4s; }
+.letter:nth-child(6) { animation-delay: 0.5s; }
+.letter:nth-child(7) { animation-delay: 0.6s; }
+.letter:nth-child(8) { animation-delay: 0.7s; }
+.letter:nth-child(9) { animation-delay: 0.8s; }
+
+/* Inner progress indicator */
+.inner-progress {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.progress-dots {
+  display: flex;
+  gap: 3px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background: #ffc107;
+  border-radius: 50%;
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+.dot-1 { animation-delay: 0s; }
+.dot-2 { animation-delay: 0.2s; }
+.dot-3 { animation-delay: 0.4s; }
+.dot-4 { animation-delay: 0.6s; }
+
+/* Loading text */
+.loading-text {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.text-dots {
+  display: flex;
+  gap: 2px;
+}
+
+.text-dots span {
+  animation: textDotBounce 1.5s ease-in-out infinite;
+}
+
+.text-dots span:nth-child(1) { animation-delay: 0s; }
+.text-dots span:nth-child(2) { animation-delay: 0.2s; }
+.text-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Animations */
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0.2;
+  }
+}
+
+
+
+@keyframes faviconSpin {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 2px 8px rgba(255, 193, 7, 0.4));
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+    filter: drop-shadow(0 4px 12px rgba(255, 193, 7, 0.6));
+  }
+}
+
+@keyframes circleScale {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes circlePulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.4));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 20px rgba(255, 193, 7, 0.6));
+  }
+}
+
+@keyframes rotateOuter {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateMiddle {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes progressFill {
+  0% {
+    stroke-dashoffset: 534;
+    opacity: 0.3;
+  }
+  50% {
+    stroke-dashoffset: 267;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.3;
+  }
+}
+
+@keyframes progressFillMiddle {
+  0% {
+    stroke-dashoffset: 377;
+    opacity: 0.3;
+  }
+  50% {
+    stroke-dashoffset: 189;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.3;
+  }
+}
+
+@keyframes brandPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes letterWave {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes textDotBounce {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .loader-wrapper {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);
+  }
+  
+  .brand-circle {
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(26, 26, 26, 0.9) 100%);
+    border-color: rgba(255, 193, 7, 0.4);
+  }
+  
+  .letter {
+    color: #e2e8f0;
+  }
+  
+  .loading-text {
+    color: #cbd5e1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .outer-circle svg {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .middle-circle svg {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .brand-circle {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .brand-letter {
+    font-size: 1.5rem;
+  }
+  
+  .brand-name {
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .outer-circle svg {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .middle-circle svg {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .brand-circle {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .brand-letter {
+    font-size: 1.3rem;
+  }
+  
+  .brand-name {
+    font-size: 0.5rem;
+  }
+  
+  .loading-text {
+    font-size: 0.8rem;
+    margin-top: 2rem;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .outer-circle,
+  .middle-circle,
+  .floating-orb {
+    animation-duration: 8s;
+  }
+  
+  .brandPulse,
+  .letterWave,
+  .dotPulse {
+    animation: none;
+  }
 }
 
