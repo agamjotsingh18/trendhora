@@ -1,3 +1,117 @@
+
+/* 🌟 Card Container */
+.related__product__card__container {
+    height: 360px;
+    width: 270px;
+    margin: 12px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    cursor: pointer;
+  }
+  
+  .related__product__card__container:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(255, 179, 71, 0.35);
+  }
+  
+  /* 🌟 Inner Wrapper */
+  .related__product__card__inner {
+    height: 100%;
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 🌟 Product Image */
+  .related__product__image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #fffaf0;
+  }
+  
+  .related__product__image img {
+    max-width: 80%;
+    height: auto;
+    transition: transform 0.5s ease;
+  }
+  
+  .related__product__card__container:hover .related__product__image img {
+    transform: scale(1.1);
+  }
+  
+  /* 🌟 Details */
+  .related__product__card__detail {
+    flex: 0.5;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* 🌟 Product Name */
+  .related__product__name a {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #222;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .related__product__name a:hover {
+    color: #ff8008;
+  }
+  
+  /* 🌟 Description */
+  .related__product__description span {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;  /* max 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* 🌟 Price Badge */
+  .related__product__price span {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.3rem 0.9rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ff8008, #ffc837);
+    box-shadow: 0 3px 12px rgba(255, 128, 8, 0.35);
+  }
+  
+  /* 🌟 Responsive */
+  @media (max-width: 768px) {
+    .related__product__card__container {
+      width: 45%;
+      height: 320px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .related__product__card__container {
+      width: 100%;
+      height: 300px;
+    }
+  }
+  
+
 /* Enterprise Related Card Styles with Dark Mode Support */
 .enterprise-related-card {
   position: relative !important;
@@ -371,3 +485,4 @@
     display: none !important;
   }
 }
+

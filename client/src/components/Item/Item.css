@@ -1,3 +1,55 @@
+
+.item__container {
+  height: auto;
+  width: 100%;
+}
+
+.detail__and__carousel__container {
+  height: auto;
+  width: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  top: 8rem;
+  box-shadow: 0.1px 0.1px 3px -1px;
+  border-radius: 0.5rem;
+  margin: 1px auto;
+  transition: transform 0.3s ease;
+}
+
+.item__description__container {
+  height: max-content;
+  width: 100%;
+  position: relative;
+  top: 6rem;
+}
+
+.related__items__container {
+  height: auto;
+  width: 100%;
+}
+.btn {
+  position: relative;
+  top: 5rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  width: 6rem;
+}
+.btn:hover {
+  background-color: #ffe26e;
+  color: black;
+}
+
+/* .detail__and__carousel__container:hover {
+  transform: scale(1.003);
+} */
+
 /* Enterprise Item Container with Theme Support */
 .enterprise-item-container {
     min-height: 100vh;
@@ -242,3 +294,4 @@
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
 }
+
