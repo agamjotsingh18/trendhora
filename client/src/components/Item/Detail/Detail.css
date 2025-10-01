@@ -29,6 +29,7 @@
 .product__detail:hover {
   box-shadow: 0.5px 0.5px 5px -1px;
   transform: scale(1.005);
+}
 
 /* Enterprise Product Detail Styles with Theme Support */
 .enterprise-product-detail {
@@ -76,7 +77,6 @@
   font-size: 0.875rem;
   font-weight: 500;
   transition: color 0.3s ease;
-
 }
 
 
@@ -249,6 +249,7 @@
 
 .buy__button:hover {
   background-color: #000000d1;
+}
 
 /* Dark Mode Header Support */
 .dark-mode .product-title {

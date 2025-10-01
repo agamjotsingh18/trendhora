@@ -89,17 +89,17 @@
 }
 
 /* Dark Mode Styles */
-.dark-mode .shop__contianer {
-    background-color: #363636;
-    color: #d8d1d1;
+.shop__contianer.dark-mode {
+    background-color: var(--bg-primary, #121212);
+    color: var(--text-primary, #ffffff);
 }
 
-.dark-mode .shop__title {
-    color: #b2adad;
+.shop__contianer.dark-mode .shop__title {
+    color: var(--text-primary, #ffffff);
 }
 
-.dark-mode .shop__subtitle {
-    color: #252424;
+.shop__contianer.dark-mode .shop__subtitle {
+    color: var(--text-secondary, #b0b0b0);
 }
 
 /* Loading Animation */
