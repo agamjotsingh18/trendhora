@@ -125,9 +125,10 @@ const ItemCard = (props) => {
 
   const getImageUrl = (image) => {
     if (!image) return '';
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
     return typeof image === 'string'
       ? image
-      : `https://trendhora-api.onrender.com/public/${itemCategory}/${image.filename}`;
+      : `${backendUrl}/public/${itemCategory}/${image.filename}`;
   };
 
   const imageUrl = getImageUrl(currentItem.image[0]);

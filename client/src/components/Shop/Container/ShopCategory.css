@@ -1,4 +1,4 @@
-/* Modern Shop Category Container */
+/* Theme Support for Shop Category Container */
 .shop__category__container {
   width: 100%;
   max-width: 1440px;
@@ -7,6 +7,14 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  background-color: var(--bg-primary, #ffffff);
+  color: var(--text-primary, #1a1a1a);
+  transition: all 0.3s ease;
+}
+
+.shop__category__container.dark-mode {
+  background-color: var(--bg-primary, #121212);
+  color: var(--text-primary, #ffffff);
 }
 
 /* Header Styling */
@@ -18,11 +26,12 @@
 .shop__category__head h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-primary, #1a1a1a);
   margin: 0 0 0.5rem 0;
   text-transform: capitalize;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   letter-spacing: -0.5px;
+  transition: color 0.3s ease;
 }
 
 .shop__category__header__line {
@@ -37,17 +46,18 @@
   width: 100px;
 }
 
-/* Filter Section */
+/* Filter Section with Theme Support */
 .shop__category__filters {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  background: #ffffff;
+  background: var(--bg-secondary, #ffffff);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow, 0 2px 12px rgba(0, 0, 0, 0.06));
   margin-bottom: 1.5rem;
-  border: 1px solid #f0f0f0;
+  border: 1px solid var(--border-color, #f0f0f0);
+  transition: all 0.3s ease;
 }
 
 .filter__group {
@@ -61,19 +71,20 @@
 .filter__group label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #555;
+  color: var(--text-secondary, #555);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transition: color 0.3s ease;
 }
 
 .filter__group select,
 .filter__group input {
   padding: 0.75rem 1rem;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color, #e0e0e0);
   border-radius: 8px;
   font-size: 0.95rem;
-  background: #fff;
-  color: #333;
+  background: var(--bg-primary, #fff);
+  color: var(--text-primary, #333);
   transition: all 0.2s ease;
   width: 100%;
 }
@@ -405,21 +416,13 @@
 }
 
 .shop__category__product__card {
-
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   width: 100%;
   margin: 0;
   padding: 1rem 0;
-
-    height: auto;
-    width: 95%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap : 50px;
-
+  justify-items: center;
 }
 
 /* Card Styling
@@ -442,7 +445,7 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
   .shop__category__product__card {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
   }
 }
@@ -462,6 +465,10 @@
     width: 100%;
     margin-top: 0.5rem;
   }
+  
+  .shop__category__product__card {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
@@ -470,7 +477,7 @@
   }
   
   .shop__category__product__card {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.25rem;
   }
   
@@ -503,12 +510,17 @@
 
 @media (max-width: 480px) {
   .shop__category__product__card {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
   
   .shop__category__head h2 {
     font-size: 1.75rem;
+  }
+  
+  .product__card__card {
+    width: 100%;
+    min-width: 160px;
   }
 }
 

@@ -1,43 +1,4 @@
 
-import Carousel from "react-bootstrap/Carousel";
-import "./ItemCarousel.css";
-
-const ProductCarousel = (props) => {
-  return (
-    <div className="product__carousel__container">
-      <div className="product__carousel">
-        <Carousel variant="dark" interval={4000}>
-          <Carousel.Item>
-            <div className="carousel__image__container">
-              <img
-                className="carousel__image"
-                src={`https://trendhora-api.onrender.com/public/${props.item.category}/${props.item.image[0].filename}`}
-                alt="item"
-              />
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="carousel__image__container">
-              <img
-                className="carousel__image"
-                src={`https://trendhora-api.onrender.com/public/${props.item.category}/${props.item.image[1].filename}`}
-                alt="item"
-              />
-            </div>
-          </Carousel.Item>
-          {/* <Carousel.Item>
-            <div className="carousel__image__container">
-                <img className="carousel__image" src={`https://shema-backend.vercel.app/public/${props.item.category}/${props.item.image[2].filename}`} alt="item"/>
-              </div>
-            </Carousel.Item> */}
-        </Carousel>
-      </div>
-    </div>
-  );
-};
-
-export default ProductCarousel;
-
 import React, { useState } from 'react';
 import { IconButton, Chip } from '@mui/material';
 import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
@@ -48,6 +9,7 @@ const ProductCarousel = (props) => {
     const [isZoomed, setIsZoomed] = useState(false);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
     const images = props.item.image || [];
     const totalImages = Math.max(images.length, 2);
 
@@ -65,7 +27,7 @@ const ProductCarousel = (props) => {
 
     const getImageUrl = (imageIndex) => {
         if (images[imageIndex]) {
-            return `https://trendhora-api.onrender.com/public/${props.item.category}/${images[imageIndex].filename}`;
+            return `${backendUrl}/public/${props.item.category}/${images[imageIndex].filename}`;
         }
         return '/placeholder-image.jpg'; // Add a placeholder image
     };
