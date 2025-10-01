@@ -1,3 +1,4 @@
+
 .related__products__container {
   height: auto;
   width: 100%;
@@ -60,3 +61,282 @@
     display: none;
   }
 }
+
+/* Enterprise Related Products Styles with Theme Support */
+.enterprise-related-container {
+  padding: 4rem 0;
+  background: var(--bg-primary);
+  min-height: 500px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark Mode Support for Container */
+.dark-mode .enterprise-related-container {
+  background: var(--bg-primary);
+}
+
+/* Header Section */
+.related-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 2rem;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.trending-icon {
+  color: #667eea !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+}
+
+.section-title {
+  font-weight: 800 !important;
+  color: var(--text-primary) !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text;
+  margin: 0 !important;
+  letter-spacing: -0.025em;
+  transition: all 0.3s ease;
+}
+
+/* Dark Mode Title Support */
+.dark-mode .section-title {
+  background: linear-gradient(135deg, var(--accent-color) 0%, #f093fb 100%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text;
+}
+
+.try-now-chip {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  margin: 1rem 0 !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 20px !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.section-subtitle {
+  color: var(--text-secondary) !important;
+  font-size: 1.1rem !important;
+  font-weight: 400 !important;
+  max-width: 600px;
+  margin: 0 auto !important;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+/* Dark Mode Subtitle Support */
+.dark-mode .section-subtitle {
+  color: var(--text-secondary) !important;
+}
+
+/* Products Grid */
+.products-grid {
+  margin-top: 2rem !important;
+}
+
+.product-card-wrapper {
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-primary);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+}
+
+.product-card-wrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark Mode Card Wrapper Support */
+.dark-mode .product-card-wrapper {
+  background: var(--bg-secondary);
+  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.05);
+  border-color: var(--border-color);
+}
+
+.dark-mode .product-card-wrapper:hover {
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.1);
+}
+
+/* Loading Skeletons */
+.product-skeleton {
+  border-radius: 16px !important;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%) !important;
+  background-size: 200% 100% !important;
+  animation: shimmer 2s infinite !important;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Error and No Items Messages with Theme Support */
+.error-message,
+.no-items-message {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  margin: 2rem 0;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.no-items-message {
+  background: var(--bg-tertiary);
+}
+
+/* Dark Mode Messages Support */
+.dark-mode .error-message,
+.dark-mode .no-items-message {
+  background: var(--bg-secondary);
+  box-shadow: 0 4px 24px rgba(255, 255, 255, 0.05);
+  border-color: var(--border-color);
+}
+
+.dark-mode .no-items-message {
+  background: var(--bg-tertiary);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .section-title {
+    font-size: 2.5rem !important;
+  }
+  
+  .enterprise-related-container {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .enterprise-related-container {
+    padding: 2rem 0;
+  }
+  
+  .related-header {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem !important;
+    text-align: center;
+  }
+  
+  .trending-icon {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem !important;
+  }
+  
+  .try-now-chip {
+    margin: 0.75rem 0 !important;
+    padding: 0.4rem 1.2rem !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.75rem !important;
+  }
+  
+  .header-content {
+    gap: 0.25rem;
+  }
+  
+  .trending-icon {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+  
+  .related-header {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Enhanced card hover effects */
+.product-card-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+  z-index: 1;
+}
+
+.product-card-wrapper:hover::before {
+  left: 100%;
+}
+
+/* Accessibility improvements */
+.product-card-wrapper:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Performance optimizations */
+.products-grid {
+  will-change: transform;
+}
+
+.product-card-wrapper {
+  will-change: transform, box-shadow;
+}
+
+/* Grid spacing adjustments */
+@media (min-width: 1920px) {
+  .products-grid .MuiGrid-item {
+    padding: 1.5rem !important;
+  }
+}
+
+/* Custom container max-width for ultra-wide screens */
+@media (min-width: 1600px) {
+  .enterprise-related-container .MuiContainer-root {
+    max-width: 1400px !important;
+  }
+}
+
