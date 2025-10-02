@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 1rem 0;
+    padding: 0;
     background-color: #f9f9f9;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     color: #1a1a1a;
@@ -62,7 +62,7 @@
 
 @media (max-width: 768px) {
     .shop__contianer {
-        padding: 1.5rem 0;
+        padding: 0;
     }
     
     .shop__title {
@@ -84,7 +84,7 @@
     }
     
     .shop__contianer {
-        padding: 1rem 0;
+        padding: 0;
     }
 }
 
@@ -127,7 +127,7 @@
 @media (max-width: 768px) {
     .shop__contianer {
         gap: 1.25rem;
-        padding: 0.5rem 0;
+        padding: 0;
     }
 }
 

@@ -2,7 +2,7 @@
     position: relative;
     min-height: 100vh;
     width: 100%;  
-    margin-top:0rem;
+    margin-top: 0;
     padding-bottom: 120px; /* Space for the button */
 }
 
@@ -17,7 +17,7 @@
 .category__header__container {
     height: max-content;
     width: 90%;
-    margin:1rem auto;
+    margin: 0.5rem auto;
     display: flex;
     align-items:baseline;
     flex-wrap: wrap;
@@ -198,6 +198,6 @@
 
 @media(max-width:768px){
     .category__container{
-        margin-top: 6rem;
+        margin-top: 0;
     }
 }

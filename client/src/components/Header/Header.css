@@ -4,15 +4,27 @@
     width: 100%;
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     font-family: 'Roboto', sans-serif;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    color: var(--text-primary);
 }
 
 .header__container:hover {
     box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode header styles */
+.dark-mode .header__container {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.dark-mode .header__container:hover {
+    box-shadow: 0 6px 30px rgba(255, 255, 255, 0.15);
 }
