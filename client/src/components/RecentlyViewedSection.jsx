@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import "./RecentlyViewedSection.css";
 
 const RecentlyViewed = () => {
   const [products, setProducts] = useState([]);
@@ -71,27 +72,14 @@ const RecentlyViewed = () => {
   if (!products.length) return null;
 
   return (
-    <div style={{ padding: "30px", backgroundColor: "#f9f9f9" }}>
-      <h2
-        style={{
-          fontSize: "24px",
-          fontWeight: "600",
-          marginBottom: "25px",
-          borderBottom: "2px solid #ddd",
-          paddingBottom: "10px",
-          color: "#333",
-        }}
-      >
-        Recently Viewed Products
-      </h2>
+    <section className="recently-viewed-section">
+      <div className="recently-viewed-header">
+        <h2 className="recently-viewed-title">Recently Viewed Products</h2>
+        <p className="recently-viewed-subtitle">Continue shopping from where you left off</p>
+        <div className="recently-viewed-divider"></div>
+      </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-          gap: "24px",
-        }}
-      >
+      <div className="recently-viewed-grid">
         {products.map((product) => {
           // Make sure we have a valid category and id
           const category = product.category
@@ -107,91 +95,61 @@ const RecentlyViewed = () => {
             <Link
               to={productLink}
               key={productId}
-              style={{ textDecoration: "none", color: "inherit" }}
+              className="recent-product-card"
+              style={{ pointerEvents: productLink === "#" ? "none" : "auto" }}
             >
-              <div
-                className="recent-product-card"
-                style={{
-                  border: "1px solid #ddd",
-                  borderRadius: "10px",
-                  padding: "16px",
-                  backgroundColor: "#fff",
-                  transition: "transform 0.2s",
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06)",
-                  cursor: productLink === "#" ? "not-allowed" : "pointer",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.transform = "scale(1.02)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.transform = "scale(1)")
-                }
-              >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  style={{
-                    width: "100%",
-                    height: "200px",
-                    objectFit: "cover",
-                    borderRadius: "8px",
-                  }}
-                />
-                <h4
-                  style={{
-                    marginTop: "12px",
-                    fontSize: "18px",
-                    fontWeight: "500",
-                    color: "#333",
-                  }}
-                >
-                  {product.name}
-                </h4>
-                <p
-                  style={{
-                    fontWeight: "bold",
-                    color: "#2e7d32",
-                    margin: "6px 0",
-                  }}
-                >
-                  $
+              <img
+                src={product.image}
+                alt={product.name}
+                className="recent-product-image"
+                loading="lazy"
+              />
+              
+              <div className="recent-product-info">
+                <h4 className="recent-product-name">{product.name}</h4>
+                <p className="recent-product-price">
+                  <span className="price-currency">$</span>
                   {new Intl.NumberFormat("en-US", {
                     style: "decimal",
                     maximumFractionDigits: 2,
                   }).format(product.price)}
                 </p>
+              </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: "20px",
-                    marginTop: "10px",
+              <div className="recent-product-actions">
+                <button
+                  className="action-button wishlist-btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleAddToWishlist(product);
                   }}
+                  title="Add to wishlist"
+                  aria-label="Add to wishlist"
                 >
-                  <FaHeart
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleAddToWishlist(product);
-                    }}
-                    style={{ color: "#888", cursor: "pointer" }}
-                    title="Add to wishlist"
-                  />
-                  <FaShoppingCart
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleAddToCart(product);
-                    }}
-                    style={{ color: "#888", cursor: "pointer" }}
-                    title="Add to cart"
-                  />
-                </div>
+                  <FaHeart />
+                  <span className="button-text">Wishlist</span>
+                </button>
+                
+                <button
+                  className="action-button cart-btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleAddToCart(product);
+                  }}
+                  title="Add to cart"
+                  aria-label="Add to cart"
+                >
+                  <FaShoppingCart />
+                  <span className="button-text">Cart</span>
+                </button>
               </div>
             </Link>
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };
 

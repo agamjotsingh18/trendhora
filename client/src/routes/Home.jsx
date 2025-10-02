@@ -3,6 +3,7 @@ import axios from "axios";
 import Landing from "../components/Landing/Landing";
 import FeaturedItems from "../components/Featured/Items/FetauredItems";
 import FeaturedCategories from "../components/Featured/Categories/FeaturedCategories";
+import Advertisement from "../components/Popup/Advertisement/Advertisement";
 import { TabTitle } from "../utils/General";
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
 
     return (
         <Fragment>
+            <Advertisement />
             <Landing />
             <FeaturedCategories />
             <FeaturedItems items={featuredItems} />
