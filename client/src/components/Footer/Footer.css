@@ -177,13 +177,15 @@
 }
 
 .help__link a {
-    display: flex;
+    display: flex;              /* keep flex */
     align-items: center;
     gap: 0.5rem;
     color: var(--text-secondary);
     font-size: 0.95rem;
     transition: all 0.3s ease;
     text-decoration: none;
+    width: fit-content;         /* shrink hover to content only */
+    max-width: max-content;     /* avoids full-row stretch */
 }
 
 .help__link a:hover {
@@ -215,13 +217,14 @@
 }
 
 .quick__link a {
-    display: flex;
+    display: inline-flex;   /* was flex */
     align-items: center;
     gap: 0.5rem;
     color: var(--text-secondary);
     font-size: 0.95rem;
     transition: all 0.3s ease;
     text-decoration: none;
+    width: fit-content;     /* make link only as wide as its text */
 }
 
 .quick__link a:hover {
@@ -257,6 +260,8 @@
     cursor: pointer;
     padding: 0;
     text-align: left;
+    width: fit-content;         /* shrink hover to content only */
+    max-width: max-content;     /* avoids full-row stretch */
 }
 
 .footer__contact a:hover {
