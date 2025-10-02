@@ -21,6 +21,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/api/items", require("./routes/items"));
 app.use("/api/payment", require("./routes/payment"));
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/orders", require("./routes/orders"));
 
 
 // Root route
