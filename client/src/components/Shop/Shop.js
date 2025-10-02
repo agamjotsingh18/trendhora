@@ -4,9 +4,11 @@ import axios from "axios";
 import ShopCategory from "./Container/ShopCategory";
 import "./Shop.css";
 import ReactLoading from "react-loading";
+import { useTheme } from '../../Context/ThemeContext';
 
 const Shop = () => {
-  TabTitle("Shop - SHEMA");
+  const { isDarkMode } = useTheme();
+  TabTitle("Shop - TRENDHORA");
   const [menItems, setMenItems] = useState([]);
   const [womenItems, setWomenItems] = useState([]);
   const [kidsItems, setKidsItems] = useState([]);
@@ -17,8 +19,11 @@ const Shop = () => {
     const controller = new AbortController();
     setLoading(true);
     setError(null);
+    
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+    
     axios
-      .get("https://shema-backend.vercel.app/api/items", { signal: controller.signal })
+      .get(`${backendUrl}/api/items`, { signal: controller.signal })
       .then((res) => {
         const data = Array.isArray(res.data) ? res.data : [];
         const men = data.filter((item) => item?.category === "men");
@@ -30,7 +35,7 @@ const Shop = () => {
       })
       .catch((err) => {
         if (axios.isCancel(err)) return;
-        console.error(err);
+        console.error("Error fetching items:", err);
         setError("Failed to load products. Please try again.");
       })
       .finally(() => setLoading(false));
@@ -39,7 +44,7 @@ const Shop = () => {
   }, []);
 
   return (
-    <div className="shop__contianer">
+    <div className={`shop__contianer ${isDarkMode ? 'dark-mode' : ''}`}>
       {loading && (
         <ReactLoading
           type="balls"
