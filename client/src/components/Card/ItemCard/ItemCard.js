@@ -218,7 +218,7 @@ const ItemCard = (props) => {
   onClick={handleAddToCart}
 >
   <AddShoppingCartIcon style={{ fontSize: "1.1rem" }} />
-  <span>Add to Cart</span>
+  <span>CART</span>
 </button>
 
         </div>

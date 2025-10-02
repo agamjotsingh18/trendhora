@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.delete('/delete', authMiddleware, deleteUser);
-router.get('/me', getMe);
+router.get('/me', authMiddleware, getMe);
 // Forgot password - send reset link
 router.post("/forgot-password", forgotPassword);
 
