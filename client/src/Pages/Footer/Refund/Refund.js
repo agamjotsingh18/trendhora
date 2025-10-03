@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+import {useTheme} from "../../../Context/ThemeContext";
 import "./Refund.css"
 
 const RefundPage = () => {
+    const { theme }= useTheme();
     // Scroll to top when component mounts
     useEffect(() => {
         window.scrollTo({
