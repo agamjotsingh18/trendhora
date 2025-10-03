@@ -25,6 +25,9 @@ import Toaster from "../components/Toaster/toaster";
 import { ThemeProvider } from "../Context/ThemeContext";
 import ChatbotProvider from '../Context/ChatbotProvider';
 import Chatbot from '../components/Chatbot';
+import { ComparisonProvider } from "../Context/ComparisonContext";
+import ComparisonModal from "../components/Comparison/ComparisonModal";
+import ComparisonButton from "../components/Comparison/ComparisonButton";
 
 import FaqList from "../Pages/Footer/Faq/FaqList.js";
 import AccessiblityPage from "../Pages/Footer/Accessibility/Accessibility.js";
@@ -55,13 +58,15 @@ function App() {
           <WishItemsProvider>
             <SearchProvider>
               <ChatbotProvider>
-                <Router>
+                <ComparisonProvider>
+                  <Router>
                   <div className="loader-wrapper">
                     <div className="wrapper">
                       <Loader />
                     </div>
                   </div>
-                </Router>
+                  </Router>
+                </ComparisonProvider>
               </ChatbotProvider>
             </SearchProvider>
           </WishItemsProvider>
@@ -76,7 +81,8 @@ function App() {
         <WishItemsProvider>
           <SearchProvider>
             <ChatbotProvider>
-              <Router>
+              <ComparisonProvider>
+                <Router>
                 <Header />
                 <Routes>
                   <Route index element={<Home />} />
@@ -115,8 +121,11 @@ function App() {
 
                 <RecentlyViewedSection />
                 <Chatbot />
+                <ComparisonModal />
+                <ComparisonButton />
                 <Footer />
-              </Router>
+                </Router>
+              </ComparisonProvider>
             </ChatbotProvider>
           </SearchProvider>
         </WishItemsProvider>
