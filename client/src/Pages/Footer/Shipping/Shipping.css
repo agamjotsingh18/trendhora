@@ -1,13 +1,14 @@
-.container{
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    line-height: 1.6;
-    font-size: 1rem;
-    color: #333;
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
 }
-.heading{
-    margin-bottom: 1rem;
+
+.heading {
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -27,4 +28,20 @@ p {
   font-size: 1rem;
   color: #464545;
   text-align: justify;
+}
+
+.dark-mode .container {
+  color: #e0e0e0;
+}
+
+.dark-mode .container .heading h1 {
+  color: #e0e0e0;
+}
+
+.dark-mode .container h2 {
+  color: var(--text-primary);
+}
+
+.dark-mode .container p {
+  color: var(--text-secondary);
 }
