@@ -1,17 +1,18 @@
 .nav__bottom__container {
   height: 55px;
-  background-color: #1a1a1a;
+  background: var(--bg-secondary, #1a1a1a);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 2px solid #333;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid var(--border-color, #333);
+  box-shadow: var(--shadow, 0 4px 6px rgba(0, 0, 0, 0.5));
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 90;
   position: relative;
   top: auto;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 
@@ -26,7 +27,7 @@
 .nav-link a {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-primary, #fff);
   padding: 8px 12px;
   position: relative;
   letter-spacing: 0.5px;
@@ -37,7 +38,7 @@
 
 /* Hover: yellow + lift + underline animation */
 .nav-link a:hover {
-  color: #FFB400;
+  color: var(--accent-color, #FFB400);
   transform: translateY(-2px);
 }
 
@@ -48,7 +49,7 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: #FFB400;
+  background-color: var(--accent-color, #FFB400);
   transition: width 0.3s ease;
 }
 
@@ -58,9 +59,31 @@
 
 /* Active link styling */
 .nav-link a.active {
-  color: #FFB400;
+  color: var(--accent-color, #FFB400);
+  transform: translateY(-2px) scale(1.05);
   font-weight: 700;
 }
+
+.nav-link.active a {
+  color: var(--accent-color, #FFB400);
+  transform: translateY(-2px);
+}
+
+.MuiListItemButton-root.active {
+  background: #f4cc8cff !important;
+  color: #a06b11ff !important;
+  border-right: solid #a06b11ff 7px !important;
+  box-shadow: 1px 1.2px 0px 0px #a06b11ff !important;
+}
+
+.MuiListItemButton-root.active .MuiListItemText-primary {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  font-style: italic;
+  letter-spacing: 1.1px;
+  color: #917143ff !important;
+}
+
 
 /* Hide on mobile (DrawerNav will be used) */
 @media (max-width: 780px) {

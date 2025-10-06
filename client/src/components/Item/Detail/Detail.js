@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import "./Detail.css";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { Button, IconButton } from "@mui/material";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { Button, IconButton, Rating, Chip, Divider } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import SecurityIcon from "@mui/icons-material/Security";
+import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
 import { CartItemsContext } from "../../../Context/CartItemsContext";
 import { WishItemsContext } from "../../../Context/WishItemsContext";
 
@@ -20,6 +20,20 @@ const Detail = ({ item }) => {
   const [currentItem, setCurrentItem] = useState(item || null);
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState(0);
+  const [isInWishlist, setIsInWishlist] = useState(false);
+
+  const colors = [
+    { name: "Red", value: "#FF0000" },
+    { name: "Blue", value: "#0000FF" },
+    { name: "Green", value: "#008000" },
+    { name: "Orange", value: "#FFA500" },
+    { name: "Purple", value: "#800080" },
+    { name: "Black", value: "#000000" },
+    { name: "Pink", value: "#FFC0CB" },
+  ];
+
+  const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
   useEffect(() => {
     if (!item && id && category) {
@@ -36,8 +50,8 @@ const Detail = ({ item }) => {
     }
   }, [id, category, item]);
 
-  const handleSizeChange = (event) => {
-    setSize(event.target.value);
+  const handleSizeChange = (selectedSize) => {
+    setSize(selectedSize);
   };
 
   const handleQuantityIncrement = () => {
@@ -53,124 +67,152 @@ const Detail = ({ item }) => {
   };
 
   const handleAddToWish = () => {
-    if (currentItem) wishItems.addItem(currentItem);
+    if (currentItem) {
+      wishItems.addItem(currentItem);
+      setIsInWishlist(!isInWishlist);
+    }
   };
 
-  if (!currentItem) return <p>Loading product details...</p>;
+  if (!currentItem) {
+    return (
+      <div className="enterprise-detail-loading">
+        <div className="loading-shimmer product-name-skeleton"></div>
+        <div className="loading-shimmer price-skeleton"></div>
+        <div className="loading-shimmer description-skeleton"></div>
+      </div>
+    );
+  }
 
   return (
-    <div className="product__detail__container">
-      <div className="product__detail card text-center">
-        <div className="product__name__main card-header">
-          {currentItem.name}
+    <div className="enterprise-product-detail">
+      {/* Brand & Name */}
+      <div className="product-header">
+        <Chip 
+          label={currentItem.brand || "Premium Brand"} 
+          className="brand-chip"
+          size="small"
+        />
+        <h1 className="product-title">{currentItem.name}</h1>
+        <div className="product-rating">
+          <Rating value={4.5} precision={0.5} readOnly size="small" />
+          <span className="rating-text">(127 reviews)</span>
         </div>
+      </div>
 
-        <div className="product__detail__description card-body card-title">
-          {currentItem.description || "No description available."}
+      {/* Price */}
+      <div className="price-section">
+        <span className="current-price">${currentItem.price}</span>
+        <span className="original-price">${(currentItem.price * 1.2).toFixed(0)}</span>
+        <Chip label="20% OFF" className="discount-chip" size="small" />
+      </div>
+
+      {/* Description */}
+      <div className="product-description">
+        <p>{currentItem.description || "Premium quality product with exceptional craftsmanship and attention to detail."}</p>
+      </div>
+
+      <Divider className="section-divider" />
+
+      {/* Color Selection */}
+      <div className="selection-section">
+        <div className="section-title">Color</div>
+        <div className="color-options">
+          {colors.map((color, idx) => (
+            <button
+              key={idx}
+              className={`color-swatch ${selectedColor === idx ? 'selected' : ''}`}
+              style={{ backgroundColor: color.value }}
+              onClick={() => setSelectedColor(idx)}
+              title={color.name}
+            />
+          ))}
         </div>
+      </div>
 
-        <div className="product__color card-text">
-          <div className="product-color-label">COLOR</div>
-          <div className="product-color-options">
-            {[
-              "#FF0000",
-              "#0000FF",
-              "#008000",
-              "#FFA500",
-              "#800080",
-              "#000000",
-              "#FFC0CB",
-            ].map((clr, idx) => (
-              <div
-                key={idx}
-                className="product-color"
-                style={{ backgroundColor: clr }}
-              ></div>
-            ))}
+      {/* Size Selection */}
+      <div className="selection-section">
+        <div className="section-title">Size</div>
+        <div className="size-options">
+          {sizes.map((sizeOption) => (
+            <button
+              key={sizeOption}
+              className={`size-button ${size === sizeOption ? 'selected' : ''}`}
+              onClick={() => handleSizeChange(sizeOption)}
+            >
+              {sizeOption}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Quantity */}
+      <div className="selection-section">
+        <div className="section-title">Quantity</div>
+        <div className="quantity-selector">
+          <IconButton 
+            onClick={handleQuantityDecrement} 
+            className="quantity-btn"
+            disabled={quantity <= 1}
+          >
+            <RemoveIcon />
+          </IconButton>
+          <span className="quantity-display">{quantity}</span>
+          <IconButton 
+            onClick={handleQuantityIncrement} 
+            className="quantity-btn"
+          >
+            <AddIcon />
+          </IconButton>
+        </div>
+      </div>
+
+      <Divider className="section-divider" />
+
+      {/* Action Buttons */}
+      <div className="action-buttons">
+        <Button
+          variant="contained"
+          className="add-to-cart-btn"
+          startIcon={<ShoppingBagIcon />}
+          onClick={handleAddToCart}
+          fullWidth
+        >
+          Add to Cart
+        </Button>
+        
+        <IconButton
+          className="wishlist-btn"
+          onClick={handleAddToWish}
+        >
+          {isInWishlist ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        </IconButton>
+      </div>
+
+      {/* Features */}
+      <div className="product-features">
+        <div className="feature-item">
+          <LocalShippingIcon className="feature-icon" />
+          <div className="feature-text">
+            <span className="feature-title">Free Shipping</span>
+            <span className="feature-desc">On orders over $100</span>
           </div>
         </div>
-
-        <div className="product__price__detail alert alert-warning">
-          <p>${currentItem.price}</p>
+        
+        <div className="feature-item">
+          <SecurityIcon className="feature-icon" />
+          <div className="feature-text">
+            <span className="feature-title">Secure Payment</span>
+            <span className="feature-desc">SSL encrypted checkout</span>
+          </div>
         </div>
-
-        <form onSubmit={(e) => e.preventDefault()} className="product__form">
-          <div className="product__quantity__and__size">
-            <div className="product__quantity">
-              <IconButton onClick={handleQuantityIncrement}>
-                <AddCircleIcon />
-              </IconButton>
-              <div className="quantity__input">{quantity}</div>
-              <IconButton onClick={handleQuantityDecrement}>
-                <RemoveCircleIcon fontSize="medium" />
-              </IconButton>
-            </div>
-
-            <div className="product size">
-              <Box sx={{ minWidth: 100 }}>
-                <FormControl fullWidth size="small">
-                  <InputLabel>Size</InputLabel>
-                  <Select value={size} label="size" onChange={handleSizeChange}>
-                    {currentItem.size?.map((s, idx) => (
-                      <MenuItem value={s} key={idx}>
-                        {s}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Box>
-            </div>
+        
+        <div className="feature-item">
+          <AssignmentReturnIcon className="feature-icon" />
+          <div className="feature-text">
+            <span className="feature-title">Easy Returns</span>
+            <span className="feature-desc">30-day return policy</span>
           </div>
-
-          <div className="collect__item__actions">
-            <div className="add__cart__add__wish card-footer">
-              <div className="add__cart">
-                <Button
-                  variant="outlined"
-                  size="large"
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: "#FFE26E",
-                      borderColor: "#FFE26E",
-                      borderWidth: "3px",
-                      color: "black",
-                    },
-                    minWidth: 200,
-                    borderColor: "black",
-                    backgroundColor: "black",
-                    color: "#FFE26E",
-                    borderWidth: "3px",
-                  }}
-                  onClick={handleAddToCart}
-                >
-                  ADD TO BAG
-                </Button>
-              </div>
-
-              <div className="add__wish">
-                <IconButton
-                  variant="outlined"
-                  size="large"
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: "#FFE26E",
-                      borderColor: "#FFE26E",
-                      borderWidth: "3px",
-                      color: "black",
-                    },
-                    borderColor: "black",
-                    backgroundColor: "black",
-                    color: "#FFE26E",
-                    borderWidth: "3px",
-                  }}
-                  onClick={handleAddToWish}
-                >
-                  <FavoriteBorderIcon sx={{ width: "22px", height: "22px" }} />
-                </IconButton>
-              </div>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   );

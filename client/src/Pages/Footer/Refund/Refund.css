@@ -1,22 +1,36 @@
 .refund-container {
   max-width: 500px;
-  margin: 4rem auto !important;
+  margin: 0 auto;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 0 1.5rem #b6bec8;
-  background-color: #fff;
+  box-shadow: 0 0 1.5rem var(--shadow-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+
+  /* Centering */
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centers children horizontally */
+  justify-content: center; /* centers children vertically */
+  min-height: 60vh;     /* take full screen height */
   text-align: center;
 }
 
+.refund-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
 .refund-container h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #222;
+  color: var(--heading-color);
+  text-align: center;
 }
 
 .refund-container p {
   font-size: 1rem;
-  color: #555;
+  color: var(--secondary-text-color);
   margin-bottom: 2rem;
   line-height: 1.6;
 }
@@ -30,20 +44,22 @@
 .refund-form input {
   padding: 1rem;
   font-size: 1rem;
-  border: 1px solid #d1cdcd;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
 }
-
 
 .refund-form button {
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
   border: none;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .refund-form button:hover {
-  background-color: #0b4684;
+  background-color: var(--primary-hover-color);
 }

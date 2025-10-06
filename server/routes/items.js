@@ -4,6 +4,7 @@ const cors = require("cors")
 const uploadPhoto = require("../middlewares/upload")
 const { getItem, addItem, updateItem, deleteItem, getItemById } = require("../controllers/itemsController")
 const Item = require("../models/Item"); 
+const { searchItems } = require('../controllers/itemsController');
 
 router.get('/', cors(), async (req, res) => {
     try {
@@ -19,8 +20,11 @@ router.get('/', cors(), async (req, res) => {
     }
 });
 
-/* The get request to get single item by ID*/ 
-router.get('/:id',getItemById);
+// Specific routes must come first
+router.get('/search', searchItems);
+
+
+router.get('/:id', getItemById);
 
 
 

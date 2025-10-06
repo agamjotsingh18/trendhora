@@ -1,0 +1,478 @@
+/* Advertisement Popup Overlay */
+.advertisement-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Theme responsive overlay */
+.advertisement-overlay.dark-theme {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.advertisement-overlay.light-theme {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Advertisement Popup Container */
+.advertisement-popup {
+  border-radius: 16px;
+  max-width: 420px;
+  width: 100%;
+  max-height: 95vh;
+  position: relative;
+  animation: slideUp 0.4s ease-out;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Light Theme */
+.advertisement-popup.light-theme {
+  background: linear-gradient(135deg, #2c5aa0 0%, #1e3c72 50%, #2a5298 100%);
+  color: white;
+}
+
+/* Dark Theme */
+.advertisement-popup.dark-theme {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1f1f1f 100%);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+/* Light Theme Close Button */
+.light-theme .close-btn {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.light-theme .close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Dark Theme Close Button */
+.dark-theme .close-btn {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dark-theme .close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+/* Popup Header */
+.popup-header {
+  text-align: center;
+  padding: 2rem 2rem 1rem;
+  position: relative;
+}
+
+.flash-icon {
+  display: inline-block;
+  background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+  color: white;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  animation: professionalPulse 2s infinite;
+  box-shadow: 0 8px 25px rgba(32, 201, 151, 0.3);
+}
+
+@keyframes professionalPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 8px 25px rgba(32, 201, 151, 0.3);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(32, 201, 151, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 8px 25px rgba(32, 201, 151, 0.3);
+  }
+}
+
+.popup-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.sale-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(32, 201, 151, 0.3);
+  animation: subtlePulse 3s infinite;
+}
+
+@keyframes subtlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Popup Content */
+.popup-content {
+  padding: 0 2rem 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sale-text h3 {
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.sale-text p {
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+  opacity: 0.9;
+}
+
+.offers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.offers-list li {
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  opacity: 0.95;
+}
+
+.offers-list li strong {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* Countdown Timer */
+.countdown-timer {
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Light Theme Timer */
+.light-theme .countdown-timer {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Dark Theme Timer */
+.dark-theme .countdown-timer {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timer-label {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.timer-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  padding: 0.5rem;
+  min-width: 50px;
+}
+
+/* Light Theme Time Units */
+.light-theme .time-unit {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Dark Theme Time Units */
+.dark-theme .time-unit {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.time-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.time-label {
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+  opacity: 0.8;
+}
+
+.time-separator {
+  font-size: 1.5rem;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+/* Popup Actions */
+.popup-actions {
+  padding: 0 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+.shop-now-btn {
+  background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(32, 201, 151, 0.3);
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.shop-now-btn:hover {
+  background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(32, 201, 151, 0.4);
+  text-decoration: none;
+  color: white;
+}
+
+.maybe-later-btn {
+  background: transparent;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+/* Light Theme Maybe Later Button */
+.light-theme .maybe-later-btn {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.light-theme .maybe-later-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Dark Theme Maybe Later Button */
+.dark-theme .maybe-later-btn {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .maybe-later-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Popup Footer */
+.popup-footer {
+  text-align: center;
+  padding: 0 2rem 1.5rem;
+}
+
+.popup-footer small {
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+
+/* Theme Support - Handled by theme-specific classes above */
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .advertisement-popup {
+    max-width: 90vw;
+    margin: 0.5rem;
+    border-radius: 12px;
+    max-height: 90vh;
+    min-height: auto;
+  }
+  
+  .popup-header {
+    padding: 1.25rem 1.25rem 0.75rem;
+  }
+  
+  .popup-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .popup-content {
+    padding: 0 1.25rem 0.75rem;
+  }
+  
+  .popup-actions {
+    padding: 0 1.25rem 1.5rem;
+  }
+  
+  .flash-icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .offers-list {
+    font-size: 0.85rem;
+  }
+  
+  .sale-text h3 {
+    font-size: 1.1rem;
+  }
+  
+  .shop-now-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .advertisement-popup {
+    max-width: 95vw;
+    margin: 0.25rem;
+    max-height: 90vh;
+  }
+  
+  .popup-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .popup-content {
+    padding: 0 1rem 0.5rem;
+  }
+  
+  .popup-actions {
+    padding: 0 1rem 1.5rem;
+  }
+  
+  .shop-now-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .time-unit {
+    min-width: 35px;
+    padding: 0.3rem;
+  }
+  
+  .time-number {
+    font-size: 1rem;
+  }
+  
+  .time-label {
+    font-size: 0.6rem;
+  }
+  
+  .offers-list {
+    font-size: 0.8rem;
+  }
+  
+  .popup-footer {
+    padding: 0 1rem 1rem;
+  }
+}
+
+
+
+/* Accessibility */
+.close-btn:focus,
+.shop-now-btn:focus,
+.maybe-later-btn:focus {
+  outline: 2px solid #ffd700;
+  outline-offset: 2px;
+}
+
+/* Prevent body scroll when popup is open */
+body.popup-open {
+  overflow: hidden;
+}

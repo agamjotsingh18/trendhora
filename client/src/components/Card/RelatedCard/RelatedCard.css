@@ -1,3 +1,4 @@
+
 /* 🌟 Card Container */
 .related__product__card__container {
     height: 360px;
@@ -110,3 +111,378 @@
     }
   }
   
+
+/* Enterprise Related Card Styles with Dark Mode Support */
+.enterprise-related-card {
+  position: relative !important;
+  height: 420px !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  background: var(--bg-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.enterprise-related-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15) !important;
+  border-color: var(--accent-color) !important;
+}
+
+/* Dark Mode Support for Cards */
+.dark-mode .enterprise-related-card {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark-mode .enterprise-related-card:hover {
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.1) !important;
+  border-color: var(--accent-color) !important;
+}
+
+/* Image Container */
+.card-image-container {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.enterprise-related-card:hover .card-image {
+  transform: scale(1.05);
+}
+
+/* Loading Skeleton */
+.image-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skeleton-shimmer {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Hover Overlay */
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+.card-overlay.visible {
+  opacity: 1;
+}
+
+.overlay-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.action-button {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #374151 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.2s ease !important;
+}
+
+.action-button:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Badges */
+.sale-badge {
+  position: absolute !important;
+  top: 0.75rem !important;
+  left: 0.75rem !important;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  z-index: 2 !important;
+}
+
+.new-badge {
+  position: absolute !important;
+  top: 0.75rem !important;
+  right: 0.75rem !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  z-index: 2 !important;
+}
+
+/* Card Content with Theme Support */
+.card-content {
+  padding: 1.25rem !important;
+  height: 170px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  background-color: var(--bg-primary) !important;
+}
+
+.product-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: color 0.2s ease !important;
+}
+
+.product-link:hover {
+  color: var(--accent-color) !important;
+  text-decoration: none !important;
+}
+
+.product-name {
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  line-height: 1.3 !important;
+  margin-bottom: 0.5rem !important;
+  color: var(--text-primary) !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  transition: color 0.2s ease !important;
+}
+
+.product-description {
+  font-size: 0.875rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 0.75rem !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Dark Mode Content Support */
+.dark-mode .card-content {
+  background-color: var(--bg-secondary) !important;
+}
+
+.dark-mode .product-name {
+  color: var(--text-primary) !important;
+}
+
+.dark-mode .product-description {
+  color: var(--text-secondary) !important;
+}
+
+.dark-mode .product-link:hover {
+  color: var(--accent-color) !important;
+}
+
+/* Price with Theme Support */
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.current-price {
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  font-size: 1.125rem !important;
+}
+
+.original-price {
+  color: var(--text-secondary) !important;
+  text-decoration: line-through !important;
+  font-size: 0.875rem !important;
+}
+
+/* Rating with Theme Support */
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.product-rating {
+  font-size: 0.875rem !important;
+}
+
+.rating-container .MuiTypography-caption {
+  color: var(--text-secondary) !important;
+  font-size: 0.75rem !important;
+}
+
+/* Dark Mode Price and Rating Support */
+.dark-mode .current-price {
+  color: var(--text-primary) !important;
+}
+
+.dark-mode .original-price {
+  color: var(--text-secondary) !important;
+}
+
+.dark-mode .rating-container .MuiTypography-caption {
+  color: var(--text-secondary) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .enterprise-related-card {
+    height: 380px !important;
+  }
+  
+  .card-image-container {
+    height: 220px;
+  }
+  
+  .card-content {
+    padding: 1rem !important;
+    height: 160px !important;
+  }
+  
+  .product-name {
+    font-size: 0.9rem !important;
+  }
+  
+  .current-price {
+    font-size: 1rem !important;
+  }
+  
+  .overlay-actions {
+    gap: 0.5rem;
+  }
+  
+  .action-button {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .enterprise-related-card {
+    height: 350px !important;
+  }
+  
+  .card-image-container {
+    height: 200px;
+  }
+  
+  .card-content {
+    padding: 0.75rem !important;
+    height: 150px !important;
+  }
+  
+  .sale-badge,
+  .new-badge {
+    top: 0.5rem !important;
+  }
+  
+  .sale-badge {
+    left: 0.5rem !important;
+  }
+  
+  .new-badge {
+    right: 0.5rem !important;
+  }
+}
+
+/* Animation for badges */
+.sale-badge {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Focus states for accessibility */
+.enterprise-related-card:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.action-button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .enterprise-related-card {
+    border: 2px solid black !important;
+  }
+  
+  .action-button {
+    background: white !important;
+    color: black !important;
+    border: 2px solid black !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .enterprise-related-card,
+  .card-image,
+  .action-button,
+  .card-overlay {
+    transition: none !important;
+  }
+  
+  .skeleton-shimmer {
+    animation: none;
+  }
+  
+  .sale-badge {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .card-overlay,
+  .action-button {
+    display: none !important;
+  }
+}
+

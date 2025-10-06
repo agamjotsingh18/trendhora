@@ -1,45 +1,18 @@
-/* ==== Outer Container (full-screen alignment) ==== */
-.register__card__container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  
-  box-sizing: border-box;
-}
-
-/* ==== Card Box ==== */
+/* ==== Card ==== */
 .register__card {
-  height: 500px; /* consistent with login card layout */
-  width: 90%;
-  max-width: 400px;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  padding: 40px;
-  background-color: var(--bg-secondary);
-  margin: auto;
-  overflow: hidden;
-}
-
-/* ==== Header ==== */
-.register__header {
-  height: 19%;
   width: 100%;
+  max-width: 420px; /* same width as login */
+  margin: auto;
+  padding: 2.5rem;
+  border-radius: 10px;
+  background-color: var(--bg-secondary);
+  box-shadow: var(--shadow);
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.register__header h1 {
-  font-size: 2.5rem;
-  font-weight: bolder;
-  margin-left: 5px;
-  color: #333;
-}
-
-/* ==== OAuth ==== */
+/* ==== OAuth Buttons ==== */
 .oauth__icon__row {
   display: flex;
   justify-content: center;
@@ -62,80 +35,92 @@
 
 .oauth__divider {
   text-align: center;
-  margin: 0.8rem 0;
+  margin: 1rem 0;
   font-size: 0.85rem;
   color: #999;
 }
 
 /* ==== Inputs ==== */
 .register__inputs {
-  height: 60%;
-  width: 100%;
-}
-
-.reg__input__container {
-  height: 35%;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
+  gap: 0.8rem;
 }
 
 .input__label {
-  height: 40%;
-  width: 100%;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
+  color: var(--text-primary);
 }
 
 .register__input {
   width: 100%;
-  height: 50%;
   padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
   font-size: 1rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+
+.register__input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.12);
+}
+
+/* ==== Password checklist ==== */
+.password-checklist {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.valid { color: green; }
+.invalid { color: red; }
 
 /* ==== Button ==== */
 .register__button__container {
-  height: 30%;
+  margin-top: 0.6rem;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
 }
 
 .register__button {
-  height: 60%;
   width: 100%;
-  font-size: 1.1rem;
-  background-color: #ffe26e;
-  border-color: #ffe26e;
-  border-style: dashed;
-  font-weight: bold;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  background-color: #FFE26E;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.25s ease, transform 0.15s ease;
 }
 
 .register__button:hover {
-  background-color: #ffd700;
+  background-color: #ffd84f;
+  transform: translateY(-1px);
+}
+
+.register__button:active {
+  transform: translateY(0);
 }
 
 /* ==== Footer Links ==== */
 .register__other__actions {
-  height: 20%;
-  width: 100%;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
   text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
 .register__login__account {
-  font-size: 0.9rem;
-  color: #ffe26e;
-  text-decoration: none;
-  cursor: pointer;
+  margin-top: 0.4rem;
+  color: var(--accent-color);
+  font-weight: 500;
 }
 
 .register__login__account a {
@@ -146,3 +131,63 @@
 .register__login__account a:hover {
   text-decoration: underline;
 }
+
+
+/* ==== Validation ====  */
+.reg__input__container {
+  width: 100%;
+  position: relative;      
+  margin-bottom: 1rem;     
+}
+
+.error-message {
+  position: absolute;
+  top: 4rem;   
+  left: 4px;
+  font-size: 12px;
+  color: red;
+  line-height: 1.2;
+  background: transparent; 
+  padding: 0;              
+  border: none;            
+}
+
+
+.strength-text {
+  position: absolute;
+  right: 0px;
+  top: 5.5rem;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+.strength-text.red { color: #dc2626; }
+.strength-text.orange { color: #f97316; }
+.strength-text.yellow { color: #eab308; }
+.strength-text.green { color: #22c55e; }
+.strength-text.emerald { color: #059669; }
+
+.input-with-loader {
+  position: relative;
+}
+
+.input-with-loader .loader {
+  position: absolute;
+  right: 10px;
+  top: 35%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+

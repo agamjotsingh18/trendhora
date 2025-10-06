@@ -6,8 +6,10 @@ import { CartItemsContext } from "../../../Context/CartItemsContext";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { WishItemsContext } from "../../../Context/WishItemsContext";
+import { useComparison } from "../../../Context/ComparisonContext";
 import Toaster from "../../Toaster/toaster";
 import axios from "axios";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 
 const ItemCard = (props) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -20,6 +22,7 @@ const ItemCard = (props) => {
   const navigate = useNavigate();
   const cartItemsContext = useContext(CartItemsContext);
   const wishItemsContext = useContext(WishItemsContext);
+  const { addToCompare } = useComparison();
   const currentItem = props.item || product;
   const itemCategory = currentItem?.category || props.category;
 
@@ -115,6 +118,31 @@ const ItemCard = (props) => {
     }
   };
 
+  // ✅ Add to Compare
+  const handleAddToCompare = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (currentItem) {
+      const normalized = {
+        ...currentItem,
+        _id: currentItem._id || currentItem.id,
+        category: itemCategory,
+      };
+      const success = addToCompare(normalized);
+      if (success) {
+        setToasterTitle("Success");
+        setToasterMessage("Item added to comparison!");
+        setToasterType("success");
+      } else {
+        setToasterTitle("Info");
+        setToasterMessage("Maximum 3 items can be compared or item already added!");
+        setToasterType("info");
+      }
+      setShowToaster(true);
+    }
+  };
+
   const handleCloseToaster = () => {
     setShowToaster(false);
   };
@@ -125,9 +153,10 @@ const ItemCard = (props) => {
 
   const getImageUrl = (image) => {
     if (!image) return '';
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
     return typeof image === 'string'
       ? image
-      : `https://trendhora-api.onrender.com/public/${itemCategory}/${image.filename}`;
+      : `${backendUrl}/public/${itemCategory}/${image.filename}`;
   };
 
   const imageUrl = getImageUrl(currentItem.image[0]);
@@ -204,11 +233,11 @@ const ItemCard = (props) => {
         <div className="product__card__action">
         <button
   type="button"
-  className="action-button wishlist-button"
-  onClick={handleAddToWishList}
-  aria-label="Add to wishlist"
+  className="action-button compare-button"
+  onClick={handleAddToCompare}
+  aria-label="Add to compare"
 >
-  <FavoriteBorderIcon style={{ fontSize: "1.1rem" }} />
+  <CompareArrowsIcon style={{ fontSize: "1.1rem" }} />
 </button>
 
 <button
@@ -217,7 +246,16 @@ const ItemCard = (props) => {
   onClick={handleAddToCart}
 >
   <AddShoppingCartIcon style={{ fontSize: "1.1rem" }} />
-  <span>Add to Cart</span>
+  <span>CART</span>
+</button>
+
+<button
+  type="button"
+  className="action-button wishlist-button"
+  onClick={handleAddToWishList}
+  aria-label="Add to wishlist"
+>
+  <FavoriteBorderIcon style={{ fontSize: "1.1rem" }} />
 </button>
 
         </div>

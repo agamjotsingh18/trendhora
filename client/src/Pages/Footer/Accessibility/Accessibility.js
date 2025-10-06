@@ -1,8 +1,18 @@
+import { useEffect } from "react";
 import "./Accessibility.css"
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 
 const AccessiblityPage = () => {
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }, []);
+
     return (
         <div className="accessibility-container">
             <h1>Accessibility Statement</h1>

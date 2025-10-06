@@ -2,7 +2,7 @@
     position: relative;
     min-height: 100vh;
     width: 100%;  
-    margin-top:0rem;
+    margin-top: 0;
     padding-bottom: 120px; /* Space for the button */
 }
 
@@ -17,7 +17,7 @@
 .category__header__container {
     height: max-content;
     width: 90%;
-    margin:1rem auto;
+    margin: 0.5rem auto;
     display: flex;
     align-items:baseline;
     flex-wrap: wrap;
@@ -70,7 +70,12 @@
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
     justify-content: center;
+
     padding: 1rem 0;
+
+    flex-wrap: wrap;
+    gap: 50px;
+
 }
 
 /* Ensure consistent card sizing */
@@ -193,6 +198,6 @@
 
 @media(max-width:768px){
     .category__container{
-        margin-top: 6rem;
+        margin-top: 0;
     }
 }
