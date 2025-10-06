@@ -1,68 +1,81 @@
 import "./Description.css";
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { Button, IconButton, Rating } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { CartItemsContext } from "../../../Context/CartItemsContext";
 import { WishItemsContext } from "../../../Context/WishItemsContext";
 
-/* 🔹 Separate DeliveryOffers Component */
+/* 🔹 Delivery & Offers Component - Enhanced */
 const DeliveryOffers = ({ delivery, offers }) => {
   const [pincode, setPincode] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("idle"); // idle | ok | error
 
-  // Dummy check function
   const checkDelivery = () => {
-    if (!pincode || pincode.length !== 6) {
-      setMessage("❌ Please enter a valid 6-digit pincode.");
+    const cleaned = (pincode || "").trim();
+    if (!/^\d{6}$/.test(cleaned)) {
+      setStatus("error");
+      setMessage("Please enter a valid 6-digit pincode.");
       return;
     }
+    // Simulated logic: even last digit -> 2 days, odd -> 4 days
+    const days = parseInt(cleaned[cleaned.length - 1]) % 2 === 0 ? 2 : 4;
+    setStatus("ok");
+    setMessage(`Estimated delivery: ${days} day${days > 1 ? "s" : ""} to ${cleaned}.`);
+  };
 
-    // Dummy logic
-    const days = parseInt(pincode[pincode.length - 1]) % 2 === 0 ? 2 : 4;
-    setMessage(
-      `✅ Product will be delivered in approx ${days} days to ${pincode}.`
-    );
+  const reset = () => {
+    setPincode("");
+    setMessage("");
+    setStatus("idle");
   };
 
   return (
     <div className="delivery-offers">
-      <h4>Delivery Info</h4>
-      <p>{delivery}</p>
+      <div className="section-header">
+        <h4>Delivery & Offers</h4>
+      </div>
+
+      <p className="delivery-text">{delivery}</p>
 
       {/* Pincode Check */}
       <div className="pincode-check">
-        <input
-          type="text"
-          placeholder="Enter Pincode"
-          value={pincode}
-          onChange={(e) => setPincode(e.target.value)}
-        />
-        <button onClick={checkDelivery}>Check</button>
-        <button
-          onClick={() => {
-            setPincode("");
-            setMessage("");
-          }}
-        >
-          Reset
-        </button>
-      </div>
-      {message && <p className="delivery-msg">{message}</p>}
-
-      <h4>Offers</h4>
-      <ul>
-        {offers.length > 0 ? (
-          offers.map((offer, i) => <li key={i}>{offer}</li>)
-        ) : (
-          <li>No current offers.</li>
+        <div className="pincode-input-group">
+          <input
+            type="text"
+            placeholder="Enter 6-digit pincode"
+            value={pincode}
+            onChange={(e) => setPincode(e.target.value)}
+            maxLength={6}
+            inputMode="numeric"
+          />
+          <button className="btn-primary" onClick={checkDelivery}>Check</button>
+          <button className="btn-ghost" onClick={reset}>Reset</button>
+        </div>
+        {message && (
+          <div className={`delivery-status ${status}`}>
+            <span className="dot" />
+            {message}
+          </div>
         )}
-      </ul>
+      </div>
+
+      <div className="offers-list">
+        <h5>Available Offers</h5>
+        <ul>
+          {offers.length > 0 ? (
+            offers.map((offer, i) => <li key={i}>{offer}</li>)
+          ) : (
+            <li>No current offers.</li>
+          )}
+        </ul>
+      </div>
     </div>
   );
 };
 
-/* 🔹 Main Description Component */
+/* 🔹 Main Description Component with Tabs */
 const Description = ({ item }) => {
   const cartItems = useContext(CartItemsContext);
   const wishItems = useContext(WishItemsContext);
@@ -80,45 +93,99 @@ const Description = ({ item }) => {
   const offers = item?.offers || [];
   const reviews = item?.reviews || [];
 
+  const [activeTab, setActiveTab] = useState("highlights");
+
+  const averageRating = useMemo(() => {
+    if (!reviews?.length) return 0;
+    const sum = reviews.reduce((acc, r) => acc + (r.rating || 0), 0);
+    return Math.round((sum / reviews.length) * 10) / 10;
+  }, [reviews]);
+
   return (
     <div className="product-container">
-      <div className="product-info">
-        {/* Highlights */}
-        <div className="highlights">
-          <h4>Highlights</h4>
-          <ul>
-            {highlights.length > 0 ? (
-              highlights.map((h, i) => (
-                <li key={i}>
-                  <CheckCircleIcon /> {h}
-                </li>
+      <div className="product-header">
+        <h3 className="product-name">{name}</h3>
+        <div className="product-price">${price}</div>
+      </div>
+
+      {/* Tab Controls */}
+      <div className="tabs">
+        <button
+          className={`tab-button ${activeTab === "highlights" ? "active" : ""}`}
+          onClick={() => setActiveTab("highlights")}
+        >
+          Highlights
+        </button>
+        <button
+          className={`tab-button ${activeTab === "delivery" ? "active" : ""}`}
+          onClick={() => setActiveTab("delivery")}
+        >
+          Delivery & Offers
+        </button>
+        <button
+          className={`tab-button ${activeTab === "reviews" ? "active" : ""}`}
+          onClick={() => setActiveTab("reviews")}
+        >
+          Reviews
+        </button>
+      </div>
+
+      {/* Panels */}
+      <div className="tab-panel">
+        {activeTab === "highlights" && (
+          <div className="highlights">
+            <h4>Highlights</h4>
+            <ul>
+              {highlights.length > 0 ? (
+                highlights.map((h, i) => (
+                  <li key={i}>
+                    <CheckCircleIcon /> {h}
+                  </li>
+                ))
+              ) : (
+                <li>No highlights available.</li>
+              )}
+            </ul>
+
+            <div className="product-details">
+              <h4>Details</h4>
+              <p>{details}</p>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "delivery" && (
+          <DeliveryOffers delivery={delivery} offers={offers} />
+        )}
+
+        {activeTab === "reviews" && (
+          <div className="reviews-section">
+            <div className="reviews-summary">
+              <div className="rating-score">
+                <span className="score">{averageRating}</span>
+                <Rating value={averageRating} precision={0.5} readOnly size="medium" />
+              </div>
+              <div className="rating-count">{reviews.length} review{reviews.length !== 1 ? "s" : ""}</div>
+            </div>
+
+            {reviews.length > 0 ? (
+              reviews.map((r, i) => (
+                <div key={i} className="review-card">
+                  <div className="review-header">
+                    <div className="avatar">{(r.user || "A").charAt(0).toUpperCase()}</div>
+                    <div className="meta">
+                      <strong>{r.user || "Anonymous"}</strong>
+                      <Rating value={r.rating || 0} readOnly size="small" />
+                    </div>
+                  </div>
+                  <p className="review-text">{r.comment || "No comment"}</p>
+                </div>
               ))
             ) : (
-              <li>No highlights available.</li>
+              <p>No reviews yet.</p>
             )}
-          </ul>
-        </div>
-
-        {/* Delivery & Offers ✅ */}
-        <DeliveryOffers delivery={delivery} offers={offers} />
-
-        {/* Reviews */}
-        <div className="reviews-section">
-          <h4>Customer Reviews</h4>
-          {reviews.length > 0 ? (
-            reviews.map((r, i) => (
-              <div key={i} className="review-card">
-                <div className="review-header">
-                  <strong>{r.user || "Anonymous"}</strong>
-                  <Rating value={r.rating || 0} readOnly size="small" />
-                </div>
-                <p>{r.comment || "No comment"}</p>
-              </div>
-            ))
-          ) : (
-            <p>No reviews yet.</p>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
