@@ -15,6 +15,14 @@ const CartCard = (props) => {
     let cartItems  = useContext(CartItemsContext)
     const [size, setSize] = useState(props.item.size[0]);
 
+    const getImageUrl = (image, category) => {
+        if (!image) return '';
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+        return typeof image === 'string'
+            ? image
+            : `${backendUrl}/public/${category}/${image.filename}`;
+    };
+
     const handelQuantityIncrement = (event) => {
         cartItems.quantity(props.item.id, 'INC');
     };
@@ -37,7 +45,7 @@ const CartCard = (props) => {
         <div className='cart__item__card'>
             <div className="cart__item__detail">
                 <div className="cart__item__image">
-                    <img src={`https://trendhora-api.onrender.com/${props.item.category}/${props.item.image[0].filename}`} alt="item" className="item__image"/>
+                    <img src={getImageUrl(props.item.image[0], props.item.category)} alt="item" className="item__image"/>
                 </div>
                 <div className="cart__item__name">{props.item.name}</div>
             </div>
