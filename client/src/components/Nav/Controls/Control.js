@@ -55,17 +55,28 @@ const Control = () => {
       }
 
       // Then check JWT token
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('authToken');
+      if (token && supaUser) {
+        await supabase.auth.signOut();
+        // Fall through to use the JWT token
+      } else if (supaUser && !token) {
+          // Only a Supabase user exists, use it
+          setUser(supaUser);
+          return;
+      }
+
       if (token) {
         try {
           const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/me`, {
             headers: { Authorization: `Bearer ${token}` }
           });
-          setUser(res.data); // backend should return user info
+          setUser(res.data.data); // backend should return user info
         } catch (err) {
           console.error(err);
-          localStorage.removeItem('token');
+          localStorage.removeItem('authToken');
         }
+      }else {
+        setUser(null);
       }
     };
 
@@ -73,7 +84,7 @@ const Control = () => {
 
     //  Listen for login/logout changes in localStorage
     const handleStorageChange = () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('authToken');
       if (token) {
         // Simple placeholder if no backend fetch
         setUser(prev => prev || { username: 'ProfileUser' });
@@ -95,7 +106,7 @@ const Control = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    localStorage.removeItem('token');
+    localStorage.removeItem('authToken');
     setUser(null);
     handleClose();
     navigate('/');
@@ -151,7 +162,7 @@ const handleDeleteAccount = async () => {
     await supabase.auth.signOut();
 
     // Step 3: Clear local storage & frontend state
-    localStorage.removeItem("token");
+    localStorage.removeItem("authToken");
     localStorage.removeItem("user");
     setUser(null);
     setDeleteOpen(false);

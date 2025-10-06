@@ -81,7 +81,7 @@ const ItemCard = (props) => {
         _id: currentItem._id || currentItem.id,
         category: itemCategory,
       };
-      cartItemsContext.addItemToCart(normalized);
+      cartItemsContext.addItem(normalized, 1)
       setToasterTitle("Success");
       setToasterMessage("Item added to cart!");
       setToasterType("success");
@@ -110,7 +110,7 @@ const ItemCard = (props) => {
         _id: currentItem._id || currentItem.id,
         category: itemCategory,
       };
-      wishItemsContext.addItemToWishList(normalized);
+      wishItemsContext.addItem(normalized);
       setToasterTitle("Success");
       setToasterMessage("Item added to wishlist!");
       setToasterType("success");

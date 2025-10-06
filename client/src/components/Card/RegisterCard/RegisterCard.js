@@ -50,7 +50,7 @@ useEffect(() => {
       );
       
       // Store JWT token
-      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('authToken', res.data.token);
       window.dispatchEvent(new Event('storage'));
 
       alert('Registration successful! Logged in.');

@@ -63,7 +63,7 @@ const Detail = ({ item }) => {
   };
 
   const handleAddToCart = () => {
-    if (currentItem) cartItems.addItem(currentItem, quantity, size);
+    if (currentItem) cartItems.addItem(currentItem, quantity); ;
   };
 
   const handleAddToWish = () => {

@@ -1,34 +1,15 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './LoginCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import ForgotPassword from "../../Authentication/ForgotPassword/ForgotPassword";
 
 
-
+// 🎯 REMOVE 'onSubmit' from the prop list
 const LoginCard = ({ email, password, setEmail, setPassword }) => {
-    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showForgot, setShowForgot] = useState(false);
-
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, { email, password });
-            localStorage.setItem('token', response.data.token);
-            window.dispatchEvent(new Event('authChange')); //  Trigger navbar change
-            alert('Login successful!');
-            setTimeout(() => {
-                navigate('/');
-            }, 100); // Navigate to account page after login
-        } catch (error) {
-            const errorMessage = error.response ? error.response.data.message : error.message;
-            alert(`Login failed: ${errorMessage}`);
-        }
-    };
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -37,7 +18,8 @@ const LoginCard = ({ email, password, setEmail, setPassword }) => {
     return (
         <div className="login__card__container">
             <div className="login__card">
-                <form onSubmit={handleLogin}>
+                {/* 🎯 FIX: Changed the div back to a clean div. The parent <form> will catch the submit event from the button below. */}
+                <div> 
                     <div className="login__inputs">
                         <div className="email__input__container input__container">
                             <label className="email__label input__label">Email</label>
@@ -70,10 +52,11 @@ const LoginCard = ({ email, password, setEmail, setPassword }) => {
                             </div>
                         </div>
                         <div className="login__button__container">
+                            {/* This button has type="submit" and triggers the parent form */}
                             <button className="login__button" type="submit">LOGIN</button>
                         </div>
                     </div>
-                </form>
+                </div> 
                 <div className="login__other__actions">
                     <div
                         className="login__forgot__password"

@@ -15,12 +15,15 @@ const CategoryView = () => {
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/items`)
             .then(res => {
+                console.log("Fetched items from backend:", res.data); // Debug log
                 setMenItems(res.data.filter((item) => item.category === "men"))
                 setKidsItems(res.data.filter((item) => item.category === "kids" ))
                 setWomenItems(res.data.filter((item) => item.category === "women")) 
                 setLoading(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.error("Error fetching items:", err); // Debug log
+            })
 
         window.scrollTo(0, 0)
     }, [param.id])

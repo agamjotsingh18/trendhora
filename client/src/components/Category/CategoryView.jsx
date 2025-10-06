@@ -3,6 +3,7 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import ItemCard from '../../Card/ItemCard/ItemCard';
 import ReactLoading from 'react-loading';
 import './FeaturedItems.css'
+import { backendUrl } from '../../config';
 
 // Add a debug log to inspect items
 const FeaturedItems = ({ items }) => {
