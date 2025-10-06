@@ -129,6 +129,29 @@ exports.resetPassword = async (req, res) => {
     }
 };
 
+// checking duplicate username
+exports.checkUsername = async (req, res) => {
+  try {
+    const { username } = req.query;
+
+    if (!username) {
+      return res.status(400).json({ success: false, message: "Username is required" });
+    }
+
+    const user = await User.findOne({ username });
+
+    res.status(200).json({
+      success: true,
+      exists: !!user,
+    });
+  } catch (error) {
+    console.error("Error checking username:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error while checking username",
+    });
+  }
+};
 
 const sendEmail = async ({ email, subject, message }) => {
     const transporter = nodemailer.createTransport({

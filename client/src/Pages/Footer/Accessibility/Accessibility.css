@@ -1,30 +1,30 @@
-
 .accessibility-container h1:first-child {
-    margin-top: 4rem; 
+  margin-top: 4rem;
 }
+
 .accessibility-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    line-height: 1.6;
-    font-size: 1rem;
-    color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
 }
 
-.list{
-    list-style-type: disc;
-    padding-left: 2rem;
-    margin-top: 1rem;
-    line-height: 1.6;
-    color: #464545;
+.list {
+  list-style-type: disc;
+  padding-left: 2rem;
+  margin-top: 1rem;
+  line-height: 1.6;
+  color: #464545;
 }
 
-.list-item{
-    margin-bottom: 0.5rem;
+.list-item {
+  margin-bottom: 0.5rem;
 }
 
-.heading{
-    margin-bottom: 1rem;
+.heading {
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -49,7 +49,7 @@ p {
 .accessibility-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 200px 1rem 2rem; 
+  padding: 200px 1rem 2rem;
   line-height: 1.6;
   font-size: 1rem;
   color: #333;
@@ -58,7 +58,7 @@ p {
 
 .accessibility-container h1 {
   position: relative;
-  margin-bottom: 30px;   
+  margin-bottom: 30px;
   padding-bottom: 12px;
   font-size: 2rem;
   color: #222;
@@ -69,7 +69,41 @@ p {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 80px;              
+  width: 80px;
   height: 3px;
-  background-color: #FFD633; 
+  background-color: #FFD633;
+}
+
+/* Dark mode default text colors */
+
+.dark-mode .accessibility-container {
+  color: #e0e0e0;
+}
+
+.dark-mode .accessibility-container h1 {
+  color: #e0e0e0;
+}
+
+.dark-mode .accessibility-container h2 {
+  color: #e0e0e0;
+}
+
+.dark-mode .accessibility-container p {
+  color: var(--text-secondary);
+}
+
+.dark-mode .list {
+  color: var(--text-secondary);
+}
+
+.dark-mode .accessibility-container a {
+  color: var(--text-secondary);
+}
+
+.dark-mode .accessibility-container a:hover {
+  color: var(--text-secondary);
+}
+
+.dark-mode .accessibility-container .MuiSvgIcon-root {
+  color: var(--text-secondary);
 }
