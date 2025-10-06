@@ -25,7 +25,7 @@ const Related = (props) => {
         <div className="related__header">
           <h2>
             RECOMMENDED PRODUCTS{" "}
-            <span class="badge text-bg-danger">TRY NOW</span>
+            <span className="badge text-bg-danger">TRY NOW</span>
           </h2>
         </div>
         <div className="related__header__line"></div>
@@ -34,13 +34,13 @@ const Related = (props) => {
         <div className="related__product__card">
           {menItems &&
             props.category === "men" &&
-            menItems.map((item) => <RelatedCard item={item} />)}
+            menItems.map((item) => <RelatedCard key={item._id || item.id} item={item} />)}
           {womenItems &&
             props.category === "women" &&
-            womenItems.map((item) => <RelatedCard item={item} />)}
+            womenItems.map((item) => <RelatedCard key={item._id || item.id} item={item} />)}
           {kidsItems &&
             props.category === "kids" &&
-            kidsItems.map((item) => <RelatedCard item={item} />)}
+            kidsItems.map((item) => <RelatedCard key={item._id || item.id} item={item} />)}
         </div>
       </div>
     </div>

@@ -6,23 +6,29 @@ import Related from "./Related/Related";
 import { Link } from "react-router-dom";
 
 const Item = (props) => {
+  const item = props?.item;
+
+  if (!item) {
+    return <div className="item__container">Loading...</div>;
+  }
+
   return (
     <div className="item__container">
-      <div>
-        <Link to={`/category/${props.item.category}`}>
-          <button className="btn btn-primary btn-lg rounded-pill"> Exit</button>
-        </Link>
-      </div>
+      <Link to={`/category/${item.category || ""}`}>
+        <button className="exit-btn">Exit</button>
+      </Link>
 
       <div className="detail__and__carousel__container">
-        <ItemCarousel item={props.item} />
-        <Detail item={props.item} />
+        <ItemCarousel item={item} />
+        <Detail item={item} />
       </div>
+
       <div className="item__description__container">
-        <Description item={props.item} />
+        <Description item={item} />
       </div>
+
       <div className="related__items__container">
-        <Related category={props.item.category} />
+        <Related category={item.category || ""} />
       </div>
     </div>
   );

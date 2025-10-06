@@ -1,123 +1,192 @@
-.product__description__product {
-  height: auto;
-  width: 98%;
+/* Container */
+.product-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
+  font-family: "Arial", sans-serif;
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
-  /* background-color: rgb(246, 246, 246); */
-  align-self: center;
-  margin: 50px auto;
-  padding: 30px;
-  border-radius: 10px;
-  /* border:1px solid #dcdada; */
+  gap: 2.5rem; /* space between sections */
+  box-sizing: border-box;
 }
 
-.description__header__container {
-  width: 90%;
-  height: 60px;
+/* Product Header */
+.product-header {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
-.description__header__line {
-  height: 50%;
-  width: 2px;
-  background-color: rgb(0, 0, 0);
+.product-name {
+  font-size: 1.6rem;
+  color: #ff385c;
+  font-weight: 700;
+  margin: 0;
 }
 
-.description__header {
-  width: 100px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 1.4rem;
-}
-
-.description__detail__container {
-  width: 90%;
-  height: 40%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.description__detail {
-  width: 60%;
-  height: auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  text-align: left;
-}
-
-.description__highlights__header {
-  width: 100px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: larger;
-  margin-bottom: 1rem;
-}
-
-.description__specifics__container {
-  width: 100%;
-  height: 40%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-.list-group-item {
-  background-color: inherit !important;
+.product-price {
+  font-size: 1.3rem;
+  color: #ff8008;
   font-weight: 600;
+  margin: 0;
+}
+
+/* Common Section Styles */
+.product-details,
+.highlights,
+.delivery-offers,
+.reviews-section {
+  min-height: 80px;
+  padding: 1.2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.product-details h4,
+.highlights h4,
+.delivery-offers h4,
+.reviews-section h4 {
+  color: #ff385c;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+/* Product Details */
+.product-details p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Highlights */
+.highlights ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.highlights li {
+  background-color: #fff3e6;
+  padding: 0.5rem 0.9rem;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.highlights li:hover {
+  background-color: #ffe26e;
+  transform: translateY(-2px);
+}
+
+/* Delivery & Offers */
+.delivery-offers p,
+.delivery-offers ul {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.delivery-offers ul {
+  padding-left: 1.2rem;
+}
+
+.delivery-offers ul li {
+  list-style: disc;
+  margin-left: 0.5rem;
+}
+
+/* Pincode Check */
+.pincode-check {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.pincode-check input {
+  flex: 1 1 200px;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.pincode-check button {
+  padding: 0.6rem 1.2rem;
   border: none;
-  /* text-wrap: nowrap; */
-  /* height: 2rem; */
+  background: linear-gradient(135deg, #ff8008, #ffc837);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
-.list-item-container {
-  background-color: #eeede9f0;
-  width: 60%;
-  height: max-content;
-  padding: 1rem;
-  object-fit: contain;
-  text-wrap: nowrap;
-  border-radius: 2rem;
+
+.pincode-check button:hover {
+  background: linear-gradient(135deg, #ff9900, #ffcc33);
 }
-.card__wrapper {
-  height: 35rem;
-  width: 30%;
+
+.delivery-msg {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  color: #333;
 }
-.desc__card {
-  position: sticky;
-  top: 50%;
-  z-index: 100;
-  object-fit: contain;
+
+/* Reviews */
+.reviews-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
-.desc__title {
-  font-weight: 200;
-  text-wrap: nowrap;
-  font-size: 120%;
-  object-fit: contain;
+
+.review-card {
+  background: #fff3e6;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
-.add__cart {
-  max-height: 8rem;
-  /* text-wrap: nowrap; */
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
 }
-.add__cart__add_wish {
-  object-fit: contain;
-}
+
+/* Responsive */
 @media (max-width: 650px) {
-  .card__wrapper {
-    display: none;
+  .product-container {
+    width: 95%;
+    gap: 2rem;
   }
-  .list-item-container {
+
+  .highlights li {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .product-name {
+    font-size: 1.3rem;
+  }
+
+  .product-price {
+    font-size: 1.1rem;
+  }
+
+  .pincode-check {
+    flex-direction: column;
+  }
+
+  .pincode-check button {
     width: 100%;
   }
 }
