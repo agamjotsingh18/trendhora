@@ -22,7 +22,8 @@ const settings = {
       autoplay: true,     // Automatically change slides
       autoplaySpeed: 3000, // Change slide every 3 seconds
       fade: true,         // Use a fade transition
-      cssEase: 'linear'
+      cssEase: 'linear',
+      arrows: false
     };
 
     // Array of images to display in the carousel
