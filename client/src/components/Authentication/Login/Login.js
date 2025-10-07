@@ -17,8 +17,8 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, { email, password });
-            localStorage.setItem('token', response.data.token); // Store JWT token
-            alert('Login successful!');
+            localStorage.setItem('authToken', response.data.token); // Store JWT token
+            
             navigate('/account/me'); // Navigate to account page after login
         } catch (error) {
             const errorMessage = error.response ? error.response.data.message : error.message;
@@ -62,14 +62,14 @@ const Login = () => {
         </div>
 
         {/* Email/password form */}
-        {/*<form onSubmit={handleLogin}>*/}
-          <LoginCard
-            email={email}
-            password={password}
-            setEmail={setEmail}
-            setPassword={setPassword}
-          />
-        {/*</form>*/}
+        <form onSubmit={handleLogin}> 
+            <LoginCard
+              email={email}
+              password={password}
+              setEmail={setEmail}
+              setPassword={setPassword}
+            />
+        </form>
       </div>
     </div>
   );
