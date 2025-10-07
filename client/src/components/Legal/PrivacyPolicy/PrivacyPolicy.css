@@ -1,9 +1,11 @@
 /* Privacy Policy Page Styles */
 
-.privacy-container {
+.privacy-policy-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background: var(--card-bg);
+    color: var(--text-color);
 }
 
 .back-button {
@@ -12,7 +14,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    color: #333;
+    color: var(--text-color);
     font-size: 16px;
     margin-bottom: 20px;
     transition: color 0.3s ease;
@@ -23,62 +25,74 @@
 }
 
 .privacy-paper {
-    background: #fff;
+    background: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    padding: 40px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .privacy-title {
-    color: #1976d2;
+    color: var(--text-color) !important;
     font-weight: 600;
     margin-bottom: 20px;
 }
 
 .privacy-date {
-    color: #666;
+    color: var(--text-color);
     font-size: 14px;
     margin-bottom: 20px;
 }
 
+.section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    text-align: start;
+}
+
 .section-title {
-    color: #333;
+    color: var(--text-color);
     font-weight: 600;
     margin-bottom: 15px;
     margin-top: 30px;
 }
 
 .section-content {
-    color: #555;
+    color: var(--text-color);
     line-height: 1.6;
     margin-bottom: 20px;
+    text-align: start;
 }
 
 .privacy-list {
     padding-left: 20px;
     margin-bottom: 20px;
+    color: var(--text-color);
 }
 
 .privacy-list li {
     margin-bottom: 8px;
-    color: #555;
+    color: var(--text-color);
 }
 
 .contact-details {
     padding-left: 20px;
     margin-bottom: 20px;
+    background-color: var(--card-bg);
+    border: 1px solid #e0e0e0;
+    width: 100%;
 }
 
 .contact-details p {
     margin-bottom: 8px;
-    color: #555;
+    color: var(--text-color);
 }
 
-.effective-date {
-    text-align: center;
-    color: #666;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
+.disclaimer {
+    color: var(--text-color);
+    background-color: var(--card-bg);
+    border: 1px solid #e0e0e0;
 }
 
 /* Responsive Design */
@@ -86,15 +100,15 @@
     .privacy-container {
         padding: 10px;
     }
-    
+
     .privacy-paper {
         padding: 20px;
     }
-    
+
     .privacy-title {
         font-size: 24px;
     }
-    
+
     .section-title {
         font-size: 18px;
     }
@@ -104,12 +118,12 @@
     .privacy-paper {
         padding: 15px;
     }
-    
+
     .privacy-title {
         font-size: 20px;
     }
-    
+
     .section-title {
         font-size: 16px;
     }
-} 
+}
