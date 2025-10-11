@@ -536,3 +536,26 @@
     animation: none;
     transform: scale(1.03);
 }
+ /* Stock Badge Styles */
+.stock-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.stock-badge.out-of-stock {
+    background-color: #d32f2f !important;
+    color: white !important;
+}
+
+.stock-badge.low-stock {
+    background-color: #ff9800 !important;
+    color: white !important;
+}
+
+.stock-badge .MuiChip-icon {
+    color: white !important;
+}

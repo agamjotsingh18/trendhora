@@ -3,17 +3,42 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import './CartCard.css';
 import { CartItemsContext } from '../../../../Context/CartItemsContext';
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip, Chip } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import WarningIcon from '@mui/icons-material/Warning';
 
 const CartCard = (props) => {
     let cartItems  = useContext(CartItemsContext)
     const [size, setSize] = useState(props.item.size[0]);
+    const [stockInfo, setStockInfo] = useState({ stock: 0, stockStatus: 'in_stock' });
+    const [stockWarning, setStockWarning] = useState('');
+
+    useEffect(() => {
+        // Fetch stock information for this item
+        if (props.item._id) {
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/api/items/${props.item._id}`)
+                .then(res => res.json())
+                .then(data => {
+                    setStockInfo({
+                        stock: data.stock || 0,
+                        stockStatus: data.stockStatus || 'in_stock'
+                    });
+                    
+                    // Check if current quantity exceeds available stock
+                    if (props.item.itemQuantity > data.stock) {
+                        setStockWarning(`Only ${data.stock} available`);
+                    } else {
+                        setStockWarning('');
+                    }
+                })
+                .catch(err => console.error("Error fetching stock info:", err));
+        }
+    }, [props.item._id, props.item.itemQuantity]);
 
     const getImageUrl = (image, category) => {
         if (!image) return '';
@@ -24,7 +49,10 @@ const CartCard = (props) => {
     };
 
     const handelQuantityIncrement = (event) => {
-        cartItems.quantity(props.item.id, 'INC');
+        // Check if we can increment based on available stock
+        if (props.item.itemQuantity < stockInfo.stock) {
+            cartItems.quantity(props.item.id, 'INC');
+        }
     };
 
     const handelQuantityDecrement = (event) => {
@@ -47,12 +75,44 @@ const CartCard = (props) => {
                 <div className="cart__item__image">
                     <img src={getImageUrl(props.item.image[0], props.item.category)} alt="item" className="item__image"/>
                 </div>
-                <div className="cart__item__name">{props.item.name}</div>
+                <div className="cart__item__name">
+                    {props.item.name}
+                    {stockInfo.stockStatus === 'out_of_stock' && (
+                        <Chip 
+                            icon={<WarningIcon />}
+                            label="Out of Stock" 
+                            color="error" 
+                            size="small"
+                            style={{ marginLeft: '8px' }}
+                        />
+                    )}
+                    {stockInfo.stockStatus === 'low_stock' && (
+                        <Chip 
+                            icon={<WarningIcon />}
+                            label={`Only ${stockInfo.stock} left`}
+                            color="warning" 
+                            size="small"
+                            style={{ marginLeft: '8px' }}
+                        />
+                    )}
+                    {stockWarning && (
+                        <div style={{ color: 'red', fontSize: '0.85rem', marginTop: '4px' }}>
+                            {stockWarning}
+                        </div>
+                    )}
+                </div>
             </div>
             <div className="cart__item__quantity">
-                <IconButton onClick={handelQuantityIncrement}>
-                    <AddCircleIcon />
-                </IconButton>
+                <Tooltip title={props.item.itemQuantity >= stockInfo.stock ? 'Max stock reached' : 'Increase quantity'}>
+                    <span>
+                        <IconButton 
+                            onClick={handelQuantityIncrement}
+                            disabled={props.item.itemQuantity >= stockInfo.stock || stockInfo.stock === 0}
+                        >
+                            <AddCircleIcon />
+                        </IconButton>
+                    </span>
+                </Tooltip>
                 <div type="text" name="quantity" className="quantity__input">{props.item.itemQuantity}</div>
                 <IconButton onClick={handelQuantityDecrement}>
                     <RemoveCircleIcon fontSize='medium'/>

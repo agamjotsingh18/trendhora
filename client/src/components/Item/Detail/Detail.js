@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import "./Detail.css";
-import { Button, IconButton, Rating, Chip, Divider } from "@mui/material";
+import { Button, IconButton, Rating, Chip, Divider, Alert } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -10,6 +10,8 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import SecurityIcon from "@mui/icons-material/Security";
 import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
+import WarningIcon from "@mui/icons-material/Warning";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { CartItemsContext } from "../../../Context/CartItemsContext";
 import { WishItemsContext } from "../../../Context/WishItemsContext";
 
@@ -22,6 +24,7 @@ const Detail = ({ item }) => {
   const [size, setSize] = useState("");
   const [selectedColor, setSelectedColor] = useState(0);
   const [isInWishlist, setIsInWishlist] = useState(false);
+  const [stockInfo, setStockInfo] = useState({ stock: 0, stockStatus: 'in_stock' });
 
   const colors = [
     { name: "Red", value: "#FF0000" },
@@ -48,14 +51,31 @@ const Detail = ({ item }) => {
     } else if (item?.size?.length > 0) {
       setSize(item.size[0]);
     }
-  }, [id, category, item]);
+
+    // Fetch stock information if item exists
+    if ((item || currentItem)?._id) {
+      const itemId = (item || currentItem)._id;
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/items/${itemId}`)
+        .then(res => res.json())
+        .then(data => {
+          setStockInfo({
+            stock: data.stock || 0,
+            stockStatus: data.stockStatus || 'in_stock'
+          });
+        })
+        .catch(err => console.error("Error fetching stock info:", err));
+    }
+  }, [id, category, item, currentItem]);
 
   const handleSizeChange = (selectedSize) => {
     setSize(selectedSize);
   };
 
   const handleQuantityIncrement = () => {
-    setQuantity((prev) => prev + 1);
+    // Prevent incrementing beyond available stock
+    if (quantity < stockInfo.stock) {
+      setQuantity((prev) => prev + 1);
+    }
   };
 
   const handleQuantityDecrement = () => {
@@ -63,7 +83,9 @@ const Detail = ({ item }) => {
   };
 
   const handleAddToCart = () => {
-    if (currentItem) cartItems.addItem(currentItem, quantity); ;
+    if (currentItem && stockInfo.stock > 0) {
+      cartItems.addItem(currentItem, quantity);
+    }
   };
 
   const handleAddToWish = () => {
@@ -105,6 +127,25 @@ const Detail = ({ item }) => {
         <span className="original-price">${(currentItem.price * 1.2).toFixed(0)}</span>
         <Chip label="20% OFF" className="discount-chip" size="small" />
       </div>
+
+      {/* Stock Status Alert */}
+      {stockInfo.stockStatus === 'out_of_stock' && (
+        <Alert severity="error" icon={<WarningIcon />} className="stock-alert">
+          Out of Stock - Currently unavailable
+        </Alert>
+      )}
+      
+      {stockInfo.stockStatus === 'low_stock' && (
+        <Alert severity="warning" icon={<WarningIcon />} className="stock-alert">
+          Low Stock - Only {stockInfo.stock} items left!
+        </Alert>
+      )}
+      
+      {stockInfo.stockStatus === 'in_stock' && stockInfo.stock > 0 && (
+        <Alert severity="success" icon={<CheckCircleIcon />} className="stock-alert">
+          In Stock - {stockInfo.stock} available
+        </Alert>
+      )}
 
       {/* Description */}
       <div className="product-description">
@@ -160,6 +201,7 @@ const Detail = ({ item }) => {
           <IconButton 
             onClick={handleQuantityIncrement} 
             className="quantity-btn"
+            disabled={quantity >= stockInfo.stock || stockInfo.stock === 0}
           >
             <AddIcon />
           </IconButton>
@@ -176,8 +218,9 @@ const Detail = ({ item }) => {
           startIcon={<ShoppingBagIcon />}
           onClick={handleAddToCart}
           fullWidth
+          disabled={stockInfo.stock === 0 || stockInfo.stockStatus === 'out_of_stock'}
         >
-          Add to Cart
+          {stockInfo.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
         </Button>
         
         <IconButton

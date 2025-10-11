@@ -40,6 +40,7 @@ import ResetPassword from '../components/Authentication/ResetPassword/ResetPassw
 import ContactUs from "../routes/ContactUs";
 import RecentlyViewedSection from "../components/RecentlyViewedSection";
 import PageNotFound from '../components/PageNotFound/PageNotFound';
+import InventoryManagement from '../components/Admin/InventoryManagement/InventoryManagement';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -115,6 +116,7 @@ function App() {
                   <Route path="/contact" element={<ContactUs />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                   <Route path="/reset-password/:token" element={<ResetPassword />} />
+                  <Route path="/admin/inventory" element={<InventoryManagement />} />
                   <Route path="/admin" element={<Wishlist />} />
                   <Route path="*" element={<PageNotFound />} />
                 </Routes>
