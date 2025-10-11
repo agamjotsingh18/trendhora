@@ -47,7 +47,7 @@ function App() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1000); // Reduced from 3000ms to 1000ms
     return () => clearTimeout(timeout);
   }, []);
 
