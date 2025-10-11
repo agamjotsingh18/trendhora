@@ -1,4 +1,5 @@
 const Order = require('../models/Order');
+const Item = require('../models/Item');
 const { asyncHandler } = require('../utility/asyncHandler');
 
 // @desc    Create new order
@@ -16,6 +17,38 @@ exports.createOrder = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'No order items provided' });
     }
 
+    // Validate stock availability for all items before creating order
+    const stockValidation = [];
+    for (const orderItem of items) {
+        const item = await Item.findById(orderItem.product);
+        
+        if (!item) {
+            return res.status(404).json({ 
+                message: `Product not found: ${orderItem.name}` 
+            });
+        }
+
+        const isAvailable = item.checkStockAvailability(orderItem.quantity);
+        
+        if (!isAvailable) {
+            stockValidation.push({
+                productId: item._id,
+                name: item.name,
+                requested: orderItem.quantity,
+                available: item.stock
+            });
+        }
+    }
+
+    // If any items have insufficient stock, return error
+    if (stockValidation.length > 0) {
+        return res.status(400).json({ 
+            message: 'Insufficient stock for some items',
+            insufficientStock: stockValidation
+        });
+    }
+
+    // Create the order
     const order = new Order({
         user: req.user._id,
         items,
@@ -25,6 +58,13 @@ exports.createOrder = asyncHandler(async (req, res) => {
     });
 
     const createdOrder = await order.save();
+
+    // Decrease stock for all items after successful order creation
+    for (const orderItem of items) {
+        const item = await Item.findById(orderItem.product);
+        await item.decreaseStock(orderItem.quantity);
+    }
+
     await createdOrder.populate('user', 'username email');
 
     res.status(201).json({
