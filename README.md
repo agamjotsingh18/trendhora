@@ -39,7 +39,46 @@ Make Trendhora the go‑to modern e‑commerce platform that delivers fast, secu
 - Maintain a scalable, testable MERN codebase that’s easy to extend and deploy.
 
  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
- 
+
+## 🌟GSSoc 2025
+
+![GSSoC Logo](https://github.com/dimpal-yadav/trendhora/blob/banner/GSSoC.png)
+
+🌟 **Exciting News...**
+
+🚀 This project is now an official part of GirlScript Summer of Code – GSSoC'25! 💻 We're thrilled to welcome contributors from all over India and beyond to collaborate, build, and grow *trendhora!* Let’s make learning and career development smarter – together! 🌟
+
+GSSoC is one of India’s **largest 3-month-long open-source programs** that encourages developers of all levels to contribute to real-world projects while learning, collaborating, and growing together.
+
+🌈 With **mentorship, community support**, and **collaborative coding**, it's the perfect platform for developers to:
+
+- ✨ Improve their skills
+- 🤝 Contribute to impactful projects
+- 🏆 Get recognized for their work
+- 📜 Receive certificates and swag!
+
+🎉 **I can’t wait to welcome new contributors** from GSSoC 2025 to this trendhora project family! Let's build, learn, and grow together — one commit at a time. 
+
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
+
+## 🎃 Hacktoberfest 2025
+
+![Hacktoberfest Logo](https://github.com/dimpal-yadav/trendhora/blob/banner/haccktobefest.png)
+
+🎉 **Hacktoberfest is here!**  
+We’re thrilled to announce that this project is also participating in **Hacktoberfest 2025** — a month-long celebration of open-source software organized by DigitalOcean, GitHub, and other amazing communities!
+
+💻 Whether you're a beginner or an experienced developer, this is your chance to:
+- 🌱 Learn and grow through real-world contributions
+- 🤝 Collaborate with developers across the globe
+- 🧠 Sharpen your coding and problem-solving skills
+- 🏅 Earn exclusive **Hacktoberfest swag and certificates!**
+
+🔥 **Contribute today** and become a part of this global open-source movement. Every meaningful PR counts!  
+Let’s code, learn, and celebrate open source together — one pull request at a time! 💪  
+
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
+
 ## 🌟 Why Trendhora?
 Trendhora combines a polished front-end experience with a robust Node/Mongo back end to help small teams ship a production-ready marketplace quickly.
 
