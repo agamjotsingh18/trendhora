@@ -1,198 +1,119 @@
-const Order = require('../models/Order');
-const Item = require('../models/Item');
-const { asyncHandler } = require('../utility/asyncHandler');
+const Order = require("../models/Order");
+const { asyncHandler } = require("../utility/asyncHandler");
 
-// @desc    Create new order
-// @route   POST /api/orders
-// @access  Private
+// ------------------------ CREATE NEW ORDER ------------------------
 exports.createOrder = asyncHandler(async (req, res) => {
-    const {
-        items,
-        totalAmount,
-        shippingAddress,
-        paymentMethod
-    } = req.body;
+  const { items, totalAmount, shippingAddress, paymentMethod } = req.body;
 
-    if (!items || items.length === 0) {
-        return res.status(400).json({ message: 'No order items provided' });
-    }
+  if (!items?.length) {
+    return res.status(400).json({ message: "No order items provided" });
+  }
 
-    // Validate stock availability for all items before creating order
-    const stockValidation = [];
-    for (const orderItem of items) {
-        const item = await Item.findById(orderItem.product);
-        
-        if (!item) {
-            return res.status(404).json({ 
-                message: `Product not found: ${orderItem.name}` 
-            });
-        }
+  const order = await new Order({
+    user: req.user._id,
+    items,
+    totalAmount,
+    shippingAddress,
+    paymentMethod,
+  }).save();
 
-        const isAvailable = item.checkStockAvailability(orderItem.quantity);
-        
-        if (!isAvailable) {
-            stockValidation.push({
-                productId: item._id,
-                name: item.name,
-                requested: orderItem.quantity,
-                available: item.stock
-            });
-        }
-    }
+  await order.populate("user", "username email");
 
-    // If any items have insufficient stock, return error
-    if (stockValidation.length > 0) {
-        return res.status(400).json({ 
-            message: 'Insufficient stock for some items',
-            insufficientStock: stockValidation
-        });
-    }
-
-    // Create the order
-    const order = new Order({
-        user: req.user._id,
-        items,
-        totalAmount,
-        shippingAddress,
-        paymentMethod
-    });
-
-    const createdOrder = await order.save();
-
-    // Decrease stock for all items after successful order creation
-    for (const orderItem of items) {
-        const item = await Item.findById(orderItem.product);
-        await item.decreaseStock(orderItem.quantity);
-    }
-
-    await createdOrder.populate('user', 'username email');
-
-    res.status(201).json({
-        success: true,
-        data: createdOrder
-    });
+  res.status(201).json({ success: true, data: order });
 });
 
-// @desc    Get user orders
-// @route   GET /api/orders/my-orders
-// @access  Private
+// ------------------------ GET USER ORDERS ------------------------
 exports.getMyOrders = asyncHandler(async (req, res) => {
-    const orders = await Order.find({ user: req.user._id })
-        .populate('items.product', 'name price image')
-        .sort({ createdAt: -1 });
+  const orders = await Order.find({ user: req.user._id })
+    .populate("items.product", "name price image")
+    .sort({ createdAt: -1 });
 
-    res.json({
-        success: true,
-        count: orders.length,
-        data: orders
-    });
+  res.json({ success: true, count: orders.length, data: orders });
 });
 
-// @desc    Get order by ID
-// @route   GET /api/orders/:id
-// @access  Private
+// ------------------------ GET ORDER BY ID ------------------------
 exports.getOrderById = asyncHandler(async (req, res) => {
-    const order = await Order.findById(req.params.id)
-        .populate('user', 'username email')
-        .populate('items.product', 'name price image');
+  const order = await Order.findById(req.params.id)
+    .populate("user", "username email")
+    .populate("items.product", "name price image");
 
-    if (!order) {
-        return res.status(404).json({ message: 'Order not found' });
-    }
+  if (!order) return res.status(404).json({ message: "Order not found" });
 
-    // Check if order belongs to user (unless admin)
-    if (order.user._id.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
-        return res.status(403).json({ message: 'Not authorized to access this order' });
-    }
+  if (
+    order.user._id.toString() !== req.user._id.toString() &&
+    req.user.role !== "admin"
+  ) {
+    return res
+      .status(403)
+      .json({ message: "Not authorized to access this order" });
+  }
 
-    res.json({
-        success: true,
-        data: order
-    });
+  res.json({ success: true, data: order });
 });
 
-// @desc    Update order status (Admin only)
-// @route   PUT /api/orders/:id/status
-// @access  Private/Admin
+// ------------------------ UPDATE ORDER STATUS (ADMIN) ------------------------
 exports.updateOrderStatus = asyncHandler(async (req, res) => {
-    const { status } = req.body;
+  if (req.user.role !== "admin") {
+    return res
+      .status(403)
+      .json({ message: "Not authorized to update order status" });
+  }
 
-    if (req.user.role !== 'admin') {
-        return res.status(403).json({ message: 'Not authorized to update order status' });
-    }
+  const order = await Order.findById(req.params.id);
+  if (!order) return res.status(404).json({ message: "Order not found" });
 
-    const order = await Order.findById(req.params.id);
+  order.status = req.body.status;
+  order.updatedAt = Date.now();
 
-    if (!order) {
-        return res.status(404).json({ message: 'Order not found' });
-    }
-
-    order.status = status;
-    order.updatedAt = Date.now();
-
-    const updatedOrder = await order.save();
-
-    res.json({
-        success: true,
-        data: updatedOrder
-    });
+  const updatedOrder = await order.save();
+  res.json({ success: true, data: updatedOrder });
 });
 
-// @desc    Get all orders (Admin only)
-// @route   GET /api/orders/admin/all
-// @access  Private/Admin
+// ------------------------ GET ALL ORDERS (ADMIN) ------------------------
 exports.getAllOrders = asyncHandler(async (req, res) => {
-    if (req.user.role !== 'admin') {
-        return res.status(403).json({ message: 'Not authorized to access all orders' });
-    }
+  if (req.user.role !== "admin") {
+    return res
+      .status(403)
+      .json({ message: "Not authorized to access all orders" });
+  }
 
-    const orders = await Order.find({})
-        .populate('user', 'username email')
-        .populate('items.product', 'name price image')
-        .sort({ createdAt: -1 });
+  const orders = await Order.find({})
+    .populate("user", "username email")
+    .populate("items.product", "name price image")
+    .sort({ createdAt: -1 });
 
-    res.json({
-        success: true,
-        count: orders.length,
-        data: orders
-    });
+  res.json({ success: true, count: orders.length, data: orders });
 });
 
-// @desc    Get order statistics for user
-// @route   GET /api/orders/stats
-// @access  Private
+// ------------------------ GET ORDER STATISTICS ------------------------
 exports.getOrderStats = asyncHandler(async (req, res) => {
-    const userId = req.user._id;
+  const stats = await Order.aggregate([
+    { $match: { user: req.user._id } },
+    {
+      $group: {
+        _id: null,
+        totalOrders: { $sum: 1 },
+        totalSpent: { $sum: "$totalAmount" },
+        averageOrderValue: { $avg: "$totalAmount" },
+        statusBreakdown: { $push: "$status" },
+      },
+    },
+  ]);
 
-    const stats = await Order.aggregate([
-        { $match: { user: userId } },
-        {
-            $group: {
-                _id: null,
-                totalOrders: { $sum: 1 },
-                totalSpent: { $sum: '$totalAmount' },
-                averageOrderValue: { $avg: '$totalAmount' },
-                statusBreakdown: {
-                    $push: '$status'
-                }
-            }
-        }
-    ]);
-
-    const statusCounts = {};
-    if (stats.length > 0) {
-        stats[0].statusBreakdown.forEach(status => {
-            statusCounts[status] = (statusCounts[status] || 0) + 1;
-        });
-    }
-
-    res.json({
-        success: true,
-        data: {
-            totalOrders: stats.length > 0 ? stats[0].totalOrders : 0,
-            totalSpent: stats.length > 0 ? stats[0].totalSpent : 0,
-            averageOrderValue: stats.length > 0 ? stats[0].averageOrderValue : 0,
-            statusCounts
-        }
+  const statusCounts = {};
+  if (stats.length) {
+    stats[0].statusBreakdown.forEach((status) => {
+      statusCounts[status] = (statusCounts[status] || 0) + 1;
     });
+  }
+
+  res.json({
+    success: true,
+    data: {
+      totalOrders: stats[0]?.totalOrders || 0,
+      totalSpent: stats[0]?.totalSpent || 0,
+      averageOrderValue: stats[0]?.averageOrderValue || 0,
+      statusCounts,
+    },
+  });
 });
