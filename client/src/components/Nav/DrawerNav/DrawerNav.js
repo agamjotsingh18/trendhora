@@ -115,7 +115,7 @@ const DrawerNav = () => {
                 backgroundColor: '#a78b45ff',
                 borderRadius: '25%',
                 padding: '4px',
-                color: '#333',
+                color: isActive('/') ? '#ffe066' : '#333',
                 zIndex: 1302,
                 position: 'relative',
                 transition: 'background 0.2s',
@@ -131,7 +131,7 @@ const DrawerNav = () => {
                 backgroundColor: '#ffe26e',
                 borderRadius: '25%',
                 padding: '4px',
-                color: '#333',
+                color: isActive('/') ? '#ffe066' : '#333',
                 zIndex: 1302,
                 position: 'relative',
                 transition: 'background 0.2s',
@@ -291,11 +291,10 @@ const DrawerNav = () => {
       {/* Add style for active class */}
       <style>
         {`
-          .MuiListItemButton-root.active {
-            background: #f4cc8cff !important;
-            color: #a06b11ff !important;
-            border-right: solid #a06b11ff 7px !important;
-            box-shadow: 1px 1.2px 0px 0px #a06b11ff !important;
+          .MuiListItemButton-root:hover {
+            background: #b29157ff !important;
+            color: #43341bff !important;
+            transform: translateX(8px) scale(1.03);
           }
           .MuiListItemButton-root.active .MuiListItemText-primary {
             font-size: 18px !important;
@@ -304,11 +303,13 @@ const DrawerNav = () => {
             letter-spacing: 1.1px;
             color: #917143ff !important;
           }
-          .MuiListItemButton-root:hover {
-            background: #b29157ff !important;
-            color: #43341bff !important;
-            transform: translateX(8px) scale(1.03);
+            .MuiListItemButton-root.active {
+            background: #f4cc8cff !important;
+            color: #a06b11ff !important;
+            border-right: solid #a06b11ff 7px !important;
+            box-shadow: 1px 1.2px 0px 0px #a06b11ff !important;
           }
+          
         `}
       </style>
     </Fragment>

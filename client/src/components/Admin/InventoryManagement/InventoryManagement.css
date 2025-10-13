@@ -1,0 +1,97 @@
+.inventory-management-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.inventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.inventory-header h1 {
+  color: #333;
+  font-weight: 600;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.inventory-table {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.inventory-table .MuiTableHead-root {
+  background-color: #1976d2;
+}
+
+.inventory-table .MuiTableHead-root .MuiTableCell-root {
+  color: white;
+  font-weight: 600;
+}
+
+.inventory-table .MuiTableRow-root:hover {
+  background-color: #f9f9f9;
+}
+
+.product-thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.stock-zero {
+  color: #d32f2f;
+  font-weight: 700;
+}
+
+.out-of-stock-row {
+  background-color: #ffebee !important;
+}
+
+.out-of-stock-row:hover {
+  background-color: #ffcdd2 !important;
+}
+
+/* Alert positioning */
+.MuiAlert-root {
+  margin-bottom: 1rem;
+}
+
+/* Dialog styles */
+.MuiDialog-paper {
+  min-width: 400px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .inventory-management-container {
+    padding: 1rem;
+  }
+
+  .inventory-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .product-thumbnail {
+    width: 40px;
+    height: 40px;
+  }
+
+  .inventory-table {
+    font-size: 0.875rem;
+  }
+}

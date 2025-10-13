@@ -1,4 +1,5 @@
 
+
   .contact__page__container {
     min-height: 100vh;
     background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 40%, #ececec 100%);
@@ -618,3 +619,396 @@
     stroke: #ffb300;
     }
 }
+
+/* =========================
+   MODERN CONTACT PAGE
+========================= */
+.contact__page__container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  transition: all 0.3s ease;
+}
+
+/* ========== HERO SECTION ========== */
+.contact__hero {
+  background: linear-gradient(135deg, #ffe26e 0%, #ffd700 100%);
+  padding: 180px 2rem 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.4;
+}
+
+.contact__hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact__hero__title {
+  font-size: 3.4rem;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.contact__hero__subtitle {
+  font-size: 1.25rem;
+  color: #333;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.contact__hero__decoration {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #000 0%, transparent 100%);
+  margin: 2rem auto 0;
+  border-radius: 2px;
+}
+
+/* ========== MAIN CONTENT ========== */
+.contact__main__content {
+  max-width: 1200px;
+  margin: 0 auto;   
+  padding: 80px 2rem;
+}
+
+/* ========== CONTACT CARDS ========== */
+.contact__cards__section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 80px;
+}
+
+.contact__card {
+  background: var(--bg-secondary);
+  padding: 2.5rem 2rem;
+  border-radius: 18px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 35px rgba(255, 226, 110, 0.25);
+}
+
+.contact__card__icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem;
+  box-shadow: 0 5px 15px rgba(255, 226, 110, 0.35);
+}
+
+.contact__card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.contact__card p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ========== FORM SECTION ========== */
+.contact__form__section {
+  background: var(--bg-secondary);
+  padding: 3rem;
+  border-radius: 22px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.contact__form__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact__form__header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.contact__form__header p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ====== Form Grid ====== */
+.form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  align-items: start;
+}
+
+/* Use grid inside each input group so the icon and content align reliably */
+.input__group {
+  display: flex;
+  align-items: center;         /* Vertically center icon + input */
+  gap: 1rem;                   /* Consistent space between icon and content */
+  margin-bottom: 1.3rem;       /* Space between rows */
+}
+
+/* Icon box: fixed square so all icons align vertically and horizontally */
+.input__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  min-width: 48px;
+  border-radius: 444px;
+  background: var(--bg-tertiary);
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.04);
+  margin-bottom: auto;            /* No bottom/top margin */
+        
+}
+
+
+/* Make sure icons have consistent visual alignment with label text */
+.input__icon svg,
+.input__icon .MuiSvgIcon-root {
+  display: block;
+    width: 24px;
+    height: 24px;
+    color: var(--text-secondary);
+    stroke-width: 1.5;
+}
+
+/* Content area holds label + input/textarea */
+.input__content {
+  flex: 1;                     /* Allow input area/label to fill remaining space */
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Label styling: small vertical spacing so icon aligns with it */
+.input__label {
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Input & textarea: force LTR and left-aligned text + clean padding */
+.contact__input,
+.contact__textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.95rem 1.1rem;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: "Inter", "Roboto", sans-serif;
+  line-height: 1.4;
+  text-align: left;        /* ensure typed text starts from left */
+  direction: ltr;          /* explicitly force left-to-right typing */
+  -webkit-text-fill-color: inherit;
+}
+
+/* Placeholder alignment too */
+.contact__input::placeholder,
+.contact__textarea::placeholder {
+  text-align: left;
+  opacity: 0.7;
+}
+
+/* Focus states remain polished */
+.contact__input:focus,
+.contact__textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px rgba(255, 226, 110, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Error visual */
+.contact__input.error,
+.contact__textarea.error {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 4px rgba(220,53,69,0.12);
+}
+
+/* Textarea specifics */
+.contact__textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.error__message {
+  color: var(--danger-color);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* ====== Submit Button ====== */
+.submit__button__container {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.contact__submit__button {
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+  color: #000;
+  padding: 1.1rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255, 226, 110, 0.3);
+  transition: all 0.3s ease;
+}
+
+.contact__submit__button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 226, 110, 0.4);
+}
+
+.contact__submit__button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.button__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #000;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ====== Toaster ====== */
+.toaster {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  min-width: 350px;
+  max-width: 450px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateX(120%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.toaster.success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.toaster-show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 768px) {
+  .contact__hero {
+    padding: 140px 1rem 60px;
+  }
+
+  .contact__hero__title {
+    font-size: 2.6rem;
+  }
+
+  .form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .input__group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .input__icon {
+    margin-top: 0;
+    align-self: flex-start;
+  }
+
+  .contact__form__section {
+    padding: 2rem 1.2rem;
+  }
+
+  .toaster {
+    left: 20px;
+    right: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .form__grid,
+  .input__group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .input__icon {
+    margin-bottom: 0.25rem;
+    margin-right: 0;           /* Remove side space */
+  }
+}
+
+/* ====== Dark Mode ====== */
+.dark-mode .contact__hero {
+  background: linear-gradient(135deg, #ffe26e 0%, #ffd700 100%);
+}
+
+.dark-mode .contact__form__section,
+.dark-mode .contact__card {
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .contact__input:focus,
+.dark-mode .contact__textarea:focus {
+  box-shadow: 0 0 0 4px rgba(255, 226, 110, 0.2);
+}
+
+.dark-mode .input__icon {
+  background: var(--bg-primary);
+}
+

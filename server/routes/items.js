@@ -2,9 +2,9 @@ const express = require("express")
 const router = express.Router()
 const cors = require("cors")
 const uploadPhoto = require("../middlewares/upload")
-const { getItem, addItem, updateItem, deleteItem, getItemById } = require("../controllers/itemsController")
+const { getItem, addItem, updateItem, deleteItem, getItemById, searchItems, checkStock, updateStock, getLowStockItems } = require("../controllers/itemsController")
 const Item = require("../models/Item"); 
-const { searchItems } = require('../controllers/itemsController');
+const authMiddleware = require("../middlewares/authMiddleware");
 
 router.get('/', cors(), async (req, res) => {
     try {
@@ -23,8 +23,22 @@ router.get('/', cors(), async (req, res) => {
 // Specific routes must come first
 router.get('/search', searchItems);
 
+// @route   GET /api/items/low-stock
+// @desc    Get low stock items (Admin only)
+// @access  Private/Admin
+router.get('/low-stock', authMiddleware, getLowStockItems);
+
+// @route   GET /api/items/:id/check-stock
+// @desc    Check stock availability for a specific item
+// @access  Public
+router.get('/:id/check-stock', checkStock);
 
 router.get('/:id', getItemById);
+
+// @route   PUT /api/items/:id/stock
+// @desc    Update stock for a specific item (Admin only)
+// @access  Private/Admin
+router.put('/:id/stock', authMiddleware, updateStock);
 
 
 
