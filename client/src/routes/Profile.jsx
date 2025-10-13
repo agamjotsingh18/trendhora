@@ -1,21 +1,21 @@
-import MyAccount from "../../UI/Account/MyAccount/MyAccount";
-import ManageAccount from "../../UI/Account/ManageAccount/ManageAccount";
-import { TabTitle } from "../../../utils/General";
+    import MyAccount from "../../UI/Account/MyAccount/MyAccount";
+    import ManageAccount from "../../UI/Account/ManageAccount/ManageAccount";
+    import { TabTitle } from "../../../utils/General";
 
-export const Profile = () => {
+    export const Profile = () => {
 
-    TabTitle("My Account - Shema")
+        TabTitle("My Account - Shema")
 
-    return ( 
-        <MyAccount />
-     );
-}
+        return ( 
+            <MyAccount />
+        );
+    }
 
-export const AccountManager = () => {
+    export const AccountManager = () => {
 
-    TabTitle("My Account - Shema")
+        TabTitle("My Account - Shema")
 
-    return (
-        <ManageAccount />
-    );
-}
+        return (
+            <ManageAccount />
+        );
+    }
