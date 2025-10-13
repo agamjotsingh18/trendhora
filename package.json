@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/agamjotsingh18/trendhora-api/issues"
   },
-  "homepage": "https://github.com/agamjotsingh18/trendhora-api#readme"
+  "homepage": "https://github.com/agamjotsingh18/trendhora-api#readme",
+  "dependencies": {
+    "aos": "^2.3.4"
+  }
 }

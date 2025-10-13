@@ -32,6 +32,6 @@ router.get('/me', authMiddleware, getMe);
 router.post("/forgot-password", forgotPassword);
 
 // Reset password - verify token and update password
-router.post("/reset-password/:token", resetPassword);
+router.post("/reset-password/:authToken", resetPassword);
 
 module.exports = router;

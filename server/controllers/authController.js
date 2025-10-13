@@ -1,36 +1,43 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-
 const { asyncHandler } = require('../utility/asyncHandler');
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 
-
+// ---------------- Register User ----------------
 exports.registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
 
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-        return res.status(400).json({ message: 'User already exists' });
-    }
-
-    const user = new User({ username, email, password });
-    await user.save();
-
     try {
-        await sendWelcomeEmail(email, username);
+        const userExists = await User.findOne({ email });
+        if (userExists) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
+
+        const user = new User({ username, email, password });
+        await user.save();
+
+        // Generate token right after registration
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(201).json({ token });
     } catch (err) {
-        console.error("Error sending welcome email:", err.message);
-        // Do not block registration if email fails
+        // Check for duplicate key error (MongoDB code 11000)
+        if (err.code === 11000) {
+            if (err.keyPattern && err.keyPattern.username) {
+                return res.status(400).json({ message: 'Username already exists' });
+            }
+            if (err.keyPattern && err.keyPattern.email) {
+                return res.status(400).json({ message: 'Email already exists' });
+            }
+        }
+        console.error("Registration error:", err);
+        res.status(500).json({ message: "Registration failed", error: err.message });
     }
-
-    // Generate token right after registration
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-    res.status(201).json({ token });
 });
 
+// ---------------- Login User ----------------
 exports.loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
@@ -46,7 +53,7 @@ exports.loginUser = asyncHandler(async (req, res) => {
         }
 
         const token = jwt.sign(
-            { id: user._id, role: user.role }, // include role
+            { id: user._id, role: user.role },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
@@ -58,7 +65,8 @@ exports.loginUser = asyncHandler(async (req, res) => {
     }
 });
 
-exports.deleteUser = async (req, res) => {
+// ---------------- Delete User ----------------
+exports.deleteUser = asyncHandler(async (req, res) => {
     try {
         await req.user.deleteOne();
         res.json({ message: 'Account deleted successfully' });
@@ -66,23 +74,34 @@ exports.deleteUser = async (req, res) => {
         console.error(err);
         res.status(500).json({ message: 'Server error' });
     }
-};
+});
 
-
-exports.getMe = async (req, res, next) => {
+// ---------------- Get Logged-in User ----------------
+exports.getMe = asyncHandler(async (req, res, next) => {
     try {
-        // Get user from database using id from req.user (set by auth middleware)
-        const user = await User.findById(req.user.id);
+        // 🎯 FIX: Directly use the user object attached by the authMiddleware.
+        // authMiddleware already fetched the user based on the valid JWT token ID.
+        const user = req.user; 
+
+        // The previous line was: const user = await User.findById(req.user.id);
+
+        if (!user) {
+            // This should not happen if authMiddleware succeeds, but is a safe check.
+            return res.status(404).json({ message: 'User data not found in request' });
+        }
 
         res.status(200).json({
             success: true,
-            data: user
+            data: user // This is the correct, authenticated user's data
         });
     } catch (err) {
-        next(err);
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
     }
-};
-exports.forgotPassword = async (req, res) => {
+});
+
+// ---------------- Forgot Password ----------------
+exports.forgotPassword = asyncHandler(async (req, res) => {
     const { email } = req.body;
     try {
         const user = await User.findOne({ email });
@@ -91,7 +110,7 @@ exports.forgotPassword = async (req, res) => {
         // Generate reset token
         const resetToken = crypto.randomBytes(20).toString("hex");
         user.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
-        user.resetPasswordExpires = Date.now() + 10 * 60 * 1000; // 10 min
+        user.resetPasswordExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
         await user.save();
 
         const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
@@ -104,10 +123,10 @@ exports.forgotPassword = async (req, res) => {
         console.error(err);
         res.status(500).json({ message: "Server error", error: err.message });
     }
-};
+});
 
-// Reset Password Controller
-exports.resetPassword = async (req, res) => {
+// ---------------- Reset Password ----------------
+exports.resetPassword = asyncHandler(async (req, res) => {
     try {
         const resetPasswordToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
         const user = await User.findOne({
@@ -127,9 +146,9 @@ exports.resetPassword = async (req, res) => {
         console.error(err);
         res.status(500).json({ message: "Server error" });
     }
-};
+});
 
-
+// ---------------- Send Email Utility ----------------
 const sendEmail = async ({ email, subject, message }) => {
     const transporter = nodemailer.createTransport({
         service: "Gmail",
@@ -149,4 +168,3 @@ const sendEmail = async ({ email, subject, message }) => {
         text: message,
     });
 };
-
