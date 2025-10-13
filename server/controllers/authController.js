@@ -1,30 +1,45 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const { asyncHandler } = require("../utility/asyncHandler");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 require("dotenv").config();
-
-const { asyncHandler } = require("../utility/asyncHandler");
 
 // ------------------------ USER REGISTRATION ------------------------
 exports.registerUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
-  if (await User.findOne({ email })) {
-    return res.status(400).json({ message: "User already exists" });
+  try {
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const user = await new User({ username, email, password }).save();
+
+    // Send welcome email (non-blocking)
+    sendWelcomeEmail(email, username).catch((err) =>
+      console.error("Error sending welcome email:", err.message)
+    );
+
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.status(201).json({ token });
+  } catch (err) {
+    // Check for duplicate key error (MongoDB code 11000)
+    if (err.code === 11000) {
+      if (err.keyPattern && err.keyPattern.username) {
+        return res.status(400).json({ message: "Username already exists" });
+      }
+      if (err.keyPattern && err.keyPattern.email) {
+        return res.status(400).json({ message: "Email already exists" });
+      }
+    }
+    console.error("Registration error:", err);
+    res.status(500).json({ message: "Registration failed", error: err.message });
   }
-
-  const user = await new User({ username, email, password }).save();
-
-  // Send welcome email (non-blocking)
-  sendWelcomeEmail(email, username).catch((err) =>
-    console.error("Error sending welcome email:", err.message)
-  );
-
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    expiresIn: "1h",
-  });
-  res.status(201).json({ token });
 });
 
 // ------------------------ USER LOGIN ------------------------
@@ -36,11 +51,9 @@ exports.loginUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Invalid email or password" });
   }
 
-  const token = jwt.sign(
-    { id: user._id, role: user.role },
-    process.env.JWT_SECRET,
-    { expiresIn: "1h" }
-  );
+  const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
   res.json({ token });
 });
 
@@ -52,7 +65,10 @@ exports.deleteUser = asyncHandler(async (req, res) => {
 
 // ------------------------ GET CURRENT USER ------------------------
 exports.getMe = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user.id);
+  const user = req.user; // Using authMiddleware attached user
+  if (!user) {
+    return res.status(404).json({ message: "User data not found in request" });
+  }
   res.status(200).json({ success: true, data: user });
 });
 
@@ -63,10 +79,7 @@ exports.forgotPassword = asyncHandler(async (req, res) => {
   if (!user) return res.status(404).json({ message: "User not found" });
 
   const resetToken = crypto.randomBytes(20).toString("hex");
-  user.resetPasswordToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
+  user.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
   user.resetPasswordExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
   await user.save();
 
@@ -79,17 +92,13 @@ exports.forgotPassword = asyncHandler(async (req, res) => {
 
 // ------------------------ RESET PASSWORD ------------------------
 exports.resetPassword = asyncHandler(async (req, res) => {
-  const resetPasswordToken = crypto
-    .createHash("sha256")
-    .update(req.params.token)
-    .digest("hex");
+  const resetPasswordToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
   const user = await User.findOne({
     resetPasswordToken,
     resetPasswordExpires: { $gt: Date.now() },
   });
 
-  if (!user)
-    return res.status(400).json({ message: "Invalid or expired token" });
+  if (!user) return res.status(400).json({ message: "Invalid or expired token" });
 
   user.password = req.body.password;
   user.resetPasswordToken = undefined;
@@ -103,9 +112,7 @@ exports.resetPassword = asyncHandler(async (req, res) => {
 exports.checkUsername = asyncHandler(async (req, res) => {
   const { username } = req.query;
   if (!username)
-    return res
-      .status(400)
-      .json({ success: false, message: "Username is required" });
+    return res.status(400).json({ success: false, message: "Username is required" });
 
   const exists = !!(await User.findOne({ username }));
   res.status(200).json({ success: true, exists });

@@ -9,7 +9,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 router.get('/', cors(), async (req, res) => {
     try {
         const items = await Item.find();
-        console.log("Fetched items:", items);
+       
         if (items.length === 0) {
             return res.status(404).json({ message: "No items found" });
         }

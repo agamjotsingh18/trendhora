@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { TabTitle } from '../utils/General';
 import './ContactUs.css';
 import EmailIcon from '@mui/icons-material/Email';
@@ -23,6 +25,14 @@ const ContactUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showToaster, setShowToaster] = useState(false);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-in-out',
+    });
+  }, []);
+
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const validateForm = () => {
@@ -43,7 +53,7 @@ const ContactUs = () => {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
 
@@ -60,7 +70,7 @@ const ContactUs = () => {
   return (
     <div className="contact__page__container">
       {/* Hero Section */}
-      <div className="contact__hero">
+      <div className="contact__hero" data-aos="fade-up">
         <div className="contact__hero__content">
           <h1 className="contact__hero__title">Get In Touch</h1>
           <p className="contact__hero__subtitle">
@@ -70,10 +80,11 @@ const ContactUs = () => {
         </div>
       </div>
 
+      {/* Main Content */}
       <div className="contact__main__content">
         {/* Contact Cards Section */}
         <div className="contact__cards__section">
-          <div className="contact__card">
+          <div className="contact__card" data-aos="zoom-in" data-aos-delay="100">
             <div className="contact__card__icon">
               <EmailIcon sx={{ fontSize: 30, color: '#FFE26E' }} />
             </div>
@@ -82,7 +93,7 @@ const ContactUs = () => {
             <span className="contact__card__subtitle">We typically respond within 24 hours</span>
           </div>
 
-          <div className="contact__card">
+          <div className="contact__card" data-aos="zoom-in" data-aos-delay="200">
             <div className="contact__card__icon">
               <PhoneIcon sx={{ fontSize: 30, color: '#FFE26E' }} />
             </div>
@@ -91,7 +102,7 @@ const ContactUs = () => {
             <span className="contact__card__subtitle">Mon-Fri from 8am to 5pm</span>
           </div>
 
-          <div className="contact__card">
+          <div className="contact__card" data-aos="zoom-in" data-aos-delay="300">
             <div className="contact__card__icon">
               <LocationOnIcon sx={{ fontSize: 30, color: '#FFE26E' }} />
             </div>
@@ -102,7 +113,7 @@ const ContactUs = () => {
         </div>
 
         {/* Form Section */}
-        <div className="contact__form__section">
+        <div className="contact__form__section" data-aos="fade-up" data-aos-delay="400">
           <div className="contact__form__header">
             <h2>Send us a message</h2>
             <p>Fill out the form below and we'll get back to you as soon as possible.</p>
@@ -112,29 +123,27 @@ const ContactUs = () => {
             {/* Name + Email Row */}
             <div className="form__grid">
               {/* Full Name */}
-              <div className="input__group">
-                <div className="input__icon" style={{ marginTop: -6 }}>
+              <div className="input__group" data-aos="fade-right">
+                <div className="input__icon">
                   <PersonIcon sx={{ fontSize: 20, color: '#6c757d' }} />
                 </div>
                 <div className="input__content">
-                  <label className="input__label">Full Name*</label>
+                  <label className="input__label">Full Name *</label>
                   <input
                     type="text"
                     name="name"
-                    required
                     className={`contact__input ${errors.name ? 'error' : ''}`}
                     placeholder="John Doe"
                     value={formData.name}
                     onChange={handleInputChange}
-                    style={{ textAlign: 'left' }}
                   />
                   {errors.name && <span className="error__message">{errors.name}</span>}
                 </div>
               </div>
 
               {/* Email Address */}
-              <div className="input__group">
-                <div className="input__icon" style={{ marginTop: -6 }}>
+              <div className="input__group" data-aos="fade-left">
+                <div className="input__icon">
                   <EmailIcon sx={{ fontSize: 20, color: '#6c757d' }} />
                 </div>
                 <div className="input__content">
@@ -142,7 +151,6 @@ const ContactUs = () => {
                   <input
                     type="email"
                     name="email"
-                    required
                     className={`contact__input ${errors.email ? 'error' : ''}`}
                     placeholder="john@example.com"
                     value={formData.email}
@@ -154,36 +162,33 @@ const ContactUs = () => {
             </div>
 
             {/* Subject */}
-            <div className="input__group">
-              <div className="input__icon" style={{ marginTop: -6 }}>
+            <div className="input__group" data-aos="fade-right">
+              <div className="input__icon">
                 <SubjectIcon sx={{ fontSize: 20, color: '#6c757d' }} />
               </div>
-              <div className="input__content">
+              <div className="input__content" style={{ marginTop: '1.5rem' }}>
                 <label className="input__label">Subject *</label>
                 <input
                   type="text"
                   name="subject"
-                    required
                   className={`contact__input ${errors.subject ? 'error' : ''}`}
                   placeholder="How can we help you?"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  style={{ textAlign: 'left' }}
                 />
                 {errors.subject && <span className="error__message">{errors.subject}</span>}
               </div>
             </div>
 
             {/* Message */}
-            <div className="input__group">
-              <div className="input__icon" style={{ marginTop: -6 }}>
+            <div className="input__group" data-aos="fade-left">
+              <div className="input__icon">
                 <MessageIcon sx={{ fontSize: 20, color: '#6c757d' }} />
               </div>
-              <div className="input__content">
+              <div className="input__content" style={{ marginTop: '1.5rem' }}>
                 <label className="input__label">Message *</label>
                 <textarea
                   name="message"
-                    required
                   className={`contact__textarea ${errors.message ? 'error' : ''}`}
                   placeholder="Tell us more about your inquiry..."
                   value={formData.message}
@@ -194,7 +199,7 @@ const ContactUs = () => {
               </div>
             </div>
 
-            <div className="submit__button__container">
+            <div className="submit__button__container" data-aos="zoom-in">
               <button
                 type="submit"
                 className="contact__submit__button"
@@ -217,8 +222,9 @@ const ContactUs = () => {
         </div>
       </div>
 
+      {/* Toaster */}
       {showToaster && (
-        <div className="toaster success toaster-show">
+        <div className="toaster success toaster-show" data-aos="fade-up">
           <div className="toaster-content">
             <div className="toaster-icon">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">

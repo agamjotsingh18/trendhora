@@ -1,3 +1,625 @@
+
+
+  .contact__page__container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 40%, #ececec 100%);
+    padding: 5rem 2rem;
+    color: #111;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* 🌤 Floating Blue Orbs for Depth */
+  .contact__page__container::before,
+  .contact__page__container::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+    animation: float 10s ease-in-out infinite alternate;
+  }
+
+  .contact__page__container::before {
+    top: 10%;
+    left: 5%;
+  }
+  .contact__page__container::after {
+    bottom: 10%;
+    right: 5%;
+  }
+
+  @keyframes float {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-30px);
+    }
+  }
+
+  /* =========================
+     Hero Section
+     ========================= */
+  .contact__hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact__hero__title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #0056b3;
+    text-shadow: 0 0 15px rgba(0, 86, 179, 0.2);
+  }
+
+  .contact__hero__subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 0.8rem;
+  }
+
+  .contact__hero__decoration {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #007bff, #66b2ff);
+    border-radius: 2px;
+    margin: 1.5rem auto 0;
+  }
+
+  /* =========================
+     Contact Cards
+     ========================= */
+  .contact__cards__section {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact__card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 86, 179, 0.1);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .contact__card:hover {
+    border-color: #007bff;
+    box-shadow: 0 10px 35px rgba(0, 123, 255, 0.15);
+    transform: translateY(-10px) !important;
+  }
+
+  .contact__card__icon {
+    margin-bottom: 1rem;
+  }
+
+  .contact__card h3 {
+    color: #0056b3;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .contact__card p {
+    color: #333;
+    margin-bottom: 0.4rem;
+  }
+
+  .contact__card__subtitle {
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  /* =========================
+     Form Section
+     ========================= */
+  .contact__form__section {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 86, 179, 0.1);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact__form__header h2 {
+    color: #0056b3;
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .contact__form__header p {
+    text-align: center;
+    color: #666;
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .form__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* =========================
+     Input Fields
+     ========================= */
+  .input__group {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .input__icon {
+    margin-top: 1.8rem;
+  }
+
+  .input__content {
+    flex: 1;
+  }
+
+  .input__label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+    color: #333;
+  }
+
+  .contact__input,
+  .contact__textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 86, 179, 0.2);
+    border-radius: 0.8rem;
+    color: #111;
+    font-size: 1rem;
+    padding: 0.9rem 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .contact__input:focus,
+  .contact__textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.2);
+  }
+
+  .error {
+    border-color: #ff4d4d !important;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.2);
+  }
+
+  .error__message {
+    font-size: 0.85rem;
+    color: #ff6b6b;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* =========================
+     Button
+     ========================= */
+  .submit__button__container {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .contact__submit__button {
+    background: linear-gradient(90deg, #007bff, #66b2ff);
+    color: #fff;
+    border: none;
+    padding: 0.9rem 2rem;
+    font-weight: 600;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(0, 123, 255, 0.2);
+  }
+
+  .contact__submit__button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(0, 123, 255, 0.3);
+  }
+
+  .button__spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #fff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* =========================
+     Toaster
+     ========================= */
+  .toaster {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-left: 4px solid #007bff;
+    border-radius: 0.8rem;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #111;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.6s forwards;
+  }
+
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .toaster-icon svg {
+    stroke: #007bff;
+  }
+
+  .toaster-title {
+    font-weight: 600;
+    color: #007bff;
+  }
+
+  .toaster-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .toaster-close:hover svg {
+    stroke: #0056b3;
+  }
+
+
+
+/* =========================
+   Dark Mode Styles
+   ========================= */
+
+.dark-mode {
+    .contact__page__container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #000000 0%, #111111 40%, #1a1a1a 100%);
+    padding: 5rem 2rem;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    position: relative;
+    }
+
+    /* 🔮 Floating Gold Orbs for Depth */
+    .contact__page__container::before,
+    .contact__page__container::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+    animation: float 10s ease-in-out infinite alternate;
+    }
+    .contact__page__container::before {
+    top: 10%;
+    left: 5%;
+    }
+    .contact__page__container::after {
+    bottom: 10%;
+    right: 5%;
+    }
+    @keyframes float {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-30px); }
+    }
+
+    /* =========================
+    Hero Section
+    ========================= */
+    .contact__hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+    }
+
+    .contact__hero__title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .contact__hero__subtitle {
+        text-align: center;
+    font-size: 1.1rem;
+    color: #cccccc;
+    margin-top: 0.8rem;
+    }
+
+    .contact__hero__decoration {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #ffd700, #ffea70);
+    border-radius: 2px;
+    margin: 1.5rem auto 0;
+    }
+
+    /* =========================
+    Contact Cards
+    ========================= */
+    .contact__cards__section {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+    }
+
+    .contact__card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+    }
+
+    .contact__card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 35px #ffe26e40;
+    transform: translateY(-10px) !important;
+    transition-duration: 0.3s !important;
+    }
+
+    .contact__card__icon {
+    margin-bottom: 1rem;
+    }
+
+    .contact__card h3 {
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    }
+
+    .contact__card p {
+    color: #f1f1f1;
+    margin-bottom: 0.4rem;
+    }
+
+    .contact__card__subtitle {
+    font-size: 0.85rem;
+    color: #aaaaaa;
+    }
+
+    /* =========================
+    Form Section
+    ========================= */
+    .contact__form__section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
+    position: relative;
+    z-index: 1;
+    }
+
+    .contact__form__header h2 {
+    color: #ffd700;
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: center;
+    }
+
+    .contact__form__header p {
+    text-align: center;
+    color: #ccc;
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+    }
+
+    .form__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    }
+
+    /* =========================
+    Input Fields
+    ========================= */
+    .input__group {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+    }
+
+    .input__icon {
+    margin-top: 1.8rem;
+    }
+
+    .input__content {
+    flex: 1;
+    }
+
+    .input__label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+    color: #f5f5f5;
+    }
+
+    .contact__input,
+    .contact__textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 0.8rem;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.9rem 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    }
+
+    .contact__input:focus,
+    .contact__textarea:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    }
+
+    .error {
+    border-color: #ff4d4d !important;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.2);
+    }
+
+    .error__message {
+    font-size: 0.85rem;
+    color: #ff6b6b;
+    margin-top: 0.3rem;
+    display: block;
+    }
+
+    /* =========================
+    Button
+    ========================= */
+    .submit__button__container {
+    text-align: center;
+    margin-top: 2rem;
+    }
+
+    .contact__submit__button {
+    background: linear-gradient(90deg, #ffd700, #ffec9e);
+    color: #000;
+    border: none;
+    padding: 0.9rem 2rem;
+    font-weight: 600;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+    }
+
+    .contact__submit__button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.5);
+    }
+
+    .button__spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #000;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+    }
+
+    /* =========================
+    Toaster
+    ========================= */
+    .toaster {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    border-left: 4px solid #ffd700;
+    border-radius: 0.8rem;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.6s forwards;
+    }
+
+    @keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
+
+    .toaster-icon svg {
+    stroke: #ffd700;
+    }
+
+    .toaster-title {
+    font-weight: 600;
+    color: #ffd700;
+    }
+
+    .toaster-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    }
+
+    .toaster-close:hover svg {
+    stroke: #ffb300;
+    }
+}
+
 /* =========================
    MODERN CONTACT PAGE
 ========================= */
@@ -389,3 +1011,4 @@
 .dark-mode .input__icon {
   background: var(--bg-primary);
 }
+
