@@ -1,14 +1,22 @@
 const jwt = require('jsonwebtoken');
-
+const extractToken = (authHeader) => {
+    if (!authHeader || !authHeader.startsWith('Bearer ')) return null;
+    return authHeader.split(' ')[1];
+};
 const verifyJWT = (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
-
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        
+        const token = extractToken(authHeader);
+        if (!token) {
             return res.status(401).json({ message: 'Unauthorized: No token provided' });
         }
 
-        const token = authHeader.split(' ')[1];
+        if (!process.env.JWT_SECRET) {
+            console.error('JWT_SECRET is not defined in environment variables');
+            return res.status(500).json({ message: 'Internal Server Error: JWT secret missing' });
+        }
+
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
@@ -17,7 +25,13 @@ const verifyJWT = (req, res, next) => {
         next();
     } catch (error) {
         console.error('JWT verification error:', error);
-        return res.status(401).json({ message: 'Unauthorized: Invalid or expired token' });
+        if (error.name === 'TokenExpiredError') {
+            return res.status(401).json({ message: 'Unauthorized: Token has expired' });
+        } else if (error.name === 'JsonWebTokenError') {
+            return res.status(401).json({ message: 'Unauthorized: Invalid token' });
+        } else {
+            return res.status(401).json({ message: 'Unauthorized: Token verification failed' });
+        }
     }
 };
 
