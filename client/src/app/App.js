@@ -41,6 +41,8 @@ import ContactUs from "../routes/ContactUs";
 import RecentlyViewedSection from "../components/RecentlyViewedSection";
 import PageNotFound from '../components/PageNotFound/PageNotFound';
 import InventoryManagement from '../components/Admin/InventoryManagement/InventoryManagement';
+import CartPage from "../routes/CartPage";
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -106,6 +108,8 @@ function App() {
                     <Route path="featured/:id" element={<ItemView />} />
                   </Route>
                   <Route path="/wishlist" element={<Wishlist />} />
+                  <Route path="/cart" element={<CartPage />} />
+
                   <Route path="/search/*" element={<SearchView />} />
                   <Route path="/terms" element={<TermsConditions />} />
                   <Route path="/privacy" element={<PrivacyPolicy />} />
