@@ -19,6 +19,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SendIcon from "@mui/icons-material/Send";
 import { SiX } from "react-icons/si";
+import Cart from "../Card/Cart/Cart";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = React.useState(false);

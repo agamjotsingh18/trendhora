@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useState, useEffect } from "react";
 import { CartItemsContext } from "../../../Context/CartItemsContext";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import land from "../../../asset/brand/cart.jpg";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -17,7 +18,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   minWidth: "350px",
-  width: "90%", // mobile ke liye responsive
+  width: "90%",
   maxWidth: "500px",
   height: "400px",
   bgcolor: "background.paper",
@@ -25,29 +26,45 @@ const style = {
   borderRadius: "15px",
   boxShadow: 24,
   p: 4,
-  zIndex: 1500, // Drawer ke upar
+  zIndex: 1500,
 };
 
 const Cart = () => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   const [openCheckoutModal, setOpenCheckoutModal] = useState(false);
+
+  const handleOpen = () => setOpen(true);
   const handleCheckoutOpen = () => setOpenCheckoutModal(true);
   const handleCheckoutClose = () => setOpenCheckoutModal(false);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // automatically open modal if user is on /cart route
+  useEffect(() => {
+    if (location.pathname === "/cart") {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [location.pathname]);
+
+  // when modal closes, return to home (or previous page)
+  const handleClose = () => {
+    setOpen(false);
+    navigate(-1); // return to previous route
+  };
+
   // Customer details state
   const [customerDetails, setCustomerDetails] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    address: ''
+    name: "",
+    phone: "",
+    email: "",
+    address: "",
   });
 
   const cartItems = useContext(CartItemsContext);
-  const totalBill = cartItems.items.reduce((sum,item)=>sum+item.price,0);
-
+  const totalBill = cartItems.items.reduce((sum, item) => sum + item.price, 0);
 
   const handleCheckout = () => {
     if (cartItems.items.length > 0) {
@@ -57,27 +74,41 @@ const Cart = () => {
 
   const handleWhatsAppOrder = () => {
     if (!customerDetails.name || !customerDetails.phone) {
-      alert('Please fill in your name and phone number');
+      alert("Please fill in your name and phone number");
       return;
     }
 
-    // Format cart items for WhatsApp message
-    const itemsList = cartItems.items.map(item => 
-      `• ${item.name} - Size: ${item.size?.[0] || 'N/A'} - $${item.price} (Qty: ${item.itemQuantity || 1})`
-    ).join('\n');
+    const itemsList = cartItems.items
+      .map(
+        (item) =>
+          `• ${item.name} - Size: ${item.size?.[0] || "N/A"} - $${item.price} (Qty: ${
+            item.itemQuantity || 1
+          })`
+      )
+      .join("\n");
 
-    const message = `🛍️ *New Order from Trendhora*\n\n📋 *Order Details:*\n${itemsList}\n\n💰 *Total: $${totalBill.toFixed(2)}*\n\n👤 *Customer Details:*\n📞 Name: ${customerDetails.name}\n📱 Phone: ${customerDetails.phone}\n📧 Email: ${customerDetails.email || 'Not provided'}\n📍 Address: ${customerDetails.address || 'Not provided'}\n\nPlease confirm this order!`;
+    const message = `🛍️ *New Order from Trendhora*\n\n📋 *Order Details:*\n${itemsList}\n\n💰 *Total: $${totalBill.toFixed(
+      2
+    )}*\n\n👤 *Customer Details:*\n📞 Name: ${
+      customerDetails.name
+    }\n📱 Phone: ${customerDetails.phone}\n📧 Email: ${
+      customerDetails.email || "Not provided"
+    }\n📍 Address: ${
+      customerDetails.address || "Not provided"
+    }\n\nPlease confirm this order!`;
 
-    const whatsappNumber = '919876543210'; // Same number from reference site
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-    
-    window.open(whatsappUrl, '_blank');
+    const whatsappNumber = "919876543210";
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(whatsappUrl, "_blank");
     handleCheckoutClose();
-    setCustomerDetails({ name: '', phone: '', email: '', address: '' });
+    setCustomerDetails({ name: "", phone: "", email: "", address: "" });
   };
 
   const handleInputChange = (field, value) => {
-    setCustomerDetails(prev => ({ ...prev, [field]: value }));
+    setCustomerDetails((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
@@ -100,7 +131,10 @@ const Cart = () => {
       >
         <ShoppingCartIcon
           color="black"
-          onClick={handleOpen}
+          onClick={() => {
+            handleOpen();
+            navigate("/cart"); // ensures route updates when clicking icon
+          }}
           sx={{ width: "35px" }}
         />
       </Badge>
@@ -115,7 +149,6 @@ const Cart = () => {
               {cartItems.items.length === 0 ? (
                 <div className="cart__empty">
                   <img className="cartImg" src={land} alt="" />
-                 
                 </div>
               ) : (
                 <div className="shop__cart__items">
@@ -143,47 +176,50 @@ const Cart = () => {
           </div>
         </Box>
       </Modal>
+
       <Modal open={openCheckoutModal} onClose={handleCheckoutClose}>
         <Box sx={style}>
           <div className="checkout-form">
-            <h3 style={{ marginBottom: '20px', textAlign: 'center' }}>Complete Your Order</h3>
-            
-            <div style={{ marginBottom: '15px' }}>
+            <h3 style={{ marginBottom: "20px", textAlign: "center" }}>
+              Complete Your Order
+            </h3>
+
+            <div style={{ marginBottom: "15px" }}>
               <TextField
                 fullWidth
                 label="Full Name *"
                 variant="outlined"
                 size="small"
                 value={customerDetails.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
+                onChange={(e) => handleInputChange("name", e.target.value)}
                 required
               />
             </div>
-            
-            <div style={{ marginBottom: '15px' }}>
+
+            <div style={{ marginBottom: "15px" }}>
               <TextField
                 fullWidth
                 label="Phone Number *"
                 variant="outlined"
                 size="small"
                 value={customerDetails.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
+                onChange={(e) => handleInputChange("phone", e.target.value)}
                 required
               />
             </div>
-            
-            <div style={{ marginBottom: '15px' }}>
+
+            <div style={{ marginBottom: "15px" }}>
               <TextField
                 fullWidth
                 label="Email (Optional)"
                 variant="outlined"
                 size="small"
                 value={customerDetails.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
+                onChange={(e) => handleInputChange("email", e.target.value)}
               />
             </div>
-            
-            <div style={{ marginBottom: '20px' }}>
+
+            <div style={{ marginBottom: "20px" }}>
               <TextField
                 fullWidth
                 label="Delivery Address (Optional)"
@@ -192,20 +228,26 @@ const Cart = () => {
                 multiline
                 rows={2}
                 value={customerDetails.address}
-                onChange={(e) => handleInputChange('address', e.target.value)}
+                onChange={(e) => handleInputChange("address", e.target.value)}
               />
             </div>
-            
-            <div style={{ textAlign: 'center', marginBottom: '15px' }}>
+
+            <div style={{ textAlign: "center", marginBottom: "15px" }}>
               <strong>Total: ${totalBill.toFixed(2)}</strong>
             </div>
-            
-            <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-              <Button 
-                variant="contained" 
+
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                justifyContent: "center",
+              }}
+            >
+              <Button
+                variant="contained"
                 onClick={handleWhatsAppOrder}
                 startIcon={<WhatsAppIcon />}
-                style={{ backgroundColor: '#25D366', color: 'white' }}
+                style={{ backgroundColor: "#25D366", color: "white" }}
               >
                 Order via WhatsApp
               </Button>
