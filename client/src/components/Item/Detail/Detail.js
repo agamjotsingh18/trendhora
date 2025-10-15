@@ -1,7 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import "./Detail.css";
-import { Button, IconButton, Rating, Chip, Divider, Alert } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  Rating,
+  Chip,
+  Divider,
+  Alert,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -12,6 +19,7 @@ import SecurityIcon from "@mui/icons-material/Security";
 import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
 import WarningIcon from "@mui/icons-material/Warning";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Toaster from "../../Toaster/toaster";
 import { CartItemsContext } from "../../../Context/CartItemsContext";
 import { WishItemsContext } from "../../../Context/WishItemsContext";
 
@@ -22,10 +30,20 @@ const Detail = ({ item }) => {
   const [currentItem, setCurrentItem] = useState(item || null);
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("");
+  const [showToaster, setShowToaster] = useState(false);
+  const [toasterTitle, setToasterTitle] = useState("");
+  const [toasterMessage, setToasterMessage] = useState("");
+  const [toasterType, setToasterType] = useState("success");
   const [selectedColor, setSelectedColor] = useState(0);
   const [isInWishlist, setIsInWishlist] = useState(false);
-  const [stockInfo, setStockInfo] = useState({ stock: 0, stockStatus: 'in_stock' });
+  const [stockInfo, setStockInfo] = useState({
+    stock: 0,
+    stockStatus: "in_stock",
+  });
 
+  const isLoggedIn = () => {
+    return !!localStorage.getItem("authToken");
+  };
   const colors = [
     { name: "Red", value: "#FF0000" },
     { name: "Blue", value: "#0000FF" },
@@ -56,14 +74,14 @@ const Detail = ({ item }) => {
     if ((item || currentItem)?._id) {
       const itemId = (item || currentItem)._id;
       fetch(`${process.env.REACT_APP_BACKEND_URL}/api/items/${itemId}`)
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           setStockInfo({
             stock: data.stock || 0,
-            stockStatus: data.stockStatus || 'in_stock'
+            stockStatus: data.stockStatus || "in_stock",
           });
         })
-        .catch(err => console.error("Error fetching stock info:", err));
+        .catch((err) => console.error("Error fetching stock info:", err));
     }
   }, [id, category, item, currentItem]);
 
@@ -83,16 +101,52 @@ const Detail = ({ item }) => {
   };
 
   const handleAddToCart = () => {
+    if (!isLoggedIn()) {
+      setToasterTitle("Login Required");
+      setToasterMessage("Please login to add items to cart.");
+      setToasterType("error");
+      setShowToaster(true);
+      return;
+    }
+    if (stockInfo.stock === 0 || stockInfo.stockStatus === 'out_of_stock') {
+      setToasterTitle("Out of Stock");
+      setToasterMessage("This item is currently out of stock.");
+      setToasterType("error");
+      setShowToaster(true);
+      return;
+    }
+
     if (currentItem && stockInfo.stock > 0) {
       cartItems.addItem(currentItem, quantity);
+      setToasterTitle("Success");
+      setToasterMessage("Item added to cart!");
+      setToasterType("success");
+      setShowToaster(true);
     }
   };
 
   const handleAddToWish = () => {
+    if (!isLoggedIn()) {
+      setToasterTitle("Login Required");
+      setToasterMessage("Please login to add items to wishlist.");
+      setToasterType("error");
+      setShowToaster(true);
+      return;
+    }
+    
     if (currentItem) {
       wishItems.addItem(currentItem);
       setIsInWishlist(!isInWishlist);
+      setToasterTitle("Success");
+      setToasterMessage("Item added to wishlist!");
+      setToasterType("success");
+      setShowToaster(true);
     }
+  };
+
+
+  const handleCloseToaster = () => {
+    setShowToaster(false);
   };
 
   if (!currentItem) {
@@ -109,8 +163,8 @@ const Detail = ({ item }) => {
     <div className="enterprise-product-detail">
       {/* Brand & Name */}
       <div className="product-header">
-        <Chip 
-          label={currentItem.brand || "Premium Brand"} 
+        <Chip
+          label={currentItem.brand || "Premium Brand"}
           className="brand-chip"
           size="small"
         />
@@ -124,32 +178,45 @@ const Detail = ({ item }) => {
       {/* Price */}
       <div className="price-section">
         <span className="current-price">${currentItem.price}</span>
-        <span className="original-price">${(currentItem.price * 1.2).toFixed(0)}</span>
+        <span className="original-price">
+          ${(currentItem.price * 1.2).toFixed(0)}
+        </span>
         <Chip label="20% OFF" className="discount-chip" size="small" />
       </div>
 
       {/* Stock Status Alert */}
-      {stockInfo.stockStatus === 'out_of_stock' && (
+      {stockInfo.stockStatus === "out_of_stock" && (
         <Alert severity="error" icon={<WarningIcon />} className="stock-alert">
           Out of Stock - Currently unavailable
         </Alert>
       )}
-      
-      {stockInfo.stockStatus === 'low_stock' && (
-        <Alert severity="warning" icon={<WarningIcon />} className="stock-alert">
+
+      {stockInfo.stockStatus === "low_stock" && (
+        <Alert
+          severity="warning"
+          icon={<WarningIcon />}
+          className="stock-alert"
+        >
           Low Stock - Only {stockInfo.stock} items left!
         </Alert>
       )}
-      
-      {stockInfo.stockStatus === 'in_stock' && stockInfo.stock > 0 && (
-        <Alert severity="success" icon={<CheckCircleIcon />} className="stock-alert">
+
+      {stockInfo.stockStatus === "in_stock" && stockInfo.stock > 0 && (
+        <Alert
+          severity="success"
+          icon={<CheckCircleIcon />}
+          className="stock-alert"
+        >
           In Stock - {stockInfo.stock} available
         </Alert>
       )}
 
       {/* Description */}
       <div className="product-description">
-        <p>{currentItem.description || "Premium quality product with exceptional craftsmanship and attention to detail."}</p>
+        <p>
+          {currentItem.description ||
+            "Premium quality product with exceptional craftsmanship and attention to detail."}
+        </p>
       </div>
 
       <Divider className="section-divider" />
@@ -161,7 +228,9 @@ const Detail = ({ item }) => {
           {colors.map((color, idx) => (
             <button
               key={idx}
-              className={`color-swatch ${selectedColor === idx ? 'selected' : ''}`}
+              className={`color-swatch ${
+                selectedColor === idx ? "selected" : ""
+              }`}
               style={{ backgroundColor: color.value }}
               onClick={() => setSelectedColor(idx)}
               title={color.name}
@@ -177,7 +246,7 @@ const Detail = ({ item }) => {
           {sizes.map((sizeOption) => (
             <button
               key={sizeOption}
-              className={`size-button ${size === sizeOption ? 'selected' : ''}`}
+              className={`size-button ${size === sizeOption ? "selected" : ""}`}
               onClick={() => handleSizeChange(sizeOption)}
             >
               {sizeOption}
@@ -190,16 +259,16 @@ const Detail = ({ item }) => {
       <div className="selection-section">
         <div className="section-title">Quantity</div>
         <div className="quantity-selector">
-          <IconButton 
-            onClick={handleQuantityDecrement} 
+          <IconButton
+            onClick={handleQuantityDecrement}
             className="quantity-btn"
             disabled={quantity <= 1}
           >
             <RemoveIcon />
           </IconButton>
           <span className="quantity-display">{quantity}</span>
-          <IconButton 
-            onClick={handleQuantityIncrement} 
+          <IconButton
+            onClick={handleQuantityIncrement}
             className="quantity-btn"
             disabled={quantity >= stockInfo.stock || stockInfo.stock === 0}
           >
@@ -218,15 +287,14 @@ const Detail = ({ item }) => {
           startIcon={<ShoppingBagIcon />}
           onClick={handleAddToCart}
           fullWidth
-          disabled={stockInfo.stock === 0 || stockInfo.stockStatus === 'out_of_stock'}
+          disabled={
+            stockInfo.stock === 0 || stockInfo.stockStatus === "out_of_stock"
+          }
         >
-          {stockInfo.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+          {stockInfo.stock === 0 ? "Out of Stock" : "Add to Cart"}
         </Button>
-        
-        <IconButton
-          className="wishlist-btn"
-          onClick={handleAddToWish}
-        >
+
+        <IconButton className="wishlist-btn" onClick={handleAddToWish}>
           {isInWishlist ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </IconButton>
       </div>
@@ -240,7 +308,7 @@ const Detail = ({ item }) => {
             <span className="feature-desc">On orders over $100</span>
           </div>
         </div>
-        
+
         <div className="feature-item">
           <SecurityIcon className="feature-icon" />
           <div className="feature-text">
@@ -248,7 +316,7 @@ const Detail = ({ item }) => {
             <span className="feature-desc">SSL encrypted checkout</span>
           </div>
         </div>
-        
+
         <div className="feature-item">
           <AssignmentReturnIcon className="feature-icon" />
           <div className="feature-text">
@@ -257,6 +325,14 @@ const Detail = ({ item }) => {
           </div>
         </div>
       </div>
+      <Toaster
+        title={toasterTitle}
+        message={toasterMessage}
+        isVisible={showToaster}
+        onClose={handleCloseToaster}
+        type={toasterType}
+        duration={1000}
+      />
     </div>
   );
 };
