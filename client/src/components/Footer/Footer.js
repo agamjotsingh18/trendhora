@@ -41,7 +41,7 @@ const Footer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email) {
+    if (!email || email.trim() === "") {
       toast.error("Please enter your email address", {
         position: "bottom-right",
         autoClose: 3000,
@@ -55,7 +55,9 @@ const Footer = () => {
       return;
     }
 
-    if (!/\S+@\S+\.\S+/.test(email)) {
+    // More robust email validation
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email.trim())) {
       toast.error("Please enter a valid email address", {
         position: "bottom-right",
         autoClose: 3000,
@@ -175,16 +177,7 @@ const Footer = () => {
                   </div>
                   <form
                     className="footer__newsletter__form"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const email = e.target.email.value;
-                      if (email) {
-                        toast.success("Thank you for subscribing to our newsletter!");
-                        e.target.reset();
-                      } else {
-                        toast.error("Please enter a valid email address");
-                      }
-                    }}
+                    onSubmit={handleSubmit}
                   >
                     <div className="newsletter__input__container">
                       <input
@@ -192,10 +185,16 @@ const Footer = () => {
                         name="email"
                         placeholder="Enter your email"
                         className="newsletter__input"
-                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        disabled={isSubmitting}
                       />
-                      <button type="submit" className="newsletter__button">
-                        Subscribe
+                      <button 
+                        type="submit" 
+                        className="newsletter__button"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Subscribing..." : "Subscribe"}
                       </button>
                     </div>
                     <p className="newsletter__disclaimer">We respect your privacy. Unsubscribe at any time.</p>
