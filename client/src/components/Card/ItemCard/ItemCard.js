@@ -214,13 +214,26 @@ const ItemCard = (props) => {
   const detailPath = itemCategory && itemId ? `/item/${itemCategory}/${itemId}` : "#";
 
   return (
-    <div
+    <Link
+     to={detailPath}
+  onClick={(e) => {
+    if (detailPath === "#") {
+      e.preventDefault();
+      setToasterTitle("Error");
+      setToasterMessage("Could not open product details. Please try again.");
+      setToasterType("error");
+      setShowToaster(true);
+      return;
+    }
+    saveToRecentlyViewed(currentItem);
+  }}
+    
       className={`product__card__card ${isHovered ? "hovered" : ""}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ cursor: "pointer" }}
     >
-      <div className="product__image" onClick={handleProductClick}>
+      <div className="product__image">
         <img
           src={isHovered && hoverImageUrl ? hoverImageUrl : imageUrl}
           alt={currentItem.name || "Product"}
@@ -257,22 +270,7 @@ const ItemCard = (props) => {
       <div className="product__card__detail">
         <span className="category-badge">{itemCategory}</span>
         <div className="product__name">
-          <Link
-            to={detailPath}
-            onClick={(e) => {
-              if (detailPath === "#") {
-                e.preventDefault();
-                setToasterTitle("Error");
-                setToasterMessage("Could not open product details. Please try again.");
-                setToasterType("error");
-                setShowToaster(true);
-                return;
-              }
-              saveToRecentlyViewed(currentItem);
-            }}
-          >
-            {currentItem.name}
-          </Link>
+          {currentItem.name || "Unnamed Product"}
         </div>
         <div className="product__price">${currentItem.price}</div>
         <div className="product__card__action">
@@ -313,7 +311,7 @@ const ItemCard = (props) => {
         type={toasterType}
         duration={1000}
       />
-    </div>
+    </Link>
   );
 };
 
