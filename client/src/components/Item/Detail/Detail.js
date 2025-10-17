@@ -162,17 +162,19 @@ const Detail = ({ item }) => {
   return (
     <div className="enterprise-product-detail">
       {/* Brand & Name */}
-      <div className="product-header">
-        <Chip
-          label={currentItem.brand || "Premium Brand"}
-          className="brand-chip"
-          size="small"
-        />
-        <h1 className="product-title">{currentItem.name}</h1>
-        <div className="product-rating">
-          <Rating value={4.5} precision={0.5} readOnly size="small" />
-          <span className="rating-text">(127 reviews)</span>
+      <div>
+        <div className="product-header">
+          <Chip 
+            label={currentItem.brand || "Premium Brand"} 
+            className="brand-chip"
+            size="small"
+          />
+          <div className="product-rating">
+            <Rating value={4.5} precision={0.5} readOnly size="small" />
+            <span className="rating-text">(127 reviews)</span>
+          </div>  
         </div>
+        <h1 className="product-title">{currentItem.name}</h1>
       </div>
 
       {/* Price */}
