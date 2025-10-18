@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require("cors");
-require("dotenv").config();
+require('dotenv').config({ path: path.resolve(__dirname, '.env.local') });
 const connectDB = require("./config/db");
 
 const PORT = process.env.PORT || 3000;

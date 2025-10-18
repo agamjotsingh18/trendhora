@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import toast from 'react-hot-toast';
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./RegisterCard.css";
@@ -157,13 +158,19 @@ const RegisterCard = () => {
 
       // Store JWT token
       localStorage.setItem('authToken', res.data.token);
+      // Clear any existing Supabase session to avoid showing a different logged-in user
+      try {
+        await supabase.auth.signOut();
+      } catch (err) {
+        // ignore
+      }
+      // Notify other tabs/components that auth changed
       window.dispatchEvent(new Event('storage'));
 
-      alert("Registration successful! Logged in.");
+      toast.success('Account created successfully!');
       navigate("/");
     } catch (error) {
-      const errorMessage = error.response?.data.message || error.message;
-      alert(`Registration failed: ${errorMessage}`);
+      toast.error(error.response?.data?.message || 'Registration failed. Please try again.');
     }
   };
 

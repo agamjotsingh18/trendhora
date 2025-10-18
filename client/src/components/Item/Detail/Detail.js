@@ -19,7 +19,7 @@ import SecurityIcon from "@mui/icons-material/Security";
 import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
 import WarningIcon from "@mui/icons-material/Warning";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import Toaster from "../../Toaster/toaster";
+import { success as toastSuccess, error as toastError } from '../../../lib/toast';
 import { CartItemsContext } from "../../../Context/CartItemsContext";
 import { WishItemsContext } from "../../../Context/WishItemsContext";
 
@@ -30,10 +30,7 @@ const Detail = ({ item }) => {
   const [currentItem, setCurrentItem] = useState(item || null);
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("");
-  const [showToaster, setShowToaster] = useState(false);
-  const [toasterTitle, setToasterTitle] = useState("");
-  const [toasterMessage, setToasterMessage] = useState("");
-  const [toasterType, setToasterType] = useState("success");
+  // Using react-hot-toast for notifications now
   const [selectedColor, setSelectedColor] = useState(0);
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [stockInfo, setStockInfo] = useState({
@@ -57,6 +54,12 @@ const Detail = ({ item }) => {
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
   useEffect(() => {
+    // Sync wishlist state from local storage / context when item loads
+    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    if (currentItem) {
+      setIsInWishlist(wishlist.some(i => i._id === currentItem._id));
+    }
+
     if (!item && id && category) {
       const recent = JSON.parse(localStorage.getItem("recentlyViewed") || "[]");
       const found = recent.find(
@@ -102,52 +105,40 @@ const Detail = ({ item }) => {
 
   const handleAddToCart = () => {
     if (!isLoggedIn()) {
-      setToasterTitle("Login Required");
-      setToasterMessage("Please login to add items to cart.");
-      setToasterType("error");
-      setShowToaster(true);
+      toastError('Please login to add items to cart.');
       return;
     }
     if (stockInfo.stock === 0 || stockInfo.stockStatus === 'out_of_stock') {
-      setToasterTitle("Out of Stock");
-      setToasterMessage("This item is currently out of stock.");
-      setToasterType("error");
-      setShowToaster(true);
+      toastError('This item is currently out of stock.');
       return;
     }
 
     if (currentItem && stockInfo.stock > 0) {
       cartItems.addItem(currentItem, quantity);
-      setToasterTitle("Success");
-      setToasterMessage("Item added to cart!");
-      setToasterType("success");
-      setShowToaster(true);
+      toastSuccess('Item added to cart!');
     }
   };
 
   const handleAddToWish = () => {
     if (!isLoggedIn()) {
-      setToasterTitle("Login Required");
-      setToasterMessage("Please login to add items to wishlist.");
-      setToasterType("error");
-      setShowToaster(true);
+      toastError('Please login to add items to wishlist.');
       return;
     }
     
     if (currentItem) {
-      wishItems.addItem(currentItem);
-      setIsInWishlist(!isInWishlist);
-      setToasterTitle("Success");
-      setToasterMessage("Item added to wishlist!");
-      setToasterType("success");
-      setShowToaster(true);
+      const res = wishItems.toggleItem(currentItem);
+      if (res === 'added') {
+        toastSuccess('Item added to wishlist!');
+        setIsInWishlist(true);
+      } else {
+        toastSuccess('Item removed from wishlist');
+        setIsInWishlist(false);
+      }
     }
   };
 
 
-  const handleCloseToaster = () => {
-    setShowToaster(false);
-  };
+  // handled by react-hot-toast
 
   if (!currentItem) {
     return (
@@ -327,14 +318,7 @@ const Detail = ({ item }) => {
           </div>
         </div>
       </div>
-      <Toaster
-        title={toasterTitle}
-        message={toasterMessage}
-        isVisible={showToaster}
-        onClose={handleCloseToaster}
-        type={toasterType}
-        duration={1000}
-      />
+      {/* react-hot-toast displays notifications */}
     </div>
   );
 };

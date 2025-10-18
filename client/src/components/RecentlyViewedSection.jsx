@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./RecentlyViewedSection.css";
+import { success as toastSuccess, error as toastError } from '../lib/toast';
 
 const RecentlyViewed = () => {
   const [products, setProducts] = useState([]);
@@ -55,6 +56,11 @@ const RecentlyViewed = () => {
 
     if (!isAlreadyInWishlist) {
       localStorage.setItem("wishlist", JSON.stringify([...existingWishlist, product]));
+  toastSuccess('Item added to wishlist!');
+      // Notify other components (e.g., wishlist badge)
+      window.dispatchEvent(new Event('storage'));
+    } else {
+      toastError('Item already in wishlist');
     }
   };
 
@@ -122,7 +128,7 @@ const RecentlyViewed = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    handleAddToWishlist(product);
+                              handleAddToWishlist(product);
                   }}
                   title="Add to wishlist"
                   aria-label="Add to wishlist"
