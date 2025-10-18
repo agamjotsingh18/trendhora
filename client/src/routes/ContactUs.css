@@ -437,6 +437,7 @@
   .contact__card p {
     color: #f1f1f1;
     margin-bottom: 0.4rem;
+    text-align: center;
   }
 
   .contact__card__subtitle {
