@@ -28,6 +28,7 @@ import { useContext, useEffect, useState } from 'react';
 import { WishItemsContext } from '../../../Context/WishItemsContext';
 import { supabase } from '../../../lib/supabase';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
@@ -47,37 +48,35 @@ const Control = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      // Check Supabase first
-      const { data: { user: supaUser } } = await supabase.auth.getUser();
-      if (supaUser) {
-        setUser(supaUser);
-        return;
-      }
-
-      // Then check JWT token
+      // Prefer backend JWT token first (ensures the user who logged in via backend is used)
       const token = localStorage.getItem('authToken');
-      if (token && supaUser) {
-        await supabase.auth.signOut();
-        // Fall through to use the JWT token
-      } else if (supaUser && !token) {
-          // Only a Supabase user exists, use it
-          setUser(supaUser);
-          return;
-      }
-
       if (token) {
         try {
           const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/me`, {
             headers: { Authorization: `Bearer ${token}` }
           });
-          setUser(res.data.data); // backend should return user info
+          // backend returns full user object via authMiddleware
+          setUser(res.data.data);
+          return;
         } catch (err) {
-          console.error(err);
+          console.error('Backend auth failed:', err);
+          // Token invalid or expired — remove it so we can fallback to Supabase or anonymous
           localStorage.removeItem('authToken');
         }
-      }else {
-        setUser(null);
       }
+
+      // Fallback: check Supabase session only if no valid backend token
+      try {
+        const { data: { user: supaUser } } = await supabase.auth.getUser();
+        if (supaUser) {
+          setUser(supaUser);
+          return;
+        }
+      } catch (err) {
+        console.error('Supabase getUser error:', err);
+      }
+
+      setUser(null);
     };
 
     fetchUser();
@@ -105,11 +104,17 @@ const Control = () => {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    localStorage.removeItem('authToken');
-    setUser(null);
-    handleClose();
-    navigate('/');
+    try {
+      await supabase.auth.signOut();
+      localStorage.removeItem('authToken');
+      setUser(null);
+      handleClose();
+      toast.success('Logged out successfully.');
+      navigate('/');
+    } catch (err) {
+      console.error('Logout error:', err);
+      toast.error('Logout failed. Please try again.');
+    }
   };
 
   const handleClick = (event) => {
@@ -159,7 +164,7 @@ const handleDeleteAccount = async () => {
     }
 
     // Step 2: Delete from Supabase (sign out after deletion)
-    await supabase.auth.signOut();
+  await supabase.auth.signOut();
 
     // Step 3: Clear local storage & frontend state
     localStorage.removeItem("authToken");
@@ -169,9 +174,11 @@ const handleDeleteAccount = async () => {
     handleClose?.(); // close dropdown if open
 
     // Redirect to home or login page
-    navigate('/');
+  toast.success('Account deleted successfully.');
+  navigate('/');
   } catch (err) {
-    setDeleteError(err.message || 'Something went wrong.');
+  setDeleteError(err.message || 'Something went wrong.');
+  toast.error(err.message || 'Something went wrong.');
   } finally {
     setDeleting(false);
     setConfirmText('');

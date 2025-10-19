@@ -22,6 +22,7 @@ import Wishlist from "../components/Wishlist";
 import WishItemsProvider from "../Context/WishItemsProvider";
 import SearchProvider from "../Context/SearchProvider";
 import Toaster from "../components/Toaster/toaster";
+import { Toaster as HotToaster } from 'react-hot-toast';
 import { ThemeProvider } from "../Context/ThemeContext";
 import ChatbotProvider from '../Context/ChatbotProvider';
 import Chatbot from '../components/Chatbot';
@@ -137,6 +138,8 @@ function App() {
         </WishItemsProvider>
       </CartItemsProvider>
       <Toaster />
+      {/* react-hot-toast Toaster (shows toast.success/toast.error from react-hot-toast) */}
+      <HotToaster position="top-right" />
     </ThemeProvider>
   );
 }
