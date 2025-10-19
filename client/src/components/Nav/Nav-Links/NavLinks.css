@@ -1,6 +1,6 @@
 .nav__bottom__container {
   height: 55px;
-  background: var(--bg-secondary, #1a1a1a);
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
