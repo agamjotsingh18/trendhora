@@ -35,6 +35,11 @@ exports.loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
     try {
+        // Validate input
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Email and password are required' });
+        }
+
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ message: 'Invalid email or password' });
@@ -51,10 +56,10 @@ exports.loginUser = asyncHandler(async (req, res) => {
             { expiresIn: '1h' }
         );
 
-        res.json({ token });
+        res.json({ token, message: 'Login successful' });
     } catch (error) {
         console.error('Login error:', error);
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message || 'Internal server error' });
     }
 });
 

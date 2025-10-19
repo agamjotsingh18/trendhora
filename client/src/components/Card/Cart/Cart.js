@@ -13,19 +13,23 @@ import land from "../../../asset/brand/cart.jpg";
 
 const style = {
   position: "absolute",
-  top: "60%",
+  top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  minWidth: "350px",
-  width: "90%", // mobile ke liye responsive
-  maxWidth: "500px",
-  height: "400px",
+  minWidth: "320px",
+  width: "90%",
+  maxWidth: "480px",
+  height: "auto",
+  maxHeight: "90vh",
   bgcolor: "background.paper",
-  border: "5px solid #FFE26E",
-  borderRadius: "15px",
+  border: "3px solid #FFE26E",
+  borderRadius: "12px",
   boxShadow: 24,
-  p: 4,
-  zIndex: 1500, // Drawer ke upar
+  p: 2,
+  zIndex: 1500,
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column"
 };
 
 const Cart = () => {
@@ -146,9 +150,9 @@ const Cart = () => {
       <Modal open={openCheckoutModal} onClose={handleCheckoutClose}>
         <Box sx={style}>
           <div className="checkout-form">
-            <h3 style={{ marginBottom: '20px', textAlign: 'center' }}>Complete Your Order</h3>
+            <h3>Complete Your Order</h3>
             
-            <div style={{ marginBottom: '15px' }}>
+            <div>
               <TextField
                 fullWidth
                 label="Full Name *"
@@ -160,7 +164,7 @@ const Cart = () => {
               />
             </div>
             
-            <div style={{ marginBottom: '15px' }}>
+            <div>
               <TextField
                 fullWidth
                 label="Phone Number *"
@@ -172,7 +176,7 @@ const Cart = () => {
               />
             </div>
             
-            <div style={{ marginBottom: '15px' }}>
+            <div>
               <TextField
                 fullWidth
                 label="Email (Optional)"
@@ -183,7 +187,7 @@ const Cart = () => {
               />
             </div>
             
-            <div style={{ marginBottom: '20px' }}>
+            <div>
               <TextField
                 fullWidth
                 label="Delivery Address (Optional)"
@@ -196,21 +200,21 @@ const Cart = () => {
               />
             </div>
             
-            <div style={{ textAlign: 'center', marginBottom: '15px' }}>
-              <strong>Total: ${totalBill.toFixed(2)}</strong>
+            <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '1.1rem' }}>
+              Total: ${totalBill.toFixed(2)}
             </div>
             
-            <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+            <div className="checkout-buttons">
               <Button 
                 variant="contained" 
                 onClick={handleWhatsAppOrder}
                 startIcon={<WhatsAppIcon />}
-                style={{ backgroundColor: '#25D366', color: 'white' }}
+                className="whatsapp-btn"
               >
                 Order via WhatsApp
               </Button>
-              <Button variant="outlined" onClick={handleCheckoutClose}>
-                Cancel
+              <Button variant="outlined" onClick={handleCheckoutClose} className="cancel-btn">
+                CANCEL
               </Button>
             </div>
           </div>

@@ -101,3 +101,98 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+/* Checkout form button styles */
+.checkout-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.checkout-buttons .whatsapp-btn,
+.checkout-buttons .cancel-btn {
+  flex: 1;
+  min-width: 100px;
+  max-width: 160px;
+  height: 40px;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+.checkout-buttons .whatsapp-btn {
+  background-color: #25D366 !important;
+  color: white !important;
+  font-size: 0.75rem !important;
+}
+
+.checkout-buttons .cancel-btn {
+  border-color: #666;
+  color: #666;
+}
+
+/* Mobile responsive */
+@media (max-width: 520px) {
+  .checkout-buttons {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 5px;
+  }
+  
+  .checkout-buttons .whatsapp-btn,
+  .checkout-buttons .cancel-btn {
+    width: 100%;
+    max-width: none;
+    min-width: auto;
+    flex: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .checkout-buttons .whatsapp-btn {
+    font-size: 0.75rem;
+    padding: 10px 8px;
+  }
+  
+  .checkout-buttons .cancel-btn {
+    font-size: 0.8rem;
+    padding: 10px 8px;
+  }
+}
+
+/* Checkout form container improvements */
+.checkout-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.checkout-form h3 {
+  margin: 0 0 15px 0;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-primary, #333);
+}
+
+/* Ensure modal content fits properly */
+.checkout-form > div {
+  margin-bottom: 12px;
+}
+
+.checkout-form > div:last-child {
+  margin-bottom: 0;
+  margin-top: auto;
+}

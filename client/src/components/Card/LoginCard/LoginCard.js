@@ -25,7 +25,17 @@ const LoginCard = ({ email, password, setEmail, setPassword }) => {
                 navigate('/');
             }, 100); // Navigate to account page after login
         } catch (error) {
-            const errorMessage = error.response ? error.response.data.message : error.message;
+            console.error('Login error:', error);
+            let errorMessage = 'Login failed. Please try again.';
+            
+            if (error.response && error.response.data && error.response.data.message) {
+                errorMessage = error.response.data.message;
+            } else if (error.message) {
+                errorMessage = error.message;
+            } else if (error.code === 'ECONNREFUSED') {
+                errorMessage = 'Cannot connect to server. Please make sure the server is running.';
+            }
+            
             alert(`Login failed: ${errorMessage}`);
         }
     };
