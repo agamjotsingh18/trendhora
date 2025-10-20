@@ -261,6 +261,7 @@
   padding: 12px 16px;
   line-height: 1.4;
   word-wrap: break-word;
+  text-align: left;
 }
 
 .message-text a {
