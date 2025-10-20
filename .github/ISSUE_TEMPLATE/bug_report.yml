@@ -1,27 +1,72 @@
 # .github/ISSUE_TEMPLATE/bug_report.yml
 name: "🚫 Bug Report"
 description: Report a bug or unexpected behavior
-title: "[Bug] "
+title: "[Bug] <Short description>"
 labels: ["bug"]
+
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting a bug! Please fill out this form so we can help you faster.
+        Thanks for reporting a bug! Please fill out all required fields to help us resolve the issue faster.
+
   - type: input
-    id: what-happened
+    id: title
     attributes:
-      label: What happened?
-      placeholder: Describe the bug in one sentence
+      label: 🧾 Title
+      description: Short and clear title for the bug
+      placeholder: "Example: App crashes when submitting the login form"
     validations:
       required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 Description
+      description: Provide a clear and concise description of the issue
+      placeholder: "Explain what went wrong..."
+    validations:
+      required: true
+
   - type: textarea
     id: steps
     attributes:
-      label: Steps to Reproduce
-      placeholder: List the steps to recreate the issue
+      label: 🔁 Steps to Reproduce
+      description: List the steps to reproduce the problem
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected_vs_actual
+    attributes:
+      label: ⚖️ Expected vs Actual Behavior
+      description: What did you expect to happen, and what actually happened?
+      placeholder: |
+        **Expected:** The app should navigate to dashboard.
+        **Actual:** The app shows a blank screen.
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 📸 Screenshots / Video
+      description: If applicable, add screenshots or a screen recording to help explain your problem
+      placeholder: "Attach screenshots or video links here"
+
   - type: input
     id: environment
     attributes:
-      label: Environment
-      placeholder: OS, Browser, Version, etc.
+      label: 💻 Environment Details
+      description: Mention your setup details
+      placeholder: "OS: Windows 11 | Browser: Chrome 118 | Device: Laptop | App Version: 1.2.3"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: 🧩 Additional Context
+      description: Add any other details or logs that might be useful
+      placeholder: "Any related issues, logs, or messages"
