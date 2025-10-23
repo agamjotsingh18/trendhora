@@ -1,17 +1,19 @@
 .item-creation-container {
   padding: 2rem 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: var(--bg-primary);
 }
 
 .item-creation-paper {
   padding: 2.5rem;
   border-radius: 16px !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+  background: var(--bg-secondary) !important;
+  box-shadow: var(--shadow) !important;
+  border: 1px solid var(--border-color);
 }
 
 .item-creation-title {
-  color: #2c3e50;
+  color: var(--text-primary);
   font-weight: 700 !important;
   margin-bottom: 1.5rem !important;
   text-align: center;
@@ -24,11 +26,11 @@
 }
 
 .section-title {
-  color: #34495e !important;
+  color: var(--accent-color) !important;
   font-weight: 600 !important;
   margin-bottom: 1rem !important;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #3498db;
+  border-bottom: 2px solid var(--accent-color);
 }
 
 /* Size Selector */
@@ -67,9 +69,10 @@
   gap: 0.5rem;
   margin-top: 1rem;
   padding: 1rem;
-  background: #f8f9fa;
+  background: var(--bg-tertiary);
   border-radius: 8px;
   min-height: 50px;
+  border: 1px solid var(--border-color);
 }
 
 .selected-size-chip {
@@ -92,9 +95,10 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 1rem;
-  background: #f8f9fa;
+  background: var(--bg-tertiary);
   border-radius: 8px;
   min-height: 50px;
+  border: 1px solid var(--border-color);
 }
 
 .highlight-chip {
@@ -119,7 +123,9 @@
   padding-top: 100%;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
   transition: transform 0.3s ease;
 }
 
@@ -157,7 +163,7 @@
   justify-content: center;
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 2px solid #ecf0f1;
+  border-top: 2px solid var(--border-color);
 }
 
 .submit-section .MuiButton-root {
@@ -165,19 +171,22 @@
   font-size: 1.1rem !important;
   font-weight: 600 !important;
   border-radius: 8px !important;
-  background: linear-gradient(45deg, #3498db, #2980b9) !important;
-  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3) !important;
+  background: var(--accent-color) !important;
+  color: #000 !important;
+  box-shadow: var(--shadow) !important;
   transition: all 0.3s ease !important;
 }
 
 .submit-section .MuiButton-root:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4) !important;
+  background: var(--accent-hover) !important;
+  box-shadow: 0 6px 20px rgba(255, 226, 110, 0.4) !important;
 }
 
 .submit-section .MuiButton-root:disabled {
-  background: #95a5a6 !important;
+  background: var(--text-muted) !important;
   box-shadow: none !important;
+  opacity: 0.5;
 }
 
 /* Responsive Design */
@@ -222,4 +231,38 @@
 
 .item-creation-paper {
   animation: fadeIn 0.5s ease;
+}
+
+/* Material-UI overrides for theme consistency */
+.item-creation-container .MuiTextField-root .MuiInputBase-root {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.item-creation-container .MuiOutlinedInput-notchedOutline {
+  border-color: var(--border-color) !important;
+}
+
+.item-creation-container .MuiInputLabel-root {
+  color: var(--text-secondary);
+}
+
+.item-creation-container .MuiInputBase-input {
+  color: var(--text-primary);
+}
+
+.item-creation-container .MuiSelect-select {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.item-creation-container .MuiChip-root {
+  background: var(--accent-color) !important;
+  color: #000 !important;
+}
+
+.item-creation-container .MuiChip-outlined {
+  border-color: var(--border-color) !important;
+  background: transparent !important;
+  color: var(--text-primary) !important;
 }
