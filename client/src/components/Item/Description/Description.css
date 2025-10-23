@@ -702,3 +702,48 @@
 .MuiAccordionDetails-root::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
+.review-form {
+  background: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.review-form h5 {
+  margin-bottom: 15px;
+  color: var(--text-primary);
+}
+
+.rating-input {
+  margin-bottom: 15px;
+}
+
+.rating-input label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.comment-input textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 15px;
+}
+
+.comment-input textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.submit-review-btn {
+  background: #ff8008 !important;
+  color: white !important;
+}
