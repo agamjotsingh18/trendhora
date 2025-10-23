@@ -1,0 +1,225 @@
+.item-creation-container {
+  padding: 2rem 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.item-creation-paper {
+  padding: 2.5rem;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+}
+
+.item-creation-title {
+  color: #2c3e50;
+  font-weight: 700 !important;
+  margin-bottom: 1.5rem !important;
+  text-align: center;
+  font-size: 2.5rem !important;
+}
+
+.item-creation-alert {
+  margin-bottom: 1.5rem !important;
+  border-radius: 8px !important;
+}
+
+.section-title {
+  color: #34495e !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #3498db;
+}
+
+/* Size Selector */
+.size-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.size-chip {
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-weight: 600 !important;
+}
+
+.size-chip:hover {
+  transform: scale(1.05);
+}
+
+.custom-size-input {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.custom-size-input .MuiTextField-root {
+  flex: 1;
+  max-width: 200px;
+}
+
+.selected-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  min-height: 50px;
+}
+
+.selected-size-chip {
+  font-weight: 600 !important;
+}
+
+/* Highlights */
+.highlight-input {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.highlight-input .MuiTextField-root {
+  flex: 1;
+}
+
+.highlights-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  min-height: 50px;
+}
+
+.highlight-chip {
+  font-weight: 500 !important;
+}
+
+/* Image Upload */
+.image-upload-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.image-preview-grid {
+  margin-top: 1rem !important;
+}
+
+.image-preview {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.image-preview:hover {
+  transform: scale(1.05);
+}
+
+.preview-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.delete-image-btn {
+  position: absolute !important;
+  top: 5px;
+  right: 5px;
+  background: rgba(244, 67, 54, 0.9) !important;
+  color: white !important;
+  padding: 4px !important;
+  transition: all 0.3s ease !important;
+}
+
+.delete-image-btn:hover {
+  background: rgba(211, 47, 47, 1) !important;
+  transform: scale(1.1);
+}
+
+/* Submit Section */
+.submit-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #ecf0f1;
+}
+
+.submit-section .MuiButton-root {
+  padding: 12px 48px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  background: linear-gradient(45deg, #3498db, #2980b9) !important;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.submit-section .MuiButton-root:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4) !important;
+}
+
+.submit-section .MuiButton-root:disabled {
+  background: #95a5a6 !important;
+  box-shadow: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .item-creation-paper {
+    padding: 1.5rem;
+  }
+
+  .item-creation-title {
+    font-size: 2rem !important;
+  }
+
+  .custom-size-input {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .custom-size-input .MuiTextField-root {
+    max-width: 100%;
+  }
+
+  .highlight-input {
+    flex-direction: column;
+  }
+
+  .submit-section .MuiButton-root {
+    width: 100%;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.item-creation-paper {
+  animation: fadeIn 0.5s ease;
+}
