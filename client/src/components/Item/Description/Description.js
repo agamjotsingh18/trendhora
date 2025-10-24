@@ -7,6 +7,67 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { CartItemsContext } from "../../../Context/CartItemsContext";
 import { WishItemsContext } from "../../../Context/WishItemsContext";
 
+/* 🔹 Review Form Component */
+const ReviewForm = ({ item, onReviewAdded }) => {
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!rating || !comment.trim()) return;
+
+    setIsSubmitting(true);
+    const newReview = {
+      user: localStorage.getItem('userName') || 'Anonymous',
+      rating,
+      comment: comment.trim(),
+      date: new Date().toISOString()
+    };
+
+    // Add to local state immediately
+    onReviewAdded(newReview);
+    
+    // Reset form
+    setRating(0);
+    setComment("");
+    setIsSubmitting(false);
+  };
+
+  return (
+    <div className="review-form">
+      <h5>Write a Review</h5>
+      <form onSubmit={handleSubmit}>
+        <div className="rating-input">
+          <label>Rating:</label>
+          <Rating
+            value={rating}
+            onChange={(e, newValue) => setRating(newValue)}
+            size="large"
+          />
+        </div>
+        <div className="comment-input">
+          <textarea
+            placeholder="Share your experience with this product..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            rows={4}
+            required
+          />
+        </div>
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={!rating || !comment.trim() || isSubmitting}
+          className="submit-review-btn"
+        >
+          {isSubmitting ? 'Submitting...' : 'Submit Review'}
+        </Button>
+      </form>
+    </div>
+  );
+};
+
 /* 🔹 Delivery & Offers Component - Enhanced */
 const DeliveryOffers = ({ delivery, offers }) => {
   const [pincode, setPincode] = useState("");
@@ -92,8 +153,8 @@ const Description = ({ item }) => {
   const highlights = item?.highlights || [];
   const delivery = item?.delivery || "Delivery within 3-5 business days.";
   const offers = item?.offers || [];
-  const reviews = item?.reviews || [];
-
+  
+  const [reviews, setReviews] = useState(item?.reviews || []);
   const [activeTab, setActiveTab] = useState("highlights");
 
   const averageRating = useMemo(() => {
@@ -169,6 +230,10 @@ const Description = ({ item }) => {
               <div className="rating-count">{reviews.length} review{reviews.length !== 1 ? "s" : ""}</div>
             </div>
 
+            <ReviewForm item={item} onReviewAdded={(newReview) => {
+              setReviews(prev => [...prev, newReview]);
+            }} />
+
             {reviews.length > 0 ? (
               reviews.map((r, i) => (
                 <div key={i} className="review-card">
@@ -183,7 +248,7 @@ const Description = ({ item }) => {
                 </div>
               ))
             ) : (
-              <p>No reviews yet.</p>
+              <p>No reviews yet. Be the first to review!</p>
             )}
           </div>
         )}

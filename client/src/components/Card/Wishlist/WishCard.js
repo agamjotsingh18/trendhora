@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { IconButton, Button, Box, Typography } from "@mui/material";
 import { WishItemsContext } from "../../../Context/WishItemsContext";
@@ -6,6 +7,7 @@ import "./WishCard.css";
 
 const WishCard = ({ item }) => {
   const wishItems = useContext(WishItemsContext);
+  const navigate = useNavigate();
 
   const handelRemoveItem = () => {
     wishItems.removeItem(item);
@@ -13,6 +15,10 @@ const WishCard = ({ item }) => {
 
   const handelAddToCart = () => {
     wishItems.addToCart(item);
+  };
+
+  const handleProductClick = () => {
+    navigate(`/item/${item.category}/${item._id}`);
   };
 
   return (
@@ -50,12 +56,14 @@ const WishCard = ({ item }) => {
 
       {/* Image */}
       <Box
+        onClick={handleProductClick}
         sx={{
           height: 200, // slightly bigger for better product view
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           mb: 2,
+          cursor: "pointer",
         }}
       >
         <img
@@ -73,7 +81,16 @@ const WishCard = ({ item }) => {
       {/* Name */}
       <Typography
         variant="h6"
-        sx={{ fontWeight: "bold", color: "#333", mb: 1 }}
+        onClick={handleProductClick}
+        sx={{ 
+          fontWeight: "bold", 
+          color: "#333", 
+          mb: 1,
+          cursor: "pointer",
+          "&:hover": {
+            color: "#FFE26E"
+          }
+        }}
       >
         {item.name}
       </Typography>
