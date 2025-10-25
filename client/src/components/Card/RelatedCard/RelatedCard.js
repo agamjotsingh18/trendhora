@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Card,
@@ -18,16 +18,31 @@ import {
   Visibility
 } from '@mui/icons-material';
 import './RelatedCard.css';
+import { WishItemsContext } from '../../../Context/WishItemsContext';
+import { success as toastSuccess } from '../../../lib/toast';
 
 const RelatedCard = ({ item }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const wishItems = useContext(WishItemsContext);
+
+  useEffect(() => {
+    const exists = wishItems.items?.some(i => i._id === item._id);
+    setIsWishlisted(!!exists);
+  }, [wishItems.items, item._id]);
   const [showActions, setShowActions] = useState(false);
 
   const handleWishlistToggle = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsWishlisted(!isWishlisted);
+    const res = wishItems.toggleItem(item);
+    if (res === 'added') {
+      toastSuccess('Item added to wishlist!');
+      setIsWishlisted(true);
+    } else {
+      toastSuccess('Item removed from wishlist');
+      setIsWishlisted(false);
+    }
   };
 
   const handleAddToCart = (e) => {

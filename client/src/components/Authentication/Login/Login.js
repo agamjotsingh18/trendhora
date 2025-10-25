@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import LoginCard from '../../Card/LoginCard/LoginCard';
 import './Login.css';
 import { FcGoogle } from 'react-icons/fc';
@@ -15,15 +16,22 @@ const Login = () => {
 
   const handleLogin = async (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, { email, password });
-            localStorage.setItem('token', response.data.token); // Store JWT token
-            alert('Login successful!');
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, { email, password });
+            localStorage.setItem('authToken', response.data.token); // Store JWT token
+            // Clear any existing Supabase session to avoid showing a different logged-in user
+            try {
+              await supabase.auth.signOut();
+            } catch (err) {
+              // ignore
+            }
+            // Notify other tabs/components that auth changed
+            window.dispatchEvent(new Event('storage'));
+            toast.success('Logged in successfully!');
             navigate('/account/me'); // Navigate to account page after login
-        } catch (error) {
-            const errorMessage = error.response ? error.response.data.message : error.message;
-            alert(`Login failed: ${errorMessage}`);
-        }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Login failed. Please try again.');
+    }
     };
 
   
@@ -62,14 +70,14 @@ const Login = () => {
         </div>
 
         {/* Email/password form */}
-        {/*<form onSubmit={handleLogin}>*/}
-          <LoginCard
-            email={email}
-            password={password}
-            setEmail={setEmail}
-            setPassword={setPassword}
-          />
-        {/*</form>*/}
+        <form onSubmit={handleLogin}> 
+            <LoginCard
+              email={email}
+              password={password}
+              setEmail={setEmail}
+              setPassword={setPassword}
+            />
+        </form>
       </div>
     </div>
   );

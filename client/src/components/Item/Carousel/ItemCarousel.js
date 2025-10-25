@@ -137,6 +137,7 @@ const ProductCarousel = (props) => {
             </div>
         </div>
     );
+
 };
 
 export default ProductCarousel;

@@ -1,48 +1,62 @@
 .product__carousel__container {
-  height: 20%;
-  width: 45%;
-  min-width: 300px;
-  margin: auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 20%;
+  min-width: 300px;
   margin: 1rem;
 }
 
 .product__carousel {
-  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .carousel {
+  width: 100%;
   height: 100%;
 }
 
 .carousel__image__container {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1 / 1;
+  /* square product area */
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(135deg, #fff9e6 0%, #fff5f0 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 12px;
 }
 
 .carousel__image {
-  max-width: 65%;
+  max-width: 100%;
+  max-height: 100%;
   height: auto;
+  object-fit: contain;
   margin: 0;
-  border-radius: 1rem;
+  border-radius: 8px;
+  transition: transform 0.4s ease;
+}
+
+.product__carousel__container:hover .carousel__image {
+  transform: scale(1.02);
 }
 
 @media screen and (max-width: 600px) {
   .carousel__image__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    aspect-ratio: 4 / 5;
+    /* taller on mobile */
+    padding: 10px;
   }
-  
+
   .carousel__image {
     max-width: 85%;
   }
@@ -115,8 +129,8 @@
 
 .nav-button {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 40%;
+  transform: translateY(-5%);
   background-color: rgba(255, 255, 255, 0.9);
   color: #333;
   backdrop-filter: blur(10px);
@@ -132,7 +146,7 @@
 }
 
 .nav-button-right {
-  right: 1rem;
+  right: -1rem;
 }
 
 .thumbnail-container {
@@ -214,6 +228,7 @@
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -223,16 +238,16 @@
   .main-image-container {
     height: 400px;
   }
-  
+
   .nav-button-left,
   .nav-button-right {
     display: none;
   }
-  
+
   .thumbnail-container {
     gap: 0.25rem;
   }
-  
+
   .thumbnail-wrapper {
     width: 60px;
     height: 60px;
@@ -243,12 +258,12 @@
   .main-image-container {
     height: 300px;
   }
-  
+
   .image-overlay {
     top: 0.5rem;
     right: 0.5rem;
   }
-  
+
   .product-badges {
     top: 0.5rem;
     left: 0.5rem;

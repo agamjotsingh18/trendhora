@@ -1,6 +1,6 @@
 .nav__bottom__container {
   height: 55px;
-  background: var(--bg-secondary, #1a1a1a);
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,8 +60,30 @@
 /* Active link styling */
 .nav-link a.active {
   color: var(--accent-color, #FFB400);
+  transform: translateY(-2px) scale(1.05);
   font-weight: 700;
 }
+
+.nav-link.active a {
+  color: var(--accent-color, #FFB400);
+  transform: translateY(-2px);
+}
+
+.MuiListItemButton-root.active {
+  background: #f4cc8cff !important;
+  color: #a06b11ff !important;
+  border-right: solid #a06b11ff 7px !important;
+  box-shadow: 1px 1.2px 0px 0px #a06b11ff !important;
+}
+
+.MuiListItemButton-root.active .MuiListItemText-primary {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  font-style: italic;
+  letter-spacing: 1.1px;
+  color: #917143ff !important;
+}
+
 
 /* Hide on mobile (DrawerNav will be used) */
 @media (max-width: 780px) {

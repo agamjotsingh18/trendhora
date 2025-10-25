@@ -77,9 +77,21 @@ const Related = (props) => {
       </div>
       <div className="related__card__container">
         <div className="related__product__card">
+{/* 
+          {menItems &&
+            props.category === "men" &&
+            menItems.map((item) => <RelatedCard key={item._id || item.id} item={item} />)}
+          {womenItems &&
+            props.category === "women" &&
+            womenItems.map((item) => <RelatedCard key={item._id || item.id} item={item} />)}
+          {kidsItems &&
+            props.category === "kids" &&
+            kidsItems.map((item) => <RelatedCard key={item._id || item.id} item={item} />)} */}
+
           {currentItems.map((item, index) => (
             <RelatedCard key={item._id || index} item={item} />
           ))}
+
         </div>
       </div>
     </div>

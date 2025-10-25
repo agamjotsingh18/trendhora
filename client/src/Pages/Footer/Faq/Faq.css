@@ -1,13 +1,19 @@
-.container{
-    margin:4rem auto;
+.container {
+    margin: 4rem auto;
 }
-.heading{
+
+.heading {
     padding: 1rem;
     text-align: center;
     font-family: "Playfair Display";
+    color: #333;
 }
 
-.faq-container{
+.heading h1 {
+    color: #333;
+}
+
+.faq-container {
     margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
@@ -16,19 +22,25 @@
     border: 1px solid gray;
     padding: 1.5rem;
     border-radius: 0.5rem;
-    box-shadow:0px 0px 1rem rgb(183, 181, 181);
+    box-shadow: 0px 0px 1rem rgb(183, 181, 181);
     width: 70%;
-}
-.question{
-    display: flex;
-    justify-content: space-between;   
-}
-.faq-toggle-button{
-    font-size: 20px;
-    margin-left: 2rem;
+    background-color: #ffffff;
+    color: #333;
 }
 
-.answer{
+.question {
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+}
+
+.faq-toggle-button {
+    font-size: 20px;
+    margin-left: 2rem;
+    color: #333;
+}
+
+.answer {
     background-color: rgb(239, 246, 247);
     margin-bottom: 1rem;
     margin-left: auto;
@@ -38,29 +50,35 @@
     padding: 1.5rem;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
-    box-shadow:0px 0px 1.5rem rgb(183, 181, 181);
+    box-shadow: 0px 0px 1.5rem rgb(183, 181, 181);
     width: 70%;
+    color: #333;
 }
+
 @media (prefers-color-scheme: dark) {
     .heading {
         color: #e0e0e0;
     }
-    
+
+    .dark-mode .heading h1 {
+        color: #e0e0e0;
+    }
+
     .faq-container {
         background-color: #2a2a2a;
         color: #e0e0e0;
         border-color: #555;
         box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.5);
     }
-    
+
     .question {
         color: #e0e0e0;
     }
-    
+
     .faq-toggle-button {
         color: #e0e0e0;
     }
-    
+
     .answer {
         background-color: #3a3a3a;
         color: #e0e0e0;

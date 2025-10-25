@@ -7,30 +7,26 @@ import './ThemeToggle.css';
 const ThemeToggle = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
-  const tooltipProps = {
-    arrow: true,
-    slotProps: {
-      popper: {
-        sx: {
-          '& .MuiTooltip-tooltip': {
+  return (
+    <Tooltip 
+      title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"} 
+      arrow
+      componentsProps={{
+        tooltip: {
+          sx: {
             backgroundColor: 'var(--bg-tertiary)',
             color: 'var(--text-primary)',
             fontSize: '0.8rem',
             borderRadius: '6px',
             padding: '6px 10px',
           },
-          '& .MuiTooltip-arrow': {
+        },
+        arrow: {
+          sx: {
             color: 'var(--bg-tertiary)',
           },
         },
-      },
-    },
-  };
-
-  return (
-    <Tooltip 
-      title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"} 
-      {...tooltipProps}
+      }}
     >
       <IconButton
         onClick={toggleTheme}

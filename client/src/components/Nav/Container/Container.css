@@ -4,11 +4,12 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  flex-wrap: wrap; /* allow wrapping instead of pushing off-screen */
-  background: var(--bg-primary);
+  flex-wrap: wrap; /*allow wrapping instead of pushing off-screen */
+  background: transparent;
   color: var(--text-primary);
   transition: background 0.3s ease, color 0.3s ease;
-}
+}   
+
 .mbox{
   display: flex;
   margin-right: 0.8rem;

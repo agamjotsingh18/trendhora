@@ -1,5 +1,4 @@
-
-.header__container {
+/* .header__container {
     height: auto;
     width: 100%;
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
@@ -12,6 +11,7 @@
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     color: var(--text-primary);
+    
 }
 
 .header__container:hover {
@@ -19,7 +19,7 @@
 }
 
 /* Dark mode header styles */
-.dark-mode .header__container {
+/* .dark-mode .header__container {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
@@ -27,4 +27,71 @@
 
 .dark-mode .header__container:hover {
     box-shadow: 0 6px 30px rgba(255, 255, 255, 0.15);
+} */ 
+
+.header__container {
+    height: auto;
+    width: 100%;
+    
+    /* MODIFIED: Replaced solid gradient with a semi-transparent background */
+    background: rgba(50, 50, 50, 0.4); /* 40% transparent grey for light mode */
+    
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
+    /* MODIFIED: Added a subtle border for the glass edge effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* MODIFIED: Added -webkit- prefix for Safari compatibility */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+}
+
+.header__container:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+    background: rgba(50, 50, 50, 0.55); /* Slightly less transparent on hover */
+}
+
+/* Dark mode header styles */
+/* In your .dark-mode .header__container class */
+
+.dark-mode .header__container {
+    /* * 1. CONTROL TRANSPARENCY & COLOR: 
+     * Change the last number (0.5) to make it more or less transparent.
+     * 0.2 is very see-through, 0.8 is almost solid.
+    */
+    background: rgba(25, 25, 25, 0.5); 
+    
+    /* * 2. CONTROL THE BLUR ("GLOW") AMOUNT: 
+     * Change the blur(12px) value. 
+     * A smaller value (e.g., blur(5px)) gives a sharper look.
+     * A larger value (e.g., blur(20px)) makes the glow softer and more spread out.
+    */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    /*
+     * 3. CONTROL THE EDGE HIGHLIGHT:
+     * This faint bottom border catches the light and defines the edge.
+     * You can change its transparency (the last number) or color.
+    */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    /* --- Other properties --- */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    color: var(--text-primary);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.dark-mode .header__container:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
+    background: rgba(25, 25, 25, 0.65); /* Slightly less transparent on hover */
 }

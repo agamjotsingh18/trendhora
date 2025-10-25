@@ -9,62 +9,69 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Share2 } from 'lucide-react';
 
 const Item = (props) => {
-    const handleShare = () => {
-        if (navigator.share) {
-            navigator.share({
-                title: props.item.name,
-                text: props.item.description,
-                url: window.location.href,
-            });
-        } else {
-            navigator.clipboard.writeText(window.location.href);
-        }
-    };
+  const item = props?.item;
 
-    return ( 
-        <div className="enterprise-item-container">
-            {/* Navigation Header */}
-            <div className="enterprise-nav-header">
-                <div className="nav-breadcrumb">
-                    <Link to={`/category/${props.item.category}`} className="back-button">
-                        <ArrowLeft size={20} />
-                        <span>Back to {props.item.category}</span>
-                    </Link>
-                    <div className="breadcrumb-path">
-                        <span>Home</span> / <span>{props.item.category}</span> / <span>{props.item.name}</span>
-                    </div>
-                </div>
-                <div className="nav-actions">
-                    <button className="action-button" onClick={handleShare}>
-                        <Share2 size={18} />
-                        <span>Share</span>
-                    </button>
-                </div>
-            </div>
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: item?.name,
+        text: item?.description,
+        url: window.location.href,
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+    }
+  };
 
-            {/* Main Product Grid */}
-            <div className="enterprise-product-grid">
-                <div className="product-gallery-section">
-                    <ItemCarousel item={props.item}/>
-                </div>
-                
-                <div className="product-info-section">
-                    <Detail item={props.item}/>
-                </div>
-            </div>
+  if (!item) {
+    return <div className="item__container">Loading...</div>;
+  }
 
-            {/* Product Description Section */}
-            <div className="enterprise-description-section">
-                <Description item={props.item}/>
-            </div>
-
-            {/* Recommended Products */}
-            <div className="enterprise-recommendations">
-                <Related category={props.item.category}/>
-            </div>
+  return (
+    <div className="enterprise-item-container">
+      {/* Navigation Header */}
+      <div className="enterprise-nav-header">
+        <div className="nav-breadcrumb">
+          <Link to={`/category/${item.category}`} className="back-button">
+            <ArrowLeft size={20} />
+            <span>Back to {item.category}</span>
+          </Link>
+          <div className="breadcrumb-path">
+            <span>Home</span> / <span>{item.category}</span> / <span>{item.name}</span>
+          </div>
         </div>
-     );
-}
+        <div className="nav-actions">
+          <button className="action-button" onClick={handleShare}>
+            <Share2 size={18} />
+            <span>Share</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Main Product Grid */}
+      <div className="enterprise-product-grid">
+        <div className="product-gallery-section">
+          <ItemCarousel item={item}/>
+        </div>
+        
+        <div className="product-info-section">
+          <Detail item={item}/>
+        </div>
+      </div>
+
+      {/* Product Description Section */}
+      <div className="enterprise-description-section">
+        <Description item={item}/>
+      </div>
+
+      {/* Recommended Products */}
+      <div className="enterprise-recommendations">
+        <Related category={item.category}/>
+      </div>
+    </div>
+  );
+};
  
 export default Item;
+
 

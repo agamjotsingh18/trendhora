@@ -4,7 +4,10 @@ import ItemCard from '../../Card/ItemCard/ItemCard';
 import ReactLoading from 'react-loading';
 import './FeaturedItems.css'
 
+// Add a debug log to inspect items
 const FeaturedItems = ({ items }) => {
+    console.log("FeaturedItems received items:", items); // <-- Debug log
+
     // Ensure we have items before trying to access them
     const featuredItems = items ? [
         items[0],
@@ -45,5 +48,5 @@ const FeaturedItems = ({ items }) => {
         </div>        
     );
 }
- 
+
 export default FeaturedItems;

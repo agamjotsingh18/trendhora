@@ -8,8 +8,12 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { WishItemsContext } from "../../../Context/WishItemsContext";
 import { useComparison } from "../../../Context/ComparisonContext";
 import Toaster from "../../Toaster/toaster";
+import { success as toastSuccess, error as toastError } from '../../../lib/toast';
 import axios from "axios";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import { Chip } from "@mui/material";
+import WarningIcon from "@mui/icons-material/Warning";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const ItemCard = (props) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -18,6 +22,7 @@ const ItemCard = (props) => {
   const [toasterMessage, setToasterMessage] = useState("");
   const [toasterType, setToasterType] = useState("success");
   const [product, setProduct] = useState(null);
+  const [stockInfo, setStockInfo] = useState({ stock: 0, stockStatus: 'in_stock' });
   const { category, id } = useParams();
   const navigate = useNavigate();
   const cartItemsContext = useContext(CartItemsContext);
@@ -52,7 +57,20 @@ const ItemCard = (props) => {
         .then((res) => setProduct(res.data))
         .catch((err) => console.error(err));
     }
-  }, [props.item, category, id]);
+
+    // Fetch stock information
+    if (currentItem?._id) {
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_URL}/api/items/${currentItem._id}`)
+        .then((res) => {
+          setStockInfo({
+            stock: res.data.stock || 0,
+            stockStatus: res.data.stockStatus || 'in_stock'
+          });
+        })
+        .catch((err) => console.error("Error fetching stock:", err));
+    }
+  }, [props.item, category, id, currentItem?._id]);
 
   const saveToRecentlyViewed = (product) => {
     const existing = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
@@ -75,13 +93,22 @@ const ItemCard = (props) => {
       return;
     }
 
+    // Check stock availability
+    if (stockInfo.stock === 0 || stockInfo.stockStatus === 'out_of_stock') {
+      setToasterTitle("Out of Stock");
+      setToasterMessage("This item is currently out of stock.");
+      setToasterType("error");
+      setShowToaster(true);
+      return;
+    }
+
     if (currentItem) {
       const normalized = {
         ...currentItem,
         _id: currentItem._id || currentItem.id,
         category: itemCategory,
       };
-      cartItemsContext.addItemToCart(normalized);
+      cartItemsContext.addItem(normalized, 1)
       setToasterTitle("Success");
       setToasterMessage("Item added to cart!");
       setToasterType("success");
@@ -95,10 +122,7 @@ const ItemCard = (props) => {
     e.stopPropagation();
 
     if (!isLoggedIn()) {
-      setToasterTitle("Login Required");
-      setToasterMessage("Please login to add items to wishlist.");
-      setToasterType("error");
-      setShowToaster(true);
+  toastError('Please login to add items to wishlist.');
   //     navigate("/login");
   
       return;
@@ -110,11 +134,12 @@ const ItemCard = (props) => {
         _id: currentItem._id || currentItem.id,
         category: itemCategory,
       };
-      wishItemsContext.addItemToWishList(normalized);
-      setToasterTitle("Success");
-      setToasterMessage("Item added to wishlist!");
-      setToasterType("success");
-      setShowToaster(true);
+      const result = wishItemsContext.toggleItem(normalized);
+      if (result === 'added') {
+        toastSuccess('Item added to wishlist!');
+      } else {
+        toastSuccess('Item removed from wishlist');
+      }
     }
   };
 
@@ -208,6 +233,25 @@ const ItemCard = (props) => {
           <span className="star">★</span>
           <span className="rating-value">{ratingValue.toFixed(1)}/5.0</span>
         </div>
+        {/* Stock Status Badge */}
+        {stockInfo.stockStatus === 'out_of_stock' && (
+          <Chip 
+            icon={<ErrorIcon />}
+            label="Out of Stock" 
+            color="error" 
+            size="small"
+            className="stock-badge out-of-stock"
+          />
+        )}
+        {stockInfo.stockStatus === 'low_stock' && (
+          <Chip 
+            icon={<WarningIcon />}
+            label={`Only ${stockInfo.stock} left`}
+            color="warning" 
+            size="small"
+            className="stock-badge low-stock"
+          />
+        )}
       </div>
       <div className="product__card__detail">
         <span className="category-badge">{itemCategory}</span>
