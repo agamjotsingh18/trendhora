@@ -41,11 +41,17 @@ import ResetPassword from '../components/Authentication/ResetPassword/ResetPassw
 import ContactUs from "../routes/ContactUs";
 import RecentlyViewedSection from "../components/RecentlyViewedSection";
 import PageNotFound from '../components/PageNotFound/PageNotFound';
+
+import ScrollToBottomButton from "../components/ScrollToBottom/ScrollToBottom.jsx";
+import { useRef } from "react";
+
 import InventoryManagement from '../components/Admin/InventoryManagement/InventoryManagement';
 import CartPage from "../routes/CartPage";
 
 
+
 function App() {
+  const bottomRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -130,6 +136,9 @@ function App() {
                 <Chatbot />
                 <ComparisonModal />
                 <ComparisonButton />
+                
+                <div ref={bottomRef}></div>
+                <ScrollToBottomButton containerRef={bottomRef}/>
                 <Footer />
                 </Router>
               </ComparisonProvider>
