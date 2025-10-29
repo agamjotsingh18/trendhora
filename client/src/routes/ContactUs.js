@@ -86,7 +86,7 @@ const ContactUs = () => {
         <div className="contact__cards__section">
           <div className="contact__card" data-aos="zoom-in" data-aos-delay="100">
             <div className="contact__card__icon">
-              <EmailIcon sx={{ fontSize: 30, color: '#FFE26E' }} />
+              <EmailIcon sx={{ fontSize: 30 }} />
             </div>
             <h3>Email Us</h3>
             <p>shop@trendhora.com</p>
@@ -95,7 +95,7 @@ const ContactUs = () => {
 
           <div className="contact__card" data-aos="zoom-in" data-aos-delay="200">
             <div className="contact__card__icon">
-              <PhoneIcon sx={{ fontSize: 30, color: '#FFE26E' }} />
+              <PhoneIcon sx={{ fontSize: 30 }} />
             </div>
             <h3>Call Us</h3>
             <p>+91 93190-42075</p>
@@ -104,7 +104,7 @@ const ContactUs = () => {
 
           <div className="contact__card" data-aos="zoom-in" data-aos-delay="300">
             <div className="contact__card__icon">
-              <LocationOnIcon sx={{ fontSize: 30, color: '#FFE26E' }} />
+              <LocationOnIcon sx={{ fontSize: 30 }} />
             </div>
             <h3>Visit Us</h3>
             <p>Delhi, India</p>
@@ -125,7 +125,7 @@ const ContactUs = () => {
               {/* Full Name */}
               <div className="input__group" data-aos="fade-right">
                 <div className="input__icon">
-                  <PersonIcon sx={{ fontSize: 20, color: '#6c757d' }} />
+                  <PersonIcon sx={{ fontSize: 20 }} />
                 </div>
                 <div className="input__content">
                   <label className="input__label">Full Name *</label>
@@ -144,7 +144,7 @@ const ContactUs = () => {
               {/* Email Address */}
               <div className="input__group" data-aos="fade-left">
                 <div className="input__icon">
-                  <EmailIcon sx={{ fontSize: 20, color: '#6c757d' }} />
+                  <EmailIcon sx={{ fontSize: 20 }} />
                 </div>
                 <div className="input__content">
                   <label className="input__label">Email Address *</label>
@@ -164,7 +164,7 @@ const ContactUs = () => {
             {/* Subject */}
             <div className="input__group" data-aos="fade-right">
               <div className="input__icon">
-                <SubjectIcon sx={{ fontSize: 20, color: '#6c757d' }} />
+                <SubjectIcon sx={{ fontSize: 20 }} />
               </div>
               <div className="input__content" style={{ marginTop: '1.5rem' }}>
                 <label className="input__label">Subject *</label>
@@ -183,7 +183,7 @@ const ContactUs = () => {
             {/* Message */}
             <div className="input__group" data-aos="fade-left">
               <div className="input__icon">
-                <MessageIcon sx={{ fontSize: 20, color: '#6c757d' }} />
+                <MessageIcon sx={{ fontSize: 20 }} />
               </div>
               <div className="input__content" style={{ marginTop: '1.5rem' }}>
                 <label className="input__label">Message *</label>

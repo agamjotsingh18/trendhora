@@ -3,7 +3,7 @@
   background-color: var(--bg-primary);
   padding: 5rem 2rem;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   overflow: hidden;
   position: relative;
 }
@@ -662,14 +662,16 @@
   font-weight: 800;
   color: #000;
   margin-bottom: 1rem;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .contact__hero__subtitle {
   font-size: 1.25rem;
   color: #333;
-  line-height: 1.6;
+  line-height: 1.7;
   font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .contact__hero__decoration {
@@ -696,21 +698,37 @@
 }
 
 .contact__card {
-  background: var(--bg-secondary);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   padding: 2.5rem 2rem;
   border-radius: 18px;
   text-align: center;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(255, 226, 110, 0.3);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
+.contact__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact__card:hover::before {
+  opacity: 1;
+}
+
 .contact__card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   border-color: var(--accent-color);
-  box-shadow: 0 10px 35px rgba(255, 226, 110, 0.25);
+  box-shadow: 0 12px 35px rgba(255, 226, 110, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .contact__card__icon {
@@ -725,26 +743,48 @@
   box-shadow: 0 5px 15px rgba(255, 226, 110, 0.35);
 }
 
+.contact__card__icon svg,
+.contact__card__icon .MuiSvgIcon-root {
+  color: #000000 !important;
+  font-size: 30px;
+}
+
+/* Dark mode: Keep icons black for visibility */
+.dark-mode .contact__card__icon svg,
+.dark-mode .contact__card__icon .MuiSvgIcon-root {
+  color: #000000 !important;
+}
+
 .contact__card h3 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  color: #000000;
+  margin-bottom: 0.7rem;
+  letter-spacing: -0.01em;
 }
 
 .contact__card p {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
+  font-size: 1.1rem;
+  color: #333333;
   font-weight: 500;
+  letter-spacing: 0.005em;
+}
+
+.contact__card__subtitle {
+  font-size: 0.9rem;
+  color: #666666;
+  margin-top: 0.5rem;
+  display: block;
+  font-weight: 400;
 }
 
 /* ========== FORM SECTION ========== */
 .contact__form__section {
-  background: var(--bg-secondary);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   padding: 3rem;
   border-radius: 22px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(255, 226, 110, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .contact__form__header {
@@ -755,13 +795,14 @@
 .contact__form__header h2 {
   font-size: 2.2rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #000000;
   margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .contact__form__header p {
   font-size: 1.1rem;
-  color: var(--text-secondary);
+  color: #555555;
   line-height: 1.6;
   max-width: 500px;
   margin: 0 auto;
@@ -795,14 +836,13 @@
   height: 48px;
   width: 48px;
   min-width: 48px;
-  border-radius: 444px;
-  background: var(--bg-tertiary);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
   padding: 0.5rem;
-  border: 1px solid var(--border-color);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+  border: 2px solid rgba(255, 226, 110, 0.3);
+  box-shadow: 0 2px 8px rgba(255, 226, 110, 0.2);
   margin-bottom: auto;
   /* No bottom/top margin */
-
 }
 
 
@@ -812,7 +852,7 @@
   display: block;
   width: 24px;
   height: 24px;
-  color: var(--text-secondary);
+  color: #000000 !important;
   stroke-width: 1.5;
 }
 
@@ -1023,5 +1063,12 @@
 }
 
 .dark-mode .input__icon {
-  background: var(--bg-primary);
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+  border-color: rgba(255, 226, 110, 0.3);
+  box-shadow: 0 2px 8px rgba(255, 226, 110, 0.2);
+}
+
+.dark-mode .input__icon svg,
+.dark-mode .input__icon .MuiSvgIcon-root {
+  color: #000000 !important;
 }

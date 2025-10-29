@@ -1,8 +1,8 @@
 /* Chatbot Floating Action Button */
 .chatbot-fab {
   position: fixed;
-  bottom: 20px;
-  right: 90px; /* Moved left to avoid scroll-to-top button */
+  bottom: 90px; /* Positioned above scroll-to-top button */
+  right: 20px;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow), 0 4px 20px rgba(255, 226, 110, 0.4);
-  z-index: 1000;
+  z-index: 999; /* Below scroll-to-top button which is 1000 */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   animation: pulse 2s infinite;
 }
@@ -76,11 +76,11 @@
 /* Chatbot Container */
 .chatbot-container {
   position: fixed;
-  bottom: 20px;
-  right: 90px; /* Moved left to avoid scroll-to-top button */
+  bottom: 90px; /* Positioned above scroll-to-top button */
+  right: 20px;
   width: 380px;
   height: 600px;
-  z-index: 1000;
+  z-index: 999; /* Below scroll-to-top button which is 1000 */
   font-family: 'Roboto', sans-serif;
 }
 
