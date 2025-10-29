@@ -7,7 +7,6 @@ import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
@@ -17,9 +16,7 @@ import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SendIcon from "@mui/icons-material/Send";
 import { SiX } from "react-icons/si";
-import Cart from "../Card/Cart/Cart";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -128,8 +125,8 @@ const Footer = () => {
             height: "45px",
             position: "fixed",
             zIndex: "1000",
-            bottom: "30px",
-            right: "40px",
+            bottom: "20px",
+            right: "95px",
             borderRadius: "50%",
             border: "none",
             transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
