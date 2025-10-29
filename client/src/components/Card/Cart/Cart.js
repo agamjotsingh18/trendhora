@@ -14,19 +14,20 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
-  top: "60%",
+  top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   minWidth: "350px",
   width: "90%",
   maxWidth: "500px",
-  height: "400px",
+  maxHeight: "90vh",
   bgcolor: "background.paper",
   border: "5px solid #FFE26E",
   borderRadius: "15px",
   boxShadow: 24,
   p: 4,
   zIndex: 1500,
+  overflow: "auto",
 };
 
 const Cart = () => {
