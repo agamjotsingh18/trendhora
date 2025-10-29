@@ -422,10 +422,10 @@ footer svg {
     background: linear-gradient(135deg, var(--accent-color) 0%, #FFD700 100%);
     width: 45px;
     height: 45px;
-    position: fixed;
+    position: fixed !important;
     z-index: 1000;
-    bottom: 30px;
-    right: 40px;
+    bottom: 20px !important; /* Same bottom as chatbot */
+    right: 95px !important; /* To the left of chatbot (chatbot right 20px + chatbot width 60px + gap 15px) */
     border-radius: 50%;
     border: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -478,8 +478,8 @@ footer svg {
     }
 
     .scroll-to-top {
-        bottom: 20px;
-        right: 20px;
+        bottom: 20px !important;
+        right: 85px !important; /* Adjusted for smaller mobile screens */
         width: 40px;
         height: 40px;
     }

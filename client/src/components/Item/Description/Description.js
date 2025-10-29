@@ -1,11 +1,8 @@
 
 import "./Description.css";
-import { useContext, useMemo, useState } from "react";
-import { Button, IconButton, Rating } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useMemo, useState } from "react";
+import { Button, Rating } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { CartItemsContext } from "../../../Context/CartItemsContext";
-import { WishItemsContext } from "../../../Context/WishItemsContext";
 
 /* 🔹 Review Form Component */
 const ReviewForm = ({ item, onReviewAdded }) => {
@@ -139,14 +136,7 @@ const DeliveryOffers = ({ delivery, offers }) => {
 
 /* 🔹 Main Description Component with Tabs */
 const Description = ({ item }) => {
-  const cartItems = useContext(CartItemsContext);
-  const wishItems = useContext(WishItemsContext);
-
-  const handleAddToCart = () => cartItems.addItem(item);
-  const handleAddToWish = () => wishItems.addItem(item);
-
   // Safe access with optional chaining and defaults
-  const images = item?.images || ["https://via.placeholder.com/400"];
   const name = item?.name || "Product Name";
   const price = item?.price || 0;
   const details = item?.details || "No details available.";

@@ -761,6 +761,7 @@
   color: #000000;
   margin-bottom: 0.7rem;
   letter-spacing: -0.01em;
+  text-align: center;
 }
 
 .contact__card p {
@@ -768,6 +769,7 @@
   color: #333333;
   font-weight: 500;
   letter-spacing: 0.005em;
+  text-align: center;
 }
 
 .contact__card__subtitle {
@@ -776,6 +778,7 @@
   margin-top: 0.5rem;
   display: block;
   font-weight: 400;
+  text-align: center;
 }
 
 /* ========== FORM SECTION ========== */
