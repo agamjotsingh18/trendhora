@@ -97,6 +97,7 @@ Trendhora combines a polished front-end experience with a robust Node/Mongo back
 ### 🔧 **For Admins**
 - 🛠️ **Manage Marketplace** - Effortlessly control and update product listings
 - 👥 **Customer Account Management** - Handle customer accounts and ensure smooth operation of the marketplace
+- ➕ **Dynamic Item Creation** - Create new products with comprehensive details including images, pricing, stock management, and multiple size options through an intuitive admin dashboard
 
 
   <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">

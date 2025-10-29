@@ -1,0 +1,268 @@
+.item-creation-container {
+  padding: 2rem 0;
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+.item-creation-paper {
+  padding: 2.5rem;
+  border-radius: 16px !important;
+  background: var(--bg-secondary) !important;
+  box-shadow: var(--shadow) !important;
+  border: 1px solid var(--border-color);
+}
+
+.item-creation-title {
+  color: var(--text-primary);
+  font-weight: 700 !important;
+  margin-bottom: 1.5rem !important;
+  text-align: center;
+  font-size: 2.5rem !important;
+}
+
+.item-creation-alert {
+  margin-bottom: 1.5rem !important;
+  border-radius: 8px !important;
+}
+
+.section-title {
+  color: var(--accent-color) !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+/* Size Selector */
+.size-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.size-chip {
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-weight: 600 !important;
+}
+
+.size-chip:hover {
+  transform: scale(1.05);
+}
+
+.custom-size-input {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.custom-size-input .MuiTextField-root {
+  flex: 1;
+  max-width: 200px;
+}
+
+.selected-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  min-height: 50px;
+  border: 1px solid var(--border-color);
+}
+
+.selected-size-chip {
+  font-weight: 600 !important;
+}
+
+/* Highlights */
+.highlight-input {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.highlight-input .MuiTextField-root {
+  flex: 1;
+}
+
+.highlights-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  min-height: 50px;
+  border: 1px solid var(--border-color);
+}
+
+.highlight-chip {
+  font-weight: 500 !important;
+}
+
+/* Image Upload */
+.image-upload-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.image-preview-grid {
+  margin-top: 1rem !important;
+}
+
+.image-preview {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  transition: transform 0.3s ease;
+}
+
+.image-preview:hover {
+  transform: scale(1.05);
+}
+
+.preview-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.delete-image-btn {
+  position: absolute !important;
+  top: 5px;
+  right: 5px;
+  background: rgba(244, 67, 54, 0.9) !important;
+  color: white !important;
+  padding: 4px !important;
+  transition: all 0.3s ease !important;
+}
+
+.delete-image-btn:hover {
+  background: rgba(211, 47, 47, 1) !important;
+  transform: scale(1.1);
+}
+
+/* Submit Section */
+.submit-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.submit-section .MuiButton-root {
+  padding: 12px 48px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  background: var(--accent-color) !important;
+  color: #000 !important;
+  box-shadow: var(--shadow) !important;
+  transition: all 0.3s ease !important;
+}
+
+.submit-section .MuiButton-root:hover {
+  transform: translateY(-2px);
+  background: var(--accent-hover) !important;
+  box-shadow: 0 6px 20px rgba(255, 226, 110, 0.4) !important;
+}
+
+.submit-section .MuiButton-root:disabled {
+  background: var(--text-muted) !important;
+  box-shadow: none !important;
+  opacity: 0.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .item-creation-paper {
+    padding: 1.5rem;
+  }
+
+  .item-creation-title {
+    font-size: 2rem !important;
+  }
+
+  .custom-size-input {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .custom-size-input .MuiTextField-root {
+    max-width: 100%;
+  }
+
+  .highlight-input {
+    flex-direction: column;
+  }
+
+  .submit-section .MuiButton-root {
+    width: 100%;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.item-creation-paper {
+  animation: fadeIn 0.5s ease;
+}
+
+/* Material-UI overrides for theme consistency */
+.item-creation-container .MuiTextField-root .MuiInputBase-root {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.item-creation-container .MuiOutlinedInput-notchedOutline {
+  border-color: var(--border-color) !important;
+}
+
+.item-creation-container .MuiInputLabel-root {
+  color: var(--text-secondary);
+}
+
+.item-creation-container .MuiInputBase-input {
+  color: var(--text-primary);
+}
+
+.item-creation-container .MuiSelect-select {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.item-creation-container .MuiChip-root {
+  background: var(--accent-color) !important;
+  color: #000 !important;
+}
+
+.item-creation-container .MuiChip-outlined {
+  border-color: var(--border-color) !important;
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
