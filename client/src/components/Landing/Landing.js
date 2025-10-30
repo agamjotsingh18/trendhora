@@ -1,5 +1,4 @@
 import './Landing.css'
-import land from '../../asset/brand/men2.png'
 import { Link } from "react-router-dom"
 import { Button } from "@mui/material";
 import Slider from "react-slick"; // Import Slider component
@@ -22,7 +21,8 @@ const settings = {
       autoplay: true,     // Automatically change slides
       autoplaySpeed: 3000, // Change slide every 3 seconds
       fade: true,         // Use a fade transition
-      cssEase: 'linear'
+      cssEase: 'linear',
+      arrows: false       // Remove left/right navigation arrows
     };
 
     // Array of images to display in the carousel
@@ -48,24 +48,41 @@ const settings = {
                                     height: '50px', 
                                     borderRadius: '25px', 
                                     fontWeight: '700', 
-                                    backgroundColor: 'var(--bg-primary)', 
+                                    fontSize: '1rem',
+                                    backgroundColor: 'transparent', 
+                                    borderWidth: '2px',
                                     borderColor: 'var(--accent-color)', 
                                     color: 'var(--text-primary)',
                                     boxShadow: '0 4px 15px rgba(255, 226, 110, 0.3)',
-                                    transition: 'all 0.3s ease',
+                                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                                     position: 'relative',
-                                    overflow: 'hidden'
+                                    overflow: 'hidden',
+                                    '&::before': {
+                                        content: '""',
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: '-100%',
+                                        width: '100%',
+                                        height: '100%',
+                                        background: 'var(--accent-color)',
+                                        transition: 'left 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                                        zIndex: -1
+                                    }
                                 }, 
                                 {
                                     '&:hover': {  
                                         backgroundColor: "var(--accent-color)", 
-                                        color: "var(--bg-primary)", 
+                                        color: "#000000", 
                                         borderColor: 'var(--accent-color)',
-                                        transform: 'translateY(-2px)',
-                                        boxShadow: '0 8px 25px rgba(255, 226, 110, 0.4)'
+                                        transform: 'translateY(-3px) scale(1.05)',
+                                        boxShadow: '0 10px 30px rgba(255, 226, 110, 0.5)',
+                                        '&::before': {
+                                            left: 0
+                                        }
                                     },
                                     '&:active': {
-                                        transform: 'translateY(0px)'
+                                        transform: 'translateY(-1px) scale(1.02)',
+                                        boxShadow: '0 5px 15px rgba(255, 226, 110, 0.4)'
                                     }
                                 }
                             ]}
