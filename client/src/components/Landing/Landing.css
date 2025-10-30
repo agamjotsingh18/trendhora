@@ -183,21 +183,51 @@
 
 /* Positions the navigation dots below the image */
 .landing__slider .slick-dots {
-    bottom: -15px; 
+    bottom: -15px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
 /* Styles the inactive navigation dots */
+.landing__slider .slick-dots li {
+    width: auto;
+    height: auto;
+    margin: 0;
+}
+
+.landing__slider .slick-dots li button {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+}
+
 .landing__slider .slick-dots li button:before {
-    font-size: 12px;
-    color: var(--accent-color);
-    opacity: 0.6;
-    transition: all 0.3s ease;
+    font-size: 10px;
+    width: 10px;
+    height: 10px;
+    content: '';
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    opacity: 0.4;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
 }
 
 /* Styles the single active navigation dot */
 .landing__slider .slick-dots li.slick-active button:before {
     opacity: 1;
-    color: var(--accent-color);
+    background-color: var(--accent-color);
+    transform: scale(1.3);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(255, 226, 110, 0.6);
+}
+
+/* Hover effect for dots */
+.landing__slider .slick-dots li button:hover:before {
+    opacity: 0.8;
+    transform: scale(1.2);
 }
 
 @media screen and (max-width: 768px) {
