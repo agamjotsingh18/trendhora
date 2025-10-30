@@ -74,19 +74,19 @@ const RegisterCard = () => {
         setIsChecking(false);
       }
     }, 600);
-  }, [username]);
+  }, [username, usernameTouched]);
 
   // --- Validation Functions ---
   const validateEmail = (value) => {
     if (!value) return "Email is required";
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return pattern.test(value) ? true : "Enter a valid email address";
+    return pattern.test(value) ? "" : "Enter a valid email address";
   };
 
   const validatePassword = (value) => {
     if (!value) return "Password is required";
     if (value.length < 6) return "Password must be at least 6 characters";
-    return true;
+    return "";
   };
 
   const validateConfirmPassword = (value) => {
@@ -144,10 +144,28 @@ const RegisterCard = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    // 3. Added validation check
+    // Validate all fields before submission
+    const emailError = validateEmail(email);
+    const passwordError = validatePassword(password);
+    const confirmPasswordError = validateConfirmPassword(confirmPassword);
+    const usernameError = !username ? "Username is required" : errors.username;
+
+    // Check if there are any errors
+    if (emailError || passwordError || confirmPasswordError || usernameError) {
+      setErrors({
+        email: emailError,
+        password: passwordError,
+        confirmPassword: confirmPasswordError,
+        username: usernameError
+      });
+      toast.error("Please fix all errors before submitting");
+      return;
+    }
+
+    // Check if passwords match
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return; // Stop submission if passwords don't match
+      toast.error("Passwords do not match!");
+      return;
     }
 
     try {
@@ -166,6 +184,7 @@ const RegisterCard = () => {
       }
       // Notify other tabs/components that auth changed
       window.dispatchEvent(new Event('storage'));
+      window.dispatchEvent(new Event('authChange'));
 
       toast.success('Account created successfully!');
       navigate("/");

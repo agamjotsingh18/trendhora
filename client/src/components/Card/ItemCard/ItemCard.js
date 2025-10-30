@@ -23,6 +23,7 @@ const ItemCard = (props) => {
   const [toasterType, setToasterType] = useState("success");
   const [product, setProduct] = useState(null);
   const [stockInfo, setStockInfo] = useState({ stock: 0, stockStatus: 'in_stock' });
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { category, id } = useParams();
   const navigate = useNavigate();
   const cartItemsContext = useContext(CartItemsContext);
@@ -31,9 +32,34 @@ const ItemCard = (props) => {
   const currentItem = props.item || product;
   const itemCategory = currentItem?.category || props.category;
 
+  // Check authentication status on mount and when storage changes
+  useEffect(() => {
+    const checkAuth = () => {
+      const token = localStorage.getItem("authToken");
+      setIsAuthenticated(!!token);
+    };
+
+    // Check on mount
+    checkAuth();
+
+    // Listen for storage events (when token is added/removed)
+    window.addEventListener('storage', checkAuth);
+    
+    // Also listen for custom auth events
+    const handleAuthChange = () => checkAuth();
+    window.addEventListener('authChange', handleAuthChange);
+
+    return () => {
+      window.removeEventListener('storage', checkAuth);
+      window.removeEventListener('authChange', handleAuthChange);
+    };
+  }, []);
+
   // ✅ Helper function to check login
   const isLoggedIn = () => {
-    return !!localStorage.getItem("authToken"); // token exist → logged in
+    const token = localStorage.getItem("authToken");
+    console.log("Checking auth token:", token ? "Token exists" : "No token"); // Debug log
+    return !!token; // token exist → logged in
   };
 
   const handleProductClick = (e) => {
