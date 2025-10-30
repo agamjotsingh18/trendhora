@@ -19,14 +19,18 @@ const Login = () => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, { email, password });
             localStorage.setItem('authToken', response.data.token); // Store JWT token
+            
             // Clear any existing Supabase session to avoid showing a different logged-in user
             try {
               await supabase.auth.signOut();
             } catch (err) {
               // ignore
             }
+            
             // Notify other tabs/components that auth changed
             window.dispatchEvent(new Event('storage'));
+            window.dispatchEvent(new Event('authChange'));
+            
             toast.success('Logged in successfully!');
             navigate('/account/me'); // Navigate to account page after login
     } catch (error) {

@@ -22,44 +22,88 @@ const MyAccount = () => {
       try {
         setLoading(true);
         
-        // Fetch user from Supabase
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          setUser(user);
-        }
+        // First, check if user is logged in with JWT token
+        const authToken = localStorage.getItem('authToken');
         
-        // Fetch orders from backend if user has a session
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session?.access_token) {
+        if (authToken) {
+          // User logged in with JWT (username/password)
           try {
-            // Fetch user orders
-            const ordersResponse = await fetch('/api/orders/my-orders', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/me`, {
               headers: {
-                'Authorization': `Bearer ${session.access_token}`,
+                'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json'
               }
             });
             
-            if (ordersResponse.ok) {
-              const ordersData = await ordersResponse.json();
-              setOrders(ordersData.data || []);
-            }
-            
-            // Fetch order statistics
-            const statsResponse = await fetch('/api/orders/stats', {
-              headers: {
-                'Authorization': `Bearer ${session.access_token}`,
-                'Content-Type': 'application/json'
+            if (response.ok) {
+              const userData = await response.json();
+              // Set user data from JWT backend
+              // Backend returns { success: true, data: { username, email, ... } }
+              const userInfo = userData.data;
+              setUser({
+                email: userInfo.email,
+                user_metadata: {
+                  full_name: userInfo.username,
+                  avatar_url: null
+                }
+              });
+              
+              // Fetch user's orders from backend
+              const ordersResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/orders/my-orders`, {
+                headers: {
+                  'Authorization': `Bearer ${authToken}`,
+                  'Content-Type': 'application/json'
+                }
+              });
+              
+              if (ordersResponse.ok) {
+                const ordersData = await ordersResponse.json();
+                setOrders(ordersData.data || []);
               }
-            });
-            
-            if (statsResponse.ok) {
-              const statsData = await statsResponse.json();
-              setOrderStats(statsData.data);
             }
           } catch (error) {
-            console.log('Orders not available yet or user not in backend:', error);
-            // This is okay - user might not have backend account yet
+            console.error('Error fetching JWT user data:', error);
+          }
+        } else {
+          // Fallback to Supabase OAuth if no JWT token
+          const { data: { user: supaUser } } = await supabase.auth.getUser();
+          if (supaUser) {
+            setUser(supaUser);
+          }
+          
+          // Fetch orders from backend if user has a Supabase session
+          const { data: { session } } = await supabase.auth.getSession();
+          if (session?.access_token) {
+            try {
+              // Fetch user orders
+              const ordersResponse = await fetch('/api/orders/my-orders', {
+                headers: {
+                  'Authorization': `Bearer ${session.access_token}`,
+                  'Content-Type': 'application/json'
+                }
+              });
+              
+              if (ordersResponse.ok) {
+                const ordersData = await ordersResponse.json();
+                setOrders(ordersData.data || []);
+              }
+              
+              // Fetch order statistics
+              const statsResponse = await fetch('/api/orders/stats', {
+                headers: {
+                  'Authorization': `Bearer ${session.access_token}`,
+                  'Content-Type': 'application/json'
+                }
+              });
+              
+              if (statsResponse.ok) {
+                const statsData = await statsResponse.json();
+                setOrderStats(statsData.data);
+              }
+            } catch (error) {
+              console.log('Orders not available yet or user not in backend:', error);
+              // This is okay - user might not have backend account yet
+            }
           }
         }
       } catch (error) {

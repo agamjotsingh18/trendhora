@@ -129,6 +129,11 @@ const CartItemsProvider = (props) => {
     );
   };
 
+  const clearCartHandler = () => {
+    setCartItems([]);
+    setTotalAmountOfItems(0);
+  };
+
   useEffect(() => {
     calculateTotalAmount(cartItems);
   }, [cartItems]);
@@ -138,7 +143,8 @@ const CartItemsProvider = (props) => {
     totalAmount: totalAmountOfItems,
     addItem: addToCartHandler,
     removeItem: removeFromCartHandler,
-    quantity: quantityHandler
+    quantity: quantityHandler,
+    clearCart: clearCartHandler
   };
 
   return (
