@@ -182,19 +182,44 @@
     gap: 0.5rem;
     color: var(--text-secondary);
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
     width: fit-content;         /* shrink hover to content only */
     max-width: max-content;     /* avoids full-row stretch */
+    padding: 0.3rem 0;
+    position: relative;
+    font-weight: 500;
+}
+
+.help__link a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color), #FFA500);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .help__link a:hover {
     color: var(--accent-color);
     transform: translateX(5px);
+    font-weight: 600;
+}
+
+.help__link a:hover::after {
+    width: 100%;
+}
+
+.help__link a:hover svg {
+    transform: scale(1.15);
+    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.4));
 }
 
 .help__link a svg {
     color: black !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Help Link Icons */
@@ -222,14 +247,49 @@
     gap: 0.5rem;
     color: var(--text-secondary);
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
     width: fit-content;     /* make link only as wide as its text */
+    padding: 0.3rem 0;
+    position: relative;
+    font-weight: 500;
+}
+
+.quick__link a::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.quick__link a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color), #FFA500);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .quick__link a:hover {
     color: var(--accent-color);
-    transform: translateX(5px);
+    transform: translateX(8px);
+    font-weight: 600;
+}
+
+.quick__link a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.quick__link a:hover::after {
+    width: 100%;
 }
 
 /* Contact */
@@ -254,23 +314,47 @@
     color: var(--text-secondary);
     font-size: 0.95rem;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 0.3rem 0;
     text-align: left;
     width: fit-content;         /* shrink hover to content only */
     max-width: max-content;     /* avoids full-row stretch */
+    position: relative;
+    font-weight: 500;
+}
+
+.footer__contact a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color), #FFA500);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer__contact a:hover {
     color: var(--accent-color);
+    font-weight: 600;
+}
+
+.footer__contact a:hover::after {
+    width: 100%;
+}
+
+.footer__contact a:hover svg {
+    transform: scale(1.15);
+    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.4));
 }
 
 .footer__contact a svg,
 .footer__contact button svg {
     color: black !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Contact Link Icons */
